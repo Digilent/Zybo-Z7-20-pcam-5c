@@ -40,10 +40,13 @@ public:
 	    std::cout << "id:" << (int)id_h << " " << (int)id_l << std::endl;
 	    if (id_h != dev_ID_h_ || id_l != dev_ID_l_)
 	    {
+	   	 /* Does not work. https://www.xilinx.com/support/answers/64193.html
 	      std::stringstream ss;
 	      ss << "Got " << std::hex << id_h << id_l << ". Expected " << dev_ID_h_ << dev_ID_l_;
-	      std::string string = ss.str();
-	      throw HardwareError(HardwareError::WRONG_ID, string.c_str());
+	      */
+	      char msg[100];
+	      snprintf(msg, sizeof(msg), "Got %02x %02x. Expected %02x %02x\r\n", id_h, id_l, dev_ID_h_, dev_ID_l_);
+	      throw HardwareError(HardwareError::WRONG_ID, msg);
 	    }
 	    typedef struct { uint16_t addr; uint8_t data; } config_word_t;
 	    config_word_t const init[] =

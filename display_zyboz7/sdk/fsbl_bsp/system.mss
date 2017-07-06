@@ -15,7 +15,6 @@ BEGIN PROCESSOR
  PARAMETER DRIVER_NAME = cpu_cortexa9
  PARAMETER DRIVER_VER = 2.3
  PARAMETER HW_INSTANCE = ps7_cortexa9_0
- PARAMETER extra_compiler_flags = -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles -DDEBUG -O0 -g -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nostartfiles
 END
 
 
@@ -239,6 +238,20 @@ BEGIN DRIVER
  PARAMETER DRIVER_NAME = vtc
  PARAMETER DRIVER_VER = 7.2
  PARAMETER HW_INSTANCE = vtg
+END
+
+
+BEGIN LIBRARY
+ PARAMETER LIBRARY_NAME = xilffs
+ PARAMETER LIBRARY_VER = 3.5
+ PARAMETER PROC_INSTANCE = ps7_cortexa9_0
+END
+
+
+BEGIN LIBRARY
+ PARAMETER LIBRARY_NAME = xilrsa
+ PARAMETER LIBRARY_VER = 1.2
+ PARAMETER PROC_INSTANCE = ps7_cortexa9_0
 END
 
 

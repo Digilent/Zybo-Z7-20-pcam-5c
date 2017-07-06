@@ -39,12 +39,12 @@ template <typename IrptCtl>
 class PS_IIC: public I2C_Client {
 public:
 
-	PS_IIC(uint16_t dev_id, IrptCtl& irpt_ctl, uint16_t irpt_id, uint32_t sclk_rate_Hz) :
+	PS_IIC(uint16_t dev_id, IrptCtl& irpt_ctl, uint32_t irpt_id, uint32_t sclk_rate_Hz) :
 		drv_inst_(),
 		irpt_ctl_(irpt_ctl),
 		stat_handler_(std::bind(&PS_IIC::StatusHandler, this, _1))
 	{
-		XIic_Config* ConfigPtr;
+		XIicPs_Config* ConfigPtr;
 		XStatus Status;
 
 		// Initialize the IIC driver so that it is ready to use.
@@ -72,7 +72,7 @@ public:
 		}
 
 		//Register the IIC handler with the interrupt controller
-		irpt_ctl_.registerHandler(irpt_id, &XIicPs_MasterInterruptHandler, &drv_inst_);
+		irpt_ctl_.registerHandler(irpt_id, reinterpret_cast<typename IrptCtl::Handler>(&XIicPs_MasterInterruptHandler), &drv_inst_);
 		irpt_ctl_.enableInterrupt(irpt_id);
 		irpt_ctl_.enableInterrupts();
 
@@ -106,7 +106,7 @@ public:
 
 		XIicPs_MasterSend(&drv_inst_, buf_local.data(), buf_local.size(), addr);
 
-		while (!tx_complete_flag && !slave_nack_flag_ && !arb_lost_flag_ && !other_error_flag_) ;
+		while (!tx_complete_flag_ && !slave_nack_flag_ && !arb_lost_flag_ && !other_error_flag_) ;
 
 		if (slave_nack_flag_) throw TransmitError("Slave NACK");
 		if (arb_lost_flag_) throw TransmitError("Arbitration lost");
@@ -150,7 +150,7 @@ private:
 		other_error_flag_ = 0;
 	}
 private:
-	XIic drv_inst_;
+	XIicPs drv_inst_;
 	IrptCtl& irpt_ctl_;
 	std::function<void(int)> stat_handler_;
 	volatile uint8_t tx_complete_flag_;	// Flag to check completion of Transmission

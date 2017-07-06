@@ -186,8 +186,8 @@ CONFIG.kAddDelayData1_ps {0} \
   set_property -dict [ list \
 CONFIG.CLKIN1_JITTER_PS {50.0} \
 CONFIG.CLKOUT1_DRIVES {BUFG} \
-CONFIG.CLKOUT1_JITTER {155.492} \
-CONFIG.CLKOUT1_PHASE_ERROR {187.097} \
+CONFIG.CLKOUT1_JITTER {137.540} \
+CONFIG.CLKOUT1_PHASE_ERROR {130.058} \
 CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {148.5} \
 CONFIG.CLKOUT2_DRIVES {BUFG} \
 CONFIG.CLKOUT3_DRIVES {BUFG} \
@@ -195,15 +195,16 @@ CONFIG.CLKOUT4_DRIVES {BUFG} \
 CONFIG.CLKOUT5_DRIVES {BUFG} \
 CONFIG.CLKOUT6_DRIVES {BUFG} \
 CONFIG.CLKOUT7_DRIVES {BUFG} \
+CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
 CONFIG.JITTER_SEL {No_Jitter} \
-CONFIG.MMCM_CLKFBOUT_MULT_F {26} \
+CONFIG.MMCM_CLKFBOUT_MULT_F {6.125} \
 CONFIG.MMCM_CLKIN1_PERIOD {5.0} \
 CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-CONFIG.MMCM_CLKOUT0_DIVIDE_F {7} \
+CONFIG.MMCM_CLKOUT0_DIVIDE_F {4.125} \
 CONFIG.MMCM_CLKOUT0_DUTY_CYCLE {0.5} \
 CONFIG.MMCM_COMPENSATION {ZHOLD} \
-CONFIG.MMCM_DIVCLK_DIVIDE {5} \
-CONFIG.PRIMITIVE {PLL} \
+CONFIG.MMCM_DIVCLK_DIVIDE {2} \
+CONFIG.PRIMITIVE {MMCM} \
 CONFIG.PRIM_SOURCE {No_buffer} \
 CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} \
 CONFIG.USE_DYN_RECONFIG {true} \
@@ -252,7 +253,7 @@ CONFIG.PCW_ACT_DCI_PERIPHERAL_FREQMHZ {10.158730} \
 CONFIG.PCW_ACT_ENET0_PERIPHERAL_FREQMHZ {125.000000} \
 CONFIG.PCW_ACT_ENET1_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_FPGA0_PERIPHERAL_FREQMHZ {50.000000} \
-CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {200.000000} \
+CONFIG.PCW_ACT_FPGA1_PERIPHERAL_FREQMHZ {166.666672} \
 CONFIG.PCW_ACT_FPGA2_PERIPHERAL_FREQMHZ {200.000000} \
 CONFIG.PCW_ACT_FPGA3_PERIPHERAL_FREQMHZ {10.000000} \
 CONFIG.PCW_ACT_I2C_PERIPHERAL_FREQMHZ {50} \
@@ -298,7 +299,7 @@ CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
 CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {100} \
 CONFIG.PCW_CAN_PERIPHERAL_VALID {0} \
 CONFIG.PCW_CLK0_FREQ {50000000} \
-CONFIG.PCW_CLK1_FREQ {200000000} \
+CONFIG.PCW_CLK1_FREQ {166666672} \
 CONFIG.PCW_CLK2_FREQ {200000000} \
 CONFIG.PCW_CLK3_FREQ {10000000} \
 CONFIG.PCW_CORE0_FIQ_INTR {0} \
@@ -435,7 +436,7 @@ CONFIG.PCW_FCLK0_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR0 {5} \
 CONFIG.PCW_FCLK0_PERIPHERAL_DIVISOR1 {4} \
 CONFIG.PCW_FCLK1_PERIPHERAL_CLKSRC {IO PLL} \
-CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {5} \
+CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR0 {6} \
 CONFIG.PCW_FCLK1_PERIPHERAL_DIVISOR1 {1} \
 CONFIG.PCW_FCLK2_PERIPHERAL_CLKSRC {IO PLL} \
 CONFIG.PCW_FCLK2_PERIPHERAL_DIVISOR0 {5} \
@@ -448,7 +449,7 @@ CONFIG.PCW_FCLK_CLK1_BUF {TRUE} \
 CONFIG.PCW_FCLK_CLK2_BUF {TRUE} \
 CONFIG.PCW_FCLK_CLK3_BUF {FALSE} \
 CONFIG.PCW_FPGA0_PERIPHERAL_FREQMHZ {50} \
-CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {200} \
+CONFIG.PCW_FPGA1_PERIPHERAL_FREQMHZ {166} \
 CONFIG.PCW_FPGA2_PERIPHERAL_FREQMHZ {200} \
 CONFIG.PCW_FPGA3_PERIPHERAL_FREQMHZ {50} \
 CONFIG.PCW_FPGA_FCLK0_ENABLE {1} \
@@ -1121,7 +1122,8 @@ CONFIG.NUM_MI {3} \
   # Create instance: rgb2dvi_0, and set properties
   set rgb2dvi_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:rgb2dvi:1.4 rgb2dvi_0 ]
   set_property -dict [ list \
-CONFIG.kClkRange {2} \
+CONFIG.kClkPrimitive {PLL} \
+CONFIG.kClkRange {1} \
 CONFIG.kRstActiveHigh {false} \
  ] $rgb2dvi_0
 
@@ -1209,7 +1211,7 @@ CONFIG.NUM_PORTS {3} \
   connect_bd_net -net rst_ps7_0_200M_interconnect_aresetn [get_bd_pins axi_mem_intercon/ARESETN] [get_bd_pins axi_mem_intercon_1/ARESETN] [get_bd_pins rst_ps7_0_200M/interconnect_aresetn]
   connect_bd_net -net rst_ps7_0_200M_peripheral_aresetn [get_bd_pins axi_mem_intercon/M00_ARESETN] [get_bd_pins axi_mem_intercon/S00_ARESETN] [get_bd_pins axi_mem_intercon_1/M00_ARESETN] [get_bd_pins axi_mem_intercon_1/S00_ARESETN] [get_bd_pins rst_ps7_0_200M/peripheral_aresetn]
   connect_bd_net -net rst_ps7_0_50M_interconnect_aresetn [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_50M/interconnect_aresetn]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins axi_vdma_0/axi_resetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins vtg/s_axi_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins PixelClk_Generator/s_axi_aresetn] [get_bd_pins axi_vdma_0/axi_resetn] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins vtg/s_axi_aresetn]
   connect_bd_net -net v_axi4s_vid_out_0_locked [get_bd_pins rgb2dvi_0/aRst_n] [get_bd_pins v_axi4s_vid_out_0/locked]
   connect_bd_net -net v_axi4s_vid_out_0_vtg_ce [get_bd_pins v_axi4s_vid_out_0/vtg_ce] [get_bd_pins vtg/gen_clken]
   connect_bd_net -net v_tc_0_irq [get_bd_pins vtg/irq] [get_bd_pins xlconcat_0/In0]
@@ -1238,12 +1240,12 @@ preplace portBus dphy_data_hs_n -pg 1 -y 540 -defaultsOSRD
 preplace portBus dphy_data_hs_p -pg 1 -y 520 -defaultsOSRD
 preplace portBus dphy_data_lp_n -pg 1 -y 560 -defaultsOSRD
 preplace portBus dphy_data_lp_p -pg 1 -y 580 -defaultsOSRD
+preplace inst CSI2_0 -pg 1 -lvl 2 -y 540 -defaultsOSRD
 preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 4 -y 140 -defaultsOSRD
 preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 310 -defaultsOSRD
-preplace inst CSI2_0 -pg 1 -lvl 2 -y 540 -defaultsOSRD
-preplace inst axi_vdma_0 -pg 1 -lvl 3 -y 370 -defaultsOSRD
-preplace inst vtg -pg 1 -lvl 3 -y 110 -defaultsOSRD
 preplace inst MIPI_D_PHY_RX_0 -pg 1 -lvl 1 -y 550 -defaultsOSRD
+preplace inst vtg -pg 1 -lvl 3 -y 110 -defaultsOSRD
+preplace inst axi_vdma_0 -pg 1 -lvl 3 -y 370 -defaultsOSRD
 preplace inst axi_mem_intercon_1 -pg 1 -lvl 4 -y 500 -defaultsOSRD
 preplace inst PixelClk_Generator -pg 1 -lvl 3 -y 570 -defaultsOSRD
 preplace inst xlconcat_0 -pg 1 -lvl 4 -y 330 -defaultsOSRD
@@ -1252,47 +1254,47 @@ preplace inst rst_ps7_0_200M -pg 1 -lvl 3 -y 750 -defaultsOSRD
 preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 300 -defaultsOSRD
 preplace inst axi_mem_intercon -pg 1 -lvl 4 -y 810 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 5 -y 480 -defaultsOSRD
-preplace netloc ps7_0_axi_periph_M02_AXI 1 2 1 630
 preplace netloc processing_system7_0_DDR 1 5 1 NJ
+preplace netloc ps7_0_axi_periph_M02_AXI 1 2 1 650
 preplace netloc dphy_data_hs_p_1 1 0 1 NJ
-preplace netloc axi_vdma_0_s2mm_introut 1 3 1 1090
 preplace netloc dphy_data_lp_n_1 1 0 1 NJ
-preplace netloc axi_mem_intercon_1_M00_AXI 1 4 1 1420
-preplace netloc axi_vdma_0_M_AXI_MM2S 1 3 1 1080
+preplace netloc axi_vdma_0_s2mm_introut 1 3 1 1090
+preplace netloc dphy_hs_clock_1 1 0 1 NJ
 preplace netloc v_axi4s_vid_out_0_vid_io_out 1 4 1 N
 preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 360 650 NJ 650 NJ 650 NJ 650 1880
-preplace netloc dphy_hs_clock_1 1 0 1 NJ
+preplace netloc axi_vdma_0_M_AXI_MM2S 1 3 1 1080
+preplace netloc axi_mem_intercon_1_M00_AXI 1 4 1 1420
 preplace netloc dphy_clk_lp_p_1 1 0 1 NJ
 preplace netloc axi_vdma_0_M_AXIS_MM2S 1 3 1 1030
-preplace netloc rst_ps7_0_200M_peripheral_aresetn 1 3 1 1060
 preplace netloc v_tc_0_irq 1 3 1 1090
+preplace netloc rst_ps7_0_200M_peripheral_aresetn 1 3 1 1060
 preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 0 730 NJ 730 640 840 1100J 690 NJ 690 1860
 preplace netloc dphy_clk_lp_n_1 1 0 1 NJ
-preplace netloc axi_mem_intercon_M00_AXI 1 4 1 1410
 preplace netloc processing_system7_0_IIC_0 1 5 1 NJ
+preplace netloc axi_mem_intercon_M00_AXI 1 4 1 1410
 preplace netloc dphy_data_hs_n_1 1 0 1 NJ
 preplace netloc MIPI_D_PHY_RX_0_RxByteClkHS1 1 1 1 340
-preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N
 preplace netloc rgb2dvi_0_TMDS 1 5 1 NJ
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N
 preplace netloc v_axi4s_vid_out_0_locked 1 4 1 1410
 preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 330
-preplace netloc v_axi4s_vid_out_0_vtg_ce 1 2 3 690 250 NJ 250 1400
 preplace netloc xlconcat_0_dout 1 4 1 1400
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 2 3 700 250 NJ 250 1400
 preplace netloc processing_system7_0_FIXED_IO 1 5 1 NJ
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 350 140 640
 preplace netloc axi_vdma_0_mm2s_introut 1 3 1 1070
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 350 140 650
-preplace netloc CSI2_0_m_axis_video 1 2 1 640
+preplace netloc CSI2_0_m_axis_video 1 2 1 660
 preplace netloc rst_ps7_0_200M_interconnect_aresetn 1 3 1 1070
 preplace netloc processing_system7_0_GPIO_0 1 5 1 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 0 90 340 90 660 490 1050J 620 1430 630 1850
-preplace netloc axi_vdma_0_M_AXI_S2MM 1 3 1 1060
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 0 90 340 90 670 490 1050J 620 1430 630 1850
 preplace netloc v_tc_0_vtiming_out 1 3 1 1090
 preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 630
+preplace netloc axi_vdma_0_M_AXI_S2MM 1 3 1 1060
 preplace netloc MIPI_D_PHY_RX_0_D_PHY_PPI 1 1 1 N
-preplace netloc processing_system7_0_FCLK_CLK1 1 1 5 370 850 670 850 1090 630 1420 640 1840
+preplace netloc processing_system7_0_FCLK_CLK1 1 1 5 370 850 680 850 1090 630 1420 640 1840
 preplace netloc dphy_data_lp_p_1 1 0 1 NJ
-preplace netloc PixelClk_Generator_clk_out1 1 2 3 680 240 1040 30 1430
-preplace netloc processing_system7_0_FCLK_CLK2 1 0 6 10 690 NJ 690 690 660 NJ 660 NJ 660 1870
+preplace netloc processing_system7_0_FCLK_CLK2 1 0 6 10 690 NJ 690 700 660 NJ 660 NJ 660 1870
+preplace netloc PixelClk_Generator_clk_out1 1 2 3 690 240 1040 30 1430
 levelinfo -pg 1 -20 170 500 870 1270 1640 1900 -top -10 -bot 920
 ",
 }
@@ -1311,6 +1313,4 @@ levelinfo -pg 1 -20 170 500 870 1270 1640 1900 -top -10 -bot 920
 
 create_root_design ""
 
-
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 

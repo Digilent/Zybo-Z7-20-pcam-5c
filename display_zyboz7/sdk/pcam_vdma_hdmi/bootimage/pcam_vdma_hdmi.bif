@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]C:\git\pcam\display_zyboz7\sdk\fsbl\Debug\fsbl.elf
+	C:\git\pcam\display_zyboz7\sdk\system_wrapper_hw_platform_0\system_wrapper.bit
+	C:\git\pcam\display_zyboz7\sdk\pcam_vdma_hdmi\Debug\pcam_vdma_hdmi.elf
+}

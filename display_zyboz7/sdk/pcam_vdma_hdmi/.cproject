@@ -28,6 +28,7 @@
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.508783586" name="Software Platform Include Path" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../pcam_vdma_hdmi_bsp/ps7_cortexa9_0/include"/>
 								</option>
+								<option id="xilinx.gnu.compiler.misc.other.1031907491" superClass="xilinx.gnu.compiler.misc.other" value="-std=c++11 -c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
 								<inputType id="xilinx.gnu.armv7.c.compiler.input.639105057" name="C source files" superClass="xilinx.gnu.armv7.c.compiler.input"/>
 							</tool>
 							<tool id="xilinx.gnu.armv7.cxx.toolchain.compiler.debug.1325663771" name="ARM v7 g++ compiler" superClass="xilinx.gnu.armv7.cxx.toolchain.compiler.debug">
@@ -37,7 +38,7 @@
 									<listOptionValue builtIn="false" value="../../pcam_vdma_hdmi_bsp/ps7_cortexa9_0/include"/>
 								</option>
 								<option id="xilinx.gnu.compiler.misc.other.1845879073" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-std=c++11 -c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
-								<option id="xilinx.gnu.compiler.symbols.defined.690578988" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined" valueType="definedSymbols"/>
+								<option id="xilinx.gnu.compiler.symbols.defined.690578988" name="Defined symbols (-D)" superClass="xilinx.gnu.compiler.symbols.defined"/>
 								<inputType id="xilinx.gnu.armv7.cxx.compiler.input.1793841351" name="C++ source files" superClass="xilinx.gnu.armv7.cxx.compiler.input"/>
 							</tool>
 							<tool id="xilinx.gnu.armv7.toolchain.archiver.455391159" name="ARM v7 archiver" superClass="xilinx.gnu.armv7.toolchain.archiver"/>
@@ -104,6 +105,7 @@
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.1578783181" name="Software Platform Include Path" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../pcam_vdma_hdmi_bsp/ps7_cortexa9_0/include"/>
 								</option>
+								<option id="xilinx.gnu.compiler.misc.other.1901683052" superClass="xilinx.gnu.compiler.misc.other" value="-std=c++11 -c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
 								<inputType id="xilinx.gnu.armv7.c.compiler.input.1098318899" name="C source files" superClass="xilinx.gnu.armv7.c.compiler.input"/>
 							</tool>
 							<tool id="xilinx.gnu.armv7.cxx.toolchain.compiler.release.617556799" name="ARM v7 g++ compiler" superClass="xilinx.gnu.armv7.cxx.toolchain.compiler.release">
@@ -112,7 +114,7 @@
 								<option id="xilinx.gnu.compiler.inferred.swplatform.includes.936107925" name="Software Platform Include Path" superClass="xilinx.gnu.compiler.inferred.swplatform.includes" valueType="includePath">
 									<listOptionValue builtIn="false" value="../../pcam_vdma_hdmi_bsp/ps7_cortexa9_0/include"/>
 								</option>
-								<option id="xilinx.gnu.compiler.misc.other.1152032323" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
+								<option id="xilinx.gnu.compiler.misc.other.1152032323" name="Other flags" superClass="xilinx.gnu.compiler.misc.other" value="-std=c++11 -c -fmessage-length=0 -MT&quot;$@&quot; -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard" valueType="string"/>
 								<inputType id="xilinx.gnu.armv7.cxx.compiler.input.1893634417" name="C++ source files" superClass="xilinx.gnu.armv7.cxx.compiler.input"/>
 							</tool>
 							<tool id="xilinx.gnu.armv7.toolchain.archiver.249452653" name="ARM v7 archiver" superClass="xilinx.gnu.armv7.toolchain.archiver"/>

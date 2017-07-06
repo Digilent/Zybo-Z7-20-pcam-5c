@@ -23,7 +23,7 @@ public:
 	PS_GPIO(uint16_t dev_id, IrptCtl& irpt_ctl, uint16_t irpt_id) :
 		drv_inst_(), irpt_ctl_(irpt_ctl)
 	{
-		XGpioPs_Config config = XGpioPs_LookupConfig(dev_id);
+		XGpioPs_Config* config = XGpioPs_LookupConfig(dev_id);
 		if (config == NULL) {
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}

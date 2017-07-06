@@ -22,7 +22,11 @@ sdk/.metadata
 sdk/**/*RemoteSystemsTempFiles
 sdk/**/*Debug
 sdk/**/*Release
+sdk/**/.metadata
 sdk/**/*webtalk
+sdk/.sdk
+sdk/.temp
+Packages/
 
 # ignore everything in the hw_platform
 sdk/*hw_platform*/*

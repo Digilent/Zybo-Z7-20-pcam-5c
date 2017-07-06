@@ -21,7 +21,7 @@ namespace digilent {
 class ScuGicInterruptController
 {
 public:
-	typedef XInterruptHandler Handler;
+	typedef Xil_InterruptHandler Handler;
 	typedef XStatus	Errc;
 	ScuGicInterruptController(uint16_t dev_id) :
 		drv_inst_()
@@ -49,7 +49,7 @@ public:
 
 		Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
 				(Xil_ExceptionHandler) XScuGic_InterruptHandler,
-				XScuGicInstancePtr);
+				&drv_inst_);
 
 		// Enable interrupts in the ARM
 		Xil_ExceptionEnable();
@@ -69,7 +69,7 @@ public:
 		XStatus Status;
 
 		Status = XScuGic_Connect(&drv_inst_, irpt_id,
-		   (XInterruptHandler) handler,
+		   (Xil_InterruptHandler) handler,
 		   std::forward<Arg>(args)...);
 		if (Status != XST_SUCCESS) {
 			return XST_FAILURE;
