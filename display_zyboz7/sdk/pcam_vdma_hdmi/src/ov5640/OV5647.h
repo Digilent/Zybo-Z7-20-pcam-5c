@@ -1,12 +1,12 @@
 /*
- * OV5640.h
+ * OV5647.h
  *
  *  Created on: May 26, 2016
  *      Author: Elod
  */
 
-#ifndef OV5640_H_
-#define OV5640_H_
+#ifndef OV5647_H_
+#define OV5647_H_
 
 #include <sstream>
 #include <iostream>
@@ -19,7 +19,7 @@ namespace digilent {
 
 typedef enum {OK, ERR_GENERAL} Errc;
 
-class OV5640 {
+class OV5647 {
 public:
 	class HardwareError : public std::runtime_error {
 	public:
@@ -29,7 +29,7 @@ public:
 	private:
 		Errc errc_;
 	};
-	OV5640(I2C_Client& iic, GPIO_Client& gpio) : iic_(iic), gpio_(gpio) {}
+	OV5647(I2C_Client& iic, GPIO_Client& gpio) : iic_(iic), gpio_(gpio) {}
 	void init()
 	{
 		uint8_t id_h, id_l;
@@ -505,7 +505,7 @@ public:
 			writeReg(init[i].addr, init[i].data);
 		}
 	}
-	~OV5640() { }
+	~OV5647() { }
 
 	void readReg(uint16_t reg_addr, uint8_t& buf)
 	{
@@ -551,9 +551,9 @@ public:
 private:
   I2C_Client& iic_;
   GPIO_Client& gpio_;
-  uint8_t dev_address_ = (0x78 >> 1);
+  uint8_t dev_address_ = (0x6C >> 1);
   uint8_t const dev_ID_h_ = 0x56;
-  uint8_t const dev_ID_l_ = 0x40;
+  uint8_t const dev_ID_l_ = 0x47;
   uint16_t const reg_ID_h = 0x300A;
   uint16_t const reg_ID_l = 0x300B;
   uint const retry_count_ = 10;
@@ -561,4 +561,4 @@ private:
 
 } /* namespace digilent */
 
-#endif /* OV5640_H_ */
+#endif /* OV5647_H_ */

@@ -118,27 +118,27 @@ public:
 private:
 	void StatusHandler(int Event)
 	{
-		switch (Event)
+		if (Event & XIICPS_EVENT_COMPLETE_SEND) //Transmit Complete Event
 		{
-			case XIICPS_EVENT_COMPLETE_SEND: //Transmit Complete Event
-				tx_complete_flag_ = 1;
-				break;
-			case XIICPS_EVENT_COMPLETE_RECV:  //Receive Complete Event
-				rx_complete_flag_ = 1;
-				break;
-			case XIICPS_EVENT_NACK:	// Slave did not ACK (had error)
-				slave_nack_flag_ = 1;
-				break;
-			case XIICPS_EVENT_ARB_LOST: 		// Arbitration was lost
-				arb_lost_flag_ = 1;
-				break;
-			case XIICPS_EVENT_TIME_OUT:	//Transfer timed out
-			case XIICPS_EVENT_ERROR:		// Receive error
-			case XIICPS_EVENT_SLAVE_RDY:	// Bus transitioned to not busy
-			{
-				other_error_flag_ = 1;
-				break;
-			}
+			tx_complete_flag_ = 1;
+		}
+		if (Event & XIICPS_EVENT_COMPLETE_RECV)  //Receive Complete Event
+		{
+			rx_complete_flag_ = 1;
+		}
+		if (Event & XIICPS_EVENT_NACK)	// Slave did not ACK (had error)
+		{
+			slave_nack_flag_ = 1;
+		}
+		if (Event & XIICPS_EVENT_ARB_LOST) 		// Arbitration was lost
+		{
+			arb_lost_flag_ = 1;
+		}
+		if (Event & (XIICPS_EVENT_TIME_OUT |	//Transfer timed out
+				XIICPS_EVENT_ERROR |		// Receive error
+				XIICPS_EVENT_SLAVE_RDY))	// Bus transitioned to not busy
+		{
+			other_error_flag_ = 1;
 		}
 	}
 	void resetFlags()
