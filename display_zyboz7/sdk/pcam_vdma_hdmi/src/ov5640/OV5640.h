@@ -548,10 +548,29 @@ public:
 			}
 		}
 	}
+
+	void writeRegLiquid(uint8_t const reg_data)
+		{
+			for(auto retry_count = retry_count_; retry_count > 0; --retry_count)
+			{
+				try
+				{
+					auto buf = std::vector<uint8_t>{reg_data};
+					iic_.write(dev_address2_, buf.data(), buf.size());
+					break; //If no exceptions, no mo retries
+				}
+				catch (I2C_Client::TransmitError const& e)
+				{
+					if (retry_count > 0) continue;
+					else throw HardwareError(HardwareError::IIC_NACK, e.what());
+				}
+			}
+		}
 private:
   I2C_Client& iic_;
   GPIO_Client& gpio_;
   uint8_t dev_address_ = (0x78 >> 1);
+  uint8_t dev_address2_ = (0x46 >> 1);
   uint8_t const dev_ID_h_ = 0x56;
   uint8_t const dev_ID_l_ = 0x40;
   uint16_t const reg_ID_h = 0x300A;

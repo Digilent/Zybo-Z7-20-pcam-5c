@@ -44,6 +44,42 @@ int main()
 	vdma_driver.enableWrite(timing[0].h_active, timing[0].v_active);
 	xil_printf("Video init done.\r\n");
 
+
+	// Liquid lens control
+	uint8_t read_char1, read_char2 = 0;
+	cam.writeRegLiquid((uint8_t) 144);
+	xil_printf("\r\nWrote to liquid lens controller: %x", (uint8_t) 144);
+
+	while (1) {
+		xil_printf("\r\n\r\nPlease enter value of liquid lens register, in hex: 0x");
+		//A, B, C,..., F need to be entered with capital letters
+		while (read_char1 < 48) {
+			read_char1 = getchar();
+		}
+		while (read_char2 < 48) {
+			read_char2 = getchar();
+		}
+		// If character is a digit, convert from ASCII code to a digit between 0 and 9
+		if (read_char1 <= 57) {
+			read_char1 -= 48;
+		}
+		// If character is a letter, convert ASCII code to a number between 10 and 15
+		else {
+			read_char1 -= 55;
+		}
+		// If character is a digit, convert from ASCII code to a digit between 0 and 9
+		if (read_char2 <= 57) {
+			read_char2 -= 48;
+		}
+		// If character is a letter, convert ASCII code to a number between 10 and 15
+		else {
+			read_char2 -= 55;
+		}
+		cam.writeRegLiquid((uint8_t) (16*read_char1 + read_char2));
+		xil_printf("\r\nWrote to liquid lens controller: %x", (uint8_t) (16*read_char1 + read_char2));
+	}
+
+
 	cleanup_platform();
 
 	return 0;
