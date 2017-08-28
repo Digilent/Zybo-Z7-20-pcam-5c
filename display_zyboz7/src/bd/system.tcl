@@ -175,11 +175,6 @@ CONFIG.AXI_interface {true} \
 CONFIG.C_AXI_DATA_WIDTH {32} \
  ] $CSI2_0
 
-  set_property -dict [ list \
-CONFIG.NUM_READ_OUTSTANDING {1} \
-CONFIG.NUM_WRITE_OUTSTANDING {1} \
- ] [get_bd_intf_pins /CSI2_0/S_AXI]
-
   # Create instance: MIPI_D_PHY_RX_0, and set properties
   set MIPI_D_PHY_RX_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:MIPI_D_PHY_RX:1.0 MIPI_D_PHY_RX_0 ]
   set_property -dict [ list \
@@ -191,8 +186,8 @@ CONFIG.kAddDelayData1_ps {0} \
   set_property -dict [ list \
 CONFIG.CLKIN1_JITTER_PS {50.0} \
 CONFIG.CLKOUT1_DRIVES {BUFG} \
-CONFIG.CLKOUT1_JITTER {137.540} \
-CONFIG.CLKOUT1_PHASE_ERROR {130.058} \
+CONFIG.CLKOUT1_JITTER {155.492} \
+CONFIG.CLKOUT1_PHASE_ERROR {187.097} \
 CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {148.5} \
 CONFIG.CLKOUT2_DRIVES {BUFG} \
 CONFIG.CLKOUT3_DRIVES {BUFG} \
@@ -202,14 +197,14 @@ CONFIG.CLKOUT6_DRIVES {BUFG} \
 CONFIG.CLKOUT7_DRIVES {BUFG} \
 CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
 CONFIG.JITTER_SEL {No_Jitter} \
-CONFIG.MMCM_CLKFBOUT_MULT_F {6.125} \
+CONFIG.MMCM_CLKFBOUT_MULT_F {26} \
 CONFIG.MMCM_CLKIN1_PERIOD {5.0} \
 CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-CONFIG.MMCM_CLKOUT0_DIVIDE_F {4.125} \
+CONFIG.MMCM_CLKOUT0_DIVIDE_F {7} \
 CONFIG.MMCM_CLKOUT0_DUTY_CYCLE {0.5} \
 CONFIG.MMCM_COMPENSATION {ZHOLD} \
-CONFIG.MMCM_DIVCLK_DIVIDE {2} \
-CONFIG.PRIMITIVE {MMCM} \
+CONFIG.MMCM_DIVCLK_DIVIDE {5} \
+CONFIG.PRIMITIVE {PLL} \
 CONFIG.PRIM_SOURCE {No_buffer} \
 CONFIG.SECONDARY_SOURCE {Single_ended_clock_capable_pin} \
 CONFIG.USE_DYN_RECONFIG {true} \
@@ -1127,7 +1122,7 @@ CONFIG.NUM_MI {4} \
   # Create instance: rgb2dvi_0, and set properties
   set rgb2dvi_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:rgb2dvi:1.4 rgb2dvi_0 ]
   set_property -dict [ list \
-CONFIG.kClkPrimitive {PLL} \
+CONFIG.kClkPrimitive {MMCM} \
 CONFIG.kClkRange {1} \
 CONFIG.kRstActiveHigh {false} \
  ] $rgb2dvi_0
@@ -1148,26 +1143,26 @@ CONFIG.C_VTG_MASTER_SLAVE {1} \
   # Create instance: vtg, and set properties
   set vtg [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.1 vtg ]
   set_property -dict [ list \
-CONFIG.GEN_F0_VBLANK_HEND {1920} \
-CONFIG.GEN_F0_VBLANK_HSTART {1920} \
-CONFIG.GEN_F0_VFRAME_SIZE {1125} \
-CONFIG.GEN_F0_VSYNC_HEND {1920} \
-CONFIG.GEN_F0_VSYNC_HSTART {1920} \
-CONFIG.GEN_F0_VSYNC_VEND {1088} \
-CONFIG.GEN_F0_VSYNC_VSTART {1083} \
-CONFIG.GEN_F1_VBLANK_HEND {1920} \
-CONFIG.GEN_F1_VBLANK_HSTART {1920} \
-CONFIG.GEN_F1_VFRAME_SIZE {1125} \
-CONFIG.GEN_F1_VSYNC_HEND {1920} \
-CONFIG.GEN_F1_VSYNC_HSTART {1920} \
-CONFIG.GEN_F1_VSYNC_VEND {1088} \
-CONFIG.GEN_F1_VSYNC_VSTART {1083} \
-CONFIG.GEN_HACTIVE_SIZE {1920} \
-CONFIG.GEN_HFRAME_SIZE {2200} \
-CONFIG.GEN_HSYNC_END {2052} \
-CONFIG.GEN_HSYNC_START {2008} \
-CONFIG.GEN_VACTIVE_SIZE {1080} \
-CONFIG.VIDEO_MODE {1080p} \
+CONFIG.GEN_F0_VBLANK_HEND {1280} \
+CONFIG.GEN_F0_VBLANK_HSTART {1280} \
+CONFIG.GEN_F0_VFRAME_SIZE {750} \
+CONFIG.GEN_F0_VSYNC_HEND {1280} \
+CONFIG.GEN_F0_VSYNC_HSTART {1280} \
+CONFIG.GEN_F0_VSYNC_VEND {729} \
+CONFIG.GEN_F0_VSYNC_VSTART {724} \
+CONFIG.GEN_F1_VBLANK_HEND {1280} \
+CONFIG.GEN_F1_VBLANK_HSTART {1280} \
+CONFIG.GEN_F1_VFRAME_SIZE {750} \
+CONFIG.GEN_F1_VSYNC_HEND {1280} \
+CONFIG.GEN_F1_VSYNC_HSTART {1280} \
+CONFIG.GEN_F1_VSYNC_VEND {729} \
+CONFIG.GEN_F1_VSYNC_VSTART {724} \
+CONFIG.GEN_HACTIVE_SIZE {1280} \
+CONFIG.GEN_HFRAME_SIZE {1650} \
+CONFIG.GEN_HSYNC_END {1430} \
+CONFIG.GEN_HSYNC_START {1390} \
+CONFIG.GEN_VACTIVE_SIZE {720} \
+CONFIG.VIDEO_MODE {720p} \
 CONFIG.enable_detection {false} \
  ] $vtg
 
@@ -1249,8 +1244,8 @@ preplace portBus dphy_data_lp_n -pg 1 -y 560 -defaultsOSRD
 preplace portBus dphy_data_lp_p -pg 1 -y 580 -defaultsOSRD
 preplace inst CSI2_0 -pg 1 -lvl 2 -y 610 -defaultsOSRD
 preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 4 -y 140 -defaultsOSRD
-preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 310 -defaultsOSRD
-preplace inst MIPI_D_PHY_RX_0 -pg 1 -lvl 1 -y 550 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -y 300 -defaultsOSRD
+preplace inst MIPI_D_PHY_RX_0 -pg 1 -lvl 1 -y 510 -defaultsOSRD
 preplace inst vtg -pg 1 -lvl 3 -y 110 -defaultsOSRD
 preplace inst axi_vdma_0 -pg 1 -lvl 3 -y 370 -defaultsOSRD
 preplace inst axi_mem_intercon_1 -pg 1 -lvl 4 -y 500 -defaultsOSRD
@@ -1262,48 +1257,48 @@ preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -y 300 -defaultsOSRD
 preplace inst axi_mem_intercon -pg 1 -lvl 4 -y 810 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 5 -y 480 -defaultsOSRD
 preplace netloc processing_system7_0_DDR 1 5 1 NJ
-preplace netloc ps7_0_axi_periph_M02_AXI 1 2 1 690
-preplace netloc dphy_data_hs_p_1 1 0 1 NJ
-preplace netloc dphy_data_lp_n_1 1 0 1 NJ
-preplace netloc axi_vdma_0_s2mm_introut 1 3 1 1120
-preplace netloc dphy_hs_clock_1 1 0 1 NJ
+preplace netloc ps7_0_axi_periph_M02_AXI 1 2 1 680
+preplace netloc dphy_data_hs_p_1 1 0 1 -40J
+preplace netloc dphy_data_lp_n_1 1 0 1 -20J
+preplace netloc axi_vdma_0_s2mm_introut 1 3 1 1110
+preplace netloc dphy_hs_clock_1 1 0 1 -70J
 preplace netloc v_axi4s_vid_out_0_vid_io_out 1 4 1 N
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 390 480 680J 650 NJ 650 NJ 650 1880
-preplace netloc axi_vdma_0_M_AXI_MM2S 1 3 1 1110
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 370 -30 NJ -30 NJ -30 NJ -30 1870
+preplace netloc axi_vdma_0_M_AXI_MM2S 1 3 1 1100
 preplace netloc axi_mem_intercon_1_M00_AXI 1 4 1 1420
-preplace netloc dphy_clk_lp_p_1 1 0 1 NJ
+preplace netloc dphy_clk_lp_p_1 1 0 1 -50J
 preplace netloc axi_vdma_0_M_AXIS_MM2S 1 3 1 1060
-preplace netloc v_tc_0_irq 1 3 1 1120
-preplace netloc rst_ps7_0_200M_peripheral_aresetn 1 3 1 1090
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 0 730 NJ 730 660 840 1130J 690 NJ 690 1860
-preplace netloc dphy_clk_lp_n_1 1 0 1 NJ
+preplace netloc v_tc_0_irq 1 3 1 1110
+preplace netloc rst_ps7_0_200M_peripheral_aresetn 1 3 1 1080
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 0 730 NJ 730 730 660 NJ 660 NJ 660 1840
+preplace netloc dphy_clk_lp_n_1 1 0 1 -60J
 preplace netloc processing_system7_0_IIC_0 1 5 1 NJ
 preplace netloc ps7_0_axi_periph_M03_AXI 1 1 2 380 120 650
 preplace netloc axi_mem_intercon_M00_AXI 1 4 1 1410
-preplace netloc dphy_data_hs_n_1 1 0 1 NJ
+preplace netloc dphy_data_hs_n_1 1 0 1 -30J
 preplace netloc MIPI_D_PHY_RX_0_RxByteClkHS1 1 1 1 330
 preplace netloc rgb2dvi_0_TMDS 1 5 1 NJ
-preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 710
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 700
 preplace netloc v_axi4s_vid_out_0_locked 1 4 1 1410
 preplace netloc rst_ps7_0_50M_interconnect_aresetn 1 1 1 330
 preplace netloc xlconcat_0_dout 1 4 1 1400
-preplace netloc v_axi4s_vid_out_0_vtg_ce 1 2 3 740 250 NJ 250 1400
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 2 3 720 -40 NJ -40 1400
 preplace netloc processing_system7_0_FIXED_IO 1 5 1 NJ
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 350 110 700
-preplace netloc axi_vdma_0_mm2s_introut 1 3 1 1100
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 2 350 110 690
+preplace netloc axi_vdma_0_mm2s_introut 1 3 1 1090
 preplace netloc CSI2_0_m_axis_video 1 2 1 660
-preplace netloc rst_ps7_0_200M_interconnect_aresetn 1 3 1 1100
+preplace netloc rst_ps7_0_200M_interconnect_aresetn 1 3 1 1090
 preplace netloc processing_system7_0_GPIO_0 1 5 1 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 0 90 340 90 720 490 1080J 620 1430 630 1850
-preplace netloc v_tc_0_vtiming_out 1 3 1 1120
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 690
-preplace netloc axi_vdma_0_M_AXI_S2MM 1 3 1 1090
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 -70 90 340 90 710 490 1060J 620 1430 630 1870
+preplace netloc v_tc_0_vtiming_out 1 3 1 1110
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 680
+preplace netloc axi_vdma_0_M_AXI_S2MM 1 3 1 1080
 preplace netloc MIPI_D_PHY_RX_0_D_PHY_PPI 1 1 1 360
-preplace netloc processing_system7_0_FCLK_CLK1 1 1 5 390 850 710 850 1120 630 1420 640 1840
-preplace netloc dphy_data_lp_p_1 1 0 1 NJ
-preplace netloc processing_system7_0_FCLK_CLK2 1 0 6 10 690 370J 510 670 660 NJ 660 NJ 660 1870
-preplace netloc PixelClk_Generator_clk_out1 1 2 3 730 240 1070 30 1430
-levelinfo -pg 1 -20 170 520 900 1270 1640 1900 -top -10 -bot 920
+preplace netloc processing_system7_0_FCLK_CLK1 1 1 5 380 850 720 850 1110 630 1420 640 1860
+preplace netloc dphy_data_lp_p_1 1 0 1 -10J
+preplace netloc processing_system7_0_FCLK_CLK2 1 0 6 10 650 370J 510 670 650 NJ 650 NJ 650 1850
+preplace netloc PixelClk_Generator_clk_out1 1 2 3 730 -20 1070 -20 1430
+levelinfo -pg 1 -90 170 520 900 1270 1640 1900 -top -110 -bot 920
 ",
 }
 

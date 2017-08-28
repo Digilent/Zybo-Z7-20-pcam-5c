@@ -39,9 +39,12 @@ int main()
 	cam.init();
 	xil_printf("Cam init done.\r\n");
 	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_PIXELCLK_GENERATOR_BASEADDR);
+//	vid.ChangeResolution(Resolution::R1280_720_60_PP);
 	vid.ChangeResolution(Resolution::R1920_1080_60_PP);
-	vdma_driver.enableRead(timing[0].h_active, timing[0].v_active);
-	vdma_driver.enableWrite(timing[0].h_active, timing[0].v_active);
+//	vdma_driver.enableRead(timing[static_cast<int>(Resolution::R1280_720_60_PP)].h_active, timing[static_cast<int>(Resolution::R1280_720_60_PP)].v_active);
+	vdma_driver.enableRead(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
+//	vdma_driver.enableWrite(timing[static_cast<int>(Resolution::R1280_720_60_PP)].h_active, timing[static_cast<int>(Resolution::R1280_720_60_PP)].v_active);
+	vdma_driver.enableWrite(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
 	xil_printf("Video init done.\r\n");
 
 

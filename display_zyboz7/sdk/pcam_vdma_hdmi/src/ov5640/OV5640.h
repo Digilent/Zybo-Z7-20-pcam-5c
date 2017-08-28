@@ -47,11 +47,19 @@ public:
 			snprintf(msg, sizeof(msg), "Got %02x %02x. Expected %02x %02x\r\n", id_h, id_l, dev_ID_h_, dev_ID_l_);
 			throw HardwareError(HardwareError::WRONG_ID, msg);
 		}
+//		writeReg(0x3103, 0x11);
+//		//[7]=1 Software reset; [6]=0 Software power down; Default=0x02
+//		writeReg(0x3008, 0x82);
+//		do
+//			readReg(0x3008, id_h);
+//		while (id_h & 0x80);
+
+		//[7]=0 Software reset; [6]=1 Software power down; Default=0x02
+		writeReg(0x3008, 0x42);
+
 		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
 		config_word_t const init[] =
 		{
-				//[7]=0 Software reset; [6]=1 Software power down; Default=0x02
-				{0x3008, 0x42},
 				//[1]=1 Select system input clock from PLL; [0]=1 ???; Default=0x00
 				{0x3103, 0x03},
 				//[3:0]=0000 MD2P,MD2N,MCP,MCN input; Default=0x00
@@ -62,17 +70,17 @@ public:
 				{0x3034, 0x18},
 
 				//              +----------------+        +------------------+         +---------------------+        +---------------------+
-				//XVCLK         | PRE_DIV0       |        | Mult (4+252)     |         | Sys divider         |        | MIPI divider        |
-				//+-------+-----> 3037[3:0]=0001 +--------> 3026[7:0]=0x38   +---------> 3035[7:4]=0001 (+1) +--------> 3035[3:0]=0001 (+1) |
-				//12MHz   |     | / 1            | 12MHz  | * 56             | 672MHz  | / 2                 | 336MHz | / 1                 |
+				//XVCLK         | PRE_DIV0       |        | Mult (4+252)     |         | Sys divider (0=16)  |        | MIPI divider (0=16) |
+				//+-------+-----> 3037[3:0]=0001 +--------> 3036[7:0]=0x38   +---------> 3035[7:4]=0001      +--------> 3035[3:0]=0001      |
+				//12MHz   |     | / 1            | 12MHz  | * 56             | 672MHz  | / 1                 | 672MHz | / 1                 |
 				//        |     +----------------+        +------------------+         +----------+----------+        +----------+----------+
 				//        |                                                                       |                              |
-				//        |                                                                       |                      MIPISCLK|336MHz
+				//        |                                                                       |                      MIPISCLK|672MHz
 				//        |                                                                       |                              |
 				//        |     +----------------+        +------------------+         +----------v----------+        +----------v----------+
 				//        |     | PRE_DIVSP      |        | R_DIV_SP         |         | PLL R divider       |        | MIPI PHY            | MIPI_CLK
 				//        +-----> 303d[5:4]=01   +--------> 303d[2]=0 (+1)   |         | 3037[4]=1 (+1)      |        |                     +------->
-				//              | / 1.5          |  8MHz  | / 1              |         | / 2                 |        | / 2                 | 168MHz
+				//              | / 1.5          |  8MHz  | / 1              |         | / 2                 |        | / 2                 | 336MHz
 				//              +----------------+        +---------+--------+         +----------+----------+        +---------------------+
 				//                                                  |                             |
 				//                                                  |                             |
@@ -80,7 +88,7 @@ public:
 				//              +----------------+        +---------v--------+         +----------v----------+        +---------------------+
 				//              | SP divider     |        | Mult             |         | BIT div (MIPI 8/10) |        | SCLK divider        | SCLK
 				//              | 303c[3:0]=0x1  +<-------+ 303b[4:0]=0x19   |         | 3034[3:0]=0x8)      +----+---> 3108[1:0]=01 (2^)   +------->
-				//              | / 1            | 200MHz | * 25             |         | / 2                 |    |   | / 2                 | 42MHz
+				//              | / 1            | 200MHz | * 25             |         | / 2                 |    |   | / 2                 | 84MHz
 				//              +--------+-------+        +------------------+         +----------+----------+    |   +---------------------+
 				//                       |                                                        |               |
 				//                       |                                                        |               |
@@ -88,7 +96,7 @@ public:
 				//              +--------v-------+                                     +----------v----------+    |   +---------------------+
 				//              | R_SELD5 div    | ADCCLK                              | PCLK div            |    |   | SCLK2x divider      |
 				//              | 303d[1:0]=001  +------->                             | 3108[5:4]=00 (2^)   |    +---> 3108[3:2]=00 (2^)   +------->
-				//              | / 1            | 200MHz                              | / 1                 |        | / 1                 | 84MHz
+				//              | / 1            | 200MHz                              | / 1                 |        | / 1                 | 168MHz
 				//              +----------------+                                     +----------+----------+        +---------------------+
 				//                                                                                |
 				//                                                                                |
@@ -96,13 +104,14 @@ public:
 				//                                                                     +----------v----------+        +---------------------+
 				//                                                                     | P divider (* #lanes)| PCLK   | Scale divider       |
 				//                                                                     | 3035[3:0]=0001      +--------> 3824[4:0]           |
-				//                                                                     | / 1                 | 84MHz  | / 2                 |
+				//                                                                     | / 1                 | 168MHz | / 2                 |
 				//                                                                     +---------------------+        +---------------------+
 
 				//PLL1 configuration
 				//[7:4]=0001 System clock divider /1, [3:0]=0001 Scale divider for MIPI /1
 				{0x3035, 0x11},
 				//[7:0]=56 PLL multiplier
+				//{0x3036, 0x38},
 				{0x3036, 0x38},
 				//[4]=1 PLL root divider /2, [3:0]=1 PLL pre-divider /1
 				{0x3037, 0x11},
@@ -197,8 +206,9 @@ public:
 
 				//[2]=1 ISP vflip, [1]=0 sensor vflip
 				{0x3820, 0x46},
-				//[2]=1 ISP mirror, [1]=0 sensor mirror
+				//[2]=1 ISP mirror, [1]=0 sensor mirror, [0]=0 no horizontal binning
 				{0x3821, 0x00},
+
 				//1920x1080
 				//[3:0]=0 X address start high byte
 				{0x3800, 0x01},
@@ -241,52 +251,104 @@ public:
 				//[7:0]=0 timing voffset low byte
 				{0x3813, 0x06},
 
-				//	      //1280 x 720
-				//	      //[3:0]=0 X address start high byte
-				//	      {0x3800, 0x02},
-				//	      //[7:0]=0 X address start low byte
-				//	      {0x3801, 0x90},
-				//	      //[2:0]=0 Y address start high byte
-				//	      {0x3802, 0x02},
-				//	      //[7:0]=0 Y address start low byte
-				//	      {0x3803, 0x62},
-				//	      //[3:0] X address end high byte (0xA3F=2623)
-				//	      {0x3804, 0x07},
-				//	      //[7:0] X address end low byte
-				//	      {0x3805, 0xaf},
-				//	      //[2:0] Y address end high byte (0x79F=1951)
-				//	      {0x3806, 0x05},
-				//	      //[7:0] Y address end low byte
-				//	      {0x3807, 0x3d},
-				//	      //[3:0] Output horizontal width high byte (0x780=1920)
-				//	      {0x3808, 0x05},
-				//	      //[7:0] Output horizontal width low byte
-				//	      {0x3809, 0x00},
-				//	      //[2:0] Output vertical height high byte (0x438=1080)
-				//	      {0x380a, 0x02},
-				//	      //[7:0] Output vertical height low byte
-				//	      {0x380b, 0xd0},
-				//
-				//	      //h-size=2423
-				//	      {0x380c, 0x09},
-				//	      {0x380d, 0x77},
-				//	      //v-size=1226
-				//	      {0x380e, 0x04},
-				//	      {0x380f, 0xca},
-				//
-				//	      //[3:0]=0 timing hoffset high byte (0x010)
-				//	      {0x3810, 0x00},
-				//	      //[7:0]=0 timing hoffset low byte
-				//	      {0x3811, 0x10},
-				//	      //[2:0]=0 timing voffset high byte (0x004)
-				//	      {0x3812, 0x00},
-				//	      //[7:0]=0 timing voffset low byte
-				//	      {0x3813, 0x06},
+//				//1280 x 720 binned
+//				//[3:0]=0 X address start high byte
+//				{0x3800, (16 & 0xFF00) >> 8},
+//				//[7:0]=0 X address start low byte
+//				{0x3801, (16 & 0x00FF)},
+//				//[2:0]=0 Y address start high byte
+//				{0x3802, (4 & 0xFF00) >> 8},
+//				//[7:0]=0 Y address start low byte
+//				{0x3803, (4 & 0x00FF)},
+//				//[3:0] X address end high byte (0xA3F=2623)
+//				{0x3804, (2607 & 0xFF00) >> 8},
+//				//[7:0] X address end low byte
+//				{0x3805, (2607 & 0x00FF)},
+//				//[2:0] Y address end high byte (0x79F=1951)
+//				{0x3806, (1947 & 0xFF00) >> 8},
+//				//[7:0] Y address end low byte
+//				{0x3807, (1947 & 0x00FF)},
+//				//[3:0] Output horizontal width high byte (0x780=1920)
+//				{0x3808, (1280 & 0xFF00) >> 8},
+//				//[7:0] Output horizontal width low byte
+//				{0x3809, (1280 & 0x00FF)},
+//				//[2:0] Output vertical height high byte (0x438=1080)
+//				{0x380a, (720 & 0xFF00) >> 8},
+//				//[7:0] Output vertical height low byte
+//				{0x380b, (720 & 0x00FF)},
+//
+//				//h-size=2423
+//				{0x380c, (2200 & 0xFF00) >> 8},
+//				{0x380d, (2200 & 0x00FF)},
+//				//v-size=1226
+//				{0x380e, (1280 & 0xFF00) >> 8},
+//				{0x380f, (1280 & 0x00FF)},
+//
+//				//[3:0]=0 timing hoffset high byte (0x010)
+//				{0x3810, 0x00},
+//				//[7:0]=0 timing hoffset low byte
+//				{0x3811, 0x08},
+//				//[2:0]=0 timing voffset high byte (0x004)
+//				{0x3812, 0x00},
+//				//[7:0]=0 timing voffset low byte
+//				{0x3813, 0x06},
+//
+//				//[7:4]=0x1 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
+//				{0x3814, 0x31},
+//				//[7:4]=0x1 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
+//				{0x3815, 0x31},
+//
+//				//[2]=1 ISP vflip, [1]=0 sensor vflip
+//				{0x3820, 0x46},
+//				//[2]=1 ISP mirror, [1]=0 sensor mirror, [0]=1 horizontal binning
+//				{0x3821, 0x01},
 
-				//[7:4]=0x1 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
-				{0x3814, 0x11},
-				//[7:4]=0x1 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
-				{0x3815, 0x11},
+//				//1280 x 720
+//				//[3:0]=0 X address start high byte
+//				{0x3800, 0x02},
+//				//[7:0]=0 X address start low byte
+//				{0x3801, 0x90},
+//				//[2:0]=0 Y address start high byte
+//				{0x3802, 0x02},
+//				//[7:0]=0 Y address start low byte
+//				{0x3803, 0x62},
+//				//[3:0] X address end high byte (0xA3F=2623)
+//				{0x3804, 0x07},
+//				//[7:0] X address end low byte
+//				{0x3805, 0xaf},
+//				//[2:0] Y address end high byte (0x79F=1951)
+//				{0x3806, 0x05},
+//				//[7:0] Y address end low byte
+//				{0x3807, 0x3d},
+//				//[3:0] Output horizontal width high byte (0x780=1920)
+//				{0x3808, 0x05},
+//				//[7:0] Output horizontal width low byte
+//				{0x3809, 0x00},
+//				//[2:0] Output vertical height high byte (0x438=1080)
+//				{0x380a, 0x02},
+//				//[7:0] Output vertical height low byte
+//				{0x380b, 0xd0},
+//
+//				//h-size=2423
+//				{0x380c, 0x09},
+//				{0x380d, 0x77},
+//				//v-size=1226
+//				{0x380e, 0x04},
+//				{0x380f, 0xca},
+//
+//				//[3:0]=0 timing hoffset high byte (0x010)
+//				{0x3810, 0x00},
+//				//[7:0]=0 timing hoffset low byte
+//				{0x3811, 0x10},
+//				//[2:0]=0 timing voffset high byte (0x004)
+//				{0x3812, 0x00},
+//				//[7:0]=0 timing voffset low byte
+//				{0x3813, 0x06},
+//
+//				//[7:4]=0x1 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
+//				{0x3814, 0x11},
+//				//[7:4]=0x1 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
+//				{0x3815, 0x11},
 
 				//	      {0x3618, 0x00},
 				//	      {0x3612, 0x29},
@@ -326,8 +388,10 @@ public:
 				{0x4407, 0x04},
 				{0x440e, 0x00},
 				{0x460b, 0x35},
+				//[1]=1 DVP PCLK divider manual control by 0x3824[4:0]
 				{0x460c, 0x22},
-				{0x3824, 0x02},
+				//[4:0]=1 SCALE_DIV=INT(3824[4:0]/2)
+				{0x3824, 0x01},
 
 				//little MIPI shit: global timing unit, period of PCLK in ns (depends on # of lanes)
 				{0x4837, 0x0c}, //12ns (PCLK=84MHz)

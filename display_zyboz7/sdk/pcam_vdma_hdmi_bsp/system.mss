@@ -242,3 +242,12 @@ BEGIN DRIVER
 END
 
 
+BEGIN LIBRARY
+ PARAMETER LIBRARY_NAME = xilffs
+ PARAMETER LIBRARY_VER = 3.5
+ PARAMETER PROC_INSTANCE = ps7_cortexa9_0
+ PARAMETER enable_multi_partition = true
+ PARAMETER use_mkfs = false
+END
+
+
