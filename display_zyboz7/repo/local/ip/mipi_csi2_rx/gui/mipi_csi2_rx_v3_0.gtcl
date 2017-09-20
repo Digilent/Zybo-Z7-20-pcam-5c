@@ -1,0 +1,3 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_C_AXIL_DATA_WIDTH_ENABLEMENT {C_HAS_AXI4_LITE } {expr $C_HAS_AXI4_LITE == TRUE}
+proc gen_USERPARAMETER_C_AXIL_ADDR_WIDTH_ENABLEMENT {C_HAS_AXI4_LITE } {expr $C_HAS_AXI4_LITE == TRUE}
