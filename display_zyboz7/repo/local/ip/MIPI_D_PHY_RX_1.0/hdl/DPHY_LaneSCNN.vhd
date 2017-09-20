@@ -97,7 +97,7 @@ begin
 type state_type is (stInit, stStop, stHS_Prpr, stHS_Term, stHS_Clk, stHS_End, stULPS, stULPS_Exit, stULPS_Rqst); 
 signal state, nstate : state_type := stInit; 
 
-signal cLP : std_logic_vector(1 downto 0);
+signal cLP, cLPGlitch : std_logic_vector(1 downto 0);
 signal cIntRst : std_logic;
 
 attribute DONT_TOUCH : string;
@@ -106,6 +106,7 @@ attribute DONT_TOUCH of cLP: signal is "TRUE";
 constant kTInit      : natural := natural(ceil(100.0 * real(kCtlClkFreqHz) / 1_000_000.0)); --100us
 constant kTClkTermEn : natural := natural(ceil(38.0 * real(kCtlClkFreqHz) / 1_000_000_000.0)); --38ns
 constant kTClkSettle : natural := natural(ceil(95.0 * real(kCtlClkFreqHz) / 1_000_000_000.0)); --95ns min
+constant kTMinRx : natural := natural(ceil(20.0 * real(kCtlClkFreqHz) / 1_000_000_000.0)); --20ns
 signal cDelayCnt : natural range 0 to MAX(kTInit,MAX(kTClkTermEn, kTClkSettle)) := 0;
 signal aClkLocked, cClkLocked, cHSRst, cDelayCntEn, aHSClkLocked, cHSClkLocked, cHSClkLocked_q, cHSClkLost : std_logic;
 signal aNotEnable : std_logic;
@@ -139,7 +140,15 @@ GenSyncLP: for i in 0 to 1 generate
          aReset => '0',
          aIn => aLP(i),
          OutClk => CtlClk,
-         oOut => cLP(i)); --TODO: LP 0 not in sync with LP 1
+         oOut => cLPGlitch(i)); --TODO: LP 0 not in sync with LP 1
+   GlitchFilterLP: entity work.GlitchFilter
+      generic map (
+         kNoOfPeriodsToFilter => kTMinRx)
+      port map (
+         SampleClk => CtlClk,
+         sIn => cLPGlitch(i),
+         sOut => cLP(i),
+         sRst => '0');
 end generate GenSyncLP;
 
 DelayCounter: process(CtlClk)

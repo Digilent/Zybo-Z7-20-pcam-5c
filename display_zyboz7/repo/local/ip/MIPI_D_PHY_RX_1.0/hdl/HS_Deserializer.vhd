@@ -325,9 +325,11 @@ LP_DeserializerX: ISERDESE2
 end generate LPxx;
 
 -- We are in Bridge (or HS) state when we sampled 0 at least 2 times on both LP1 on and LP0
+-- TODO: glitch filtering? problematic, because serial clock frequency changes dynamically
 dLPBridge <= '1' when dLP(0)(1 downto 0) = "00" and dLP(1)(1 downto 0) = "00" else
              '0';
--- We are in Stop state when we sampled 1 at least 2 times on both LP1 on and LP0             
+-- We are in Stop state when we sampled 1 at least 2 times on both LP1 on and LP0
+-- TODO: glitch filtering? problematic, because serial clock frequency changes dynamically   
 dLPStop <=   '1' when dLP(0)(1 downto 0) = "11" and dLP(1)(1 downto 0) = "11" else
              '0';
 

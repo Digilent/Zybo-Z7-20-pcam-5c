@@ -107,9 +107,10 @@ end;
 type state_type is (stInitCountDown, stWaitForStop, stStop, stHS_Rqst, stHS_Settle, stHS_Rcv); 
 signal state, nstate : state_type := stInitCountDown; 
 
-signal aLP_int, cLP, dLP : std_logic_vector(1 downto 0);
+signal aLP_int, cLP, cLPGlitch, dLP : std_logic_vector(1 downto 0);
 constant kTInit      : natural := natural(ceil(100.0 * real(kCtlClkFreqHz) / 1_000_000.0)); --100us
 constant kTHSSettle  : natural := natural(ceil(85.0 * real(kCtlClkFreqHz) / 1_000_000_000.0)); --85ns
+constant kTMinRx : natural := natural(ceil(20.0 * real(kCtlClkFreqHz) / 1_000_000_000.0)); --20ns
 constant kOffset     : natural := 3 + 1 ; -- adjust timeout values above to account for late start due to CtlClk sync
 signal cDelayCnt : natural range 0 to MAX(kTInit,kTHSSettle) := 0;
 signal cHS_Trail, cHSReset, dDelayCntEn, cDelayCntEn : std_logic;
@@ -166,7 +167,15 @@ GenSyncLP: for i in 0 to 1 generate
          aReset => '0',
          aIn => aLP_int(i),
          OutClk => CtlClk,
-         oOut => cLP(i));
+         oOut => cLPGlitch(i));
+   GlitchFilterLPC: entity work.GlitchFilter
+      generic map (
+         kNoOfPeriodsToFilter => kTMinRx)
+      port map (
+         SampleClk => CtlClk,
+         sIn => cLPGlitch(i),
+         sOut => cLP(i),
+         sRst => '0');
    SyncAsyncx_D: entity work.SyncAsync
       generic map (
          kResetTo => '0',
