@@ -1,0 +1,1 @@
+python gamma_gen.py > gamma_rom.vhd
