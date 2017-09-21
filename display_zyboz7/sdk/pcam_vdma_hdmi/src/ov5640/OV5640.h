@@ -309,7 +309,7 @@ public:
 //				{0x501f, 0x03},
 // END 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
 
-// START 1920 x 1080, RAW10, MIPISCLK=420, SCLK=42MHz, PCLK=42M
+// START 1920 x 1080 @ 15 fps, RAW10, MIPISCLK=420, SCLK=42MHz, PCLK=42M
 				//PLL1 configuration
 				//[7:4]=0100 System clock divider /4, [3:0]=0001 Scale divider for MIPI /1
 				{0x3035, 0x41},
@@ -400,6 +400,98 @@ public:
 				{0x4300, 0x00},
 				//[2:0]=0x3 Format select ISP RAW (DPC)
 				{0x501f, 0x03}
+// END 1920 x 1080, RAW10, MIPISCLK=420, SCLK=42MHz, PCLK=42M
+//// START 1920 x 1080 @ 30fps, RAW10, MIPISCLK=840, SCLK=84MHz, PCLK=84M
+//				//PLL1 configuration
+//				//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
+//				{0x3035, 0x21},
+//				//[7:0]=105 PLL multiplier
+//				{0x3036, 0x69},
+//				//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
+//				{0x3037, 0x05},
+//				//[5:4]=01 PCLK root divider /2, [3:2]=00 SCLK2x root divider /1, [1:0]=01 SCLK root divider /2
+//				{0x3108, 0x11},
+//
+//				//[6:4]=001 PLL charge pump, [3:0]=1010 MIPI 10-bit mode
+//				{0x3034, 0x1A},
+//
+//				//[3:0]=0 X address start high byte
+//				{0x3800, (336 >> 8) & 0x0F},
+//				//[7:0]=0 X address start low byte
+//				{0x3801, 336 & 0xFF},
+//				//[2:0]=0 Y address start high byte
+//				{0x3802, (426 >> 8) & 0x07},
+//				//[7:0]=0 Y address start low byte
+//				{0x3803, 426 & 0xFF},
+//
+//				//[3:0] X address end high byte
+//				{0x3804, (2287 >> 8) & 0x0F},
+//				//[7:0] X address end low byte
+//				{0x3805, 2287 & 0xFF},
+//				//[2:0] Y address end high byte
+//				{0x3806, (1529 >> 8) & 0x07},
+//				//[7:0] Y address end low byte
+//				{0x3807, 1529 & 0xFF},
+//
+//				//[3:0]=0 timing hoffset high byte
+//				{0x3810, (16 >> 8) & 0x0F},
+//				//[7:0]=0 timing hoffset low byte
+//				{0x3811, 16 & 0xFF},
+//				//[2:0]=0 timing voffset high byte
+//				{0x3812, (12 >> 8) & 0x07},
+//				//[7:0]=0 timing voffset low byte
+//				{0x3813, 12 & 0xFF},
+//
+//				//[3:0] Output horizontal width high byte
+//				{0x3808, (1920 >> 8) & 0x0F},
+//				//[7:0] Output horizontal width low byte
+//				{0x3809, 1920 & 0xFF},
+//				//[2:0] Output vertical height high byte
+//				{0x380a, (1080 >> 8) & 0x7F},
+//				//[7:0] Output vertical height low byte
+//				{0x380b, 1080 & 0xFF},
+//
+//				//HTS line exposure time in # of pixels Tline=HTS/sclk
+//				{0x380c, (2500 >> 8) & 0x1F},
+//				{0x380d, 2500 & 0xFF},
+//				//VTS frame exposure time in # lines
+//				{0x380e, (1120 >> 8) & 0xFF},
+//				{0x380f, 1120 & 0xFF},
+//
+//				//[7:4]=0x1 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
+//				{0x3814, 0x11},
+//				//[7:4]=0x1 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
+//				{0x3815, 0x11},
+//
+//				//[2]=0 ISP mirror, [1]=0 sensor mirror, [0]=0 no horizontal binning
+//				{0x3821, 0x00},
+//
+//		//		{0x4805, 0x10}, //LPX global timing select=auto
+//		//		{0x4818, 0x00}, //hs_prepare + hs_zero_min ns
+//		//		{0x4819, 0x96},
+//		//		{0x482A, 0x00}, //hs_prepare + hs_zero_min UI
+//		//
+//		//		{0x4824, 0x00}, //lpx_p_min ns
+//		//		{0x4825, 0x32},
+//		//		{0x4830, 0x00}, //lpx_p_min UI
+//		//
+//		//		{0x4826, 0x00}, //hs_prepare_min ns
+//		//		{0x4827, 0x32},
+//		//		{0x4831, 0x00}, //hs_prepare_min UI
+//				//little MIPI shit: global timing unit, period of PCLK in ns * 2(depends on # of lanes)
+//				{0x4837, 48}, // 1/84M*2
+//
+//				//Undocumented anti-green settings
+//				{0x3618, 0x00},
+//				{0x3612, 0x29},
+//				{0x3708, 0x62},
+//				{0x3709, 0x52},
+//				{0x370c, 0x03},
+//
+//				//[7:4]=0x0 Formatter RAW, [3:0]=0x0 BGBG/GRGR
+//				{0x4300, 0x00},
+//				//[2:0]=0x3 Format select ISP RAW (DPC)
+//				{0x501f, 0x03}
 // END 1920 x 1080, RAW10, MIPISCLK=420, SCLK=42MHz, PCLK=42M
 		};
 		size_t i;
