@@ -130,11 +130,11 @@ public:
 				//[4:0]=11001 PLL2 multiplier DIV_CNT5B = 25
 				{0x303B, 0x19},
 
-				{0x3630, 0x36},
+				{0x3630, 0x36}, // Zynqberry & RPi use 0x2e
 				{0x3631, 0x0e},
 				{0x3632, 0xe2},
-				{0x3633, 0x12},
-				{0x3621, 0xe0},
+				{0x3633, 0x12}, // Zynqberry & RPi use 0x23
+				{0x3621, 0xe0}, // Zynqberry uses 0xe1
 				{0x3704, 0xa0},
 				{0x3703, 0x5a},
 				{0x3715, 0x78},
@@ -144,14 +144,14 @@ public:
 				{0x3905, 0x02},
 				{0x3906, 0x10},
 				{0x3901, 0x0a},
-				{0x3731, 0x12},
+				{0x3731, 0x12}, // Zynqberry & RPi use 0x02
 				//VCM debug mode
-				{0x3600, 0x08},
+				{0x3600, 0x08}, // Zynqberry & RPi use 0x37
 				{0x3601, 0x33},
 				//System control register changing not recommended
 				{0x302d, 0x60},
 				//??
-				{0x3620, 0x52},
+				{0x3620, 0x52}, // Zynqberry uses 0x65, RPi uses 0x64
 				{0x371b, 0x20},
 				//?? DVP
 				{0x471c, 0x50},
@@ -160,8 +160,8 @@ public:
 				{0x3a18, 0x00},
 				{0x3a19, 0xf8},
 				{0x3635, 0x13},
-				{0x3636, 0x03},
-				{0x3634, 0x40},
+				{0x3636, 0x03}, // Zynqberry & RPi use 0x06
+				{0x3634, 0x40}, // Zynqberry & RPi use 0x44
 				{0x3622, 0x01},
 				{0x3c01, 0x34},
 				{0x3c04, 0x28},
@@ -188,8 +188,8 @@ public:
 				//[7:4]=0x3 YUV422, [3:0]=0x0 YUYV
 				//{0x4300, 0x30},
 				//[7:4]=0x6 RGB565, [3:0]=0x0 {b[4:0],g[5:3],g[2:0],r[4:0]}
-				{0x4300, 0x6f},
-				{0x501f, 0x01},
+				//{0x4300, 0x6f},
+				//{0x501f, 0x01},
 
 				{0x4713, 0x03},
 				{0x4407, 0x04},
@@ -213,104 +213,139 @@ public:
 				//{0x5000, 0xa7},
 				{0x5000, 0x03},
 				//[7]=0 Special digital effects, [5]=0 scaling, [2]=0 UV average disabled, [1]=1 Color matrix enabled, [0]=1 Auto white balance enabled
-				{0x5001, 0x03},
+				{0x5001, 0x03}
+		};
 
+		size_t i;
+		for (i=0;i<sizeof(init)/sizeof(init[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(init[i].addr, init[i].data);
+		}
 
-// START 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
-//				//PLL1 configuration
-//				//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
-//				{0x3035, 0x21},
-//				//[7:0]=70 PLL multiplier
-//				{0x3036, 0x46},
-//				//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
-//				{0x3037, 0x05},
-//				//[5:4]=01 PCLK root divider /2, [3:2]=01 SCLK2x root divider /2, [1:0]=10 SCLK root divider /4
-//				{0x3108, 0x11},
-//
-//				//[6:4]=001 PLL charge pump, [3:0]=1010 MIPI 10-bit mode
-//				{0x3034, 0x1A},
-//
-//				//[3:0]=0 X address start high byte
-//				{0x3800, (0 >> 8) & 0x0F},
-//				//[7:0]=0 X address start low byte
-//				{0x3801, 0 & 0xFF},
-//				//[2:0]=0 Y address start high byte
-//				{0x3802, (8 >> 8) & 0x07},
-//				//[7:0]=0 Y address start low byte
-//				{0x3803, 8 & 0xFF},
-//
-//				//[3:0] X address end high byte
-//				{0x3804, (2619 >> 8) & 0x0F},
-//				//[7:0] X address end low byte
-//				{0x3805, 2619 & 0xFF},
-//				//[2:0] Y address end high byte
-//				{0x3806, (1947 >> 8) & 0x07},
-//				//[7:0] Y address end low byte
-//				{0x3807, 1947 & 0xFF},
-//
-//				//[3:0]=0 timing hoffset high byte
-//				{0x3810, (0 >> 8) & 0x0F},
-//				//[7:0]=0 timing hoffset low byte
-//				{0x3811, 0 & 0xFF},
-//				//[2:0]=0 timing voffset high byte
-//				{0x3812, (0 >> 8) & 0x07},
-//				//[7:0]=0 timing voffset low byte
-//				{0x3813, 0 & 0xFF},
-//
-//				//[3:0] Output horizontal width high byte
-//				{0x3808, (1280 >> 8) & 0x0F},
-//				//[7:0] Output horizontal width low byte
-//				{0x3809, 1280 & 0xFF},
-//				//[2:0] Output vertical height high byte
-//				{0x380a, (720 >> 8) & 0x7F},
-//				//[7:0] Output vertical height low byte
-//				{0x380b, 720 & 0xFF},
-//
-//				//HTS line exposure time in # of pixels
-//				{0x380c, (1896 >> 8) & 0x1F},
-//				{0x380d, 1896 & 0xFF},
-//				//VTS frame exposure time in # lines
-//				{0x380e, (984 >> 8) & 0xFF},
-//				{0x380f, 984 & 0xFF},
-//
-//				//[7:4]=0x3 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
-//				{0x3814, 0x31},
-//				//[7:4]=0x3 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
-//				{0x3815, 0x31},
-//
-//				//[2]=0 ISP mirror, [1]=0 sensor mirror, [0]=1 horizontal binning
-//				{0x3821, 0x01},
-//
-//		//		{0x4805, 0x10}, //LPX global timing select=auto
-//		//		{0x4818, 0x00}, //hs_prepare + hs_zero_min ns
-//		//		{0x4819, 0x96},
-//		//		{0x482A, 0x00}, //hs_prepare + hs_zero_min UI
-//		//
-//		//		{0x4824, 0x00}, //lpx_p_min ns
-//		//		{0x4825, 0x32},
-//		//		{0x4830, 0x00}, //lpx_p_min UI
-//		//
-//		//		{0x4826, 0x00}, //hs_prepare_min ns
-//		//		{0x4827, 0x32},
-//		//		{0x4831, 0x00}, //hs_prepare_min UI
-//				//little MIPI shit: global timing unit, period of PCLK in ns * 2(depends on # of lanes)
-//				{0x4837, 36}, // 1/56M*2
-//
-//				//Undocumented anti-green settings
-//				{0x3618, 0x00},
-//				{0x3612, 0x29},
-//				{0x3708, 0x62},
-//				{0x3709, 0x52},
-//				{0x370c, 0x03},
-//
-//				//[7:4]=0x0 Formatter RAW, [3:0]=0x0 BGBG/GRGR
-//				{0x4300, 0x00},
-//				//[2:0]=0x3 Format select ISP RAW (DPC)
-//				{0x501f, 0x03},
-// END 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
+		init_resolution_1080p_15();
 
-// START 1920 x 1080 @ 15 fps, RAW10, MIPISCLK=210, SCLK=42MHz, PCLK=42M
-/*  				// PLL1 configuration
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}
+
+	void init_resolution_720p_60()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		// START 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
+		config_word_t const init_720p_60[] =
+		{
+				//PLL1 configuration
+				//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
+				{0x3035, 0x21},
+				//[7:0]=70 PLL multiplier
+				{0x3036, 0x46},
+				//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
+				{0x3037, 0x05},
+				//[5:4]=01 PCLK root divider /2, [3:2]=01 SCLK2x root divider /2, [1:0]=10 SCLK root divider /4
+				{0x3108, 0x11},
+
+				//[6:4]=001 PLL charge pump, [3:0]=1010 MIPI 10-bit mode
+				{0x3034, 0x1A},
+
+				//[3:0]=0 X address start high byte
+				{0x3800, (0 >> 8) & 0x0F},
+				//[7:0]=0 X address start low byte
+				{0x3801, 0 & 0xFF},
+				//[2:0]=0 Y address start high byte
+				{0x3802, (8 >> 8) & 0x07},
+				//[7:0]=0 Y address start low byte
+				{0x3803, 8 & 0xFF},
+
+				//[3:0] X address end high byte
+				{0x3804, (2619 >> 8) & 0x0F},
+				//[7:0] X address end low byte
+				{0x3805, 2619 & 0xFF},
+				//[2:0] Y address end high byte
+				{0x3806, (1947 >> 8) & 0x07},
+				//[7:0] Y address end low byte
+				{0x3807, 1947 & 0xFF},
+
+				//[3:0]=0 timing hoffset high byte
+				{0x3810, (0 >> 8) & 0x0F},
+				//[7:0]=0 timing hoffset low byte
+				{0x3811, 0 & 0xFF},
+				//[2:0]=0 timing voffset high byte
+				{0x3812, (0 >> 8) & 0x07},
+				//[7:0]=0 timing voffset low byte
+				{0x3813, 0 & 0xFF},
+
+				//[3:0] Output horizontal width high byte
+				{0x3808, (1280 >> 8) & 0x0F},
+				//[7:0] Output horizontal width low byte
+				{0x3809, 1280 & 0xFF},
+				//[2:0] Output vertical height high byte
+				{0x380a, (720 >> 8) & 0x7F},
+				//[7:0] Output vertical height low byte
+				{0x380b, 720 & 0xFF},
+
+				//HTS line exposure time in # of pixels
+				{0x380c, (1896 >> 8) & 0x1F},
+				{0x380d, 1896 & 0xFF},
+				//VTS frame exposure time in # lines
+				{0x380e, (984 >> 8) & 0xFF},
+				{0x380f, 984 & 0xFF},
+
+				//[7:4]=0x3 horizontal odd subsample increment, [3:0]=0x1 horizontal even subsample increment
+				{0x3814, 0x31},
+				//[7:4]=0x3 vertical odd subsample increment, [3:0]=0x1 vertical even subsample increment
+				{0x3815, 0x31},
+
+				//[2]=0 ISP mirror, [1]=0 sensor mirror, [0]=1 horizontal binning
+				{0x3821, 0x01},
+
+		//		{0x4805, 0x10}, //LPX global timing select=auto
+		//		{0x4818, 0x00}, //hs_prepare + hs_zero_min ns
+		//		{0x4819, 0x96},
+		//		{0x482A, 0x00}, //hs_prepare + hs_zero_min UI
+		//
+		//		{0x4824, 0x00}, //lpx_p_min ns
+		//		{0x4825, 0x32},
+		//		{0x4830, 0x00}, //lpx_p_min UI
+		//
+		//		{0x4826, 0x00}, //hs_prepare_min ns
+		//		{0x4827, 0x32},
+		//		{0x4831, 0x00}, //hs_prepare_min UI
+				//little MIPI shit: global timing unit, period of PCLK in ns * 2(depends on # of lanes)
+				{0x4837, 36}, // 1/56M*2
+
+				//Undocumented anti-green settings
+				{0x3618, 0x00},
+				{0x3612, 0x29},
+				{0x3708, 0x62},
+				{0x3709, 0x52},
+				{0x370c, 0x03},
+
+				//[7:4]=0x0 Formatter RAW, [3:0]=0x0 BGBG/GRGR
+				{0x4300, 0x00},
+				//[2:0]=0x3 Format select ISP RAW (DPC)
+				{0x501f, 0x03}
+		};
+		// END 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
+
+		size_t i;
+		for (i=0;i<sizeof(init_720p_60)/sizeof(init_720p_60[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(init_720p_60[i].addr, init_720p_60[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//init_resolution_720p_60
+
+	void init_resolution_1080p_15()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		// START 1920 x 1080 @ 15 fps, RAW10, MIPISCLK=210, SCLK=42MHz, PCLK=42M
+		config_word_t const init_1080p_15[] =
+		{
+				// PLL1 configuration
 				// [7:4]=0100 System clock divider /4, [3:0]=0001 Scale divider for MIPI /1
 				{0x3035, 0x41},
 				// [7:0]=105 PLL multiplier
@@ -378,11 +413,11 @@ public:
 				// {0x4818, 0x00}, //hs_prepare + hs_zero_min ns
 				// {0x4819, 0x96},
 				// {0x482A, 0x00}, //hs_prepare + hs_zero_min UI
-		
+
 				// {0x4824, 0x00}, //lpx_p_min ns
 				// {0x4825, 0x32},
 				// {0x4830, 0x00}, //lpx_p_min UI
-		
+
 				// {0x4826, 0x00}, //hs_prepare_min ns
 				// {0x4827, 0x32},
 				// {0x4831, 0x00}, //hs_prepare_min UI
@@ -390,23 +425,40 @@ public:
 				{0x4837, 48}, // 1/42M*2
 
 				// Undocumented anti-green settings
-				{0x3618, 0x00},
-				{0x3612, 0x29},
-				{0x3708, 0x62},
+				{0x3618, 0x00}, // Zynqberry uses 0x04 for full HD // 0x00 removes the weird lines, but add sepia
+				{0x3612, 0x29}, // Zynqberry & RPi use 0x59
+				{0x3708, 0x62}, // Zynqberry uses 0x64 // 0x62 removes the weird lines, and adds no sepia
 				{0x3709, 0x52},
-				{0x370c, 0x03},
+				{0x370c, 0x03}, // Zynqberry uses 0x0f
 
 				// [7:4]=0x0 Formatter RAW, [3:0]=0x0 BGBG/GRGR
 				{0x4300, 0x00},
 				// [2:0]=0x3 Format select ISP RAW (DPC)
-				{0x501f, 0x03} */
-// END 1920 x 1080, RAW10, MIPISCLK=210, SCLK=42MHz, PCLK=42M
+				{0x501f, 0x03}
+		};
+		// END 1920 x 1080, RAW10, MIPISCLK=210, SCLK=42MHz, PCLK=42M
 
-//// START 1920 x 1080 @ 30fps, RAW10, MIPISCLK=420, SCLK=84MHz, PCLK=84M
-  				//PLL1 configuration
+		size_t i;
+		for (i=0;i<sizeof(init_1080p_15)/sizeof(init_1080p_15[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(init_1080p_15[i].addr, init_1080p_15[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//init_resolution_1080p_15
+
+	void init_resolution_1080p_30()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		// START 1920 x 1080 @ 30fps, RAW10, MIPISCLK=420, SCLK=84MHz, PCLK=84M
+		config_word_t const init_1080p_30[] =
+		{
+				//PLL1 configuration
 				//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
-				//{0x3035, 0x21}, // 30fps setting
-         {0x3035, 0x31}, // 20fps setting
+				{0x3035, 0x21}, // 30fps setting
+		 //{0x3035, 0x31}, // 20fps setting
 				//[7:0]=105 PLL multiplier
 				{0x3036, 0x69},
 				//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
@@ -482,7 +534,7 @@ public:
 		//		{0x4831, 0x00}, //hs_prepare_min UI
 				//little MIPI shit: global timing unit, period of PCLK in ns * 2(depends on # of lanes)
 				//{0x4837, 48}, // 1/42M*2
-        {0x4837, 24}, // 1/84M*2
+				{0x4837, 24}, // 1/84M*2
 
 				//Undocumented anti-green settings
 				{0x3618, 0x00},
@@ -495,18 +547,128 @@ public:
 				{0x4300, 0x00},
 				//[2:0]=0x3 Format select ISP RAW (DPC)
 				{0x501f, 0x03}
-// END 1920 x 1080, RAW10, MIPISCLK=420, SCLK=84MHz, PCLK=84M
 		};
+		// END 1920 x 1080, RAW10, MIPISCLK=420, SCLK=84MHz, PCLK=84M */
+
 		size_t i;
-		for (i=0;i<sizeof(init)/sizeof(init[0]); ++i)
+		for (i=0;i<sizeof(init_1080p_30)/sizeof(init_1080p_30[0]); ++i)
 		{
 			std::cout << i << std::endl;
-			writeReg(init[i].addr, init[i].data);
+			writeReg(init_1080p_30[i].addr, init_1080p_30[i].data);
 		}
 
 		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
 		writeReg(0x3008, 0x02);
-	}
+	}//init_resolution_1080p_30
+
+	void change_hidden_settings_to_original()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		config_word_t const original_hidden_settings[] =
+		{
+				{0x3630, 0x36}, // Zynqberry & RPi use 0x2e
+				{0x3633, 0x12}, // Zynqberry & RPi use 0x23
+				//{0x3621, 0xe0}, // Zynqberry uses 0xe1 // Horizontal Binning?
+				{0x3731, 0x12}, // Zynqberry & RPi use 0x02
+				//VCM debug mode
+				{0x3600, 0x08}, // Zynqberry & RPi use 0x37
+				//{0x3620, 0x52}, // Zynqberry uses 0x65, RPi uses 0x64 // Vertical Binning?
+				{0x3636, 0x03}, // Zynqberry & RPi use 0x06
+				{0x3634, 0x40}, // Zynqberry & RPi use 0x44
+
+				//Undocumented anti-green settings?
+				{0x3618, 0x00}, // Zynqberry uses 0x04 for full HD // 0x00 removes the weird lines, but add sepia
+				{0x3612, 0x29}, // Zynqberry & RPi use 0x59
+				{0x3708, 0x62}, // Zynqberry uses 0x64 // 0x62 removes the weird lines, and adds no sepia
+
+				{0x370c, 0x03}, // Zynqberry uses 0x0f
+		};
+
+		size_t i;
+		for (i=0;i<sizeof(original_hidden_settings)/sizeof(original_hidden_settings[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(original_hidden_settings[i].addr, original_hidden_settings[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//change_hidden_settings_to_original
+
+	void change_hidden_settings_to_new()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		config_word_t const new_hidden_settings[] =
+		{
+				{0x3630, 0x2e}, //0x36}, // Zynqberry & RPi use 0x2e
+				{0x3633, 0x23}, //0x12}, // Zynqberry & RPi use 0x23
+				//{0x3621, 0xe0}, // Zynqberry uses 0xe1 // Horizontal Binning?
+				{0x3731, 0x02}, //0x12}, // Zynqberry & RPi use 0x02
+				//VCM debug mode
+				{0x3600, 0x37}, //0x08}, // Zynqberry & RPi use 0x37
+				//{0x3620, 0x52}, // Zynqberry uses 0x65, RPi uses 0x64 // Vertical Binning?
+				{0x3636, 0x06}, //0x03}, // Zynqberry & RPi use 0x06
+				{0x3634, 0x44}, //0x40}, // Zynqberry & RPi use 0x44
+
+				//Undocumented anti-green settings?
+				{0x3618, 0x04}, //0x00}, // Zynqberry uses 0x04 for full HD // 0x00 removes the weird lines, but add sepia
+				{0x3612, 0x59}, //0x29}, // Zynqberry & RPi use 0x59
+				{0x3708, 0x64}, //0x62}, // Zynqberry uses 0x64 // 0x62 removes the weird lines, and adds no sepia
+
+				{0x370c, 0x03}, // Zynqberry uses 0x0f
+		};
+
+		size_t i;
+		for (i=0;i<sizeof(new_hidden_settings)/sizeof(new_hidden_settings[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(new_hidden_settings[i].addr, new_hidden_settings[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//change_hidden_settings_to_new
+
+	void change_image_to_rgb()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		config_word_t const rgb_settings[] =
+		{
+				// [2:0]=0x3 Format select ISP RGB (DPC)
+				{0x501f, 0x01}
+		};
+
+		size_t i;
+		for (i=0;i<sizeof(rgb_settings)/sizeof(rgb_settings[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(rgb_settings[i].addr, rgb_settings[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//change_image_to_rgb
+
+	void change_image_to_raw()
+	{
+		typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+		config_word_t const raw_settings[] =
+		{
+				// [2:0]=0x3 Format select ISP RAW (DPC)
+				{0x501f, 0x03}
+		};
+
+		size_t i;
+		for (i=0;i<sizeof(raw_settings)/sizeof(raw_settings[0]); ++i)
+		{
+			std::cout << i << std::endl;
+			writeReg(raw_settings[i].addr, raw_settings[i].data);
+		}
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+	}//change_image_to_raw
+
 	~OV5640() { }
 
 	void readReg(uint16_t reg_addr, uint8_t& buf)
