@@ -68,7 +68,7 @@ int main()
 
 		read_char0 = getchar();
 		getchar();
-		xil_printf("\r\nRead: %d", read_char0);
+		xil_printf("Read: %d\r\n", read_char0);
 
 		switch(read_char0) {
 
@@ -180,7 +180,7 @@ int main()
 			break;
 
 		case 'e':
-			xil_printf("\r\n\r\nPlease enter address of image sensor register, in hex, with small letters: 0x");
+			xil_printf("\r\nPlease enter address of image sensor register, in hex, with small letters: \r\n");
 			//A, B, C,..., F need to be entered with small letters
 			while (read_char1 < 48) {
 				read_char1 = getchar();
@@ -228,11 +228,11 @@ int main()
 				read_char5 -= 87;
 			}
 			reg_addr = 16*(16*(16*read_char1 + read_char2)+read_char4)+read_char5;
-			xil_printf("\r\nDesired Register Address: %x", reg_addr);
+			xil_printf("Desired Register Address: %x\r\n", reg_addr);
 
 			read_char1 = 0;
 			read_char2 = 0;
-			xil_printf("\r\n\r\nPlease enter value of image sensor register, in hex, with small letters: 0x");
+			xil_printf("\r\nPlease enter value of image sensor register, in hex, with small letters: \r\n");
 			//A, B, C,..., F need to be entered with small letters
 			while (read_char1 < 48) {
 				read_char1 = getchar();
@@ -258,9 +258,9 @@ int main()
 				read_char2 -= 87;
 			}
 			reg_value = 16*read_char1 + read_char2;
-			xil_printf("\r\nDesired Register Value: %x", reg_value);
+			xil_printf("Desired Register Value: %x\r\n", reg_value);
 			cam.writeReg(reg_addr, reg_value);
-			xil_printf("\r\nRegister write done.\r\n");
+			xil_printf("Register write done.\r\n");
 
 			break;
 
