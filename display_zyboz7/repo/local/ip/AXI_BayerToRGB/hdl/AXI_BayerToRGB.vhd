@@ -3,7 +3,7 @@
 -- File: AXI_BayerToRGB.vhd
 -- Author: Ioan Catuna
 -- Original Project: AXI Bayer to RGB Image Conversion
--- Date: 21 November 2017
+-- Date: 22 November 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License
@@ -96,7 +96,7 @@ architecture rtl of AXI_BayerToRGB is
   type StrobesShiftReg_t is array (4 downto 0) of AXI_Strobes_t;
   signal sStrobesShiftReg: StrobesShiftReg_t;
 
-  type BayerPixel_t is array (3 downto 0) of STD_LOGIC_VECTOR(kBayerWidth-1 downto 0);
+  type BayerPixel_t is array (3 downto 0) of unsigned(kBayerWidth downto 0);
   signal sPixel: BayerPixel_t;
 
   signal sCntColumns: UNSIGNED(10 downto 0) := (others => '0');
@@ -116,9 +116,9 @@ architecture rtl of AXI_BayerToRGB is
   signal sCrntPositionIndicatorDly2: STD_LOGIC_VECTOR(1 downto 0);
   signal sCrntPositionIndicatorDly3: STD_LOGIC_VECTOR(1 downto 0);
   signal sAXI_SlaveLastAsserted: STD_LOGIC;
-  signal sAXIMasterBlue: STD_LOGIC_VECTOR(kBayerWidth-1 downto 0);
-  signal sAXIMasterGreen: STD_LOGIC_VECTOR(kBayerWidth-1 downto 0);
-  signal sAXIMasterRed: STD_LOGIC_VECTOR(kBayerWidth-1 downto 0);
+  signal sAXIMasterBlue: unsigned(kBayerWidth-1 downto 0);
+  signal sAXIMasterGreen: unsigned(kBayerWidth downto 0);
+  signal sAXIMasterRed: unsigned(kBayerWidth-1 downto 0);
   signal sLineBufferRead: STD_LOGIC;
 
   signal sDataIsAvailableAndRequested: STD_LOGIC;
@@ -270,12 +270,12 @@ begin
       sLineBufferWriteDataDly <= sLineBufferWriteData;
       sCrntPositionIndicatorDly2 <= sCrntPositionIndicatorDly1;
       sCrntPositionIndicatorDly3 <= sCrntPositionIndicatorDly2;
-      sPixel(0)  <= sLineBufferWriteDataDly;
+      sPixel(0)  <= unsigned('0' & sLineBufferWriteDataDly);
       sPixel(1)  <= sPixel(0);
-      sPixel(2)  <= sLineBufferReadData;
+      sPixel(2)  <= unsigned('0' & sLineBufferReadData);
       sPixel(3)  <= sPixel(2);
       if sLineBufferWrite = '0' then
-        sPixel(2)  <= sLineBufferReadDataBuf;
+        sPixel(2)  <= unsigned('0' & sLineBufferReadDataBuf);
       end if;
     elsif sLineBufferWrite = '1' then
       sLineBufferReadDataBuf <= sLineBufferReadData;
@@ -325,21 +325,21 @@ begin
     if sDataIsAvailableAndRequested = '1' then
       case sCrntPositionIndicatorDly3 is
         when "01" =>
-          sAXIMasterBlue  <= sPixel(1);
-          sAXIMasterGreen <= sPixel(0);
-          sAXIMasterRed  <= sPixel(2);
+          sAXIMasterBlue  <= sPixel(1)(kBayerWidth-1 downto 0);
+          sAXIMasterGreen <= sPixel(0) + sPixel(3);
+          sAXIMasterRed  <= sPixel(2)(kBayerWidth-1 downto 0);
         when "00" =>
-          sAXIMasterBlue  <= sPixel(0);
-          sAXIMasterGreen <= sPixel(1);
-          sAXIMasterRed  <= sPixel(3);
+          sAXIMasterBlue  <= sPixel(0)(kBayerWidth-1 downto 0);
+          sAXIMasterGreen <= sPixel(1) + sPixel(2);
+          sAXIMasterRed  <= sPixel(3)(kBayerWidth-1 downto 0);
         when "11" =>
-          sAXIMasterBlue  <= sPixel(3);
-          sAXIMasterGreen <= sPixel(1);
-          sAXIMasterRed  <= sPixel(0);
+          sAXIMasterBlue  <= sPixel(3)(kBayerWidth-1 downto 0);
+          sAXIMasterGreen <= sPixel(1) + sPixel(2);
+          sAXIMasterRed  <= sPixel(0)(kBayerWidth-1 downto 0);
         when "10" =>
-          sAXIMasterBlue  <= sPixel(2);
-          sAXIMasterGreen <= sPixel(0);
-          sAXIMasterRed  <= sPixel(1);
+          sAXIMasterBlue  <= sPixel(2)(kBayerWidth-1 downto 0);
+          sAXIMasterGreen <= sPixel(0) + sPixel(3);
+          sAXIMasterRed  <= sPixel(1)(kBayerWidth-1 downto 0);
         when others => null;
       end case;
     end if;
@@ -370,7 +370,9 @@ end process ShiftStrobes;
 -- Assign AXI stream output interface signals.
 m_axis_video_tuser  <= sStrobesShiftReg(4).User;
 m_axis_video_tlast  <= sStrobesShiftReg(4).Last;
-m_axis_video_tdata  <= "00" & sAXIMasterRed & sAXIMasterBlue & sAXIMasterGreen;
+m_axis_video_tdata  <= "00" & std_logic_vector(sAXIMasterRed) &
+  std_logic_vector(sAXIMasterBlue) &
+  std_logic_vector(sAXIMasterGreen(kBayerWidth downto 1));
 
 end rtl;
 
