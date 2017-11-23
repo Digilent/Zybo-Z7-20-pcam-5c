@@ -2,8 +2,8 @@
 --
 -- File: StoredGammaCoefs.vhd
 -- Author: Ioan Catuna
--- Original Project: AXI Bayer to RGB Image Conversion and Gamma Correction
--- Date: 23 October 2017
+-- Original Project: AXI Gamma Correction
+-- Date: 23 November 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License

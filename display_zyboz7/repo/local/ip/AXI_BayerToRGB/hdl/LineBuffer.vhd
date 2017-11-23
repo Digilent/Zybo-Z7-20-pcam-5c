@@ -2,8 +2,8 @@
 --
 -- File: LineBuffer.vhd
 -- Author: Ioan Catuna
--- Original Project: AXI Bayer to RGB Image Conversion and Gamma Correction
--- Date: 24 October 2017
+-- Original Project: AXI Bayer to RGB Image Conversion
+-- Date: 23 November 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License

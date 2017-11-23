@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 --
--- File: tb_AXI_GammaCorrection.vhd
+-- File: tb_AXI_ColorCorrection.vhd
 -- Author: Ioan Catuna
--- Original Project: AXI Gamma Correction
+-- Original Project: AXI Color Correction
 -- Date: 23 November 2017
 --
 -------------------------------------------------------------------------------
@@ -39,33 +39,30 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity tb_AXI_GammaCorrection is
-end tb_AXI_GammaCorrection;
+entity tb_AXI_ColorCorrection is
+end tb_AXI_ColorCorrection;
 
-architecture Behavioral of tb_AXI_GammaCorrection is
+architecture Behavioral of tb_AXI_ColorCorrection is
 
-constant kAXI_InputDataWidth : integer := 32;
-constant kBayerWidth : integer	:= 10;
-constant kAXI_OutputDataWidth : integer := 24;
+constant kAXI_DataWidth : integer := 32;
+constant kColorWidth : integer	:= 10;
 
-component AXI_GammaCorrection
+component AXI_ColorCorrection
 generic (
-	kAXI_InputDataWidth : integer := 32;
-  kBayerWidth : integer := 10;
-  kAXI_OutputDataWidth : integer := 24;
-  kGammaFactor: string := "1.8"
+  kAXI_DataWidth : integer := 32;
+  kColorWidth : integer := 10
 );
 port (
   StreamClk : in  STD_LOGIC;
   aStreamReset_n : in  STD_LOGIC;
   s_axis_video_tready : out STD_LOGIC;
-  s_axis_video_tdata : in  STD_LOGIC_VECTOR(kAXI_InputDataWidth-1 downto 0);
+  s_axis_video_tdata : in  STD_LOGIC_VECTOR(kAXI_DataWidth-1 downto 0);
   s_axis_video_tvalid : in  STD_LOGIC;
   s_axis_video_tuser : in  STD_LOGIC;
   s_axis_video_tlast : in  STD_LOGIC;
 
   m_axis_video_tready : in  STD_LOGIC;
-  m_axis_video_tdata : out STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
+  m_axis_video_tdata : out STD_LOGIC_VECTOR(kAXI_DataWidth-1 downto 0);
   m_axis_video_tvalid : out STD_LOGIC;
   m_axis_video_tuser : out STD_LOGIC;
   m_axis_video_tlast : out STD_LOGIC
@@ -76,7 +73,7 @@ signal StreamClk : STD_LOGIC := '0';
 signal aStreamReset_n : STD_LOGIC := '0';
 
 -- OUTPUTS
-signal sAXI_SlaveData : STD_LOGIC_VECTOR(kAXI_InputDataWidth-1 downto 0) := (others => '0');
+signal sAXI_SlaveData : STD_LOGIC_VECTOR(kAXI_DataWidth-1 downto 0) := (others => '0');
 signal sAXI_SlaveUser : STD_LOGIC := '0';
 signal sAXI_SlaveLast : STD_LOGIC := '0';
 signal sAXI_SlaveValid : STD_LOGIC := '0';
@@ -85,18 +82,16 @@ signal sAXI_MasterReady : STD_LOGIC := '0';
 -- INPUTS
 signal sAXI_SlaveReady : STD_LOGIC;
 signal sAXI_MasterValid : STD_LOGIC;
-signal sAXI_MasterData : STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
+signal sAXI_MasterData : STD_LOGIC_VECTOR(kAXI_DataWidth-1 downto 0);
 signal sAXI_MasterUser : STD_LOGIC;
 signal sAXI_MasterLast : STD_LOGIC;
 
 begin
 
-uut: AXI_GammaCorrection
+uut: AXI_ColorCorrection
 generic map(
-  kAXI_InputDataWidth => kAXI_InputDataWidth,
-  kBayerWidth => kBayerWidth,
-  kAXI_OutputDataWidth => kAXI_OutputDataWidth,
-  kGammaFactor => "1.0"
+  kAXI_DataWidth => kAXI_DataWidth,
+  kColorWidth => kColorWidth
 )
 port map(
   StreamClk => StreamClk,
@@ -148,16 +143,16 @@ begin
     
     while i < 1284 loop
       if sAXI_SlaveReady = '1' then
-        if j = 0 then
+        if j = 1 then
           sAXI_SlaveData <= "00" &
-            std_logic_vector(to_unsigned(500+i+8, kBayerWidth)) &
-            std_logic_vector(to_unsigned(500+i+4, kBayerWidth)) &
-            std_logic_vector(to_unsigned(500+i, kBayerWidth));
+            std_logic_vector(to_unsigned(500+i+8, kColorWidth)) &
+            std_logic_vector(to_unsigned(500+i+4, kColorWidth)) &
+            std_logic_vector(to_unsigned(500+i, kColorWidth));
         else
           sAXI_SlaveData <= "00" &
-            std_logic_vector(to_unsigned(i+3, kBayerWidth)) &
-            std_logic_vector(to_unsigned(i+2, kBayerWidth)) &
-            std_logic_vector(to_unsigned(i+1, kBayerWidth));
+            std_logic_vector(to_unsigned(i+3, kColorWidth)) &
+            std_logic_vector(to_unsigned(i+2, kColorWidth)) &
+            std_logic_vector(to_unsigned(i+1, kColorWidth));
         end if;
         sAXI_SlaveValid <= '1';
         if i = 0 then

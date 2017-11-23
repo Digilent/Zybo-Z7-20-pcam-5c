@@ -64,7 +64,8 @@ int main()
 		xil_printf("\r\n  b. Change Liquid Lens Focus");
 		xil_printf("\r\n  c. Change Image Sensor Hidden Settings");
 		xil_printf("\r\n  d. Change Image Format");
-		xil_printf("\r\n  e. Write a Register Inside the Image Sensor\r\n\r\n");
+		xil_printf("\r\n  e. Write a Register Inside the Image Sensor");
+		xil_printf("\r\n  f. Read a Register Inside the Image Sensor\r\n\r\n");
 
 		read_char0 = getchar();
 		getchar();
@@ -261,6 +262,62 @@ int main()
 			xil_printf("Desired Register Value: %x\r\n", reg_value);
 			cam.writeReg(reg_addr, reg_value);
 			xil_printf("Register write done.\r\n");
+
+			break;
+
+		case 'f':
+			xil_printf("\r\nPlease enter address of image sensor register, in hex, with small letters: \r\n");
+			//A, B, C,..., F need to be entered with small letters
+			while (read_char1 < 48) {
+				read_char1 = getchar();
+			}
+			while (read_char2 < 48) {
+				read_char2 = getchar();
+			}
+			while (read_char4 < 48) {
+				read_char4 = getchar();
+			}
+			while (read_char5 < 48) {
+				read_char5 = getchar();
+			}
+			getchar();
+			// If character is a digit, convert from ASCII code to a digit between 0 and 9
+			if (read_char1 <= 57) {
+				read_char1 -= 48;
+			}
+			// If character is a letter, convert ASCII code to a number between 10 and 15
+			else {
+				read_char1 -= 87;
+			}
+			// If character is a digit, convert from ASCII code to a digit between 0 and 9
+			if (read_char2 <= 57) {
+				read_char2 -= 48;
+			}
+			// If character is a letter, convert ASCII code to a number between 10 and 15
+			else {
+				read_char2 -= 87;
+			}
+			// If character is a digit, convert from ASCII code to a digit between 0 and 9
+			if (read_char4 <= 57) {
+				read_char4 -= 48;
+			}
+			// If character is a letter, convert ASCII code to a number between 10 and 15
+			else {
+				read_char4 -= 87;
+			}
+			// If character is a digit, convert from ASCII code to a digit between 0 and 9
+			if (read_char5 <= 57) {
+				read_char5 -= 48;
+			}
+			// If character is a letter, convert ASCII code to a number between 10 and 15
+			else {
+				read_char5 -= 87;
+			}
+			reg_addr = 16*(16*(16*read_char1 + read_char2)+read_char4)+read_char5;
+			xil_printf("Desired Register Address: %x\r\n", reg_addr);
+
+			cam.readReg(reg_addr, reg_value);
+			xil_printf("Value of Desired Register: %x\r\n", reg_value);
 
 			break;
 

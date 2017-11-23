@@ -213,7 +213,7 @@ public:
 				//{0x5000, 0xa7},
 				{0x5000, 0x03},
 				//[7]=0 Special digital effects, [5]=0 scaling, [2]=0 UV average disabled, [1]=1 Color matrix enabled, [0]=1 Auto white balance enabled
-				{0x5001, 0x03}
+				{0x5001, 0x02}
 		};
 
 		size_t i;

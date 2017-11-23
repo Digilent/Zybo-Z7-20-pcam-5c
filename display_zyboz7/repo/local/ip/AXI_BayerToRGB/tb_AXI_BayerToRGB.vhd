@@ -3,7 +3,7 @@
 -- File: tb_AXI_BayerToRGB.vhd
 -- Author: Ioan Catuna
 -- Original Project: AXI Bayer to RGB Image Conversion
--- Date: 21 November 2017
+-- Date: 23 November 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License
