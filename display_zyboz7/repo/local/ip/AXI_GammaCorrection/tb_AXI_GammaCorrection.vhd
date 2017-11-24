@@ -73,6 +73,8 @@ port (
   m_axis_video_tuser : out STD_LOGIC;
   m_axis_video_tlast : out STD_LOGIC;
 
+  AxiLiteClk : in  STD_LOGIC;
+  aAxiLiteReset_n : in  STD_LOGIC;
   -- Write address (issued by master, acceped by Slave)
   S_AXI_AWADDR  : in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
   -- Write channel Protection type. This signal indicates the
@@ -135,27 +137,14 @@ end component;
 signal StreamClk : STD_LOGIC := '0';
 signal aStreamReset_n : STD_LOGIC := '0';
 
--- OUTPUTS
+-- TESTBENCH OUTPUTS
 signal sAXI_SlaveData : STD_LOGIC_VECTOR(kAXI_InputDataWidth-1 downto 0) := (others => '0');
 signal sAXI_SlaveUser : STD_LOGIC := '0';
 signal sAXI_SlaveLast : STD_LOGIC := '0';
 signal sAXI_SlaveValid : STD_LOGIC := '0';
 signal sAXI_MasterReady : STD_LOGIC := '0';
-signal S_AXI_AWREADY  : std_logic;
-signal S_AXI_WREADY  : std_logic;
-signal S_AXI_BRESP  : std_logic_vector(1 downto 0);
-signal S_AXI_BVALID  : std_logic;
-signal S_AXI_ARREADY  : std_logic;
-signal S_AXI_RDATA  : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
-signal S_AXI_RRESP  : std_logic_vector(1 downto 0);
-signal S_AXI_RVALID  : std_logic;
-
--- INPUTS
-signal sAXI_SlaveReady : STD_LOGIC;
-signal sAXI_MasterValid : STD_LOGIC;
-signal sAXI_MasterData : STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
-signal sAXI_MasterUser : STD_LOGIC;
-signal sAXI_MasterLast : STD_LOGIC;
+signal AxiLiteClk : STD_LOGIC := '0';
+signal aAxiLiteReset_n : STD_LOGIC;
 signal S_AXI_AWADDR  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
 signal S_AXI_AWPROT  : std_logic_vector(2 downto 0);
 signal S_AXI_AWVALID  : std_logic;
@@ -167,6 +156,21 @@ signal S_AXI_ARADDR  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
 signal S_AXI_ARPROT  : std_logic_vector(2 downto 0);
 signal S_AXI_ARVALID  : std_logic;
 signal S_AXI_RREADY  : std_logic;
+
+-- TESTBENCH INPUTS
+signal sAXI_SlaveReady : STD_LOGIC;
+signal sAXI_MasterValid : STD_LOGIC;
+signal sAXI_MasterData : STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
+signal sAXI_MasterUser : STD_LOGIC;
+signal sAXI_MasterLast : STD_LOGIC;
+signal S_AXI_AWREADY  : std_logic;
+signal S_AXI_WREADY  : std_logic;
+signal S_AXI_BRESP  : std_logic_vector(1 downto 0);
+signal S_AXI_BVALID  : std_logic;
+signal S_AXI_ARREADY  : std_logic;
+signal S_AXI_RDATA  : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+signal S_AXI_RRESP  : std_logic_vector(1 downto 0);
+signal S_AXI_RVALID  : std_logic;
 
 begin
 
@@ -191,6 +195,8 @@ port map(
   m_axis_video_tvalid => sAXI_MasterValid,
   m_axis_video_tuser => sAXI_MasterUser,
   m_axis_video_tlast => sAXI_MasterLast,
+  AxiLiteClk => AxiLiteClk,
+  aAxiLiteReset_n => aAxiLiteReset_n,
   S_AXI_AWADDR => S_AXI_AWADDR,
   S_AXI_AWPROT => S_AXI_AWPROT,
   S_AXI_AWVALID => S_AXI_AWVALID,
@@ -224,6 +230,8 @@ S_AXI_ARPROT <= (others => '0');
 S_AXI_ARVALID <= '0';
 S_AXI_RREADY <= '0';
 
+AxiLiteClk <= not AxiLiteClk after 50ns;
+aAxiLiteReset_n <= '0', '1' after 200ns;
 StreamClk <= not StreamClk after 10ns;
 aStreamReset_n <= '0', '1' after 100ns;
 
