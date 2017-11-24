@@ -45,15 +45,18 @@ end tb_AXI_GammaCorrection;
 architecture Behavioral of tb_AXI_GammaCorrection is
 
 constant kAXI_InputDataWidth : integer := 32;
-constant kBayerWidth : integer	:= 10;
+constant kInputColorWidth : integer	:= 10;
 constant kAXI_OutputDataWidth : integer := 24;
+constant C_S_AXI_DATA_WIDTH  : integer  := 32;
+constant C_S_AXI_ADDR_WIDTH  : integer  := 3;
 
 component AXI_GammaCorrection
 generic (
 	kAXI_InputDataWidth : integer := 32;
-  kBayerWidth : integer := 10;
+  kInputColorWidth : integer := 10;
   kAXI_OutputDataWidth : integer := 24;
-  kGammaFactor: string := "1.8"
+  C_S_AXI_DATA_WIDTH  : integer  := 32;
+  C_S_AXI_ADDR_WIDTH  : integer  := 3
 );
 port (
   StreamClk : in  STD_LOGIC;
@@ -68,7 +71,64 @@ port (
   m_axis_video_tdata : out STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
   m_axis_video_tvalid : out STD_LOGIC;
   m_axis_video_tuser : out STD_LOGIC;
-  m_axis_video_tlast : out STD_LOGIC
+  m_axis_video_tlast : out STD_LOGIC;
+
+  -- Write address (issued by master, acceped by Slave)
+  S_AXI_AWADDR  : in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
+  -- Write channel Protection type. This signal indicates the
+    -- privilege and security level of the transaction, and whether
+    -- the transaction is a data access or an instruction access.
+  S_AXI_AWPROT  : in std_logic_vector(2 downto 0);
+  -- Write address valid. This signal indicates that the master signaling
+    -- valid write address and control information.
+  S_AXI_AWVALID  : in std_logic;
+  -- Write address ready. This signal indicates that the slave is ready
+    -- to accept an address and associated control signals.
+  S_AXI_AWREADY  : out std_logic;
+  -- Write data (issued by master, acceped by Slave) 
+  S_AXI_WDATA  : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+  -- Write strobes. This signal indicates which byte lanes hold
+    -- valid data. There is one write strobe bit for each eight
+    -- bits of the write data bus.    
+  S_AXI_WSTRB  : in std_logic_vector((C_S_AXI_DATA_WIDTH/8)-1 downto 0);
+  -- Write valid. This signal indicates that valid write
+    -- data and strobes are available.
+  S_AXI_WVALID  : in std_logic;
+  -- Write ready. This signal indicates that the slave
+    -- can accept the write data.
+  S_AXI_WREADY  : out std_logic;
+  -- Write response. This signal indicates the status
+    -- of the write transaction.
+  S_AXI_BRESP  : out std_logic_vector(1 downto 0);
+  -- Write response valid. This signal indicates that the channel
+    -- is signaling a valid write response.
+  S_AXI_BVALID  : out std_logic;
+  -- Response ready. This signal indicates that the master
+    -- can accept a write response.
+  S_AXI_BREADY  : in std_logic;
+  -- Read address (issued by master, acceped by Slave)
+  S_AXI_ARADDR  : in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
+  -- Protection type. This signal indicates the privilege
+    -- and security level of the transaction, and whether the
+    -- transaction is a data access or an instruction access.
+  S_AXI_ARPROT  : in std_logic_vector(2 downto 0);
+  -- Read address valid. This signal indicates that the channel
+    -- is signaling valid read address and control information.
+  S_AXI_ARVALID  : in std_logic;
+  -- Read address ready. This signal indicates that the slave is
+    -- ready to accept an address and associated control signals.
+  S_AXI_ARREADY  : out std_logic;
+  -- Read data (issued by slave)
+  S_AXI_RDATA  : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+  -- Read response. This signal indicates the status of the
+    -- read transfer.
+  S_AXI_RRESP  : out std_logic_vector(1 downto 0);
+  -- Read valid. This signal indicates that the channel is
+    -- signaling the required read data.
+  S_AXI_RVALID  : out std_logic;
+  -- Read ready. This signal indicates that the master can
+    -- accept the read data and response information.
+  S_AXI_RREADY  : in std_logic
 );
 end component;
 
@@ -81,6 +141,14 @@ signal sAXI_SlaveUser : STD_LOGIC := '0';
 signal sAXI_SlaveLast : STD_LOGIC := '0';
 signal sAXI_SlaveValid : STD_LOGIC := '0';
 signal sAXI_MasterReady : STD_LOGIC := '0';
+signal S_AXI_AWREADY  : std_logic;
+signal S_AXI_WREADY  : std_logic;
+signal S_AXI_BRESP  : std_logic_vector(1 downto 0);
+signal S_AXI_BVALID  : std_logic;
+signal S_AXI_ARREADY  : std_logic;
+signal S_AXI_RDATA  : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+signal S_AXI_RRESP  : std_logic_vector(1 downto 0);
+signal S_AXI_RVALID  : std_logic;
 
 -- INPUTS
 signal sAXI_SlaveReady : STD_LOGIC;
@@ -88,15 +156,27 @@ signal sAXI_MasterValid : STD_LOGIC;
 signal sAXI_MasterData : STD_LOGIC_VECTOR(kAXI_OutputDataWidth-1 downto 0);
 signal sAXI_MasterUser : STD_LOGIC;
 signal sAXI_MasterLast : STD_LOGIC;
+signal S_AXI_AWADDR  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
+signal S_AXI_AWPROT  : std_logic_vector(2 downto 0);
+signal S_AXI_AWVALID  : std_logic;
+signal S_AXI_WDATA  : std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
+signal S_AXI_WSTRB  : std_logic_vector((C_S_AXI_DATA_WIDTH/8)-1 downto 0);
+signal S_AXI_WVALID  : std_logic;
+signal S_AXI_BREADY  : std_logic;
+signal S_AXI_ARADDR  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
+signal S_AXI_ARPROT  : std_logic_vector(2 downto 0);
+signal S_AXI_ARVALID  : std_logic;
+signal S_AXI_RREADY  : std_logic;
 
 begin
 
 uut: AXI_GammaCorrection
 generic map(
   kAXI_InputDataWidth => kAXI_InputDataWidth,
-  kBayerWidth => kBayerWidth,
+  kInputColorWidth => kInputColorWidth,
   kAXI_OutputDataWidth => kAXI_OutputDataWidth,
-  kGammaFactor => "1.0"
+  C_S_AXI_DATA_WIDTH => C_S_AXI_DATA_WIDTH,
+  C_S_AXI_ADDR_WIDTH => C_S_AXI_ADDR_WIDTH
 )
 port map(
   StreamClk => StreamClk,
@@ -110,8 +190,39 @@ port map(
   m_axis_video_tdata => sAXI_MasterData,
   m_axis_video_tvalid => sAXI_MasterValid,
   m_axis_video_tuser => sAXI_MasterUser,
-  m_axis_video_tlast => sAXI_MasterLast
+  m_axis_video_tlast => sAXI_MasterLast,
+  S_AXI_AWADDR => S_AXI_AWADDR,
+  S_AXI_AWPROT => S_AXI_AWPROT,
+  S_AXI_AWVALID => S_AXI_AWVALID,
+  S_AXI_AWREADY => S_AXI_AWREADY,
+  S_AXI_WDATA => S_AXI_WDATA,
+  S_AXI_WSTRB => S_AXI_WSTRB,
+  S_AXI_WVALID => S_AXI_WVALID,
+  S_AXI_WREADY => S_AXI_WREADY,
+  S_AXI_BRESP => S_AXI_BRESP,
+  S_AXI_BVALID => S_AXI_BVALID,
+  S_AXI_BREADY => S_AXI_BREADY,
+  S_AXI_ARADDR => S_AXI_ARADDR,
+  S_AXI_ARPROT => S_AXI_ARPROT,
+  S_AXI_ARVALID => S_AXI_ARVALID,
+  S_AXI_ARREADY => S_AXI_ARREADY,
+  S_AXI_RDATA => S_AXI_RDATA,
+  S_AXI_RRESP => S_AXI_RRESP,
+  S_AXI_RVALID => S_AXI_RVALID,
+  S_AXI_RREADY => S_AXI_RREADY
 );
+
+S_AXI_AWADDR <= (others => '0');
+S_AXI_AWPROT <= (others => '0');
+S_AXI_AWVALID <= '0';
+S_AXI_WDATA <= (others => '0');
+S_AXI_WSTRB <= (others => '0');
+S_AXI_WVALID <= '0';
+S_AXI_BREADY <= '0';
+S_AXI_ARADDR <= (others => '0');
+S_AXI_ARPROT <= (others => '0');
+S_AXI_ARVALID <= '0';
+S_AXI_RREADY <= '0';
 
 StreamClk <= not StreamClk after 10ns;
 aStreamReset_n <= '0', '1' after 100ns;
@@ -150,14 +261,14 @@ begin
       if sAXI_SlaveReady = '1' then
         if j = 0 then
           sAXI_SlaveData <= "00" &
-            std_logic_vector(to_unsigned(500+i+8, kBayerWidth)) &
-            std_logic_vector(to_unsigned(500+i+4, kBayerWidth)) &
-            std_logic_vector(to_unsigned(500+i, kBayerWidth));
+            std_logic_vector(to_unsigned(500+i+8, kInputColorWidth)) &
+            std_logic_vector(to_unsigned(500+i+4, kInputColorWidth)) &
+            std_logic_vector(to_unsigned(500+i, kInputColorWidth));
         else
           sAXI_SlaveData <= "00" &
-            std_logic_vector(to_unsigned(i+3, kBayerWidth)) &
-            std_logic_vector(to_unsigned(i+2, kBayerWidth)) &
-            std_logic_vector(to_unsigned(i+1, kBayerWidth));
+            std_logic_vector(to_unsigned(i+3, kInputColorWidth)) &
+            std_logic_vector(to_unsigned(i+2, kInputColorWidth)) &
+            std_logic_vector(to_unsigned(i+1, kInputColorWidth));
         end if;
         sAXI_SlaveValid <= '1';
         if i = 0 then

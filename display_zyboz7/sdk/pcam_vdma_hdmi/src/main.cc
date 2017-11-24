@@ -21,6 +21,8 @@
 #define DDR_BASE_ADDR		XPAR_DDR_MEM_BASEADDR
 #define MEM_BASE_ADDR		(DDR_BASE_ADDR + 0x0A000000)
 
+#define GAMMA_BASE_ADDR     0x43C20000
+
 using namespace digilent;
 
 int main()
@@ -38,6 +40,8 @@ int main()
 	xil_printf("Cam init starting.\r\n");
 	cam.init();
 	xil_printf("Cam init done.\r\n");
+	// Set Gamma correction factor to 1/1.2
+	Xil_Out32(GAMMA_BASE_ADDR, 1);
 	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_PIXELCLK_GENERATOR_BASEADDR);
 //	vid.ChangeResolution(Resolution::R1280_720_60_PP);
 	vid.ChangeResolution(Resolution::R1920_1080_60_PP);
@@ -65,7 +69,8 @@ int main()
 		xil_printf("\r\n  c. Change Image Sensor Hidden Settings");
 		xil_printf("\r\n  d. Change Image Format");
 		xil_printf("\r\n  e. Write a Register Inside the Image Sensor");
-		xil_printf("\r\n  f. Read a Register Inside the Image Sensor\r\n\r\n");
+		xil_printf("\r\n  f. Read a Register Inside the Image Sensor");
+		xil_printf("\r\n  g. Change Gamma Correction Factor Value\r\n\r\n");
 
 		read_char0 = getchar();
 		getchar();
@@ -319,6 +324,27 @@ int main()
 			cam.readReg(reg_addr, reg_value);
 			xil_printf("Value of Desired Register: %x\r\n", reg_value);
 
+			break;
+
+		case 'g':
+			xil_printf("\r\n  Please press the key corresponding to the desired Gamma factor:");
+			xil_printf("\r\n    1. Gamma Factor = 1");
+			xil_printf("\r\n    2. Gamma Factor = 1/1.2");
+			xil_printf("\r\n    3. Gamma Factor = 1/1.5");
+			xil_printf("\r\n    4. Gamma Factor = 1/1.8");
+			xil_printf("\r\n    5. Gamma Factor = 1/2.2");
+			read_char1 = getchar();
+			getchar();
+			xil_printf("\r\nRead: %d", read_char1);
+			// Convert from ASCII to numeric
+			read_char1 = read_char1 - 48;
+			if ((read_char1 > 0) && (read_char1 < 6)) {
+				Xil_Out32(GAMMA_BASE_ADDR, read_char1-1);
+				xil_printf("Gamma value changed to 1.\r\n");
+			}
+			else {
+				xil_printf("\r\n  Selection is outside the available options! Please retry...");
+			}
 			break;
 
 		default:
