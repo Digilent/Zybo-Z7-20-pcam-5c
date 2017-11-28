@@ -667,6 +667,103 @@ public:
 		writeReg(0x3008, 0x02);
 	}//change_image_to_raw
 
+	void enable_advanced_awb()
+		{
+			typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+			config_word_t const awb_settings[] =
+			{
+					// Enable Advanced AWB
+					{0x3406 ,0x00},
+					{0x5192 ,0x04},
+					{0x5191 ,0xf8},
+					{0x518d ,0x26},
+					{0x518f ,0x42},
+					{0x518e ,0x2b},
+					{0x5190 ,0x42},
+					{0x518b ,0xd0},
+					{0x518c ,0xbd},
+					{0x5187 ,0x18},
+					{0x5188 ,0x18},
+					{0x5189 ,0x56},
+					{0x518a ,0x5c},
+					{0x5186 ,0x1c},
+					{0x5181 ,0x50},
+					{0x5184 ,0x20},
+					{0x5182 ,0x11},
+					{0x5183 ,0x00},
+					{0x5001 ,0x03}
+			};
+
+			size_t i;
+			for (i=0;i<sizeof(awb_settings)/sizeof(awb_settings[0]); ++i)
+			{
+				std::cout << i << std::endl;
+				writeReg(awb_settings[i].addr, awb_settings[i].data);
+			}
+
+			//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+			writeReg(0x3008, 0x02);
+		}//enable_advanced_awb
+
+	void enable_simple_awb()
+		{
+			typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+			config_word_t const awb_settings[] =
+			{
+					// Disable Advanced AWB
+					{0x518d ,0x00},
+					{0x518f ,0x20},
+					{0x518e ,0x00},
+					{0x5190 ,0x20},
+					{0x518b ,0x00},
+					{0x518c ,0x00},
+					{0x5187 ,0x10},
+					{0x5188 ,0x10},
+					{0x5189 ,0x40},
+					{0x518a ,0x40},
+					{0x5186 ,0x10},
+					{0x5181 ,0x58},
+					{0x5184 ,0x25},
+					{0x5182 ,0x11},
+
+					// Enable simple AWB
+					{0x3406 ,0x00},
+					{0x5183 ,0x80},
+					{0x5191 ,0xff},
+					{0x5192 ,0x00},
+					{0x5001 ,0x03}
+			};
+
+			size_t i;
+			for (i=0;i<sizeof(awb_settings)/sizeof(awb_settings[0]); ++i)
+			{
+				std::cout << i << std::endl;
+				writeReg(awb_settings[i].addr, awb_settings[i].data);
+			}
+
+			//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+			writeReg(0x3008, 0x02);
+		}//enable_simple_awb
+
+	void disable_awb()
+		{
+			typedef struct { uint16_t addr; uint8_t data; } config_word_t;
+			config_word_t const awb_settings[] =
+			{
+					{0x5001 ,0x02}
+			};
+
+			size_t i;
+			for (i=0;i<sizeof(awb_settings)/sizeof(awb_settings[0]); ++i)
+			{
+				std::cout << i << std::endl;
+				writeReg(awb_settings[i].addr, awb_settings[i].data);
+			}
+
+			//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+			writeReg(0x3008, 0x02);
+		}//disable_awb
+
 	~OV5640() { }
 
 	void readReg(uint16_t reg_addr, uint8_t& buf)

@@ -170,7 +170,18 @@ begin
           sAXI_SlaveUser <= '0';
         end if;
         
+        -- Insert an AXI Master Interface Ready deassertion right during a new Pixel
+        -- read by the Demosaic core
+        if i = 4 then
+          sAXI_MasterReady <= '0';
+        end if;
+        
         ClkDelay(1);
+        sAXI_MasterReady <= '1';
+        if sAXI_SlaveReady = '0' then
+          wait until sAXI_SlaveReady = '1';
+          ClkDelay(1);
+        end if;
         sAXI_SlaveValid <= '0';
         
         -- Insert AXI Master interface Ready deassertion
@@ -182,7 +193,18 @@ begin
         if sAXI_SlaveReady = '1' then
           wait until sAXI_SlaveReady = '0';
         end if;
-        ClkDelay(35);
+        
+        -- Insert a one-clock AXI Master Interface Ready deassertion right while
+        -- receiving the first pixel from the Demosaic core
+        if i = 0 then
+          ClkDelay(3);
+          sAXI_MasterReady <= '0';
+          ClkDelay(1);
+          sAXI_MasterReady <= '1';
+          ClkDelay(20);
+        else
+          ClkDelay(35);
+        end if;
         
         i := i + 4;
       end if;

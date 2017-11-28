@@ -39,6 +39,7 @@ int main()
 
 	xil_printf("Cam init starting.\r\n");
 	cam.init();
+	cam.enable_advanced_awb();
 	xil_printf("Cam init done.\r\n");
 	// Set Gamma correction factor to 1/1.2
 	Xil_Out32(GAMMA_BASE_ADDR, 1);
@@ -60,6 +61,7 @@ int main()
 	uint8_t read_char5 = 0;
 	uint16_t reg_addr;
 	uint8_t reg_value;
+	uint32_t color_values;
 
 	while (1) {
 		xil_printf("\r\n\r\n\r\nPcam 5C MAIN OPTIONS\r\n");
@@ -67,10 +69,11 @@ int main()
 		xil_printf("\r\n  a. Change Resolution");
 		xil_printf("\r\n  b. Change Liquid Lens Focus");
 		xil_printf("\r\n  c. Change Image Sensor Hidden Settings");
-		xil_printf("\r\n  d. Change Image Format");
+		xil_printf("\r\n  d. Change Image Format (Raw or RGB)");
 		xil_printf("\r\n  e. Write a Register Inside the Image Sensor");
 		xil_printf("\r\n  f. Read a Register Inside the Image Sensor");
-		xil_printf("\r\n  g. Change Gamma Correction Factor Value\r\n\r\n");
+		xil_printf("\r\n  g. Change Gamma Correction Factor Value");
+		xil_printf("\r\n  h. Change AWB Settings\r\n\r\n");
 
 		read_char0 = getchar();
 		getchar();
@@ -271,7 +274,7 @@ int main()
 			break;
 
 		case 'f':
-			xil_printf("\r\nPlease enter address of image sensor register, in hex, with small letters: \r\n");
+			xil_printf("Please enter address of image sensor register, in hex, with small letters: \r\n");
 			//A, B, C,..., F need to be entered with small letters
 			while (read_char1 < 48) {
 				read_char1 = getchar();
@@ -327,15 +330,15 @@ int main()
 			break;
 
 		case 'g':
-			xil_printf("\r\n  Please press the key corresponding to the desired Gamma factor:");
-			xil_printf("\r\n    1. Gamma Factor = 1");
-			xil_printf("\r\n    2. Gamma Factor = 1/1.2");
-			xil_printf("\r\n    3. Gamma Factor = 1/1.5");
-			xil_printf("\r\n    4. Gamma Factor = 1/1.8");
-			xil_printf("\r\n    5. Gamma Factor = 1/2.2");
+			xil_printf("  Please press the key corresponding to the desired Gamma factor:\r\n");
+			xil_printf("    1. Gamma Factor = 1\r\n");
+			xil_printf("    2. Gamma Factor = 1/1.2\r\n");
+			xil_printf("    3. Gamma Factor = 1/1.5\r\n");
+			xil_printf("    4. Gamma Factor = 1/1.8\r\n");
+			xil_printf("    5. Gamma Factor = 1/2.2\r\n");
 			read_char1 = getchar();
 			getchar();
-			xil_printf("\r\nRead: %d", read_char1);
+			xil_printf("Read: %d\r\n", read_char1);
 			// Convert from ASCII to numeric
 			read_char1 = read_char1 - 48;
 			if ((read_char1 > 0) && (read_char1 < 6)) {
@@ -343,12 +346,38 @@ int main()
 				xil_printf("Gamma value changed to 1.\r\n");
 			}
 			else {
-				xil_printf("\r\n  Selection is outside the available options! Please retry...");
+				xil_printf("  Selection is outside the available options! Please retry...\r\n");
+			}
+			break;
+
+		case 'h':
+			xil_printf("  Please press the key corresponding to the desired AWB change:\r\n");
+			xil_printf("    1. Enable Advanced AWB\r\n");
+			xil_printf("    2. Enable Simple AWB\r\n");
+			xil_printf("    3. Disable AWB\r\n");
+			read_char1 = getchar();
+			getchar();
+			xil_printf("Read: %d\r\n", read_char1);
+			switch(read_char1) {
+			case '1':
+				cam.enable_advanced_awb();
+				xil_printf("Enabled Advanced AWB\r\n");
+				break;
+			case '2':
+				cam.enable_simple_awb();
+				xil_printf("Enabled Simple AWB\r\n");
+				break;
+			case '3':
+				cam.disable_awb();
+				xil_printf("Disabled AWB\r\n");
+				break;
+			default:
+				xil_printf("  Selection is outside the available options! Please retry...\r\n");
 			}
 			break;
 
 		default:
-			xil_printf("\r\n  Selection is outside the available options! Please retry...");
+			xil_printf("  Selection is outside the available options! Please retry...\r\n");
 		}
 
 		read_char1 = 0;
