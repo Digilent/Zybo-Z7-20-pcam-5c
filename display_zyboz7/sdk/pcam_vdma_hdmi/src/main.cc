@@ -41,8 +41,8 @@ int main()
 	cam.init();
 	cam.enable_advanced_awb();
 	xil_printf("Cam init done.\r\n");
-	// Set Gamma correction factor to 1/1.2
-	Xil_Out32(GAMMA_BASE_ADDR, 1);
+	// Set Gamma correction factor to 1/1.8
+	Xil_Out32(GAMMA_BASE_ADDR, 3);
 	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_PIXELCLK_GENERATOR_BASEADDR);
 //	vid.ChangeResolution(Resolution::R1280_720_60_PP);
 	vid.ChangeResolution(Resolution::R1920_1080_60_PP);
