@@ -7,6 +7,9 @@
 #include "ov5640/AXI_VDMA.h"
 #include "ov5640/PS_IIC.h"
 
+#include "MIPI_D_PHY_RX.h"
+#include "MIPI_CSI_2_RX.h"
+
 
 #define IRPT_CTL_DEVID 		XPAR_PS7_SCUGIC_0_DEVICE_ID
 #define GPIO_DEVID			XPAR_PS7_GPIO_0_DEVICE_ID
@@ -30,21 +33,52 @@ int main()
 	ScuGicInterruptController irpt_ctl(IRPT_CTL_DEVID);
 	PS_GPIO<ScuGicInterruptController> gpio_driver(GPIO_DEVID, irpt_ctl, GPIO_IRPT_ID);
 	PS_IIC<ScuGicInterruptController> iic_driver(CAM_I2C_DEVID, irpt_ctl, CAM_I2C_IRPT_ID, 100000);
+
 	OV5640 cam(iic_driver, gpio_driver);
 	AXI_VDMA<ScuGicInterruptController> vdma_driver(VDMA_DEVID, MEM_BASE_ADDR, irpt_ctl,
 			VDMA_MM2S_IRPT_ID,
 			VDMA_S2MM_IRPT_ID);
+	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_VIDEO_DYNCLK_DEVICE_ID);
 
-	xil_printf("Cam init starting.\r\n");
-	cam.init();
-	xil_printf("Cam init done.\r\n");
-	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_PIXELCLK_GENERATOR_BASEADDR);
-//	vid.ChangeResolution(Resolution::R1280_720_60_PP);
-	vid.ChangeResolution(Resolution::R1920_1080_60_PP);
-//	vdma_driver.enableRead(timing[static_cast<int>(Resolution::R1280_720_60_PP)].h_active, timing[static_cast<int>(Resolution::R1280_720_60_PP)].v_active);
-	vdma_driver.enableRead(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
-//	vdma_driver.enableWrite(timing[static_cast<int>(Resolution::R1280_720_60_PP)].h_active, timing[static_cast<int>(Resolution::R1280_720_60_PP)].v_active);
-	vdma_driver.enableWrite(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
+	//Bring up input pipeline back-to-front
+	{
+		vdma_driver.resetWrite();
+		MIPI_CSI_2_RX_mWriteReg(XPAR_MIPI_CSI_2_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, (CR_RESET_MASK & ~CR_ENABLE_MASK));
+		MIPI_D_PHY_RX_mWriteReg(XPAR_MIPI_D_PHY_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, (CR_RESET_MASK & ~CR_ENABLE_MASK));
+		cam.reset();
+	}
+
+	{
+		vdma_driver.configureWrite(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
+		//TODO CSI-2, D-PHY config here
+		cam.init();
+
+	}
+
+	{
+		vdma_driver.enableWrite();
+		MIPI_CSI_2_RX_mWriteReg(XPAR_MIPI_CSI_2_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, CR_ENABLE_MASK);
+		MIPI_D_PHY_RX_mWriteReg(XPAR_MIPI_D_PHY_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, CR_ENABLE_MASK);
+		cam.set_mode(OV5640_cfg::mode_t::OV5640_MODE_1080P_1920_1080_30fps);
+		cam.set_test(OV5640_cfg::test_t::EIGHT_COLOR_BAR);
+	}
+
+	//Bring up output pipeline back-to-front
+	{
+		vid.reset();
+		vdma_driver.resetRead();
+	}
+
+	{
+		vid.configure(Resolution::R1920_1080_60_PP);
+		vdma_driver.configureRead(timing[static_cast<int>(Resolution::R1920_1080_60_PP)].h_active, timing[static_cast<int>(Resolution::R1920_1080_60_PP)].v_active);
+	}
+
+	{
+		vid.enable();
+		vdma_driver.enableRead();
+	}
+
 	xil_printf("Video init done.\r\n");
 
 

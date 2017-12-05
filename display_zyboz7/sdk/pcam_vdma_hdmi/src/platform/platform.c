@@ -50,6 +50,7 @@
 #define SOFT_RST_MASK					(0x00000001)
 #define SLCR_LOCK_KEY_VALUE             0x767B
 #define SLCR_UNLOCK_KEY_VALUE           0xDF0D
+#define FPGA_RST_CTRL							0x240
 
 
 /*
@@ -99,8 +100,9 @@ init_platform()
 
     Xil_Out32(XSLCR_UNLOCK_ADDR, XSLCR_UNLOCK_CODE);
     //Reset PL
-    Xil_Out32(XSLCR_BASEADDR+0x240, Xil_In32(XSLCR_BASEADDR+0x240) | 0x1);
-    Xil_Out32(XSLCR_BASEADDR+0x240, Xil_In32(XSLCR_BASEADDR+0x240) & ~0x1);
+    Xil_Out32(XSLCR_BASEADDR+FPGA_RST_CTRL, 0x0);
+    Xil_Out32(XSLCR_BASEADDR+FPGA_RST_CTRL, 0x1);
+    Xil_Out32(XSLCR_BASEADDR+FPGA_RST_CTRL, 0x0);
 
     Xil_Out32(XSLCR_BASEADDR+0x4, 0x767B); //Lock back XSLCR
 

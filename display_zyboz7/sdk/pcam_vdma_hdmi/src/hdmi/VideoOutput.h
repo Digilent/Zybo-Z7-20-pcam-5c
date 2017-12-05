@@ -14,6 +14,7 @@
 
 #include "xaxivdma.h"
 #include "xvtc.h"
+#include "ddynclk.h"
 
 #define STRINGIZE(x) STRINGIZE2(x)
 #define STRINGIZE2(x) #x
@@ -49,11 +50,9 @@ timing_t const timing[] = {
 class VideoOutput
 {
 public:
-	VideoOutput(u32 VTC_dev_id, u32 clk_wiz_baseaddr) :
-		clk_wiz_baseaddr_(clk_wiz_baseaddr)
-{
-		{//VTC Init
-			XVtc_Config *psVtcConfig;
+	VideoOutput(u32 VTC_dev_id, u32 dynclk_dev_id)
+	{
+		XVtc_Config *psVtcConfig;
 		XStatus Status;
 
 		psVtcConfig = XVtc_LookupConfig(VTC_dev_id);
@@ -66,17 +65,51 @@ public:
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
 
-		XVtc_Reset(&sVtc_);
+		DDynClk_Config *psDynClkConfig;
+		psDynClkConfig = DDynClk_LookupConfig(dynclk_dev_id);
+		if (NULL == psDynClkConfig) {
+			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
-}
 
-	void ChangeResolution(Resolution res)
+		Status = DDynClk_CfgInitialize(&sDynClk_, psDynClkConfig, psDynClkConfig->BaseAddress);
+		if (Status != XST_SUCCESS) {
+			throw std::runtime_error(__FILE__ ":" LINE_STRING);
+		}
+	}
+
+	void reset()
+	{
+		XVtc_Reset(&sVtc_);
+		//DynClk is missing reset, the best we can do is disabling
+		DDynClk_Disable(&sDynClk_);
+	}
+
+	void configure(Resolution res)
 	{
 		size_t i;
 		for (i = 0; i < sizeof(timing)/sizeof(timing[0]); i++)
 		{
 			if (timing[i].res == res) break;
 		}
+
+		//Configure video clock generator first, since losing clock will reset all IP connected to it
+//		u32 mul = 33, divclk = 8, clkout_div0 = 33;
+//		switch (timing[i].pclk_freq_Hz)
+//		{
+//		case 148500000:
+//			mul = 26; divclk = 5; clkout_div0 = 7;
+//			break;
+//		case 74250000:
+//			mul = 26; divclk = 5; clkout_div0 = 14;
+//			break;
+//		case 25000000:
+//			mul = 33; divclk = 8; clkout_div0 = 33;
+//			break;
+//		}
+
+		DDynClk_SetRate(&sDynClk_, timing[i].pclk_freq_Hz);
+
+
 		if (i < sizeof(timing)/sizeof(timing[0]))
 		{
 			XVtc_Timing sTiming = {}; //Will init to 0 (C99 6.7.8.21)
@@ -92,36 +125,17 @@ public:
 			sTiming.VSyncPolarity	= (u16)timing[i].v_pol;
 			XVtc_SetGeneratorTiming(&sVtc_, &sTiming);
 			XVtc_RegUpdateEnable(&sVtc_);
-			XVtc_EnableGenerator(&sVtc_);
-
-			u32 mul = 33, divclk = 8, clkout_div0 = 33;
-			switch (timing[i].pclk_freq_Hz)
-			{
-			case 148500000:
-				mul = 26; divclk = 5; clkout_div0 = 7;
-				break;
-			case 74250000:
-				mul = 26; divclk = 5; clkout_div0 = 14;
-				break;
-			case 25000000:
-				mul = 33; divclk = 8; clkout_div0 = 33;
-				break;
-			}
-
-			Xil_Out32(clk_wiz_baseaddr_ + 0x0, 0x0000000A); //Reset
-			while (!(Xil_In32(clk_wiz_baseaddr_ + 0x4) & 0x1)); //Wait for lock before we can reconfigure
-			Xil_Out32(clk_wiz_baseaddr_ + 0x200, ((u32)mul << 8) | divclk); //DIVCLK=3, MUL=49, integers only
-			Xil_Out32(clk_wiz_baseaddr_ + 0x208, clkout_div0); //CLKOUT_DIVIDE0=11, integer
-			Xil_Out32(clk_wiz_baseaddr_ + 0x25C, 0x00000007); //Load configuration
-			Xil_Out32(clk_wiz_baseaddr_ + 0x25C, 0x00000002); //Idle
-			while (!(Xil_In32(clk_wiz_baseaddr_ + 0x4) & 0x1)); //Wait for lock
 
 		}
+	}
+	void enable()
+	{
+		XVtc_EnableGenerator(&sVtc_);
 	}
 	~VideoOutput() = default;
 private:
 	XVtc sVtc_;
-	uint32_t clk_wiz_baseaddr_;
+	DDynClk sDynClk_;
 };
 
 } /* namespace digilent */
