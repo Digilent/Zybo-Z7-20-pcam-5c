@@ -17,20 +17,81 @@
 #include "GPIO_Client.h"
 #include "../hdmi/VideoOutput.h"
 
+#define SIZEOF_ARRAY(x) sizeof(x)/sizeof(x[0])
+#define MAP_ENUM_TO_CFG(en, cfg) en, cfg, SIZEOF_ARRAY(cfg)
+
 namespace digilent {
 
 typedef enum {OK=0, ERR_LOGICAL, ERR_GENERAL} Errc;
 
 namespace OV5640_cfg {
 	using config_word_t = struct { uint16_t addr; uint8_t data; } ;
-	using mode_t = enum { OV5640_MODE_720P_1280_720_30fps = 0, OV5640_MODE_1080P_1920_1080_15fps, OV5640_MODE_1080P_1920_1080_30fps, OV5640_NUM_MODES } ;
+	using mode_t = enum { MODE_720P_1280_720_60fps = 0, MODE_1080P_1920_1080_15fps, MODE_1080P_1920_1080_30fps, MODE_END } ;
 	using config_modes_t = struct { mode_t mode; config_word_t const* cfg; size_t cfg_size; };
-	using test_t = enum { DISABLE_TEST = 0, EIGHT_COLOR_BAR };
-
+	using test_t = enum { TEST_DISABLED = 0, TEST_EIGHT_COLOR_BAR, TEST_END };
+	using awb_t = enum { AWB_DISABLED = 0, AWB_SIMPLE, AWB_ADVANCED, AWB_END };
+	using config_awb_t = struct { awb_t awb; config_word_t const* cfg; size_t cfg_size; };
+	using isp_format_t = enum { ISP_RAW = 0, ISP_RGB, ISP_END };
 	uint16_t const OV5640_REG_PRE_ISP_TEST_SET1 = 0x503D;
+	uint16_t const OV5640_FORMAT_MUX_CONTROL = 0x501f;
 
-	config_word_t const cfg_720p_30fps_[] =
-	{//1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
+	config_word_t const cfg_advanced_awb_[] =
+	{
+		// Enable Advanced AWB
+		{0x3406 ,0x00},
+		{0x5192 ,0x04},
+		{0x5191 ,0xf8},
+		{0x518d ,0x26},
+		{0x518f ,0x42},
+		{0x518e ,0x2b},
+		{0x5190 ,0x42},
+		{0x518b ,0xd0},
+		{0x518c ,0xbd},
+		{0x5187 ,0x18},
+		{0x5188 ,0x18},
+		{0x5189 ,0x56},
+		{0x518a ,0x5c},
+		{0x5186 ,0x1c},
+		{0x5181 ,0x50},
+		{0x5184 ,0x20},
+		{0x5182 ,0x11},
+		{0x5183 ,0x00},
+		{0x5001 ,0x03}
+	};
+
+	config_word_t const cfg_simple_awb_[] =
+	{
+		// Disable Advanced AWB
+		{0x518d ,0x00},
+		{0x518f ,0x20},
+		{0x518e ,0x00},
+		{0x5190 ,0x20},
+		{0x518b ,0x00},
+		{0x518c ,0x00},
+		{0x5187 ,0x10},
+		{0x5188 ,0x10},
+		{0x5189 ,0x40},
+		{0x518a ,0x40},
+		{0x5186 ,0x10},
+		{0x5181 ,0x58},
+		{0x5184 ,0x25},
+		{0x5182 ,0x11},
+
+		// Enable simple AWB
+		{0x3406 ,0x00},
+		{0x5183 ,0x80},
+		{0x5191 ,0xff},
+		{0x5192 ,0x00},
+		{0x5001 ,0x03}
+	};
+
+	config_word_t const cfg_disable_awb_[] =
+	{
+		{0x5001 ,0x02}
+	};
+
+	config_word_t const cfg_720p_60fps_[] =
+	{//1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=56Mz, PCLK=56M
 		//PLL1 configuration
 		//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
 		{0x3035, 0x21},
@@ -38,7 +99,7 @@ namespace OV5640_cfg {
 		{0x3036, 0x46},
 		//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
 		{0x3037, 0x05},
-		//[5:4]=01 PCLK root divider /2, [3:2]=01 SCLK2x root divider /2, [1:0]=10 SCLK root divider /4
+		//[5:4]=01 PCLK root divider /2, [3:2]=00 SCLK2x root divider /1, [1:0]=01 SCLK root divider /2
 		{0x3108, 0x11},
 
 		//[6:4]=001 PLL charge pump, [3:0]=1010 MIPI 10-bit mode
@@ -99,9 +160,9 @@ namespace OV5640_cfg {
 		{0x4837, 36}, // 1/56M*2
 
 		//Undocumented anti-green settings
-		{0x3618, 0x00},
-		{0x3612, 0x29},
-		{0x3708, 0x62},
+		{0x3618, 0x04},
+		{0x3612, 0x59},
+		{0x3708, 0x64},
 		{0x3709, 0x52},
 		{0x370c, 0x03},
 
@@ -109,7 +170,6 @@ namespace OV5640_cfg {
 		{0x4300, 0x00},
 		//[2:0]=0x3 Format select ISP RAW (DPC)
 		{0x501f, 0x03}
-		// END 1280 x 720 binned, RAW10, MIPISCLK=280M, SCLK=28Mz, PCLK=56M
 	};
 	config_word_t const cfg_1080p_15fps_[] =
 	{//1920 x 1080 @ 15 fps, RAW10, MIPISCLK=210, SCLK=42MHz, PCLK=42M
@@ -177,25 +237,13 @@ namespace OV5640_cfg {
 		// [2]=0 ISP mirror, [1]=0 sensor mirror, [0]=0 no horizontal binning
 		{0x3821, 0x00},
 
-		// {0x4805, 0x10}, //LPX global timing select=auto
-		// {0x4818, 0x00}, //hs_prepare + hs_zero_min ns
-		// {0x4819, 0x96},
-		// {0x482A, 0x00}, //hs_prepare + hs_zero_min UI
-
-		// {0x4824, 0x00}, //lpx_p_min ns
-		// {0x4825, 0x32},
-		// {0x4830, 0x00}, //lpx_p_min UI
-
-		// {0x4826, 0x00}, //hs_prepare_min ns
-		// {0x4827, 0x32},
-		// {0x4831, 0x00}, //hs_prepare_min UI
 		// little MIPI shit: global timing unit, period of PCLK in ns * 2(depends on # of lanes)
 		{0x4837, 48}, // 1/42M*2
 
 		// Undocumented anti-green settings
-		{0x3618, 0x00},
-		{0x3612, 0x29},
-		{0x3708, 0x62},
+		{0x3618, 0x04},
+		{0x3612, 0x59},
+		{0x3708, 0x64},
 		{0x3709, 0x52},
 		{0x370c, 0x03},
 
@@ -209,7 +257,6 @@ namespace OV5640_cfg {
 		//PLL1 configuration
 		//[7:4]=0010 System clock divider /2, [3:0]=0001 Scale divider for MIPI /1
 		{0x3035, 0x21}, // 30fps setting
-		//         {0x3035, 0x31}, // 20fps setting
 		//[7:0]=105 PLL multiplier
 		{0x3036, 0x69},
 		//[4]=0 PLL root divider /1, [3:0]=5 PLL pre-divider /1.5
@@ -275,9 +322,9 @@ namespace OV5640_cfg {
 		{0x4837, 24}, // 1/84M*2
 
 		//Undocumented anti-green settings
-		{0x3618, 0x00},
-		{0x3612, 0x29},
-		{0x3708, 0x62},
+		{0x3618, 0x04},
+		{0x3612, 0x59},
+		{0x3708, 0x64},
 		{0x3709, 0x52},
 		{0x370c, 0x03},
 
@@ -352,10 +399,10 @@ namespace OV5640_cfg {
 		//[4:0]=11001 PLL2 multiplier DIV_CNT5B = 25
 		{0x303B, 0x19},
 
-		{0x3630, 0x36},
+		{0x3630, 0x2e},
 		{0x3631, 0x0e},
 		{0x3632, 0xe2},
-		{0x3633, 0x12},
+		{0x3633, 0x23},
 		{0x3621, 0xe0},
 		{0x3704, 0xa0},
 		{0x3703, 0x5a},
@@ -366,9 +413,9 @@ namespace OV5640_cfg {
 		{0x3905, 0x02},
 		{0x3906, 0x10},
 		{0x3901, 0x0a},
-		{0x3731, 0x12},
+		{0x3731, 0x02},
 		//VCM debug mode
-		{0x3600, 0x08},
+		{0x3600, 0x37},
 		{0x3601, 0x33},
 		//System control register changing not recommended
 		{0x302d, 0x60},
@@ -382,8 +429,8 @@ namespace OV5640_cfg {
 		{0x3a18, 0x00},
 		{0x3a19, 0xf8},
 		{0x3635, 0x13},
-		{0x3636, 0x03},
-		{0x3634, 0x40},
+		{0x3636, 0x06},
+		{0x3634, 0x44},
 		{0x3622, 0x01},
 		{0x3c01, 0x34},
 		{0x3c04, 0x28},
@@ -437,16 +484,21 @@ namespace OV5640_cfg {
 		//		{0x4831, 0x00}, //hs_prepare_min UI
 
 		//[7]=1 LENC correction enabled, [5]=1 RAW gamma enabled, [2]=1 Black pixel cancellation enabled, [1]=1 White pixel cancellation enabled, [0]=1 Color interpolation enabled
-		//{0x5000, 0xa7},
 		{0x5000, 0x03},
 		//[7]=0 Special digital effects, [5]=0 scaling, [2]=0 UV average disabled, [1]=1 Color matrix enabled, [0]=1 Auto white balance enabled
 		{0x5001, 0x03}
 	};
 	config_modes_t const modes[] =
 	{
-			{ OV5640_MODE_720P_1280_720_30fps, cfg_720p_30fps_, sizeof(cfg_720p_30fps_)/sizeof(cfg_720p_30fps_[0]) },
-			{ OV5640_MODE_1080P_1920_1080_15fps, cfg_1080p_15fps_, sizeof(cfg_1080p_15fps_)/sizeof(cfg_1080p_15fps_[0])},
-			{ OV5640_MODE_1080P_1920_1080_30fps, cfg_1080p_30fps_, sizeof(cfg_1080p_30fps_)/sizeof(cfg_1080p_30fps_[0])}
+			{ MAP_ENUM_TO_CFG(MODE_720P_1280_720_60fps, cfg_720p_60fps_) },
+			{ MAP_ENUM_TO_CFG(MODE_1080P_1920_1080_15fps, cfg_1080p_15fps_) },
+			{ MAP_ENUM_TO_CFG(MODE_1080P_1920_1080_30fps, cfg_1080p_30fps_) }
+	};
+	config_awb_t const awbs[] =
+	{
+			{ MAP_ENUM_TO_CFG(AWB_DISABLED, cfg_disable_awb_) },
+			{ MAP_ENUM_TO_CFG(AWB_SIMPLE, cfg_simple_awb_) },
+			{ MAP_ENUM_TO_CFG(AWB_ADVANCED, cfg_advanced_awb_) }
 	};
 }
 
@@ -490,7 +542,7 @@ public:
 		}
 
 		//Default mode
-		set_mode(OV5640_cfg::mode_t::OV5640_MODE_1080P_1920_1080_30fps);
+		set_mode(OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps);
 
 		//Stay in power down
 	}
@@ -508,16 +560,52 @@ public:
 
 	Errc set_mode(OV5640_cfg::mode_t mode)
 	{
-		if (mode >= OV5640_cfg::mode_t::OV5640_NUM_MODES)
+		if (mode >= OV5640_cfg::mode_t::MODE_END)
 			return ERR_LOGICAL;
 
 		//[7]=0 Software reset; [6]=1 Software power down; Default=0x02
 		writeReg(0x3008, 0x42);
 
 		auto cfg_mode = &OV5640_cfg::modes[mode];
-		for (size_t i=0; i<cfg_mode->cfg_size; ++i)
+		writeConfig(cfg_mode->cfg, cfg_mode->cfg_size);
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+		return OK;
+	}
+
+	Errc set_awb(OV5640_cfg::awb_t awb)
+	{
+		if (awb >= OV5640_cfg::awb_t::AWB_END)
+			return ERR_LOGICAL;
+		//[7]=0 Software reset; [6]=1 Software power down; Default=0x02
+		writeReg(0x3008, 0x42);
+
+		auto cfg_mode = &OV5640_cfg::awbs[awb];
+		writeConfig(cfg_mode->cfg, cfg_mode->cfg_size);
+
+		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
+		writeReg(0x3008, 0x02);
+		return OK;
+	}
+
+	Errc set_isp_format(OV5640_cfg::isp_format_t isp)
+	{
+		if (isp >= OV5640_cfg::isp_format_t::ISP_END)
+			return ERR_LOGICAL;
+		//[7]=0 Software reset; [6]=1 Software power down; Default=0x02
+		writeReg(0x3008, 0x42);
+
+		switch (isp)
 		{
-			writeReg(cfg_mode->cfg[i].addr, cfg_mode->cfg[i].data);
+			case OV5640_cfg::isp_format_t::ISP_RGB:
+				writeReg(OV5640_cfg::OV5640_FORMAT_MUX_CONTROL, 0x01);
+				break;
+			case OV5640_cfg::isp_format_t::ISP_RAW:
+				writeReg(OV5640_cfg::OV5640_FORMAT_MUX_CONTROL, 0x03);
+				break;
+			default:
+				break;
 		}
 
 		//[7]=0 Software reset; [6]=0 Software power down; Default=0x02
@@ -530,11 +618,13 @@ public:
 	{
 		switch(test)
 		{
-			case OV5640_cfg::test_t::DISABLE_TEST:
+			case OV5640_cfg::test_t::TEST_DISABLED:
 				writeReg(OV5640_cfg::OV5640_REG_PRE_ISP_TEST_SET1, 0x00);
 				break;
-			case OV5640_cfg::test_t::EIGHT_COLOR_BAR:
+			case OV5640_cfg::test_t::TEST_EIGHT_COLOR_BAR:
 				writeReg(OV5640_cfg::OV5640_REG_PRE_ISP_TEST_SET1, 0x80);
+				break;
+			default:
 				break;
 		}
 	}
@@ -610,6 +700,13 @@ private:
 	void usleep(uint32_t time)
 	{//TODO couldn't think of anything better
 		for (uint32_t i=0; i<time; i++) ;
+	}
+	void writeConfig(OV5640_cfg::config_word_t const* cfg, size_t cfg_size)
+	{
+		for (size_t i=0; i<cfg_size; ++i)
+		{
+			writeReg(cfg[i].addr, cfg[i].data);
+		}
 	}
 private:
 	I2C_Client& iic_;

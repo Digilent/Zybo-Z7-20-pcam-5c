@@ -25,8 +25,8 @@ namespace digilent {
 enum class Resolution
 {
 	R1920_1080_60_PP = 0,
-			R1280_720_60_PP,
-			R640_480_60_NN
+	R1280_720_60_PP,
+	R640_480_60_NN
 };
 
 typedef struct

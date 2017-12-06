@@ -82,7 +82,6 @@ public:
 	virtual void read(uint8_t addr, uint8_t* buf, size_t count) override
 	{
 		// Receive the Data.
-		XStatus Status;
 
 		resetFlags();
 
