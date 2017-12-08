@@ -75,13 +75,17 @@ public:
 		if (Status != XST_SUCCESS) {
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
+
+		//Just set a pass-through rate so that IPs have a clock
+		Status = DDynClk_SetRate(&sDynClk_, sDynClk_.RefClkFreqHz);
+		if (Status != XST_SUCCESS) {
+			throw std::runtime_error(__FILE__ ":" LINE_STRING);
+		}
 	}
 
 	void reset()
 	{
 		XVtc_Reset(&sVtc_);
-		//DynClk is missing reset, the best we can do is disabling
-		DDynClk_Disable(&sDynClk_);
 	}
 
 	void configure(Resolution res)

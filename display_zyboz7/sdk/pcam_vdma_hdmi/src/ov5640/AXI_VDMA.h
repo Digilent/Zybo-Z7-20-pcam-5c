@@ -28,6 +28,10 @@ void MyCallback(void* CallbackRef, uint32_t mask)
 	pfn->operator()(mask);
 }
 
+/*!
+ * \brief Driver class for Xilinx AXI VDMA IP. Needs to have stable clocks before
+ * instantiation to be able to complete hardware reset.
+ */
 template <typename IrptCtl>
 class AXI_VDMA
 {

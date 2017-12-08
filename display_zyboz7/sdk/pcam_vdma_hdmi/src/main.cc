@@ -40,6 +40,7 @@ void pipeline_mode_change(AXI_VDMA<ScuGicInterruptController>& vdma_driver, OV56
 
 	{
 		vdma_driver.configureWrite(timing[static_cast<int>(res)].h_active, timing[static_cast<int>(res)].v_active);
+		Xil_Out32(GAMMA_BASE_ADDR, 3); // Set Gamma correction factor to 1/1.8
 		//TODO CSI-2, D-PHY config here
 		cam.init();
 	}
@@ -51,7 +52,6 @@ void pipeline_mode_change(AXI_VDMA<ScuGicInterruptController>& vdma_driver, OV56
 		cam.set_mode(mode);
 		cam.set_test(OV5640_cfg::test_t::TEST_EIGHT_COLOR_BAR);
 		cam.set_awb(OV5640_cfg::awb_t::AWB_ADVANCED);
-		Xil_Out32(GAMMA_BASE_ADDR, 3); // Set Gamma correction factor to 1/1.8
 	}
 
 	//Bring up output pipeline back-to-front
