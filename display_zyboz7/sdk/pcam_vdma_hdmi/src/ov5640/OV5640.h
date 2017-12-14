@@ -541,9 +541,6 @@ public:
 			writeReg(OV5640_cfg::cfg_init_[i].addr, OV5640_cfg::cfg_init_[i].data);
 		}
 
-		//Default mode
-		set_mode(OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps);
-
 		//Stay in power down
 	}
 

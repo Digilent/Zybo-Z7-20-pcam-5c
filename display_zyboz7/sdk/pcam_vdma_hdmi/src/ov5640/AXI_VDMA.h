@@ -22,10 +22,10 @@ namespace digilent {
 // Shim function to extract function object from CallbackRef and call it
 // This should call our member function handlers below
 template <typename Func>
-void MyCallback(void* CallbackRef, uint32_t mask)
+void MyCallback(void* CallbackRef, uint32_t mask_or_type)
 {
 	auto pfn = static_cast<std::function<Func>*>(CallbackRef);
-	pfn->operator()(mask);
+	pfn->operator()(mask_or_type);
 }
 
 /*!
@@ -57,6 +57,8 @@ class AXI_VDMA
 	} vdma_context_t;
 public:
 	AXI_VDMA(uint16_t dev_id, uint32_t frame_buf_base_addr, IrptCtl& irpt_ctl, uint16_t rd_irpt_id, uint16_t wr_irpt_id) :
+		rd_handler_(std::bind(&AXI_VDMA::readHandler, this, std::placeholders::_1)),
+		wr_handler_(std::bind(&AXI_VDMA::writeHandler, this, std::placeholders::_1)),
 		rd_err_handler_(std::bind(&AXI_VDMA::readErrorHandler, this, std::placeholders::_1)),
 		wr_err_handler_(std::bind(&AXI_VDMA::writeErrorHandler, this, std::placeholders::_1)),
 		context_{},
@@ -77,7 +79,11 @@ public:
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
 
-		//Set error interrupt error handlers
+		//Set error interrupt error handlers, which for some reason need completion handler defined too
+		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_GENERAL,
+				(void*)(XAxiVdma_CallBack)&MyCallback<void(uint32_t)>, &rd_handler_, XAXIVDMA_READ);
+		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_GENERAL,
+				(void*)(XAxiVdma_CallBack)&MyCallback<void(uint32_t)>, &wr_handler_, XAXIVDMA_WRITE);
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_ERROR,
 				(void*)(XAxiVdma_ErrorCallBack)&MyCallback<void(uint32_t)>, &rd_err_handler_, XAXIVDMA_READ);
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_ERROR,
@@ -93,6 +99,9 @@ public:
 
 	void resetRead()
 	{
+//		XAxiVdma_ChannelStop(&drv_inst_.ReadChannel);
+//		while (XAxiVdma_ChannelIsRunning(&drv_inst_.ReadChannel)) ;
+
 		XAxiVdma_ChannelReset(&drv_inst_.ReadChannel);
 
 		int Polls = RESET_POLL;
@@ -108,6 +117,9 @@ public:
 
 	void resetWrite()
 	{
+//		XAxiVdma_ChannelStop(&drv_inst_.WriteChannel);
+//		while (XAxiVdma_ChannelIsRunning(&drv_inst_.WriteChannel)) ;
+
 		XAxiVdma_ChannelReset(&drv_inst_.WriteChannel);
 
 		int Polls = RESET_POLL;
@@ -141,6 +153,7 @@ public:
 		uint32_t addr = frame_buf_base_addr_;
 		for (int iFrm=0; iFrm<drv_inst_.MaxNumFrames; ++iFrm) {
 			context_.ReadCfg.FrameStoreStartAddr[iFrm] = addr;
+			xil_printf("VDMA Frame %d Addr: 0x%08x\r\n", iFrm, addr);
 			//memset((void*)addr,0,context_.ReadCfg.HoriSizeInput * context_.ReadCfg.VertSizeInput);
 			addr += context_.ReadCfg.HoriSizeInput * context_.ReadCfg.VertSizeInput;
 		}
@@ -150,6 +163,8 @@ public:
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
 
+		//Clear errors in SR
+		XAxiVdma_ClearChannelErrors(&drv_inst_.ReadChannel, XAXIVDMA_SR_ERR_ALL_MASK);
 		//Enable read channel error and frame count interrupts
 		XAxiVdma_IntrEnable(&drv_inst_, XAXIVDMA_IXR_ERROR_MASK, XAXIVDMA_READ);
 	}
@@ -193,7 +208,11 @@ public:
 		{
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
-		//Enable read channel error and frame count interrupts
+		//Clear errors in SR
+		XAxiVdma_ClearChannelErrors(&drv_inst_.WriteChannel, XAXIVDMA_SR_ERR_ALL_MASK);
+		//Unmask error interrupts
+		XAxiVdma_MaskS2MMErrIntr(&drv_inst_, ~XAXIVDMA_S2MM_IRQ_ERR_ALL_MASK, XAXIVDMA_WRITE);
+		//Enable write channel error and frame count interrupts
 		XAxiVdma_IntrEnable(&drv_inst_, XAXIVDMA_IXR_ERROR_MASK, XAXIVDMA_WRITE);
 	}
 	void enableWrite()
@@ -206,6 +225,14 @@ public:
 			throw std::runtime_error(__FILE__ ":" LINE_STRING);
 		}
 	}
+	void readHandler(uint32_t irq_types)
+	{
+		std::cout << "VDMA:read complete" << std::endl;
+	}
+	void writeHandler(uint32_t irq_types)
+	{
+		std::cout << "VDMA:write complete" << std::endl;
+	}
 	void readErrorHandler(uint32_t mask)
 	{
 		std::cout << "VDMA:read error" << std::endl;
@@ -217,6 +244,8 @@ public:
 	~AXI_VDMA() = default;
 private:
 	XAxiVdma drv_inst_;
+	std::function<void(uint32_t)> rd_handler_;
+	std::function<void(uint32_t)> wr_handler_;
 	std::function<void(uint32_t)> rd_err_handler_;
 	std::function<void(uint32_t)> wr_err_handler_;
 	vdma_context_t context_;

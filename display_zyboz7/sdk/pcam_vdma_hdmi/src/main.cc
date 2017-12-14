@@ -50,7 +50,6 @@ void pipeline_mode_change(AXI_VDMA<ScuGicInterruptController>& vdma_driver, OV56
 		MIPI_CSI_2_RX_mWriteReg(XPAR_MIPI_CSI_2_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, CR_ENABLE_MASK);
 		MIPI_D_PHY_RX_mWriteReg(XPAR_MIPI_D_PHY_RX_0_S_AXI_LITE_BASEADDR, CR_OFFSET, CR_ENABLE_MASK);
 		cam.set_mode(mode);
-		cam.set_test(OV5640_cfg::test_t::TEST_EIGHT_COLOR_BAR);
 		cam.set_awb(OV5640_cfg::awb_t::AWB_ADVANCED);
 	}
 
