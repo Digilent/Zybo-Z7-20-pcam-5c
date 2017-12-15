@@ -3,7 +3,7 @@
 -- File: AXI_GammaCorrection.vhd
 -- Author: Ioan Catuna
 -- Original Project: AXI Gamma Correction
--- Date: 24 November 2017
+-- Date: 15 December 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License
@@ -66,7 +66,7 @@ generic (
 );
 port (
   StreamClk : in  STD_LOGIC;
-  aStreamReset_n : in  STD_LOGIC;
+  sStreamReset_n : in  STD_LOGIC;
   s_axis_video_tready : out STD_LOGIC;
   s_axis_video_tdata : in  STD_LOGIC_VECTOR(kAXI_InputDataWidth-1 downto 0);
   s_axis_video_tvalid : in  STD_LOGIC;
@@ -198,14 +198,14 @@ end generate;
 
 -- This process assigns the Valid, User and Last signals on the AXI stream output
 -- interface.
-ShiftStrobes: process(aStreamReset_n, StreamClk)
+ShiftStrobes: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sAXI_OutputValid <= '0';
-    m_axis_video_tuser <= '0';
-    m_axis_video_tlast <= '0';
-  elsif rising_edge(StreamClk) then
-    if (m_axis_video_tready = '1') then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sAXI_OutputValid <= '0';
+      m_axis_video_tuser <= '0';
+      m_axis_video_tlast <= '0';
+    elsif (m_axis_video_tready = '1') then
       if (s_axis_video_tvalid = '1') then
         m_axis_video_tuser  <= s_axis_video_tuser;
         m_axis_video_tlast  <= s_axis_video_tlast;

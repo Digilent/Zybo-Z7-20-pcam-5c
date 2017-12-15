@@ -85,7 +85,7 @@ if {[string equal [get_runs -quiet impl_1] ""]} {
 set obj [get_runs impl_1]
 set_property "part" $part $obj
 # Workaround for missing ILA timing constraints
-set_property STEPS.OPT_DESIGN.TCL.POST "[file normalize $src_dir/others/ila_timing_workaround.tcl]" [get_runs impl_1]
+#set_property STEPS.OPT_DESIGN.TCL.POST "[file normalize $src_dir/others/ila_timing_workaround.tcl]" [get_runs impl_1]
 
 # set the current impl run
 current_run -implementation [get_runs impl_1]
