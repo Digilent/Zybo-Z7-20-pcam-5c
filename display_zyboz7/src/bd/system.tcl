@@ -174,21 +174,32 @@ CONFIG.FREQ_HZ {336000000} \
   # Create instance: AXI_BayerToRGB_1, and set properties
   set AXI_BayerToRGB_1 [ create_bd_cell -type ip -vlnv digilentinc.com:user:AXI_BayerToRGB:1.0 AXI_BayerToRGB_1 ]
 
+  set_property -dict [ list \
+CONFIG.TDATA_NUM_BYTES {4} \
+ ] [get_bd_intf_pins /AXI_BayerToRGB_1/AXI_Stream_Master]
+
   # Create instance: AXI_GammaCorrection_0, and set properties
   set AXI_GammaCorrection_0 [ create_bd_cell -type ip -vlnv digilentinc.com:user:AXI_GammaCorrection:1.0 AXI_GammaCorrection_0 ]
+
+  set_property -dict [ list \
+CONFIG.NUM_READ_OUTSTANDING {1} \
+CONFIG.NUM_WRITE_OUTSTANDING {1} \
+ ] [get_bd_intf_pins /AXI_GammaCorrection_0/AXI_Lite_Reg_Intf]
+
+  set_property -dict [ list \
+CONFIG.TDATA_NUM_BYTES {3} \
+ ] [get_bd_intf_pins /AXI_GammaCorrection_0/AXI_Stream_Master]
 
   # Create instance: MIPI_CSI_2_RX_0, and set properties
   set MIPI_CSI_2_RX_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:MIPI_CSI_2_RX:1.0 MIPI_CSI_2_RX_0 ]
   set_property -dict [ list \
 CONFIG.kDebug {false} \
 CONFIG.kGenerateAXIL {true} \
-CONFIG.kVersionMajor {1} \
-CONFIG.kVersionMinor {0} \
  ] $MIPI_CSI_2_RX_0
 
   # Need to retain value_src of defaults
   set_property -dict [ list \
-CONFIG.kGenerateAXIL.VALUE_SRC {DEFAULT} \
+CONFIG.kDebug.VALUE_SRC {DEFAULT} \
  ] $MIPI_CSI_2_RX_0
 
   # Create instance: MIPI_D_PHY_RX_0, and set properties
@@ -1293,8 +1304,8 @@ preplace portBus dphy_data_hs_p -pg 1 -y 850 -defaultsOSRD
 preplace portBus dphy_data_lp_n -pg 1 -y 910 -defaultsOSRD
 preplace portBus dphy_data_lp_p -pg 1 -y 890 -defaultsOSRD
 preplace inst v_axi4s_vid_out_0 -pg 1 -lvl 9 -y 730 -defaultsOSRD
-preplace inst MIPI_CSI_2_RX_0 -pg 1 -lvl 5 -y 970 -defaultsOSRD
 preplace inst MIPI_D_PHY_RX_0 -pg 1 -lvl 4 -y 910 -defaultsOSRD
+preplace inst MIPI_CSI_2_RX_0 -pg 1 -lvl 5 -y 900 -defaultsOSRD
 preplace inst vtg -pg 1 -lvl 8 -y 680 -defaultsOSRD
 preplace inst axi_vdma_0 -pg 1 -lvl 8 -y 360 -defaultsOSRD
 preplace inst axi_mem_intercon_1 -pg 1 -lvl 9 -y 340 -defaultsOSRD
@@ -1309,58 +1320,58 @@ preplace inst axi_mem_intercon -pg 1 -lvl 9 -y 100 -defaultsOSRD
 preplace inst AXI_BayerToRGB_1 -pg 1 -lvl 6 -y 740 -defaultsOSRD
 preplace inst rst_clk_wiz_0_50M -pg 1 -lvl 2 -y 690 -defaultsOSRD
 preplace inst processing_system7_0 -pg 1 -lvl 10 -y 360 -defaultsOSRD
+preplace netloc ps7_0_axi_periph_M02_AXI 1 3 5 NJ 450 NJ 450 NJ 450 NJ 450 2400
 preplace netloc processing_system7_0_DDR 1 10 1 NJ
-preplace netloc ps7_0_axi_periph_M02_AXI 1 3 5 760J 420 NJ 420 NJ 420 NJ 420 2370
-preplace netloc dphy_data_hs_p_1 1 0 4 NJ 850 NJ 850 NJ 850 760J
-preplace netloc s_axil_clk_50 1 1 9 120 1320 480 1320 820 1320 1160 1320 NJ 1320 2000 1320 2380 1320 NJ 1320 3140
+preplace netloc dphy_data_hs_p_1 1 0 4 NJ 850 NJ 850 NJ 850 770J
+preplace netloc s_axil_clk_50 1 1 9 110 600 470 680 830 740 1140 1010 NJ 1010 2010 1010 2410 1010 NJ 1010 3180
 preplace netloc dphy_data_lp_n_1 1 0 4 -60J 930 NJ 930 NJ 930 NJ
-preplace netloc clk_wiz_0_locked 1 1 1 130
-preplace netloc axi_vdma_0_s2mm_introut 1 8 1 2760
-preplace netloc mm_clk_150 1 1 9 110 1300 NJ 1300 NJ 1300 1150 1300 1570 1300 1990 1300 2390 1300 2800 1300 3150
-preplace netloc dphy_hs_clock_1 1 0 4 NJ 790 NJ 790 NJ 790 810J
+preplace netloc clk_wiz_0_locked 1 1 1 120
+preplace netloc axi_vdma_0_s2mm_introut 1 8 1 2770
+preplace netloc mm_clk_150 1 1 9 100 60 NJ 60 NJ 60 1180 60 1460 60 2000 60 2420 60 2790 -20 3190
 preplace netloc v_axi4s_vid_out_0_vid_io_out 1 9 1 N
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 9 480 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 NJ 220 3610
-preplace netloc axi_vdma_0_M_AXI_MM2S 1 8 1 2730
-preplace netloc axi_mem_intercon_1_M00_AXI 1 9 1 3120
-preplace netloc rst_vid_clk_dyn_peripheral_aresetn 1 7 1 2330
-preplace netloc dphy_clk_lp_p_1 1 0 4 NJ 810 NJ 810 NJ 810 790J
-preplace netloc axi_dynclk_0_LOCKED_O 1 4 3 NJ 560 NJ 560 1950J
+preplace netloc processing_system7_0_M_AXI_GP0 1 2 9 470 -30 NJ -30 NJ -30 NJ -30 NJ -30 NJ -30 NJ -30 NJ -30 3640
+preplace netloc dphy_hs_clock_1 1 0 4 NJ 790 NJ 790 NJ 790 820J
+preplace netloc axi_vdma_0_M_AXI_MM2S 1 8 1 2750
+preplace netloc axi_mem_intercon_1_M00_AXI 1 9 1 3180
+preplace netloc rst_vid_clk_dyn_peripheral_aresetn 1 7 1 2360
+preplace netloc dphy_clk_lp_p_1 1 0 4 NJ 810 NJ 810 NJ 810 800J
+preplace netloc axi_dynclk_0_LOCKED_O 1 4 3 NJ 560 NJ 560 1970J
 preplace netloc axi_vdma_0_M_AXIS_MM2S 1 8 1 2780
-preplace netloc v_tc_0_irq 1 8 1 2810
-preplace netloc rst_clk_wiz_0_50M_peripheral_reset 1 2 2 N 690 770J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 10 130 600 460J 680 810J 450 NJ 450 NJ 450 1990 450 2360J 480 2770J 460 3130J 490 3600
-preplace netloc dphy_clk_lp_n_1 1 0 4 NJ 830 NJ 830 NJ 830 780J
+preplace netloc v_tc_0_irq 1 8 1 2800
+preplace netloc rst_clk_wiz_0_50M_peripheral_reset 1 2 2 N 690 780J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 10 120 220 NJ 220 NJ 220 NJ 220 NJ 220 2010 220 NJ 220 NJ 220 NJ 220 3650
+preplace netloc dphy_clk_lp_n_1 1 0 4 NJ 830 NJ 830 NJ 830 790J
+preplace netloc ps7_0_axi_periph_M03_AXI 1 3 1 860
 preplace netloc processing_system7_0_IIC_0 1 10 1 NJ
-preplace netloc ps7_0_axi_periph_M03_AXI 1 3 1 840
-preplace netloc axi_mem_intercon_M00_AXI 1 9 1 3120
-preplace netloc dphy_data_hs_n_1 1 0 4 NJ 870 NJ 870 NJ 870 750J
-preplace netloc axi_dynclk_0_PXL_CLK_5X_O 1 4 6 NJ 540 1540J 860 NJ 860 NJ 860 NJ 860 3170J
+preplace netloc axi_mem_intercon_M00_AXI 1 9 1 3200
+preplace netloc dphy_data_hs_n_1 1 0 4 NJ 870 NJ 870 NJ 870 760J
+preplace netloc axi_dynclk_0_PXL_CLK_5X_O 1 4 6 NJ 540 NJ 540 1980J 650 2390J 550 2750J 600 3170J
 preplace netloc rgb2dvi_0_TMDS 1 10 1 NJ
-preplace netloc ps7_0_axi_periph_M01_AXI 1 3 1 750
-preplace netloc v_axi4s_vid_out_0_locked 1 9 1 3130
-preplace netloc rst_clk_wiz_0_50M_peripheral_aresetn 1 2 7 470 120 800 120 1140 120 1560J 120 1970 120 2350 120 2790
-preplace netloc xlconcat_0_dout 1 9 1 3120
-preplace netloc v_axi4s_vid_out_0_vtg_ce 1 7 3 2410 890 NJ 890 3120
-preplace netloc ref_clk_200 1 1 3 100 950 NJ 950 NJ
+preplace netloc ps7_0_axi_periph_M01_AXI 1 3 1 870
+preplace netloc v_axi4s_vid_out_0_locked 1 9 1 3190
+preplace netloc rst_clk_wiz_0_50M_peripheral_aresetn 1 2 7 460 120 810 120 1160 120 1440J 120 1960 120 2380 120 2760
+preplace netloc xlconcat_0_dout 1 9 1 3160
+preplace netloc v_axi4s_vid_out_0_vtg_ce 1 7 3 2430 870 NJ 870 3160
+preplace netloc ref_clk_200 1 1 3 110 950 NJ 950 NJ
 preplace netloc processing_system7_0_FIXED_IO 1 10 1 NJ
-preplace netloc AXI_GammaCorrection_0_AXI_Stream_Master 1 7 1 2340
-preplace netloc rst_clk_wiz_0_50M_interconnect_aresetn 1 2 7 450 80 NJ 80 NJ 80 NJ 80 NJ 80 NJ 80 2810
-preplace netloc axi_vdma_0_mm2s_introut 1 8 1 2730
-preplace netloc MIPI_D_PHY_RX_0_RxByteClkHS 1 4 1 1130
+preplace netloc AXI_GammaCorrection_0_AXI_Stream_Master 1 7 1 2370
+preplace netloc rst_clk_wiz_0_50M_interconnect_aresetn 1 2 7 450 80 NJ 80 NJ 80 NJ 80 NJ 80 NJ 80 2800
+preplace netloc axi_vdma_0_mm2s_introut 1 8 1 2750
+preplace netloc MIPI_D_PHY_RX_0_RxByteClkHS 1 4 1 1170
+preplace netloc ps7_0_axi_periph_M05_AXI 1 3 4 840J 620 NJ 620 NJ 620 1950J
+preplace netloc ps7_0_axi_periph_M04_AXI 1 3 2 850J 630 1170
 preplace netloc processing_system7_0_GPIO_0 1 10 1 NJ
-preplace netloc ps7_0_axi_periph_M05_AXI 1 3 4 770J 430 NJ 430 NJ 430 1960J
-preplace netloc ps7_0_axi_periph_M04_AXI 1 3 2 830 690 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 11 -60 200 NJ 200 NJ 200 850 200 NJ 200 NJ 200 NJ 200 NJ 200 2750J 900 NJ 900 3610
-preplace netloc v_tc_0_vtiming_out 1 8 1 2740
-preplace netloc ps7_0_axi_periph_M00_AXI 1 3 5 N 410 NJ 410 NJ 410 NJ 410 2330J
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 11 -60 -40 NJ -40 NJ -40 880 -40 NJ -40 NJ -40 NJ -40 NJ -40 NJ -40 NJ -40 3660
+preplace netloc v_tc_0_vtiming_out 1 8 1 2750
+preplace netloc ps7_0_axi_periph_M00_AXI 1 3 5 N 410 NJ 410 NJ 410 NJ 410 2350J
 preplace netloc axi_vdma_0_M_AXI_S2MM 1 8 1 2780
-preplace netloc MIPI_D_PHY_RX_0_D_PHY_PPI 1 4 1 1130
-preplace netloc AXI_BayerToRGB_1_AXI_Stream_Master 1 6 1 1950
-preplace netloc dphy_data_lp_p_1 1 0 4 NJ 890 NJ 890 NJ 890 740J
-preplace netloc MIPI_CSI_2_RX_0_m_axis_video 1 5 1 1550
-preplace netloc rst_vid_clk_dyn_peripheral_reset 1 7 2 NJ 550 2730
-preplace netloc PixelClk_Generator_clk_out1 1 4 6 NJ 520 NJ 520 1980 880 2400 880 2810 880 3160J
-levelinfo -pg 1 -80 20 290 610 1000 1360 1790 2170 2570 2990 3391 3630 -top -10 -bot 1460
+preplace netloc MIPI_D_PHY_RX_0_D_PHY_PPI 1 4 1 1150
+preplace netloc AXI_BayerToRGB_1_AXI_Stream_Master 1 6 1 1970
+preplace netloc dphy_data_lp_p_1 1 0 4 NJ 890 NJ 890 NJ 890 750J
+preplace netloc MIPI_CSI_2_RX_0_m_axis_video 1 5 1 1450
+preplace netloc rst_vid_clk_dyn_peripheral_reset 1 7 2 2350J 810 N
+preplace netloc PixelClk_Generator_clk_out1 1 4 6 NJ 520 NJ 520 1990 860 2420 860 2780 860 3200J
+levelinfo -pg 1 -80 20 290 620 1010 1310 1790 2190 2590 3030 3431 3680 -top -90 -bot 1460
 ",
 }
 
