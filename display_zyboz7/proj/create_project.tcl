@@ -77,15 +77,15 @@ current_run -synthesis [get_runs synth_1]
 
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -part $part -flow {Vivado Implementation 2016} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
+  create_run -name impl_1 -part $part -flow {Vivado Implementation 2016} -strategy "Performance_Explore" -constrset constrs_1 -parent_run synth_1
 } else {
-  set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
+  set_property strategy "Performance_Explore" [get_runs impl_1]
   set_property flow "Vivado Implementation 2016" [get_runs impl_1]
 }
 set obj [get_runs impl_1]
 set_property "part" $part $obj
 # Workaround for missing ILA timing constraints
-set_property STEPS.OPT_DESIGN.TCL.POST "[file normalize $src_dir/others/ila_timing_workaround.tcl]" [get_runs impl_1]
+#set_property STEPS.OPT_DESIGN.TCL.POST "[file normalize $src_dir/others/ila_timing_workaround.tcl]" [get_runs impl_1]
 
 # set the current impl run
 current_run -implementation [get_runs impl_1]

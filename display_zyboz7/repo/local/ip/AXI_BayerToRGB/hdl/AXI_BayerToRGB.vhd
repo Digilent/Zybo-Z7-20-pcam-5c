@@ -3,7 +3,7 @@
 -- File: AXI_BayerToRGB.vhd
 -- Author: Ioan Catuna
 -- Original Project: AXI Bayer to RGB Image Conversion
--- Date: 22 November 2017
+-- Date: 15 December 2017
 --
 -------------------------------------------------------------------------------
 -- MIT License
@@ -72,7 +72,7 @@ generic (
 );
 port (
   StreamClk : in  STD_LOGIC;
-  aStreamReset_n : in  STD_LOGIC;
+  sStreamReset_n : in  STD_LOGIC;
   s_axis_video_tready : out STD_LOGIC;
   s_axis_video_tdata : in  STD_LOGIC_VECTOR(kAXI_InputDataWidth-1 downto 0);
   s_axis_video_tvalid : in  STD_LOGIC;
@@ -131,12 +131,12 @@ begin
 -- Until we cover the initial component latency (i.e. the amount of time needed until the
 -- first data we received arrives (processed) at the output of our component), we will
 -- prevent erroneous AXI stream Valid assertions on the output.
-CoverInitialLatency: process(aStreamReset_n, StreamClk)
+CoverInitialLatency: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sCoverInitialLatency <= '0';
-  elsif rising_edge(StreamClk) then
-    if sStrobesShiftReg(1).User = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sCoverInitialLatency <= '0';
+    elsif sStrobesShiftReg(1).User = '1' then
       sCoverInitialLatency <= '1';
     end if;
   end if;
@@ -163,22 +163,23 @@ s_axis_video_tready <= '1' when (m_axis_video_tready = '1') and (sCntRemPixels =
 
 -- This process will put data into the LineBuffer and assert some additional signals which
 -- are needed downstream.
-PutInputDataInRAM: process(aStreamReset_n, StreamClk)
+PutInputDataInRAM: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sStrobesShiftReg(0).Last <= '0';
-    sStrobesShiftReg(0).FirstColumn <= '0';
-    sCntRemPixels <= (others => '0');
-    sAXI_SlaveLastAsserted <= '0';
-    sLineBufferWrite <= '0';
-    sLineBufferCrntAddr <= (others => '0');
-    sCntColumns <= (others => '0');
-    sLineBufferWriteData <= (others => '0');
-    sCrntPositionIndicatorDly1 <= (others => '0');
-    sCntRemPixels <= (others => '0');
-    sOtherPixelsData <= (others => '0');
-  elsif rising_edge(StreamClk) then
-    if sCntRemPixels = 0 then
+
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sStrobesShiftReg(0).Last <= '0';
+      sStrobesShiftReg(0).FirstColumn <= '0';
+      sCntRemPixels <= (others => '0');
+      sAXI_SlaveLastAsserted <= '0';
+      sLineBufferWrite <= '0';
+      sLineBufferCrntAddr <= (others => '0');
+      sCntColumns <= (others => '0');
+      sLineBufferWriteData <= (others => '0');
+      sCrntPositionIndicatorDly1 <= (others => '0');
+      sCntRemPixels <= (others => '0');
+      sOtherPixelsData <= (others => '0');
+    elsif sCntRemPixels = 0 then
 
       if m_axis_video_tready = '1' then
         if s_axis_video_tvalid = '1' then
@@ -247,12 +248,14 @@ sDataIsAvailableAndRequested <= '1' when ((sCntRemPixels > 0) or
 
 -- This process will assign the LineBuffer Read signal. This signal is actually a buffered
 -- version of the sDataIsAvailableAndRequested signal.
-RamAddrBuffer: process(aStreamReset_n, StreamClk)
+RamAddrBuffer: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sLineBufferRead <= '0';
-  elsif rising_edge(StreamClk) then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sLineBufferRead <= '0';
+    else
       sLineBufferRead <= sDataIsAvailableAndRequested;
+    end if;
   end if;
 end process RamAddrBuffer;
 
@@ -264,16 +267,16 @@ end process RamAddrBuffer;
 --   - sPixel(0) is the current value read from the AXI stream input, delayed by 1
 --     clock cycle;
 --   - sPixel(1) is the previous value read from the AXI stream input.
-AssignPixelValues: process(aStreamReset_n, StreamClk)
+AssignPixelValues: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sPixel <= (others => (others => '0'));
-    sLineBufferWriteDataDly <= (others => '0');
-    sCrntPositionIndicatorDly2 <= (others => '0');
-    sCrntPositionIndicatorDly3 <= (others => '0');
-    sLineBufferReadDataBuf <= (others => '0');
-  elsif rising_edge(StreamClk) then
-    if sDataIsAvailableAndRequested = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sPixel <= (others => (others => '0'));
+      sLineBufferWriteDataDly <= (others => '0');
+      sCrntPositionIndicatorDly2 <= (others => '0');
+      sCrntPositionIndicatorDly3 <= (others => '0');
+      sLineBufferReadDataBuf <= (others => '0');
+    elsif sDataIsAvailableAndRequested = '1' then
       sLineBufferWriteDataDly <= sLineBufferWriteData;
       sCrntPositionIndicatorDly2 <= sCrntPositionIndicatorDly1;
       sCrntPositionIndicatorDly3 <= sCrntPositionIndicatorDly2;
@@ -291,12 +294,12 @@ begin
 end process AssignPixelValues;
 
 -- This process keeps track of the current line number in the current frame.
-AssignLineNumber: process(aStreamReset_n, StreamClk)
+AssignLineNumber: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sCntLines  <= (others => '0');
-  elsif rising_edge(StreamClk) then
-    if m_axis_video_tready = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sCntLines  <= (others => '0');
+    elsif m_axis_video_tready = '1' then
       if (sCntRemPixels = 1) and (sAXI_SlaveLastAsserted = '1') then
         sCntLines  <= sCntLines + 1;
       end if;
@@ -316,13 +319,13 @@ end process AssignLineNumber;
 -- line and the first column in each frame. The FirstLine signal is asserted as the same
 -- time as the User signal, but it is deasserted only after the pixel marked as Last in
 -- the current line is received by the downstream circuit.
-AssignUserAndFirstLine: process(aStreamReset_n, StreamClk)
+AssignUserAndFirstLine: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sStrobesShiftReg(0).User <= '0';
-    sStrobesShiftReg(0).FirstLine <= '0';
-  elsif rising_edge(StreamClk) then
-    if m_axis_video_tready = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sStrobesShiftReg(0).User <= '0';
+      sStrobesShiftReg(0).FirstLine <= '0';
+    elsif m_axis_video_tready = '1' then
       sStrobesShiftReg(0).User <= '0';
 
       if (sStrobesShiftReg(0).Last = '1') and (s_axis_video_tvalid = '1') and
@@ -345,14 +348,14 @@ sCrntPositionIndicator <= sCntLines(0) & sCntColumns(0);
 -- Based on current position in the Bayer matrix, we decide from which position we take
 -- the blue, the green and the red pixels which we will then use to form a complete
 -- pixel (RGB).
-AssignOutputs: process(aStreamReset_n, StreamClk)
+AssignOutputs: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sAXIMasterBlue  <= (others => '0');
-    sAXIMasterGreen <= (others => '0');
-    sAXIMasterRed  <= (others => '0');
-  elsif rising_edge(StreamClk) then
-    if sDataIsAvailableAndRequested = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sAXIMasterBlue  <= (others => '0');
+      sAXIMasterGreen <= (others => '0');
+      sAXIMasterRed  <= (others => '0');
+    elsif sDataIsAvailableAndRequested = '1' then
       if (sStrobesShiftReg(2).FirstColumn = '1') or
         (sStrobesShiftReg(2).FirstLine = '1') then
         sAXIMasterBlue  <= to_unsigned(512, sAXIMasterBlue'length);
@@ -383,26 +386,32 @@ begin
   end if;
 end process AssignOutputs;
 
--- This process assigns the Valid signal on the AXI stream output interface.
--- Also, it shifts the registers containing the User and the Last signals for the AXI
--- stream output.
-ShiftStrobes: process(aStreamReset_n, StreamClk)
+-- This process shifts the registers containing the User and the Last signals for
+-- the AXI stream output, as well as some internal signals.
+ShiftStrobes: process(StreamClk)
 begin
-  if aStreamReset_n = '0' then
-    sStrobesShiftReg(3 downto 1) <= (others => ('0', '0', '0', '0'));
-    m_axis_video_tvalid <= '0';
-  elsif rising_edge(StreamClk) then
-    if sDataIsAvailableAndRequested = '1' then
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      sStrobesShiftReg(3 downto 1) <= (others => ('0', '0', '0', '0'));
+    elsif sDataIsAvailableAndRequested = '1' then
       sStrobesShiftReg(3 downto 1) <= sStrobesShiftReg(2 downto 0);
     end if;
+  end if;
+end process ShiftStrobes;
 
-    if (sDataIsAvailableAndRequested = '1') and (sCoverInitialLatency = '1') then
+-- This process assigns the Valid signal on the AXI stream output interface.
+AssignValid: process(StreamClk)
+begin
+  if rising_edge(StreamClk) then
+    if sStreamReset_n = '0' then
+      m_axis_video_tvalid <= '0';
+    elsif (sDataIsAvailableAndRequested = '1') and (sCoverInitialLatency = '1') then
       m_axis_video_tvalid <= '1';
     elsif m_axis_video_tready = '1' then
       m_axis_video_tvalid <= '0';
     end if;
   end if;
-end process ShiftStrobes;
+end process AssignValid;
 
 -- Assign AXI stream output interface signals.
 m_axis_video_tuser  <= sStrobesShiftReg(3).User;
