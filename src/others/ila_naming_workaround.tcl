@@ -1,0 +1,1 @@
+write_debug_probes -force [get_property DIRECTORY [current_run]]/debug_nets.ltx

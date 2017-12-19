@@ -1,0 +1,67 @@
+# Blacklist everything
+/*
+
+# whitelist the necessary files and folders, this gets everything from inside them too
+!.gitignore
+!.gitmodules
+!README.md
+!hw_handoff/
+!proj/
+!repo/
+!sdk/
+!src/
+
+#Digilent Added ignore rules for Vivado projects
+
+# sdk exclusions
+sdk/.metadata
+sdk/**/*RemoteSystemsTempFiles
+sdk/**/*Debug/*
+sdk/**/*Release
+sdk/**/*webtalk
+sdk/.sdk
+sdk/*.log
+# ignore everything in the hw_platform
+sdk/*hw_platform*/*
+# except
+!sdk/*hw_platform*/*.hdf
+!sdk/*hw_platform*/.*project
+# ignore everything in the BSP
+sdk/*_bsp*/*
+# except
+!sdk/*_bsp*/system.mss
+!sdk/*_bsp*/Makefile
+!sdk/*_bsp*/.*project
+# include the relevant elf files
+!sdk/**/*Debug/*.elf
+!sdk/**/*Debug/*.elf.size
+
+repo/**
+# whitelist vivado-library if it exists
+!repo/vivado-library
+#do not white-list submodule contents
+!repo/local
+!repo/local/**
+!repo/cache
+repo/cache/**
+
+# Make sure we keep only xci files in ip src subfolder
+src/ip/*/**
+!src/ip/*/*.xci
+!src/ip/*/*.prj
+# Do not ignore anything in src/others
+!src/others/*
+# Do not ignore block diagram files
+!src/bd/**
+
+
+# ignore everything in project folder
+proj/*
+# except this file and project generators
+!proj/create_project.tcl
+!proj/cleanup.cmd
+!proj/cleanup.sh
+!proj/release.py
+
+# keep the empty folders
+!**/.keep

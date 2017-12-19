@@ -1,0 +1,7 @@
+//arch = zynq; split = false; format = BIN
+the_ROM_image:
+{
+	[bootloader]..\..\fsbl\Debug\fsbl.elf
+	..\..\system_wrapper_hw_platform_0\system_wrapper.bit
+	..\..\pcam_vdma_hdmi\Debug\pcam_vdma_hdmi.elf
+}
