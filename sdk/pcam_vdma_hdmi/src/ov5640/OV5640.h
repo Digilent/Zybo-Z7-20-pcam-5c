@@ -160,7 +160,7 @@ namespace OV5640_cfg {
 		{0x4837, 36}, // 1/56M*2
 
 		//Undocumented anti-green settings
-		{0x3618, 0x04},
+		{0x3618, 0x00}, // Removes vertical lines appearing under bright light
 		{0x3612, 0x59},
 		{0x3708, 0x64},
 		{0x3709, 0x52},
@@ -241,7 +241,7 @@ namespace OV5640_cfg {
 		{0x4837, 48}, // 1/42M*2
 
 		// Undocumented anti-green settings
-		{0x3618, 0x04},
+		{0x3618, 0x00}, // Removes vertical lines appearing under bright light
 		{0x3612, 0x59},
 		{0x3708, 0x64},
 		{0x3709, 0x52},
@@ -322,7 +322,7 @@ namespace OV5640_cfg {
 		{0x4837, 24}, // 1/84M*2
 
 		//Undocumented anti-green settings
-		{0x3618, 0x04},
+		{0x3618, 0x00}, // Removes vertical lines appearing under bright light
 		{0x3612, 0x59},
 		{0x3708, 0x64},
 		{0x3709, 0x52},

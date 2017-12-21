@@ -105,7 +105,6 @@ int main()
 		xil_printf("\r\nPlease press the key corresponding to the desired option:");
 		xil_printf("\r\n  a. Change Resolution");
 		xil_printf("\r\n  b. Change Liquid Lens Focus");
-		xil_printf("\r\n  c. Change Image Sensor Hidden Settings");
 		xil_printf("\r\n  d. Change Image Format (Raw or RGB)");
 		xil_printf("\r\n  e. Write a Register Inside the Image Sensor");
 		xil_printf("\r\n  f. Read a Register Inside the Image Sensor");
