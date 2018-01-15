@@ -11,6 +11,7 @@ rem mark read only those we wish to keep
 attrib +R .\create_project.tcl
 attrib +R .\cleanup.sh
 attrib +R .\cleanup.cmd
+attrib +R .\release.py
 attrib +R .\.gitignore
 
 rem delete all non read-only
