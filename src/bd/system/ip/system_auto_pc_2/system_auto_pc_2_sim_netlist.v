@@ -1,10 +1,10 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
-// Date        : Tue Dec 19 13:31:53 2017
-// Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+// Date        : Mon Feb 05 16:49:17 2018
+// Host        : elodlt-ro running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/sam_work/git/digilent/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_auto_pc_2/system_auto_pc_2_sim_netlist.v
+//               c:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_auto_pc_2/system_auto_pc_2_sim_netlist.v
 // Design      : system_auto_pc_2
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

@@ -1,10 +1,10 @@
 // Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
-// Date        : Tue Dec 19 13:26:08 2017
-// Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+// Date        : Mon Feb 05 16:48:58 2018
+// Host        : elodlt-ro running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               C:/sam_work/git/digilent/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_MIPI_D_PHY_RX_0_0/system_MIPI_D_PHY_RX_0_0_sim_netlist.v
+//               C:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_MIPI_D_PHY_RX_0_0/system_MIPI_D_PHY_RX_0_0_sim_netlist.v
 // Design      : system_MIPI_D_PHY_RX_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -2154,7 +2154,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter
   wire \state_reg[1] ;
   wire \state_reg[2] ;
 
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT4 #(
     .INIT(16'h4FF4)) 
     \Filter.cntPeriods[0]_i_1 
@@ -2193,7 +2193,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter
         .D(out),
         .Q(\Filter.sIn_q_reg_n_0 ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT4 #(
     .INIT(16'hFE02)) 
     \Filter.sOut_i_1__1 
@@ -2590,7 +2590,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
   wire \state_reg[1] ;
   wire \state_reg[2] ;
 
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT4 #(
     .INIT(16'h4FF4)) 
     \Filter.cntPeriods[0]_i_1 
@@ -2629,7 +2629,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
         .D(out),
         .Q(\Filter.sIn_q_reg_n_0 ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT4 #(
     .INIT(16'hFE02)) 
     \Filter.sOut_i_1__2 
@@ -3362,7 +3362,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(\dAlignment_int[0]_i_18_n_0 ),
         .I4(dSyncHard_int_i_15_n_0),
         .O(\dAlignment_int[0]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \dAlignment_int[0]_i_12 
@@ -3371,7 +3371,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     \dAlignment_int[0]_i_13 
@@ -3380,7 +3380,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \dAlignment_int[0]_i_14 
@@ -3389,7 +3389,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][5] ),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \dAlignment_int[0]_i_15 
@@ -3398,7 +3398,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[5]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_16 
@@ -3407,7 +3407,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[4]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \dAlignment_int[0]_i_17 
@@ -3416,7 +3416,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[3]),
         .I3(word_0[1]),
         .O(\dAlignment_int[0]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_18 
@@ -3510,7 +3510,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_2_n_0),
         .I5(\dAlignment_int[1]_i_5_n_0 ),
         .O(alignment_out[1]));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_10 
@@ -3528,7 +3528,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataIn_reg_reg_n_0_[1][3] ),
         .I5(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[1]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_12 
@@ -3536,7 +3536,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word),
         .O(\dAlignment_int[1]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT5 #(
     .INIT(32'h69969669)) 
     \dAlignment_int[1]_i_13 
@@ -3556,7 +3556,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_17_n_0),
         .I5(\dAlignment_int[1]_i_18_n_0 ),
         .O(\dAlignment_int[1]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT3 #(
     .INIT(8'h2B)) 
     \dAlignment_int[1]_i_15 
@@ -3564,7 +3564,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[6]),
         .I2(word),
         .O(\dAlignment_int[1]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \dAlignment_int[1]_i_16 
@@ -3580,7 +3580,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[1]),
         .I3(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(\dAlignment_int[1]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[1]_i_18 
@@ -3628,7 +3628,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_4_n_0),
         .I5(dSyncHard_int_i_9_n_0),
         .O(\dAlignment_int[1]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_6 
@@ -3636,7 +3636,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[4]),
         .I2(word_0[3]),
         .O(\dAlignment_int[1]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_7 
@@ -3684,7 +3684,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dAlignment_int[2]_i_4_n_0 ),
         .I5(dSyncHard_int_i_4_n_0),
         .O(\dAlignment_int[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT4 #(
     .INIT(16'hBFEB)) 
     \dAlignment_int[2]_i_3 
@@ -3693,7 +3693,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[3]),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[2]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[2]_i_4 
@@ -3957,7 +3957,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(\dDataIn_reg_reg[2] [0]),
         .I4(dAlignment_int[2]),
         .O(\dDataOut8[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_4 
@@ -3965,7 +3965,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dAlignment_int[2]),
         .I2(\dDataIn_reg_reg[2] [2]),
         .O(\dDataOut8[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_5 
@@ -3990,7 +3990,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[1]_i_2 
@@ -4008,7 +4008,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[2]_i_2 
@@ -4026,7 +4026,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[1]_i_2_n_0 ),
         .I5(\dDataOut8[0]_i_5_n_0 ),
         .O(dDataOut8__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[3]_i_2 
@@ -4044,7 +4044,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[2]_i_2_n_0 ),
         .I5(\dDataOut8[1]_i_2_n_0 ),
         .O(dDataOut8__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[4]_i_2 
@@ -4062,7 +4062,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[3]_i_2_n_0 ),
         .I5(\dDataOut8[2]_i_2_n_0 ),
         .O(dDataOut8__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[5]_i_2 
@@ -4080,7 +4080,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[4]_i_2_n_0 ),
         .I5(\dDataOut8[3]_i_2_n_0 ),
         .O(dDataOut8__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[6]_i_2 
@@ -4192,20 +4192,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word_0[3]),
         .I5(word_0[4]),
         .O(dSyncHard_int));
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_10
        (.I0(word_0[5]),
         .I1(word_0[6]),
         .O(dSyncHard_int_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT2 #(
     .INIT(4'h8)) 
     dSyncHard_int_i_11
        (.I0(word),
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_12
@@ -4214,21 +4215,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_12_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_13
        (.I0(\dDataIn_reg_reg_n_0_[1][2] ),
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .O(dSyncHard_int_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT2 #(
     .INIT(4'h1)) 
     dSyncHard_int_i_14
        (.I0(\dDataIn_reg_reg_n_0_[1][3] ),
         .I1(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncHard_int_i_14_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     dSyncHard_int_i_15
@@ -4237,7 +4238,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][2] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_15_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_16
@@ -4246,7 +4247,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[4]),
         .I3(word_0[0]),
         .O(dSyncHard_int_i_16_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_17
@@ -4255,7 +4256,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(word_0[6]),
         .O(dSyncHard_int_i_17_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_18
@@ -4264,7 +4265,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(word_0[2]),
         .O(dSyncHard_int_i_18_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT4 #(
     .INIT(16'h0010)) 
     dSyncHard_int_i_19
@@ -4283,7 +4284,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_8_n_0),
         .I5(dSyncHard_int_i_9_n_0),
         .O(dSyncHard_int_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncHard_int_i_3
@@ -4311,7 +4312,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word_0[4]),
         .I5(dSyncHard_int_i_11_n_0),
         .O(dSyncHard_int_i_5_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
     .INIT(32'h00200000)) 
     dSyncHard_int_i_6
@@ -4331,7 +4332,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[3]),
         .I4(dSyncHard_int_i_16_n_0),
         .O(dSyncHard_int_i_7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT5 #(
     .INIT(32'hFFFF7FFF)) 
     dSyncHard_int_i_8
@@ -4364,7 +4365,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dSyncSoft_int_i_3_n_0),
         .I2(dSyncHard_int_i_2_n_0),
         .O(soft5_out));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'h71)) 
     dSyncSoft_int_i_10
@@ -4372,7 +4373,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word_0[6]),
         .O(dSyncSoft_int_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT5 #(
     .INIT(32'hD4D4FFD4)) 
     dSyncSoft_int_i_11
@@ -4402,7 +4403,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word),
         .I5(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_14
@@ -4410,7 +4411,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][2] ),
         .I2(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_14_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_15
@@ -4418,7 +4419,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncSoft_int_i_15_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT5 #(
     .INIT(32'hF3515100)) 
     dSyncSoft_int_i_16
@@ -4428,7 +4429,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[3]),
         .I4(word_0[4]),
         .O(dSyncSoft_int_i_16_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT3 #(
     .INIT(8'hB2)) 
     dSyncSoft_int_i_17
@@ -4436,7 +4437,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[3]),
         .I2(word_0[5]),
         .O(dSyncSoft_int_i_17_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_18
@@ -4444,7 +4445,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[4]),
         .I2(word_0[3]),
         .O(dSyncSoft_int_i_18_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT5 #(
     .INIT(32'h5D0CFF5D)) 
     dSyncSoft_int_i_19
@@ -4462,7 +4463,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dSyncSoft_int_i_4_n_0),
         .I2(dSyncSoft_int_i_5_n_0),
         .O(dSyncSoft_int_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_20
@@ -4470,13 +4471,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[1]),
         .I2(word_0[2]),
         .O(dSyncSoft_int_i_20_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_21
        (.I0(word),
         .I1(word_0[0]),
         .O(dSyncSoft_int_i_21_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT5 #(
     .INIT(32'h2B2BFF2B)) 
     dSyncSoft_int_i_22
@@ -4486,7 +4488,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[6]),
         .I4(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_22_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_23
@@ -4494,7 +4496,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[1]),
         .I2(word_0[2]),
         .O(dSyncSoft_int_i_23_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_24
@@ -4626,21 +4628,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
        (.I0(dSyncErr_reg_reg),
         .I1(dSyncErr_reg),
         .O(rbD1ErrSotHS));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT2 #(
     .INIT(4'h2)) 
     rbD1ErrSotSyncHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncSoft_reg),
         .O(rbD1ErrSotSyncHS));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT2 #(
     .INIT(4'hE)) 
     rbD1RxActiveHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncHard_reg_reg),
         .O(rbD1RxActiveHS));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT4 #(
     .INIT(16'h4F44)) 
     rbD1RxSyncHS_INST_0
@@ -5136,7 +5138,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(\dAlignment_int[0]_i_18__0_n_0 ),
         .I4(dSyncHard_int_i_15__0_n_0),
         .O(\dAlignment_int[0]_i_11__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \dAlignment_int[0]_i_12__0 
@@ -5145,7 +5147,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_12__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     \dAlignment_int[0]_i_13__0 
@@ -5154,7 +5156,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_13__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \dAlignment_int[0]_i_14__0 
@@ -5163,7 +5165,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][5] ),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_14__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \dAlignment_int[0]_i_15__0 
@@ -5172,7 +5174,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[5]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_15__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_16__0 
@@ -5181,7 +5183,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[4]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_16__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \dAlignment_int[0]_i_17__0 
@@ -5239,7 +5241,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dAlignment_int[0]_i_8__0_n_0 ),
         .I5(dSyncSoft_int_i_9__0_n_0),
         .O(\dAlignment_int[0]_i_4__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h000E)) 
     \dAlignment_int[0]_i_5__0 
@@ -5284,7 +5286,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
        (.I0(\dDataIn_reg_reg_n_0_[1][1] ),
         .I1(word[1]),
         .O(\dAlignment_int[0]_i_9__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_10__0 
@@ -5302,7 +5304,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataIn_reg_reg_n_0_[1][3] ),
         .I5(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[1]_i_11__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_12__0 
@@ -5310,7 +5312,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .O(\dAlignment_int[1]_i_12__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT5 #(
     .INIT(32'h69969669)) 
     \dAlignment_int[1]_i_13__0 
@@ -5330,7 +5332,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_17__0_n_0),
         .I5(\dAlignment_int[1]_i_18__0_n_0 ),
         .O(\dAlignment_int[1]_i_14__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h2B)) 
     \dAlignment_int[1]_i_15__0 
@@ -5338,14 +5340,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[6]),
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .O(\dAlignment_int[1]_i_15__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \dAlignment_int[1]_i_16__0 
        (.I0(word[6]),
         .I1(word[5]),
         .O(\dAlignment_int[1]_i_16__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     \dAlignment_int[1]_i_17__0 
@@ -5354,7 +5356,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[1]),
         .I3(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(\dAlignment_int[1]_i_17__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[1]_i_18__0 
@@ -5412,7 +5414,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_4__0_n_0),
         .I5(dSyncHard_int_i_9__0_n_0),
         .O(\dAlignment_int[1]_i_5__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_6__0 
@@ -5420,7 +5422,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[4]),
         .I2(word[3]),
         .O(\dAlignment_int[1]_i_6__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_7__0 
@@ -5468,7 +5470,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dAlignment_int[2]_i_4__0_n_0 ),
         .I5(dSyncHard_int_i_4__0_n_0),
         .O(\dAlignment_int[2]_i_2__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT4 #(
     .INIT(16'hBFEB)) 
     \dAlignment_int[2]_i_3__0 
@@ -5477,7 +5479,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[3]),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[2]_i_3__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[2]_i_4__0 
@@ -5741,7 +5743,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(\dDataIn_reg_reg_n_0_[2][0] ),
         .I4(\dAlignment_int_reg_n_0_[2] ),
         .O(\dDataOut8[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_4 
@@ -5749,7 +5751,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dAlignment_int_reg_n_0_[2] ),
         .I2(\dDataIn_reg_reg_n_0_[2][2] ),
         .O(\dDataOut8[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_5 
@@ -5774,7 +5776,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[1]_i_2 
@@ -5792,7 +5794,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[2]_i_2 
@@ -5810,7 +5812,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[1]_i_2_n_0 ),
         .I5(\dDataOut8[0]_i_5_n_0 ),
         .O(dDataOut8__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[3]_i_2 
@@ -5828,7 +5830,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[2]_i_2_n_0 ),
         .I5(\dDataOut8[1]_i_2_n_0 ),
         .O(dDataOut8__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[4]_i_2 
@@ -5846,7 +5848,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[3]_i_2_n_0 ),
         .I5(\dDataOut8[2]_i_2_n_0 ),
         .O(dDataOut8__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[5]_i_2 
@@ -5864,7 +5866,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[4]_i_2_n_0 ),
         .I5(\dDataOut8[3]_i_2_n_0 ),
         .O(dDataOut8__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[6]_i_2 
@@ -5966,20 +5968,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .D(dSyncErr_int_i_1__0_n_0),
         .Q(dSyncErr_reg_reg),
         .R(dLogicRst));
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_10__0
        (.I0(word[5]),
         .I1(word[6]),
         .O(dSyncHard_int_i_10__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'h8)) 
     dSyncHard_int_i_11__0
        (.I0(\dDataIn_reg_reg_n_0_[1][0] ),
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_11__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_12__0
@@ -5988,21 +5991,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_12__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_13__0
        (.I0(\dDataIn_reg_reg_n_0_[1][2] ),
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .O(dSyncHard_int_i_13__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT2 #(
     .INIT(4'h1)) 
     dSyncHard_int_i_14__0
        (.I0(\dDataIn_reg_reg_n_0_[1][3] ),
         .I1(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncHard_int_i_14__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     dSyncHard_int_i_15__0
@@ -6011,7 +6014,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][2] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_15__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_16__0
@@ -6020,7 +6023,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[4]),
         .I3(word[0]),
         .O(dSyncHard_int_i_16__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_17__0
@@ -6029,7 +6032,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(word[6]),
         .O(dSyncHard_int_i_17__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_18__0
@@ -6038,7 +6041,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(word[2]),
         .O(dSyncHard_int_i_18__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'h0010)) 
     dSyncHard_int_i_19__0
@@ -6067,7 +6070,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_8__0_n_0),
         .I5(dSyncHard_int_i_9__0_n_0),
         .O(dSyncHard_int_i_2__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncHard_int_i_3__0
@@ -6105,7 +6108,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[4]),
         .I4(word[3]),
         .O(dSyncHard_int_i_6__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'h00008000)) 
     dSyncHard_int_i_7__0
@@ -6115,7 +6118,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[3]),
         .I4(dSyncHard_int_i_16__0_n_0),
         .O(dSyncHard_int_i_7__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'hFFFF7FFF)) 
     dSyncHard_int_i_8__0
@@ -6141,7 +6144,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .D(dSyncHard_int_i_2__0_n_0),
         .Q(dSyncHard_reg_reg),
         .R(dLogicRst));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'h71)) 
     dSyncSoft_int_i_10__0
@@ -6149,7 +6152,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word[6]),
         .O(dSyncSoft_int_i_10__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT5 #(
     .INIT(32'hD4D4FFD4)) 
     dSyncSoft_int_i_11__0
@@ -6179,7 +6182,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataIn_reg_reg_n_0_[1][0] ),
         .I5(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_13__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_14__0
@@ -6187,7 +6190,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][2] ),
         .I2(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_14__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_15__0
@@ -6195,7 +6198,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncSoft_int_i_15__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'hF3515100)) 
     dSyncSoft_int_i_16__0
@@ -6205,7 +6208,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[3]),
         .I4(word[4]),
         .O(dSyncSoft_int_i_16__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'hB2)) 
     dSyncSoft_int_i_17__0
@@ -6213,7 +6216,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[3]),
         .I2(word[5]),
         .O(dSyncSoft_int_i_17__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_18__0
@@ -6221,7 +6224,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[4]),
         .I2(word[3]),
         .O(dSyncSoft_int_i_18__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'h5D0CFF5D)) 
     dSyncSoft_int_i_19__0
@@ -6238,7 +6241,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(dSyncSoft_int_i_3__0_n_0),
         .I2(dSyncHard_int_i_2__0_n_0),
         .O(soft5_out));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_20__0
@@ -6246,6 +6249,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[1]),
         .I2(word[2]),
         .O(dSyncSoft_int_i_20__0_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_21__0
@@ -6262,7 +6266,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[6]),
         .I4(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_22__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_23__0
@@ -6277,7 +6281,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
        (.I0(word[6]),
         .I1(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_24__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncSoft_int_i_2__0
@@ -6410,21 +6414,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
        (.I0(dSyncErr_reg_reg),
         .I1(dSyncErr_reg),
         .O(rbD0ErrSotHS));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h2)) 
     rbD0ErrSotSyncHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncSoft_reg),
         .O(rbD0ErrSotSyncHS));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT2 #(
     .INIT(4'hE)) 
     rbD0RxActiveHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncHard_reg_reg),
         .O(rbD0RxActiveHS));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT4 #(
     .INIT(16'h4F44)) 
     rbD0RxSyncHS_INST_0
@@ -6945,14 +6949,14 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
     \GenIDELAYCTRL.rDlyRstCnt[0]_i_1 
        (.I0(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [0]),
         .O(p_0_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT2 #(
     .INIT(4'h9)) 
     \GenIDELAYCTRL.rDlyRstCnt[1]_i_1 
        (.I0(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [1]),
         .I1(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [0]),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair84" *) 
+  (* SOFT_HLUTNM = "soft_lutpair86" *) 
   LUT3 #(
     .INIT(8'hA9)) 
     \GenIDELAYCTRL.rDlyRstCnt[2]_i_1 
@@ -6960,7 +6964,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .I1(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [0]),
         .I2(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [1]),
         .O(p_0_in[2]));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT4 #(
     .INIT(16'hAAA9)) 
     \GenIDELAYCTRL.rDlyRstCnt[3]_i_1 
@@ -6978,7 +6982,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .I3(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [2]),
         .I4(\GenIDELAYCTRL.rDlyRstCnt_reg__0 [4]),
         .O(sel));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  (* SOFT_HLUTNM = "soft_lutpair85" *) 
   LUT5 #(
     .INIT(32'hAAAAAAA9)) 
     \GenIDELAYCTRL.rDlyRstCnt[4]_i_3 
@@ -7206,7 +7210,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(\axi_araddr[3]_i_1_n_0 ),
         .Q(axi_araddr[3]),
         .S(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT2 #(
     .INIT(4'h2)) 
     axi_arready_i_1
@@ -7219,7 +7223,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(axi_arready_i_1_n_0),
         .Q(s_axi_lite_arready),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \axi_awaddr[2]_i_1 
@@ -7255,7 +7259,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
     axi_awready_i_1
        (.I0(s_axi_lite_aresetn),
         .O(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT3 #(
     .INIT(8'h08)) 
     axi_awready_i_2
@@ -7285,7 +7289,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(axi_bvalid_i_1_n_0),
         .Q(s_axi_lite_bvalid),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[0]_i_1 
@@ -7293,7 +7297,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(Q[0]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[0]));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[10]_i_1 
@@ -7301,7 +7305,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[10] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[10]));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[11]_i_1 
@@ -7309,7 +7313,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[11] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[11]));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[12]_i_1 
@@ -7317,7 +7321,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[12] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[12]));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[13]_i_1 
@@ -7325,7 +7329,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[13] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[13]));
-  (* SOFT_HLUTNM = "soft_lutpair67" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[14]_i_1 
@@ -7333,7 +7337,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[14] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[14]));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[15]_i_1 
@@ -7341,7 +7345,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[15] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[15]));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'hA4)) 
     \axi_rdata[16]_i_1 
@@ -7349,7 +7353,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[16] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[16]));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[17]_i_1 
@@ -7357,7 +7361,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[17] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[17]));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[18]_i_1 
@@ -7365,7 +7369,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[18] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[18]));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[19]_i_1 
@@ -7373,7 +7377,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[19] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[19]));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[1]_i_1 
@@ -7381,7 +7385,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(Q[1]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[1]));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[20]_i_1 
@@ -7389,7 +7393,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[20] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[20]));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[21]_i_1 
@@ -7397,7 +7401,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[21] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[21]));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[22]_i_1 
@@ -7405,7 +7409,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[22] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[22]));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[23]_i_1 
@@ -7413,7 +7417,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[23] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[23]));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[24]_i_1 
@@ -7421,7 +7425,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[24] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[24]));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[25]_i_1 
@@ -7429,7 +7433,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[25] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[25]));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[26]_i_1 
@@ -7437,7 +7441,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[26] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[26]));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[27]_i_1 
@@ -7445,7 +7449,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[27] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[27]));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[28]_i_1 
@@ -7453,7 +7457,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[28] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[28]));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[29]_i_1 
@@ -7461,7 +7465,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[29] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[29]));
-  (* SOFT_HLUTNM = "soft_lutpair68" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[2]_i_1 
@@ -7469,7 +7473,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[2] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[2]));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[30]_i_1 
@@ -7484,7 +7488,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(s_axi_lite_arvalid),
         .I2(s_axi_lite_rvalid),
         .O(\axi_rdata[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[31]_i_2 
@@ -7492,7 +7496,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[31] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[31]));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[3]_i_1 
@@ -7500,7 +7504,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[3] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[3]));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[4]_i_1 
@@ -7508,7 +7512,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[4] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[4]));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[5]_i_1 
@@ -7516,7 +7520,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[5] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[5]));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[6]_i_1 
@@ -7524,7 +7528,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[6] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[6]));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[7]_i_1 
@@ -7532,7 +7536,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[7] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[7]));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[8]_i_1 
@@ -7540,7 +7544,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I1(\control_reg_reg_n_0_[8] ),
         .I2(axi_araddr[3]),
         .O(reg_data_out[8]));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
     .INIT(8'h04)) 
     \axi_rdata[9]_i_1 
@@ -7740,7 +7744,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(reg_data_out[9]),
         .Q(s_axi_lite_rdata[9]),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair67" *) 
   LUT4 #(
     .INIT(16'h08F8)) 
     axi_rvalid_i_1
@@ -7755,7 +7759,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(axi_rvalid_i_1_n_0),
         .Q(s_axi_lite_rvalid),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
   LUT3 #(
     .INIT(8'h08)) 
     axi_wready_i_1
@@ -7793,7 +7797,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I2(s_axi_lite_wstrb[3]),
         .I3(\control_reg[31]_i_2_n_0 ),
         .O(\control_reg[31]_i_1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair68" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \control_reg[31]_i_2 
