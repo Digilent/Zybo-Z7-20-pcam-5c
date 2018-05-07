@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2018 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -47,7 +47,7 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: digilentinc.com:ip:MIPI_CSI_2_RX:1.0
--- IP Revision: 31
+-- IP Revision: 33
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -242,7 +242,7 @@ BEGIN
       kVersionMinor => 0,
       kTargetDT => "RAW10",
       kGenerateAXIL => true,
-      kDebug => false,
+      kDebug => true,
       kLaneCount => 2,
       C_M_AXIS_COMPONENT_WIDTH => 10,
       C_M_AXIS_TDATA_WIDTH => 40,

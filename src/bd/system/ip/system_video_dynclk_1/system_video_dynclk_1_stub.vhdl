@@ -1,10 +1,10 @@
 -- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
--- Date        : Mon Feb 05 16:52:33 2018
+-- Date        : Mon Feb 05 16:52:32 2018
 -- Host        : elodlt-ro running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub
---               c:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_video_dynclk_1/system_video_dynclk_1_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top system_video_dynclk_1 -prefix
+--               system_video_dynclk_1_ system_video_dynclk_1_stub.vhdl
 -- Design      : system_video_dynclk_1
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

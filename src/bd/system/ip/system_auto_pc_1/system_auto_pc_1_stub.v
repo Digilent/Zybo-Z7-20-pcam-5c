@@ -3,8 +3,8 @@
 // Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
 // Date        : Mon Feb 05 16:51:41 2018
 // Host        : elodlt-ro running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode synth_stub
-//               c:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_auto_pc_1/system_auto_pc_1_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top system_auto_pc_1 -prefix
+//               system_auto_pc_1_ system_auto_pc_1_stub.v
 // Design      : system_auto_pc_1
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
