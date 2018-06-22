@@ -16,6 +16,9 @@ create_clock -period 1.667 -name video_dynclk [get_pins -regexp .*video_dynclk/.
 # Comment below to disable underconstraining and live with the Pulse Width errors
 create_clock -period 6.734 -name pixel_dynclk [get_pins -regexp .*DVIClocking_0/U0/PixelClkBuffer/O -hierarchical]
 
+# MIPI D-PHY data rate 420Mbps/lane = 210 MHz HS_Clk
+create_clock -period 4.761 -name dphy_hs_clock_p -waveform {0.000 2.380} [get_ports dphy_hs_clock_clk_p]
+
 # Workaround for FIFO XDC not getting applied (it seems there is no need for this anymore in 2017.4)
 #set_false_path -through [get_pins system_i/MIPI_CSI_2_RX_0/U0/MIPI_CSI2_Rx_inst/LLP_inst/DataFIFO/s_aresetn] -to [get_pins -hierarchical -filter {NAME =~ system_i/MIPI_CSI_2_RX_0/U0/MIPI_CSI2_Rx_inst/LLP_inst/DataFIFO/*rstblk*/*PRE}]
 #set_false_path -from [get_cells -hierarchical -filter {NAME =~ system_i/MIPI_CSI_2_RX_0/U0/MIPI_CSI2_Rx_inst/LLP_inst/DataFIFO/*rstblk*/*rst_reg_reg[*]}]
