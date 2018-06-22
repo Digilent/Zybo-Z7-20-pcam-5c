@@ -43,25 +43,15 @@
 #
 # THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
 # PART OF THIS FILE AT ALL TIMES.
-##################################################################################################################################
-##################################################################################################################################
+
 
 ## INFO: AXI-Lite to&fro MMAP clock domain Register & Misc crossings in axi_vdma
 set_false_path -to [get_pins -leaf -of_objects [get_cells -hier *cdc_tig* -filter {is_sequential}] -filter {NAME=~*/D}]
 
 ## INFO: CDC Crossing in axi_vdma
- set_false_path -from [get_cells -hier *cdc_from* -filter {is_sequential}] -to [get_cells -hier *cdc_to* -filter {is_sequential}]
+set_false_path -from [get_cells -hier *cdc_from* -filter {is_sequential && (PRIMITIVE_GROUP!=CLOCK && PRIMITIVE_GROUP!=CLK)}] -to [get_cells -hier *cdc_to* -filter {is_sequential && (PRIMITIVE_GROUP!=CLOCK && PRIMITIVE_GROUP!=CLK) }]
 
-## Following constraints are needed for ASYNC FIFOs in axi_vdma
-
-
-  set_false_path -from [get_cells -hierarchical  -filter {NAME =~*MM2S*LB_BUILT_IN*/*rstbt*/*rst_reg[*]}]
-  set_false_path -from [get_cells -hierarchical  -filter {NAME =~*MM2S*LB_BUILT_IN*/*rstbt*/*rst_reg_reg}]
-  set_false_path -to   [get_pins  -hierarchical  -filter {NAME =~*MM2S*LB_BUILT_IN*/*rstbt*/*PRE}]
-
-
-
-  set_false_path -to   [get_pins  -hierarchical  -filter {NAME =~*S2MM*LB_BUILT_IN*/*rstbt*/*PRE}]
-  set_false_path -from [get_cells -hierarchical  -filter {NAME =~*S2MM*LB_BUILT_IN*/*rstbt*/*rst_reg_reg && IS_SEQUENTIAL}]
-  set_false_path -from [get_cells -hierarchical  -filter {NAME =~*S2MM*LB_BUILT_IN*/*rstbt*/*rst_reg[*]}]
-
+##################################################################################################################################
+## INFO: No CDC present in axi-vdma
+## INFO: When C_PRMRY_IS_ACLK_ASYNC = 0, axi-vdma MANDATORY REQUIREMENT IS THAT ALL axi-vdma CLOCK PORTS MUST BE CONNECTED TO THE SAME CLOCK SOURCE HAVING SAME FREQUENCY i.e. THERE IS ONLY ONE CLOCK-DOMAIN IN THE ENTIRE axi-vdma DESIGN
+## INFO: PLEASE ENSURE THIS REQUIREMENT IS MET.

@@ -1,4 +1,4 @@
--- (c) Copyright 1995-2017 Xilinx, Inc. All rights reserved.
+-- (c) Copyright 1995-2018 Xilinx, Inc. All rights reserved.
 -- 
 -- This file contains confidential and proprietary information
 -- of Xilinx, Inc. and is protected under U.S. and
@@ -96,18 +96,23 @@ ARCHITECTURE system_AXI_BayerToRGB_1_0_arch OF system_AXI_BayerToRGB_1_0 IS
     );
   END COMPONENT AXI_BayerToRGB;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
-  ATTRIBUTE X_INTERFACE_INFO OF StreamClk: SIGNAL IS "xilinx.com:signal:clock:1.0 AXI_Stream_Clk CLK";
-  ATTRIBUTE X_INTERFACE_INFO OF sStreamReset_n: SIGNAL IS "xilinx.com:signal:reset:1.0 AXI_Stream_Reset_n RST";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TREADY";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TVALID";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TUSER";
-  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TLAST";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TREADY";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TVALID";
-  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TUSER";
+  ATTRIBUTE X_INTERFACE_PARAMETER : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TLAST";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TUSER";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF m_axis_video_tready: SIGNAL IS "XIL_INTERFACENAME AXI_Stream_Master, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef";
+  ATTRIBUTE X_INTERFACE_INFO OF m_axis_video_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Stream_Master TREADY";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tlast: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TLAST";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tuser: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TUSER";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TVALID";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF s_axis_video_tready: SIGNAL IS "XIL_INTERFACENAME AXI_Slave_Interface, TDATA_NUM_BYTES 5, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef";
+  ATTRIBUTE X_INTERFACE_INFO OF s_axis_video_tready: SIGNAL IS "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TREADY";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF sStreamReset_n: SIGNAL IS "XIL_INTERFACENAME AXI_Stream_Reset_n, POLARITY ACTIVE_LOW";
+  ATTRIBUTE X_INTERFACE_INFO OF sStreamReset_n: SIGNAL IS "xilinx.com:signal:reset:1.0 AXI_Stream_Reset_n RST";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF StreamClk: SIGNAL IS "XIL_INTERFACENAME AXI_Stream_Clk, ASSOCIATED_BUSIF AXI_Stream_Master:AXI_Slave_Interface, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1";
+  ATTRIBUTE X_INTERFACE_INFO OF StreamClk: SIGNAL IS "xilinx.com:signal:clock:1.0 AXI_Stream_Clk CLK";
 BEGIN
   U0 : AXI_BayerToRGB
     GENERIC MAP (

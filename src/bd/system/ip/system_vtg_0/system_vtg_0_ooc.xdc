@@ -1,4 +1,4 @@
-# (c) Copyright 2012-2017 Xilinx, Inc. All rights reserved.
+# (c) Copyright 2012-2018 Xilinx, Inc. All rights reserved.
 # 
 # This file contains confidential and proprietary information
 # of Xilinx, Inc. and is protected under U.S. and
@@ -52,8 +52,8 @@
 # #########################################################
 
 
-create_clock -period 10 -name clk [get_ports clk]
-
 create_clock -period 20 -name s_axi_aclk [get_ports s_axi_aclk]
+
+create_clock -period 10 -name clk [get_ports clk]
 
 

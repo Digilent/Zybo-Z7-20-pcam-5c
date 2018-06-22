@@ -90,6 +90,8 @@ wire clk_in2_system_video_dynclk_1;
   assign clk_in1_system_video_dynclk_1 = clk_in1;
 
 
+
+
   // Clocking PRIMITIVE
   //------------------------------------
 
@@ -136,7 +138,7 @@ wire clk_in2_system_video_dynclk_1;
     .CLKOUT0_PHASE        (0.000),
     .CLKOUT0_DUTY_CYCLE   (0.500),
     .CLKOUT0_USE_FINE_PS  ("FALSE"),
-    .CLKIN1_PERIOD        (10.0))
+    .CLKIN1_PERIOD        (10.000))
   mmcm_adv_inst
     // Output clocks
    (
@@ -185,6 +187,9 @@ wire clk_in2_system_video_dynclk_1;
 //--------------------------------------
  // Output buffering
   //-----------------------------------
+
+
+
 
 
 

@@ -84,7 +84,7 @@ int main()
 			VDMA_S2MM_IRPT_ID);
 	VideoOutput vid(XPAR_VTC_0_DEVICE_ID, XPAR_VIDEO_DYNCLK_DEVICE_ID);
 
-	pipeline_mode_change(vdma_driver, cam, vid, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_MIPI);
+	pipeline_mode_change(vdma_driver, cam, vid, Resolution::R1920_1080_60_PP, OV5640_cfg::mode_t::MODE_1080P_1920_1080_30fps_336M_MIPI);
 
 
 	xil_printf("Video init done.\r\n");
@@ -98,7 +98,6 @@ int main()
 	uint8_t read_char5 = 0;
 	uint16_t reg_addr;
 	uint8_t reg_value;
-	uint32_t color_values;
 
 	while (1) {
 		xil_printf("\r\n\r\n\r\nPcam 5C MAIN OPTIONS\r\n");

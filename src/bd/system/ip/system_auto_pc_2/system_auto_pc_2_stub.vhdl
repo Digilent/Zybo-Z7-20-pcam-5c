@@ -1,7 +1,7 @@
--- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
--- Date        : Mon Feb 05 16:49:16 2018
+-- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+-- Date        : Tue Jun 19 19:20:58 2018
 -- Host        : elodlt-ro running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub -rename_top system_auto_pc_2 -prefix
 --               system_auto_pc_2_ system_auto_pc_2_stub.vhdl
@@ -83,6 +83,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "aclk,aresetn,s_axi_awid[11:0],s_axi_awaddr[31:0],s_axi_awlen[3:0],s_axi_awsize[2:0],s_axi_awburst[1:0],s_axi_awlock[1:0],s_axi_awcache[3:0],s_axi_awprot[2:0],s_axi_awqos[3:0],s_axi_awvalid,s_axi_awready,s_axi_wid[11:0],s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wlast,s_axi_wvalid,s_axi_wready,s_axi_bid[11:0],s_axi_bresp[1:0],s_axi_bvalid,s_axi_bready,s_axi_arid[11:0],s_axi_araddr[31:0],s_axi_arlen[3:0],s_axi_arsize[2:0],s_axi_arburst[1:0],s_axi_arlock[1:0],s_axi_arcache[3:0],s_axi_arprot[2:0],s_axi_arqos[3:0],s_axi_arvalid,s_axi_arready,s_axi_rid[11:0],s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rlast,s_axi_rvalid,s_axi_rready,m_axi_awaddr[31:0],m_axi_awprot[2:0],m_axi_awvalid,m_axi_awready,m_axi_wdata[31:0],m_axi_wstrb[3:0],m_axi_wvalid,m_axi_wready,m_axi_bresp[1:0],m_axi_bvalid,m_axi_bready,m_axi_araddr[31:0],m_axi_arprot[2:0],m_axi_arvalid,m_axi_arready,m_axi_rdata[31:0],m_axi_rresp[1:0],m_axi_rvalid,m_axi_rready";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "axi_protocol_converter_v2_1_11_axi_protocol_converter,Vivado 2016.4";
+attribute X_CORE_INFO of stub : architecture is "axi_protocol_converter_v2_1_15_axi_protocol_converter,Vivado 2017.4";
 begin
 end;

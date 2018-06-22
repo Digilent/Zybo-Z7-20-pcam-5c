@@ -76,7 +76,7 @@ ARCHITECTURE system_DVIClocking_0_0_arch OF system_DVIClocking_0_0 IS
     );
   END COMPONENT DVIClocking;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF system_DVIClocking_0_0_arch: ARCHITECTURE IS "DVIClocking,Vivado 2016.4";
+  ATTRIBUTE X_CORE_INFO OF system_DVIClocking_0_0_arch: ARCHITECTURE IS "DVIClocking,Vivado 2017.4";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF system_DVIClocking_0_0_arch : ARCHITECTURE IS "system_DVIClocking_0_0,DVIClocking,{}";
 BEGIN

@@ -1,7 +1,7 @@
-// Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
-// Date        : Mon Feb 05 16:52:32 2018
+// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+// Date        : Tue Jun 19 19:04:12 2018
 // Host        : elodlt-ro running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub -rename_top system_video_dynclk_1 -prefix
 //               system_video_dynclk_1_ system_video_dynclk_1_stub.v

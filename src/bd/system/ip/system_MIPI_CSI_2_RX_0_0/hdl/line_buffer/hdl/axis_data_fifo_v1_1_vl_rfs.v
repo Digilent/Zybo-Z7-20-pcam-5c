@@ -59,7 +59,7 @@
 `timescale 1ps/1ps
 `default_nettype none
 
-module axis_data_fifo_v1_1_12_axis_data_fifo #
+module axis_data_fifo_v1_1_16_axis_data_fifo #
 (
 ///////////////////////////////////////////////////////////////////////////////
 // Parameter Definitions
@@ -546,10 +546,27 @@ assign axis_prog_empty_thresh   = {C_WR_PNTR_WIDTH_AXIS{1'b0}};
 generate
   if (C_IS_ACLK_ASYNC == 1) begin : gen_async_clock_and_reset
 
+    wire m_aresetn_i;
+    reg s_and_m_aresetn_r = 1'b1;
+
     assign m_aclk_internal = m_axis_aclk;
     assign m_aresetn_internal = m_axis_aresetn;
-    // Both S and M have to be out of reset before fifo will be let out of reset.
-    assign s_and_m_aresetn_i = s_axis_aresetn & m_axis_aresetn;
+
+    xpm_cdc_sync_rst #(
+      .DEST_SYNC_FF    ( C_SYNCHRONIZER_STAGE ) 
+    )
+    inst_xpm_cdc_sync_rst (
+      .src_rst  ( ~m_axis_aresetn ) ,
+      .dest_rst ( m_aresetn_i    ) ,
+      .dest_clk  ( s_axis_aclk    ) 
+    );
+
+    // Reset into fifo_generator has to be flopped to avoide combinitorial logic in front of synchronizer.
+    always @(posedge s_axis_aclk) begin 
+      s_and_m_aresetn_r <= s_axis_aresetn & ~m_aresetn_i;
+    end
+
+    assign s_and_m_aresetn_i = s_and_m_aresetn_r;
 
   end else begin : gen_no_async_clock_and_reset
     assign m_aclk_internal    = s_axis_aclk;
@@ -595,7 +612,7 @@ generate
       .M_TUSER  ( d1_tuser       )
     );
 
-    fifo_generator_v13_1_3 #(
+    fifo_generator_v13_2_1 #(
       .C_ADD_NGC_CONSTRAINT                ( 0                          ) ,
       .C_APPLICATION_TYPE_AXIS             ( P_APPLICATION_TYPE_AXIS    ) ,
       .C_APPLICATION_TYPE_RACH             ( 0                          ) ,
