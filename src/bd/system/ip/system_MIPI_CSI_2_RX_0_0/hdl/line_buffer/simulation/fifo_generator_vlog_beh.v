@@ -63,11 +63,11 @@
  * 
  * fifo_generator_vlog_beh.v
  *    |
- *    +-fifo_generator_v13_1_3_bhv_ver_as
+ *    +-fifo_generator_v13_2_1_bhv_ver_as
  *    |
- *    +-fifo_generator_v13_1_3_bhv_ver_ss
+ *    +-fifo_generator_v13_2_1_bhv_ver_ss
  *    |
- *    +-fifo_generator_v13_1_3_bhv_ver_preload0
+ *    +-fifo_generator_v13_2_1_bhv_ver_preload0
  * 
  *******************************************************************************
  * Description:
@@ -1137,7 +1137,7 @@ module fifo_generator_vlog_beh
 
   generate if (C_INTERFACE_TYPE == 0) begin : conv_fifo
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_COMMON_CLOCK 		(C_COMMON_CLOCK),
         .C_INTERFACE_TYPE 		(C_INTERFACE_TYPE),
@@ -1205,7 +1205,7 @@ module fifo_generator_vlog_beh
         .C_AXI_TYPE                     (C_AXI_TYPE),
         .C_SYNCHRONIZER_STAGE           (C_SYNCHRONIZER_STAGE)
       )
-    fifo_generator_v13_1_3_conv_dut
+    fifo_generator_v13_2_1_conv_dut
       (
         .BACKUP                   (BACKUP),
         .BACKUP_MARKER            (BACKUP_MARKER),
@@ -1255,7 +1255,7 @@ module fifo_generator_vlog_beh
 
 
 
-  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus") ? 1 : 0;
+  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus" || C_FAMILY == "virtexuplushbm") ? 1 : 0;
   localparam C_AXI_SIZE_WIDTH   = 3;
   localparam C_AXI_BURST_WIDTH  = 2;
   localparam C_AXI_CACHE_WIDTH  = 4;
@@ -1312,7 +1312,7 @@ reg r_inv_pad_0 = 0;
    genvar l;
 
    generate for (l = 1; ((l <= C_SYNCHRONIZER_STAGE) && (C_HAS_DATA_COUNTS_AXIS == 3 && C_INTERFACE_TYPE == 0) ); l = l + 1) begin : g_cnt_sync_stage
-     fifo_generator_v13_1_3_sync_stage
+     fifo_generator_v13_2_1_sync_stage
        #(
          .C_WIDTH  (LOG_WR_DEPTH)
         )
@@ -1460,7 +1460,7 @@ reg r_inv_pad_0 = 0;
     assign axis_wr_en = (C_HAS_SLAVE_CE == 1)  ? axis_we & S_ACLK_EN : axis_we;
     assign axis_rd_en = (C_HAS_MASTER_CE == 1) ? axis_re & M_ACLK_EN : axis_re;
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -1532,7 +1532,7 @@ reg r_inv_pad_0 = 0;
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_axis_dut
+    fifo_generator_v13_2_1_axis_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (S_ACLK),
@@ -1655,7 +1655,7 @@ end endgenerate //rst_blk_no
    genvar i;
 
    generate for (i = 1; ((i <= C_SYNCHRONIZER_STAGE) && (C_APPLICATION_TYPE_AXIS == 1 && C_COMMON_CLOCK == 0) ); i = i + 1) begin : gpkt_cnt_sync_stage
-     fifo_generator_v13_1_3_sync_stage
+     fifo_generator_v13_2_1_sync_stage
        #(
          .C_WIDTH  (LOG_DEPTH_AXIS)
         )
@@ -1667,7 +1667,7 @@ end endgenerate //rst_blk_no
          .DOUT     (wpkt_q[i])
         );
  
-     fifo_generator_v13_1_3_sync_stage
+     fifo_generator_v13_2_1_sync_stage
        #(
          .C_WIDTH  (1)
         )
@@ -1803,7 +1803,7 @@ end endgenerate //rst_blk_no
     assign axis_wr_en = (C_HAS_SLAVE_CE == 1)  ? S_AXIS_TVALID & S_ACLK_EN : S_AXIS_TVALID;
     assign axis_rd_en = (C_HAS_MASTER_CE == 1) ? M_AXIS_TREADY & M_ACLK_EN : M_AXIS_TREADY;
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_AXIS),
@@ -1813,7 +1813,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (axis_din),
@@ -1985,7 +1985,7 @@ end endgenerate //rst_blk_no
     assign wach_wr_en = (C_HAS_SLAVE_CE == 1)  ? wach_we & S_ACLK_EN : wach_we;
     assign wach_rd_en = (C_HAS_MASTER_CE == 1) ? wach_re & M_ACLK_EN : wach_re;
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -2057,7 +2057,7 @@ end endgenerate //rst_blk_no
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_wach_dut
+    fifo_generator_v13_2_1_wach_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (S_ACLK),
@@ -2117,7 +2117,7 @@ end endgenerate //rst_blk_no
   // Register Slice for Write Address Channel
   generate if (C_WACH_TYPE == 1) begin : gwach_reg_slice
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_WACH),
@@ -2127,7 +2127,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (wach_din),
@@ -2143,7 +2143,7 @@ end endgenerate //rst_blk_no
   
   generate if (C_APPLICATION_TYPE_WACH == 1 && C_HAS_AXI_WR_CHANNEL == 1) begin : axi_mm_pkt_fifo_wr
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_WACH),
@@ -2204,7 +2204,7 @@ end endgenerate //rst_blk_no
     assign wdch_rd_en = (C_HAS_MASTER_CE == 1) ? wdch_re & M_ACLK_EN : wdch_re;
 
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -2277,7 +2277,7 @@ end endgenerate //rst_blk_no
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_wdch_dut
+    fifo_generator_v13_2_1_wdch_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (S_ACLK),
@@ -2338,7 +2338,7 @@ end endgenerate //rst_blk_no
   // Register Slice for Write Data Channel
   generate if (C_WDCH_TYPE == 1) begin : gwdch_reg_slice
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_WDCH),
@@ -2348,7 +2348,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (wdch_din),
@@ -2371,7 +2371,7 @@ end endgenerate //rst_blk_no
     assign wrch_wr_en = (C_HAS_MASTER_CE == 1)  ? wrch_we & M_ACLK_EN : wrch_we;
     assign wrch_rd_en = (C_HAS_SLAVE_CE == 1) ? wrch_re & S_ACLK_EN : wrch_re;
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -2444,7 +2444,7 @@ end endgenerate //rst_blk_no
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_wrch_dut
+    fifo_generator_v13_2_1_wrch_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (M_ACLK),
@@ -2504,7 +2504,7 @@ end endgenerate //rst_blk_no
   // Register Slice for Write Response Channel
   generate if (C_WRCH_TYPE == 1) begin : gwrch_reg_slice
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_WRCH),
@@ -2514,7 +2514,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (wrch_din),
@@ -2751,7 +2751,7 @@ end endgenerate //rst_blk_no
     assign rach_rd_en = (C_HAS_MASTER_CE == 1) ? rach_re & M_ACLK_EN : rach_re;
 
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -2824,7 +2824,7 @@ end endgenerate //rst_blk_no
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_rach_dut
+    fifo_generator_v13_2_1_rach_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (S_ACLK),
@@ -2884,7 +2884,7 @@ end endgenerate //rst_blk_no
   // Register Slice for Read Address Channel
   generate if (C_RACH_TYPE == 1) begin : grach_reg_slice
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_RACH),
@@ -2894,7 +2894,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (rach_din),
@@ -2911,7 +2911,7 @@ end endgenerate //rst_blk_no
   // Register Slice for Read Address Channel for MM Packet FIFO
   generate if (C_RACH_TYPE == 0 && C_APPLICATION_TYPE_RACH == 1) begin : grach_reg_slice_mm_pkt_fifo
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_RACH),
@@ -2984,7 +2984,7 @@ end endgenerate //rst_blk_no
     assign rdch_wr_en = (C_HAS_MASTER_CE == 1)  ? rdch_we & M_ACLK_EN : rdch_we;
     assign rdch_rd_en = (C_HAS_SLAVE_CE == 1) ? rdch_re & S_ACLK_EN : rdch_re;
 
-    fifo_generator_v13_1_3_CONV_VER
+    fifo_generator_v13_2_1_CONV_VER
       #(
         .C_FAMILY			(C_FAMILY),
         .C_COMMON_CLOCK                 (C_COMMON_CLOCK),
@@ -3057,7 +3057,7 @@ end endgenerate //rst_blk_no
         .C_WR_FREQ			(C_WR_FREQ),
         .C_WR_RESPONSE_LATENCY		(C_WR_RESPONSE_LATENCY)
       )
-    fifo_generator_v13_1_3_rdch_dut
+    fifo_generator_v13_2_1_rdch_dut
       (
         .CLK                      (S_ACLK),
         .WR_CLK                   (M_ACLK),
@@ -3118,7 +3118,7 @@ end endgenerate //rst_blk_no
   // Register Slice for read Data Channel
   generate if (C_RDCH_TYPE == 1) begin : grdch_reg_slice
 
-    fifo_generator_v13_1_3_axic_reg_slice
+    fifo_generator_v13_2_1_axic_reg_slice
           #(
             .C_FAMILY                (C_FAMILY),
             .C_DATA_WIDTH            (C_DIN_WIDTH_RDCH),
@@ -3128,7 +3128,7 @@ end endgenerate //rst_blk_no
         (
           // System Signals
           .ACLK                      (S_ACLK),
-          .ARESET                    (axi_rs_rst),
+          .ARESET                    (inverted_reset),
 
           // Slave side
           .S_PAYLOAD_DATA            (rdch_din),
@@ -3356,14 +3356,14 @@ end endgenerate //rst_blk_no
   end endgenerate // gaxis_pass_through;
 
 
-endmodule //fifo_generator_v13_1_3
+endmodule //fifo_generator_v13_2_1
 
 
 
 /*******************************************************************************
  * Declaration of top-level module for Conventional FIFO
  ******************************************************************************/
-module fifo_generator_v13_1_3_CONV_VER
+module fifo_generator_v13_2_1_CONV_VER
   #(
     parameter  C_COMMON_CLOCK                 = 0,
     parameter  C_INTERFACE_TYPE               = 0,
@@ -3657,50 +3657,53 @@ module fifo_generator_v13_1_3_CONV_VER
   // 3 = Low Latency Asynchronous FIFO
   localparam C_VERILOG_IMPL = (C_FIFO_TYPE == 3) ? 2 :
                               (C_IMPLEMENTATION_TYPE == 2) ? 1 : 0;
-  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus") ? 1 : 0;
+  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus" || C_FAMILY == "virtexuplushbm") ? 1 : 0;
 
   //Internal reset signals
-  reg                                rd_rst_asreg    = 0;
-  wire                               rd_rst_asreg_d1;
-  wire                               rd_rst_asreg_d2;
-  reg                                rd_rst_asreg_d3 = 0;
-  reg                                rd_rst_reg      = 0;
-  wire                               rd_rst_comb;
-  reg                                wr_rst_d0       = 0;
-  reg                                wr_rst_d1       = 0;
-  reg                                wr_rst_d2       = 0;
-  reg                                rd_rst_d0       = 0;
-  reg                                rd_rst_d1       = 0;
-  reg                                rd_rst_d2       = 0;
-  reg                                rd_rst_d3       = 0;
-  reg                                wrrst_done      = 0;
-  reg                                rdrst_done      = 0;
-  reg                                wr_rst_asreg    = 0;
-  wire                               wr_rst_asreg_d1;
-  wire                               wr_rst_asreg_d2;
-  reg                                wr_rst_asreg_d3 = 0;
-  reg                                rd_rst_wr_d0    = 0;
-  reg                                rd_rst_wr_d1    = 0;
-  reg                                rd_rst_wr_d2    = 0;
-  reg                                wr_rst_reg      = 0;
+  reg                                rd_rst_asreg    = 1'b0;
+  reg                                rd_rst_asreg_d1 = 1'b0;
+  reg                                rd_rst_asreg_d2 = 1'b0;
+  reg                                rd_rst_asreg_d3 = 1'b0;
+  reg                                rd_rst_reg      = 1'b0;
+  reg                                rd_rst_comb     = 1'b1;
+  reg                                rd_rst_comb_d1  = 1'b0;
+  reg                                wr_rst_d0       = 1'b0;
+  reg                                wr_rst_d1       = 1'b0;
+  reg                                wr_rst_d2       = 1'b0;
+  reg                                rd_rst_d0       = 1'b0;
+  reg                                rd_rst_d1       = 1'b0;
+  reg                                rd_rst_d2       = 1'b0;
+  reg                                rd_rst_d3       = 1'b0;
+  reg                                wrrst_done      = 1'b0;
+  reg                                rdrst_done      = 1'b0;
+  reg                                wr_rst_asreg    = 1'b0;
+  reg                                wr_rst_asreg_d1 = 1'b0;
+  reg                                wr_rst_asreg_d2 = 1'b0;
+  reg                                wr_rst_asreg_d3 = 1'b0;
+  reg                                rd_rst_wr_d0    = 1'b0;
+  reg                                rd_rst_wr_d1    = 1'b0;
+  reg                                rd_rst_wr_d2    = 1'b0;
+  reg                                wr_rst_reg      = 1'b0;
   reg                                rst_active_i    = 1'b1;
   reg                                rst_delayed_d1  = 1'b1;
   reg                                rst_delayed_d2  = 1'b1;
-  wire                               wr_rst_comb;
+  reg                                wr_rst_comb     = 1'b1;
+  reg                                wr_rst_comb_d1  = 1'b0;
   wire                               wr_rst_i;
   wire                               rd_rst_i;
   wire                               rst_i;
 
   //Internal reset signals
-  reg                                rst_asreg    = 0;
-  reg                                srst_asreg    = 0;
-  wire                               rst_asreg_d1;
-  wire                               rst_asreg_d2;
-  reg                                srst_asreg_d1 = 0;
-  reg                                srst_asreg_d2 = 0;
-  reg                                rst_reg      = 0;
-  reg                                srst_reg      = 0;
-  wire                               rst_comb;
+  reg                                rst_asreg     = 1'b0;
+  reg                                srst_asreg    = 1'b0;
+  reg                                rst_asreg_d1  = 1'b0;
+  reg                                rst_asreg_d2  = 1'b0;
+  reg                                srst_asreg_d1 = 1'b0;
+  reg                                srst_asreg_d2 = 1'b0;
+  reg                                rst_reg       = 1'b0;
+  reg                                srst_reg      = 1'b0;
+  reg                                rst_comb      = 1'b1;
+  reg                                rst_comb_d1   = 1'b0;
   wire                               srst_comb;
   reg                                rst_full_gen_i = 0;
   reg                                rst_full_ff_i = 0;
@@ -3754,8 +3757,8 @@ module fifo_generator_v13_1_3_CONV_VER
   wire                               dbiterr_fifo_out;
   wire                               inject_sbit_err;
   wire                               inject_dbit_err;
-  wire                               safety_ckt_wr_rst;
-  wire                               safety_ckt_rd_rst;
+  wire                               sckt_wr_rst_i;
+  wire                               sckt_rd_rst_i;
   reg                                sckt_wr_rst_i_q = 1'b0;
  
   wire                               w_fab_read_data_valid_i;
@@ -3781,9 +3784,9 @@ module fifo_generator_v13_1_3_CONV_VER
   localparam FULL_FLAGS_RST_VAL = (C_HAS_SRST == 1) ? 0 : C_FULL_FLAGS_RST_VAL;
 generate
 case (C_VERILOG_IMPL)
-0 : begin : block1
+0 : begin : block1_ss
   //Common Clock Behavioral Model
-  fifo_generator_v13_1_3_bhv_ver_ss
+  fifo_generator_v13_2_1_bhv_ver_ss
   #(
     .C_FAMILY                            (C_FAMILY),
     .C_DATA_COUNT_WIDTH                  (C_DATA_COUNT_WIDTH),            
@@ -3796,8 +3799,8 @@ case (C_VERILOG_IMPL)
     .C_HAS_DATA_COUNT                    (C_HAS_DATA_COUNT),              
     .C_HAS_OVERFLOW                      (C_HAS_OVERFLOW),                
     .C_HAS_RD_DATA_COUNT                 (C_HAS_RD_DATA_COUNT),           
-    .C_HAS_RST                           (C_HAS_RST),                     
-    .C_HAS_SRST                          (C_HAS_SRST),                    
+    .C_HAS_RST                           (C_EN_SAFETY_CKT?0:C_HAS_RST),                     
+    .C_HAS_SRST                          (C_EN_SAFETY_CKT?1:C_HAS_SRST),                    
     .C_HAS_UNDERFLOW                     (C_HAS_UNDERFLOW),               
     .C_HAS_VALID                         (C_HAS_VALID),                   
     .C_HAS_WR_ACK                        (C_HAS_WR_ACK),                  
@@ -3833,10 +3836,10 @@ case (C_VERILOG_IMPL)
   )
   gen_ss
   (
-    .SAFETY_CKT_WR_RST        (safety_ckt_wr_rst),
+    .SAFETY_CKT_WR_RST        (sckt_wr_rst_i),
     .CLK                      (CLK),
-    .RST                      (rst_i),
-    .SRST                     (srst_delayed),
+    .RST                      (C_EN_SAFETY_CKT?1'b0:rst_i),
+    .SRST                     (C_EN_SAFETY_CKT?sckt_wr_rst_i:srst_delayed),
     .RST_FULL_GEN             (rst_full_gen_i),
     .RST_FULL_FF              (rst_full_ff_i),
     .DIN                      (din_delayed),
@@ -3873,9 +3876,9 @@ case (C_VERILOG_IMPL)
     .DBITERR                  (dbiterr_fifo_out)
    );
 end
-1 : begin : block1
+1 : begin : block1_as
   //Independent Clocks Behavioral Model
-  fifo_generator_v13_1_3_bhv_ver_as
+  fifo_generator_v13_2_1_bhv_ver_as
   #(
     .C_FAMILY                          (C_FAMILY),
     .C_DATA_COUNT_WIDTH                (C_DATA_COUNT_WIDTH),
@@ -3888,7 +3891,7 @@ end
     .C_HAS_DATA_COUNT                  (C_HAS_DATA_COUNT),
     .C_HAS_OVERFLOW                    (C_HAS_OVERFLOW),
     .C_HAS_RD_DATA_COUNT               (C_HAS_RD_DATA_COUNT),
-    .C_HAS_RST                         (C_HAS_RST),
+    .C_HAS_RST                         (C_EN_SAFETY_CKT?0:C_HAS_RST),
     .C_HAS_UNDERFLOW                   (C_HAS_UNDERFLOW),
     .C_HAS_VALID                       (C_HAS_VALID),
     .C_HAS_WR_ACK                      (C_HAS_WR_ACK),
@@ -3924,8 +3927,8 @@ end
   )
   gen_as
   (
-    .SAFETY_CKT_WR_RST        (safety_ckt_wr_rst),
-    .SAFETY_CKT_RD_RST        (safety_ckt_rd_rst),
+    .SAFETY_CKT_WR_RST        (sckt_wr_rst_i),
+    .SAFETY_CKT_RD_RST        (sckt_rd_rst_i),
     .WR_CLK                   (WR_CLK),
     .RD_CLK                   (RD_CLK),
     .RST                      (rst_i),
@@ -3969,7 +3972,7 @@ end
 end
 
 2 : begin : ll_afifo_inst
-  fifo_generator_v13_1_3_beh_ver_ll_afifo
+  fifo_generator_v13_2_1_beh_ver_ll_afifo
   #(
     .C_DIN_WIDTH                    (C_DIN_WIDTH),
     .C_DOUT_RST_VAL                 (C_DOUT_RST_VAL),
@@ -3999,9 +4002,9 @@ end
     .FULL                       (FULL)
   );
 end
-default : begin : block1
+default : begin : block1_as
   //Independent Clocks Behavioral Model
-  fifo_generator_v13_1_3_bhv_ver_as
+  fifo_generator_v13_2_1_bhv_ver_as
   #(
     .C_FAMILY                          (C_FAMILY),
     .C_DATA_COUNT_WIDTH                (C_DATA_COUNT_WIDTH),
@@ -4014,7 +4017,7 @@ default : begin : block1
     .C_HAS_DATA_COUNT                  (C_HAS_DATA_COUNT),
     .C_HAS_OVERFLOW                    (C_HAS_OVERFLOW),
     .C_HAS_RD_DATA_COUNT               (C_HAS_RD_DATA_COUNT),
-    .C_HAS_RST                         (C_HAS_RST),
+    .C_HAS_RST                         (C_EN_SAFETY_CKT?0:C_HAS_RST),
     .C_HAS_UNDERFLOW                   (C_HAS_UNDERFLOW),
     .C_HAS_VALID                       (C_HAS_VALID),
     .C_HAS_WR_ACK                      (C_HAS_WR_ACK),
@@ -4050,8 +4053,8 @@ default : begin : block1
   )
   gen_as
   (
-    .SAFETY_CKT_WR_RST        (safety_ckt_wr_rst),
-    .SAFETY_CKT_RD_RST        (safety_ckt_rd_rst),
+    .SAFETY_CKT_WR_RST        (sckt_wr_rst_i),
+    .SAFETY_CKT_RD_RST        (sckt_rd_rst_i),
     .WR_CLK                   (WR_CLK),
     .RD_CLK                   (RD_CLK),
     .RST                      (rst_i),
@@ -4126,10 +4129,10 @@ endgenerate
    localparam IS_AXIS_PKT_FIFO = (C_FIFO_TYPE == 1 && C_AXI_TYPE == 0) ? 1 : 0;
    assign rst_fwft = (C_COMMON_CLOCK == 0) ? rd_rst_i : (C_HAS_RST == 1) ? rst_i : 1'b0;
 
-   generate if (IS_FWFT == 1 && C_FIFO_TYPE != 3) begin : block2
+   generate if (IS_FWFT == 1 && C_FIFO_TYPE != 3) begin : block2_fwft
 
 
-         fifo_generator_v13_1_3_bhv_ver_preload0
+         fifo_generator_v13_2_1_bhv_ver_preload0
            #(
              .C_DOUT_RST_VAL      (C_DOUT_RST_VAL),
              .C_DOUT_WIDTH        (C_DOUT_WIDTH),
@@ -4313,7 +4316,7 @@ endgenerate
         end
     end endgenerate // gdummy_wr_eop
 
-    generate if (IS_FWFT == 1 && IS_PKT_FIFO == 1) begin // gpkt_fifo_fwft
+    generate if (IS_FWFT == 1 && IS_PKT_FIFO == 1) begin : gpkt_fifo_fwft
       assign wr_rst_fwft_pkt_fifo = (C_COMMON_CLOCK == 0) ? wr_rst_i : (C_HAS_RST == 1) ? rst_i:1'b0;
       assign dummy_wr_eop = ALMOST_FULL_FIFO_OUT && ram_wr_en_pkt_fifo && packet_empty_wr && (~din_delayed[0]) && (~partial_packet);
       assign packet_empty_wr = (C_COMMON_CLOCK == 1) ? empty_p0_out : pkt_empty_sync[C_SYNCHRONIZER_STAGE-1];
@@ -4338,7 +4341,7 @@ endgenerate
       assign ram_rd_en_compare = stage2_reg_en_i && stage1_eop;
 
 
-         fifo_generator_v13_1_3_bhv_ver_preload0
+         fifo_generator_v13_2_1_bhv_ver_preload0
            #(
              .C_DOUT_RST_VAL      (C_DOUT_RST_VAL),
              .C_DOUT_WIDTH        (C_DOUT_WIDTH),
@@ -4402,7 +4405,7 @@ endgenerate
             wr_pkt_count  <= #`TCQ wr_pkt_count + 1;
       end
     
-    end endgenerate // gpkt_fifo_fwft
+    end endgenerate //: gpkt_fifo_fwft
 
     assign DOUT               = (C_FIFO_TYPE != 1) ? dout_fwft : dout_p0_out;
     assign EMPTY              = (C_FIFO_TYPE != 1) ? empty_fwft : empty_p0_out;
@@ -4680,289 +4683,184 @@ endgenerate
   /**************************************************************************
   * Internal reset logic
   **************************************************************************/
-  assign wr_rst_i         = (C_HAS_RST == 1 || C_ENABLE_RST_SYNC == 0) ? wr_rst_reg : 0;
-  assign rd_rst_i         = (C_HAS_RST == 1 || C_ENABLE_RST_SYNC == 0) ? rd_rst_reg : 0;
-  assign rst_i            = C_HAS_RST ? rst_reg : 0;
+  assign wr_rst_i         = (C_HAS_RST == 1 || C_ENABLE_RST_SYNC == 0) ? wr_rst_reg|sckt_wr_rst_i : 0;
+  assign rd_rst_i         = (C_HAS_RST == 1 || C_ENABLE_RST_SYNC == 0) ? rd_rst_reg|sckt_rd_rst_i : 0;
+  assign rst_i            = C_HAS_RST ? rst_reg|sckt_wr_rst_i : 0;
 
   wire rst_2_sync;
-  wire rst_2_sync_safety = (C_ENABLE_RST_SYNC == 1) ? rst_delayed : RD_RST; 
   wire clk_2_sync = (C_COMMON_CLOCK == 1) ? CLK : WR_CLK;
-  wire clk_2_sync_safety = (C_COMMON_CLOCK == 1) ? CLK : RD_CLK;
-  localparam RST_SYNC_STAGES = (C_EN_SAFETY_CKT == 0) ? C_SYNCHRONIZER_STAGE :
-                               (C_COMMON_CLOCK == 1) ? 3 : C_SYNCHRONIZER_STAGE+2;
-  reg  [RST_SYNC_STAGES-1:0] wrst_reg    = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] rrst_reg    = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] arst_sync_q = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] wrst_q      = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] rrst_q      = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] rrst_wr     = {RST_SYNC_STAGES{1'b0}};
-  reg  [RST_SYNC_STAGES-1:0] wrst_ext    = {RST_SYNC_STAGES{1'b0}};
-  reg  [1:0] wrst_cc  = {2{1'b0}};
-  reg  [1:0] rrst_cc  = {2{1'b0}};
 
-  generate 
-      if (C_EN_SAFETY_CKT == 1 && C_INTERFACE_TYPE == 0) begin : grst_safety_ckt
-         reg[1:0] rst_d1_safety                  =1;
-         reg[1:0] rst_d2_safety                  =1;
-         reg[1:0] rst_d3_safety                  =1;
-         reg[1:0] rst_d4_safety                  =1;
-         reg[1:0] rst_d5_safety                  =1;
-         reg[1:0] rst_d6_safety                  =1;
-         reg[1:0] rst_d7_safety                  =1;
-       always@(posedge rst_2_sync_safety or posedge clk_2_sync_safety) begin : prst
-             if (rst_2_sync_safety == 1'b1) begin
-                 rst_d1_safety <= 1'b1;
-                 rst_d2_safety <= 1'b1;
-                 rst_d3_safety <= 1'b1;
-                 rst_d4_safety <= 1'b1;
-                 rst_d5_safety <= 1'b1;
-                 rst_d6_safety <= 1'b1;
-                 rst_d7_safety <= 1'b1;
-              end
-              else begin
-                 rst_d1_safety <= #`TCQ 1'b0;
-                 rst_d2_safety <= #`TCQ rst_d1_safety;
-                 rst_d3_safety <= #`TCQ rst_d2_safety;
-                 rst_d4_safety <= #`TCQ rst_d3_safety;
-                 rst_d5_safety <= #`TCQ rst_d4_safety;
-                 rst_d6_safety <= #`TCQ rst_d5_safety;
-                 rst_d7_safety <= #`TCQ rst_d6_safety;
-              end //if
-              end //prst
-        always@(posedge rst_d7_safety or posedge WR_EN) begin : assert_safety
-              if(rst_d7_safety == 1 && WR_EN == 1) begin 
-              $display("WARNING:A write attempt has been made within the 7 clock cycles of reset de-assertion. This can lead to data discrepancy when safety circuit is enabled."); 
-              
-              end //if
-              end //always
-        end // grst_safety_ckt
-  endgenerate     
-     
-// if (C_EN_SAFET_CKT == 1)
-// assertion:the reset shud be atleast 3 cycles wide. 
-
+  localparam RST_SYNC_STAGES = C_EN_SAFETY_CKT == 0 ? C_COMMON_CLOCK ? C_SYNCHRONIZER_STAGE : C_SYNCHRONIZER_STAGE+2 : 5;
+  localparam RST_BUSY_LEN    = 4;
+  reg  wr_rst_busy_i = 0;
+  reg  rd_rst_busy_i = 0;
   generate
-    reg  safety_ckt_wr_rst_i  = 1'b0;
-      if (C_ENABLE_RST_SYNC == 0) begin : gnrst_sync
+      if (C_ENABLE_RST_SYNC == 0 || (C_HAS_RST == 0 && C_HAS_SRST == 0)) begin : gnrst_sync
         always @* begin
           wr_rst_reg <= wr_rst_delayed;
           rd_rst_reg <= rd_rst_delayed;
           rst_reg    <= 1'b0;
           srst_reg    <= 1'b0;
         end
-        assign rst_2_sync  = wr_rst_delayed;
-        assign wr_rst_busy = C_EN_SAFETY_CKT ? wr_rst_delayed : 1'b0;
-        assign rd_rst_busy = C_EN_SAFETY_CKT ? rd_rst_delayed : 1'b0;
-        assign safety_ckt_wr_rst = C_EN_SAFETY_CKT ? wr_rst_delayed : 1'b0;
-        assign safety_ckt_rd_rst = C_EN_SAFETY_CKT ? rd_rst_delayed : 1'b0;
-      // end : gnrst_sync
-      end else if (C_HAS_RST == 1 && C_COMMON_CLOCK == 0) begin : g7s_ic_rst
-        reg  fifo_wrst_done = 1'b0;
-        reg  fifo_rrst_done = 1'b0;
-        reg  sckt_wrst_i    = 1'b0;
-        reg  sckt_wrst_i_q  = 1'b0;
-        reg  rd_rst_active   = 1'b0;
-        reg  rd_rst_middle   = 1'b0;
-        reg  sckt_rd_rst_d1  = 1'b0;
-        reg  [1:0] rst_delayed_ic_w = 2'h0;
-        wire rst_delayed_ic_w_i;
-        reg  [1:0] rst_delayed_ic_r = 2'h0;
-        wire rst_delayed_ic_r_i;
-        wire arst_sync_rst;
-        wire fifo_rst_done;
-        wire fifo_rst_active;
-        assign wr_rst_comb      = !wr_rst_asreg_d2 && wr_rst_asreg;
-        assign rd_rst_comb      = C_EN_SAFETY_CKT ? (!rd_rst_asreg_d2 && rd_rst_asreg) || rd_rst_active : !rd_rst_asreg_d2 && rd_rst_asreg;
-        assign rst_2_sync       = rst_delayed_ic_w_i;
-        assign arst_sync_rst    = arst_sync_q[RST_SYNC_STAGES-1];
-        assign wr_rst_busy      = C_EN_SAFETY_CKT ? |arst_sync_q[RST_SYNC_STAGES-1:1] | fifo_rst_active : 1'b0;
-        assign rd_rst_busy      = C_EN_SAFETY_CKT ? safety_ckt_rd_rst : 1'b0;
-        assign fifo_rst_done    = fifo_wrst_done & fifo_rrst_done;
-        assign fifo_rst_active  = sckt_wrst_i | wrst_ext[RST_SYNC_STAGES-1] | rrst_wr[RST_SYNC_STAGES-1];
+        assign rst_2_sync = wr_rst_delayed;
+        assign wr_rst_busy = 1'b0;
+        assign wr_rst_busy_o = 1'b0;
+        assign rd_rst_busy = 1'b0;
+        assign sckt_wr_rst_i = 1'b0;
+      end // gnrst_sync
+      else if (C_ENABLE_RST_SYNC == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 0 && C_EN_SAFETY_CKT == 0) begin : g7s_ic_rst_nsckt
+        reg [1:0]                 arst_sync_wr  = 2'b11;
+        reg [1:0]                 arst_sync_rd  = 2'b11;
+        reg [RST_SYNC_STAGES-1:0] sckt_wr_rst_rd = 0;
+        reg [RST_SYNC_STAGES-1:0] sckt_rd_rst_wr = 0;
+        reg [3:0]                 rd_rst_wr_ext = 0;
+        reg [1:0]                 wr_rst_rd_ext = 0;
+        reg                       sckt_wr_rst_ic = 0;
+        reg                       sckt_rd_rst_ic = 0;
+
+        assign rst_2_sync = arst_sync_wr[1];
 
         always @(posedge WR_CLK or posedge rst_delayed) begin
-          if (rst_delayed == 1'b1 && C_HAS_RST)
-            rst_delayed_ic_w <= 2'b11;
+          if (rst_delayed == 1'b1)
+	    arst_sync_wr    <= #`TCQ 2'b11;
           else
-            rst_delayed_ic_w <= #`TCQ {rst_delayed_ic_w[0],1'b0};
+	    arst_sync_wr    <= #`TCQ {arst_sync_wr[0], rst_delayed};
         end
-        assign rst_delayed_ic_w_i = rst_delayed_ic_w[1];
 
         always @(posedge RD_CLK or posedge rst_delayed) begin
-          if (rst_delayed == 1'b1 && C_HAS_RST)
-            rst_delayed_ic_r <= 2'b11;
+          if (rst_delayed == 1'b1)
+	    arst_sync_rd    <= #`TCQ 2'b11;
           else
-            rst_delayed_ic_r <= #`TCQ {rst_delayed_ic_r[0],1'b0};
+	    arst_sync_rd    <= #`TCQ {arst_sync_rd[0], rst_delayed};
         end
-        assign rst_delayed_ic_r_i = rst_delayed_ic_r[1];
-
         always @(posedge WR_CLK) begin
-          sckt_wrst_i_q       <= #`TCQ sckt_wrst_i;
-          sckt_wr_rst_i_q     <= #`TCQ wr_rst_busy;
-          safety_ckt_wr_rst_i <= #`TCQ sckt_wrst_i | wr_rst_busy | sckt_wr_rst_i_q;
-          if (arst_sync_rst && ~fifo_rst_active)
-            sckt_wrst_i <= #`TCQ 1'b1;
-          else if (sckt_wrst_i && fifo_rst_done)
-              sckt_wrst_i <= #`TCQ 1'b0;
-          else
-            sckt_wrst_i <= #`TCQ sckt_wrst_i;
-
-          if (rrst_wr[RST_SYNC_STAGES-2] & ~rrst_wr[RST_SYNC_STAGES-1])
-            fifo_rrst_done <= #`TCQ 1'b1;
-          else if (fifo_rst_done)
-            fifo_rrst_done <= #`TCQ 1'b0;
-          else
-            fifo_rrst_done <= #`TCQ fifo_rrst_done;
-
-          if (wrst_ext[RST_SYNC_STAGES-2] & ~wrst_ext[RST_SYNC_STAGES-1])
-            fifo_wrst_done <= #`TCQ 1'b1;
-          else if (fifo_rst_done)
-            fifo_wrst_done <= #`TCQ 1'b0;
-          else
-            fifo_wrst_done <= #`TCQ fifo_wrst_done;
-        end   
-
-        always @(posedge WR_CLK or posedge rst_delayed_ic_w_i) begin
-          if (rst_delayed_ic_w_i == 1'b1) begin
-            wr_rst_asreg <= 1'b1;
-          end else begin
-            if (wr_rst_asreg_d1 == 1'b1) begin
-              wr_rst_asreg <= #`TCQ 1'b0;
-            end else begin
-              wr_rst_asreg <= #`TCQ wr_rst_asreg;
-            end
-          end    
-        end   
-
-        always @(posedge WR_CLK or posedge rst_delayed) begin
-          if (rst_delayed == 1'b1) begin
-            wr_rst_asreg <= 1'b1;
-          end else begin
-            if (wr_rst_asreg_d1 == 1'b1) begin
-              wr_rst_asreg <= #`TCQ 1'b0;
-            end else begin
-              wr_rst_asreg <= #`TCQ wr_rst_asreg;
-            end
-          end    
-        end   
-
-        always @(posedge WR_CLK) begin
-          wrst_reg    <= #`TCQ {wrst_reg[RST_SYNC_STAGES-2:0],wr_rst_asreg};
-          wrst_ext    <= #`TCQ {wrst_ext[RST_SYNC_STAGES-2:0],sckt_wrst_i};
-          rrst_wr     <= #`TCQ {rrst_wr[RST_SYNC_STAGES-2:0],safety_ckt_rd_rst};
-          arst_sync_q <= #`TCQ {arst_sync_q[RST_SYNC_STAGES-2:0],rst_delayed_ic_w_i};
-        end
-
-        assign wr_rst_asreg_d1 = wrst_reg[RST_SYNC_STAGES-2];
-        assign wr_rst_asreg_d2 = C_EN_SAFETY_CKT ? wrst_reg[RST_SYNC_STAGES-1] : wrst_reg[1];
-        assign safety_ckt_wr_rst = C_EN_SAFETY_CKT ? safety_ckt_wr_rst_i : 1'b0;
-
-        always @(posedge WR_CLK or posedge wr_rst_comb) begin
-          if (wr_rst_comb == 1'b1) begin
-            wr_rst_reg <= 1'b1;
-          end else begin
-            wr_rst_reg <= #`TCQ 1'b0;
-          end    
-        end   
-
-        always @(posedge RD_CLK or posedge rst_delayed_ic_r_i) begin
-          if (rst_delayed_ic_r_i == 1'b1) begin
-            rd_rst_asreg  <= 1'b1;
-          end else begin
-            if (rd_rst_asreg_d1 == 1'b1) begin
-              rd_rst_asreg <= #`TCQ 1'b0;
-            end else begin
-              rd_rst_asreg <= #`TCQ rd_rst_asreg;
-            end
-          end    
-        end   
-
+          sckt_rd_rst_wr   <= #`TCQ {sckt_rd_rst_wr[RST_SYNC_STAGES-2:0], sckt_rd_rst_ic};
+	end
+        always @(posedge WR_CLK or posedge arst_sync_wr[1]) begin
+	  if (arst_sync_wr[1]) begin
+	    sckt_wr_rst_ic <= #`TCQ 1'b1;
+	    wr_rst_busy_i  <= #`TCQ 1'b1;
+            rd_rst_wr_ext  <= #`TCQ {RST_SYNC_STAGES{1'b0}};
+	  end else begin
+            rd_rst_wr_ext  <= #`TCQ {rd_rst_wr_ext[2:0], sckt_rd_rst_wr[RST_SYNC_STAGES-1]};
+	    if (rd_rst_wr_ext[1] && ~rd_rst_wr_ext[0])
+	      sckt_wr_rst_ic <= #`TCQ 1'b0;
+            else if (rd_rst_wr_ext[3] && ~rd_rst_wr_ext[2])
+	      wr_rst_busy_i  <= #`TCQ 1'b0;
+	  end
+	end
         always @(posedge RD_CLK) begin
-          rrst_reg        <= #`TCQ {rrst_reg[RST_SYNC_STAGES-2:0],rd_rst_asreg};
-          rrst_q          <= #`TCQ {rrst_q[RST_SYNC_STAGES-2:0],sckt_wrst_i};
-          rrst_cc         <= #`TCQ {rrst_cc[0],rd_rst_asreg_d2};
-          sckt_rd_rst_d1  <= #`TCQ safety_ckt_rd_rst;
-          if (!rd_rst_middle && rrst_reg[1] && !rrst_reg[2]) begin
-            rd_rst_active <= #`TCQ 1'b1;
-            rd_rst_middle <= #`TCQ 1'b1;
-          end else if (safety_ckt_rd_rst)
-            rd_rst_active <= #`TCQ 1'b0;
-          else if (sckt_rd_rst_d1 && !safety_ckt_rd_rst)
-            rd_rst_middle <= #`TCQ 1'b0;
-        end
-        assign rd_rst_asreg_d1 = rrst_reg[RST_SYNC_STAGES-2];
-        assign rd_rst_asreg_d2 = C_EN_SAFETY_CKT ? rrst_reg[RST_SYNC_STAGES-1] : rrst_reg[1];
-        assign safety_ckt_rd_rst = C_EN_SAFETY_CKT ? rrst_q[2] : 1'b0;
+          sckt_wr_rst_rd   <= #`TCQ {sckt_wr_rst_rd[RST_SYNC_STAGES-2:0], sckt_wr_rst_ic};
+	end
+        always @(posedge RD_CLK or posedge arst_sync_rd[1]) begin
+	  if (arst_sync_rd[1]) begin
+	    sckt_rd_rst_ic <= #`TCQ 1'b1;
+	    rd_rst_busy_i  <= #`TCQ 1'b1;
+            wr_rst_rd_ext  <= #`TCQ {RST_SYNC_STAGES{1'b0}};
+	  end else begin
+            wr_rst_rd_ext  <= #`TCQ {wr_rst_rd_ext[0], sckt_wr_rst_rd[RST_SYNC_STAGES-1]};
+	    if (wr_rst_rd_ext[1]) begin
+	      sckt_rd_rst_ic <= #`TCQ 1'b0;
+	      rd_rst_busy_i  <= #`TCQ 1'b0;
+	    end
+	  end
+	end
 
-        always @(posedge RD_CLK or posedge rd_rst_comb) begin
-          if (rd_rst_comb == 1'b1) begin
-            rd_rst_reg <= 1'b1;
-          end else begin
-            rd_rst_reg <= #`TCQ 1'b0;
-          end    
-        end   
-      // end : g7s_ic_rst
-      end else if (C_HAS_RST == 1 && C_COMMON_CLOCK == 1) begin : g7s_cc_rst
-        reg  [1:0] rst_delayed_cc   = 2'h0;
-        wire rst_delayed_cc_i;
-        assign rst_comb    = !rst_asreg_d2 && rst_asreg;     
-        assign rst_2_sync  = rst_delayed_cc_i;
-        assign wr_rst_busy = C_EN_SAFETY_CKT ? |arst_sync_q[RST_SYNC_STAGES-1:1] | wrst_cc[1] : 1'b0;
-        assign rd_rst_busy = C_EN_SAFETY_CKT ? arst_sync_q[1] | arst_sync_q[RST_SYNC_STAGES-1] | wrst_cc[1] : 1'b0;
- 
+        assign rd_rst_busy       = rd_rst_busy_i;
+        assign wr_rst_busy       = wr_rst_busy_i;
+        assign wr_rst_busy_o     = wr_rst_busy_i;
+        assign sckt_wr_rst_i     = sckt_wr_rst_ic|arst_sync_wr[1];
+        assign sckt_rd_rst_i     = sckt_rd_rst_ic|arst_sync_rd[1];
+      end // g7s_ic_rst_nsckt
+      else if (C_ENABLE_RST_SYNC == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 0 && C_EN_SAFETY_CKT == 1) begin : g7s_ic_rst_sckt
+        reg [RST_SYNC_STAGES-1:0] arst_sync_wr  = {RST_SYNC_STAGES{1'b1}};
+        reg [RST_SYNC_STAGES-1:0] arst_sync_rd  = {RST_SYNC_STAGES{1'b1}};
+        reg [RST_SYNC_STAGES-1:0] sckt_wr_rst_rd = 0;
+        reg [RST_SYNC_STAGES-1:0] sckt_rd_rst_wr = 0;
+        reg [3:0]                 rd_rst_wr_ext = 0;
+        reg [1:0]                 wr_rst_rd_ext = 0;
+        reg                       sckt_wr_rst_ic = 0;
+        reg                       sckt_rd_rst_ic = 0;
+
+        always @(posedge WR_CLK) begin
+	  arst_sync_wr     <= #`TCQ {arst_sync_wr[RST_SYNC_STAGES-2:0], rst_delayed};
+          sckt_rd_rst_wr   <= #`TCQ {sckt_rd_rst_wr[RST_SYNC_STAGES-2:0], sckt_rd_rst_ic};
+          rd_rst_wr_ext    <= #`TCQ {rd_rst_wr_ext[2:0], sckt_rd_rst_wr[RST_SYNC_STAGES-1]};
+	  if (arst_sync_wr[RST_SYNC_STAGES-1]) begin
+	    sckt_wr_rst_ic <= #`TCQ 1'b1;
+	    wr_rst_busy_i  <= #`TCQ 1'b1;
+          end else if (rd_rst_wr_ext[1] && ~rd_rst_wr_ext[0])
+	    sckt_wr_rst_ic <= #`TCQ 1'b0;
+          else if (rd_rst_wr_ext[3] && ~rd_rst_wr_ext[2])
+	    wr_rst_busy_i  <= #`TCQ 1'b0;
+	end
+        always @(posedge RD_CLK) begin
+	  arst_sync_rd     <= #`TCQ {arst_sync_rd[RST_SYNC_STAGES-2:0], rst_delayed};
+          sckt_wr_rst_rd   <= #`TCQ {sckt_wr_rst_rd[RST_SYNC_STAGES-2:0], arst_sync_wr[RST_SYNC_STAGES-1]};
+          wr_rst_rd_ext    <= #`TCQ {wr_rst_rd_ext[0], sckt_wr_rst_rd[RST_SYNC_STAGES-1]};
+	  if (arst_sync_rd[RST_SYNC_STAGES-1]) begin
+	    sckt_rd_rst_ic <= #`TCQ 1'b1;
+	    rd_rst_busy_i  <= #`TCQ 1'b1;
+	  end else if (wr_rst_rd_ext[1]) begin
+	    sckt_rd_rst_ic <= #`TCQ 1'b0;
+	    rd_rst_busy_i  <= #`TCQ 1'b0;
+	  end
+	end
+
+        assign rd_rst_busy       = rd_rst_busy_i;
+        assign wr_rst_busy       = wr_rst_busy_i;
+        assign wr_rst_busy_o     = wr_rst_busy_i;
+        assign sckt_wr_rst_i     = sckt_wr_rst_ic;
+        assign sckt_rd_rst_i     = sckt_rd_rst_ic;
+      end // g7s_ic_rst_sckt
+      else if (C_ENABLE_RST_SYNC == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 1 && C_EN_SAFETY_CKT == 0) begin : g7s_cc_rst_nsckt
+        reg [1:0]              arst_sync_wr  = 0;
+        reg [RST_BUSY_LEN-1:0] sckt_wr_rst_cc = 0;
+        assign rst_2_sync = arst_sync_wr[1];
+
         always @(posedge CLK or posedge rst_delayed) begin
           if (rst_delayed == 1'b1)
-            rst_delayed_cc <= 2'b11;
+	    arst_sync_wr    <= #`TCQ 2'b11;
           else
-            rst_delayed_cc <= #`TCQ {rst_delayed_cc,1'b0};
-        end   
-        assign rst_delayed_cc_i = rst_delayed_cc[1];
- 
-        always @(posedge CLK or posedge rst_delayed_cc_i) begin
-          if (rst_delayed_cc_i == 1'b1) begin
-            rst_asreg <= 1'b1;
-          end else begin
-            if (rst_asreg_d1 == 1'b1) begin
-              rst_asreg <= #`TCQ 1'b0;
-            end else begin
-              rst_asreg <= #`TCQ rst_asreg;
-            end
-          end    
-        end   
-        
-        always @(posedge CLK) begin
-          wrst_reg <= #`TCQ {wrst_reg[RST_SYNC_STAGES-2:0],rst_asreg};
-          wrst_cc  <= #`TCQ {wrst_cc[0],arst_sync_q[RST_SYNC_STAGES-1]};
-          sckt_wr_rst_i_q     <= #`TCQ wr_rst_busy;
-          safety_ckt_wr_rst_i <= #`TCQ wrst_cc[1] | wr_rst_busy | sckt_wr_rst_i_q;
-          arst_sync_q <= #`TCQ {arst_sync_q[RST_SYNC_STAGES-2:0],rst_delayed_cc_i};
+	    arst_sync_wr    <= #`TCQ {arst_sync_wr[0], rst_delayed};
         end
-        assign rst_asreg_d1 = wrst_reg[RST_SYNC_STAGES-2];
-        assign rst_asreg_d2 = C_EN_SAFETY_CKT ? wrst_reg[RST_SYNC_STAGES-1] : wrst_reg[1];
-        assign safety_ckt_wr_rst = C_EN_SAFETY_CKT ? safety_ckt_wr_rst_i : 1'b0;
-        assign safety_ckt_rd_rst = C_EN_SAFETY_CKT ? safety_ckt_wr_rst_i : 1'b0;
 
-        always @(posedge CLK or posedge rst_comb) begin
-          if (rst_comb == 1'b1) begin
-            rst_reg <= 1'b1;
-          end else begin
-            rst_reg <= #`TCQ 1'b0;
-          end    
-        end   
-      // end : g7s_cc_rst
-      end else if (IS_8SERIES == 1 && C_HAS_SRST == 1 && C_COMMON_CLOCK == 1) begin : g8s_cc_rst
+        always @(posedge CLK) begin
+	  sckt_wr_rst_cc   <= #`TCQ {sckt_wr_rst_cc[RST_BUSY_LEN-2:0], arst_sync_wr[RST_SYNC_STAGES-1]};
+	end
+
+        assign sckt_wr_rst_i  = |sckt_wr_rst_cc[RST_BUSY_LEN-3:0] | arst_sync_wr[1]; 
+        assign sckt_rd_rst_i  = sckt_wr_rst_i;
+        assign wr_rst_busy    = |sckt_wr_rst_cc | arst_sync_wr[1];
+        assign rd_rst_busy    = |sckt_wr_rst_cc;
+        assign wr_rst_busy_o  = |sckt_wr_rst_cc;
+      end // g7s_cc_rst_nsckt
+      else if (C_ENABLE_RST_SYNC == 1 && C_HAS_RST == 1 && C_COMMON_CLOCK == 1 && C_EN_SAFETY_CKT == 1) begin : g7s_cc_rst_sckt
+        reg [RST_SYNC_STAGES-1:0] arst_sync_wr  = 0;
+        reg [RST_BUSY_LEN-1:0] sckt_wr_rst_cc = 0;
+
+        always @(posedge CLK) begin
+	  arst_sync_wr     <= #`TCQ {arst_sync_wr[RST_SYNC_STAGES-2:0], rst_delayed};
+	  sckt_wr_rst_cc   <= #`TCQ {sckt_wr_rst_cc[RST_BUSY_LEN-2:0], arst_sync_wr[RST_SYNC_STAGES-1]};
+	end
+
+        assign sckt_wr_rst_i  = |sckt_wr_rst_cc[RST_BUSY_LEN-3:0]; 
+        assign sckt_rd_rst_i  = sckt_wr_rst_i;
+        assign wr_rst_busy    = |sckt_wr_rst_cc;
+        assign rd_rst_busy    = |sckt_wr_rst_cc;
+        assign wr_rst_busy_o  = |sckt_wr_rst_cc;
+      end // g7s_cc_rst_sckt
+      else if (C_ENABLE_RST_SYNC == 1 && IS_8SERIES == 1 && C_HAS_SRST == 1 && C_COMMON_CLOCK == 1) begin : g8s_cc_rst
         assign wr_rst_busy = (C_MEMORY_TYPE != 4) ? rst_reg : rst_active_i;
         assign rd_rst_busy = rst_reg;
         assign rst_2_sync = srst_delayed;
-        always @* rst_full_ff_i  <= rst_reg;
+        assign sckt_wr_rst_i = rst_reg;
+        always @* rst_full_ff_i  <= 1'b0;
         always @* rst_full_gen_i <= C_FULL_FLAGS_RST_VAL == 1 ? rst_active_i : 0;
-        assign safety_ckt_wr_rst = C_EN_SAFETY_CKT ? rst_reg | wr_rst_busy | sckt_wr_rst_i_q : 1'b0;
-        assign safety_ckt_rd_rst = C_EN_SAFETY_CKT ? rst_reg | wr_rst_busy | sckt_wr_rst_i_q : 1'b0;
 
         always @(posedge CLK) begin
           rst_delayed_d1 <= #`TCQ srst_delayed;
           rst_delayed_d2 <= #`TCQ rst_delayed_d1;
-          sckt_wr_rst_i_q <= #`TCQ wr_rst_busy;
           if (rst_reg || rst_delayed_d2) begin
             rst_active_i <= #`TCQ 1'b1;
           end else begin
@@ -4978,15 +4876,20 @@ endgenerate
              rst_reg <= #`TCQ rst_reg;
            end    
         end   
-      // end : g8s_cc_rst
-      end else begin 
-        assign wr_rst_busy = 1'b0;
-        assign rd_rst_busy = 1'b0;
-        assign safety_ckt_wr_rst = 1'b0;
-        assign safety_ckt_rd_rst = 1'b0;
-      end
+      end // g8s_cc_rst
+      else if (IS_8SERIES != 1 && C_HAS_SRST == 1 && C_COMMON_CLOCK == 1) begin : g7s_cc_srst
+        assign wr_rst_busy = srst_delayed;
+        assign rd_rst_busy = srst_delayed;
+        assign rst_2_sync = srst_delayed;
+        assign sckt_wr_rst_i = srst_delayed;
+        always @* rst_full_ff_i  <= 1'b0;
+      end // g7s_cc_srst
   endgenerate 
 
+  reg rst_d1 = 1'b0;
+  reg rst_d2 = 1'b0;
+  reg rst_d3 = 1'b0;
+  reg rst_d4 = 1'b0;
   generate
     if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 1) begin : grstd1
     // RST_FULL_GEN replaces the reset falling edge detection used to de-assert
@@ -4994,45 +4897,44 @@ endgenerate
 
     // RST_FULL_FF goes to the reset pin of the final flop of FULL, ALMOST_FULL &
     // PROG_FULL
-      reg rst_d1 = 1'b0;
-      reg rst_d2 = 1'b0;
-      reg rst_d3 = 1'b0;
-      reg rst_d4 = 1'b0;
-      reg rst_d5 = 1'b0;
 
       always @ (posedge rst_2_sync or posedge clk_2_sync) begin
-        if (rst_2_sync) begin
+        if (rst_2_sync && C_EN_SAFETY_CKT == 0) begin
           rst_d1         <= 1'b1;
           rst_d2         <= 1'b1;
           rst_d3         <= 1'b1;
-          rst_d4         <= 1'b1;
+          rst_d4         <= 1'b0;
         end else begin
           if (srst_delayed) begin
             rst_d1         <= #`TCQ 1'b1;
             rst_d2         <= #`TCQ 1'b1;
             rst_d3         <= #`TCQ 1'b1;
-            rst_d4         <= #`TCQ 1'b1;
+            rst_d4         <= #`TCQ 1'b0;
           end else begin
-            rst_d1         <= #`TCQ wr_rst_busy;
+            rst_d1         <= #`TCQ wr_rst_busy;//1'b0;
             rst_d2         <= #`TCQ rst_d1;
-            rst_d3         <= #`TCQ rst_d2 | safety_ckt_wr_rst;
+            rst_d3         <= #`TCQ rst_d2 | sckt_wr_rst_i;
             rst_d4         <= #`TCQ rst_d3;
           end
         end
       end
 
-      always @* rst_full_ff_i  <= (C_HAS_SRST == 0) ? rst_d2 : 1'b0 ;
-      always @* rst_full_gen_i <= rst_d3;
+      always @* rst_full_ff_i  <= C_HAS_SRST ? 1'b0 : rst_d2 | sckt_wr_rst_i;
+      always @* rst_full_gen_i <= C_HAS_SRST ? rst_d4 : rst_d3;
 
+    end else if (C_EN_SAFETY_CKT == 1 && C_FULL_FLAGS_RST_VAL == 0) begin : gnrst_full_sckt
+      always @* rst_full_ff_i  <=  C_HAS_SRST ? 1'b0 : (C_COMMON_CLOCK == 0) ? wr_rst_i : rst_i;
+      always @* rst_full_gen_i <= 1'b0;
     end else if ((C_HAS_RST == 1 || C_HAS_SRST == 1 || C_ENABLE_RST_SYNC == 0) && C_FULL_FLAGS_RST_VAL == 0) begin : gnrst_full
-      always @* rst_full_ff_i  <= (C_COMMON_CLOCK == 0) ? wr_rst_i : rst_i;
+      always @* rst_full_ff_i  <=  C_HAS_SRST ? 1'b0 : (C_COMMON_CLOCK == 0) ? wr_rst_i : rst_i;
+      always @* rst_full_gen_i <= 1'b0;
     end
   endgenerate // grstd1
 
-endmodule //fifo_generator_v13_1_3_conv_ver
+endmodule //fifo_generator_v13_2_1_CONV_VER
 
 
-module fifo_generator_v13_1_3_sync_stage
+module fifo_generator_v13_2_1_sync_stage
   #(
     parameter  C_WIDTH          = 10
    )
@@ -5048,12 +4950,12 @@ module fifo_generator_v13_1_3_sync_stage
      else
        DOUT <= #`TCQ DIN;
    end
-endmodule // fifo_generator_v13_1_3_sync_stage
+endmodule // fifo_generator_v13_2_1_sync_stage
 
 /*******************************************************************************
  * Declaration of Independent-Clocks FIFO Module
  ******************************************************************************/
-module fifo_generator_v13_1_3_bhv_ver_as
+module fifo_generator_v13_2_1_bhv_ver_as
    
   /***************************************************************************
    * Declare user parameters and their defaults
@@ -5161,7 +5063,7 @@ module fifo_generator_v13_1_3_bhv_ver_as
    /***************************************************************************
     * Parameters used as constants
     **************************************************************************/
-  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus") ? 1 : 0;
+  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus" || C_FAMILY == "virtexuplushbm") ? 1 : 0;
    //When RST is present, set FULL reset value to '1'.
    //If core has no RST, make sure FULL powers-on as '0'.
    localparam C_DEPTH_RATIO_WR =  
@@ -5303,7 +5205,11 @@ module fifo_generator_v13_1_3_bhv_ver_as
    // Register Empty and Almost Empty
    always @ (posedge RD_CLK or posedge rd_rst_i)
      begin
-       if (rd_rst_i) begin
+       if (rd_rst_i && C_EN_SAFETY_CKT == 0) begin
+         EMPTY             <= 1'b1;
+         ALMOST_EMPTY      <= 1'b1;
+         rd_data_count_int <= {C_RD_PNTR_WIDTH{1'b0}};
+       end else if (SAFETY_CKT_RD_RST && C_EN_SAFETY_CKT) begin
          EMPTY             <= 1'b1;
          ALMOST_EMPTY      <= 1'b1;
          rd_data_count_int <= {C_RD_PNTR_WIDTH{1'b0}};
@@ -5356,7 +5262,10 @@ module fifo_generator_v13_1_3_bhv_ver_as
    // Register FULL and ALMOST_FULL Empty
    always @ (posedge WR_CLK or posedge RST_FULL_FF)
      begin
-       if (RST_FULL_FF) begin
+       if (RST_FULL_FF & C_HAS_RST) begin
+         FULL             <= C_FULL_FLAGS_RST_VAL;
+         ALMOST_FULL      <= C_FULL_FLAGS_RST_VAL;
+       end else if (SAFETY_CKT_WR_RST & C_EN_SAFETY_CKT) begin
          FULL             <= C_FULL_FLAGS_RST_VAL;
          ALMOST_FULL      <= C_FULL_FLAGS_RST_VAL;
        end else begin
@@ -6285,7 +6194,7 @@ endgenerate
    genvar gss;
 
    generate for (gss = 1; gss <= NO_OF_SYNC_STAGE_INC_G2B; gss = gss + 1) begin : Sync_stage_inst
-     fifo_generator_v13_1_3_sync_stage
+     fifo_generator_v13_2_1_sync_stage
        #(
          .C_WIDTH  (C_WR_PNTR_WIDTH)
         )
@@ -6297,7 +6206,7 @@ endgenerate
          .DOUT     (wr_pntr_sync_stgs[gss])
         );
  
-     fifo_generator_v13_1_3_sync_stage
+     fifo_generator_v13_2_1_sync_stage
        #(
          .C_WIDTH  (C_RD_PNTR_WIDTH)
         )
@@ -6507,7 +6416,9 @@ endgenerate
 
    always @(posedge WR_CLK or posedge RST_FULL_FF) begin : gen_pf
 
-     if (RST_FULL_FF == 1'b1) begin
+     if (RST_FULL_FF & C_HAS_RST) begin
+       ideal_prog_full   <= C_FULL_FLAGS_RST_VAL;
+     end else if (SAFETY_CKT_WR_RST & C_EN_SAFETY_CKT) begin
        ideal_prog_full   <= C_FULL_FLAGS_RST_VAL;
      end else begin
 
@@ -6591,7 +6502,10 @@ endgenerate
 
    always @(posedge RD_CLK or posedge rd_rst_i) begin : gen_pe
 
-     if (rd_rst_i) begin
+     if (rd_rst_i & C_HAS_RST) begin
+       diff_pntr_rd       <= 0;
+       ideal_prog_empty   <= 1'b1;
+     end else if (SAFETY_CKT_RD_RST & C_EN_SAFETY_CKT) begin
        diff_pntr_rd       <= 0;
        ideal_prog_empty   <= 1'b1;
      end else begin
@@ -6667,10 +6581,11 @@ endgenerate
      else if (C_EN_SAFETY_CKT == 1 && SAFETY_CKT_RD_RST == 1'b1)
        rd_pntr            <= #`TCQ 0;
    end
+
    always @(posedge RD_CLK or posedge rd_rst_i) begin : gen_fifo_r_as
 
      /****** Reset fifo (case 1)***************************************/
-     if (rd_rst_i) begin
+     if (rd_rst_i & C_HAS_RST) begin
        num_rd_bits        <= 0;
        next_num_rd_bits    = 0;
        rd_ptr             <= C_RD_DEPTH -1;
@@ -6690,6 +6605,25 @@ endgenerate
        ideal_valid        <= 1'b0;
        ideal_rd_count     <= 0;
 
+     end else if (SAFETY_CKT_RD_RST & C_EN_SAFETY_CKT) begin
+       num_rd_bits        <= 0;
+       next_num_rd_bits    = 0;
+       rd_ptr             <= C_RD_DEPTH -1;
+       rd_pntr_wr1        <= 0;
+       wr_ptr_rdclk       <= C_WR_DEPTH -1;
+  
+       // DRAM resets asynchronously
+       if (C_MEMORY_TYPE == 2 && C_USE_DOUT_RST == 1)
+          ideal_dout    <= dout_reset_val;
+  
+       // Reset err_type only if ECC is not selected
+       if (C_USE_ECC == 0) begin
+         err_type         <= 0;
+         err_type_d1      <= 0;
+         err_type_both    <= 0;
+       end
+       ideal_valid        <= 1'b0;
+       ideal_rd_count     <= 0;
      end else begin //rd_rst_i==0
 
        rd_pntr_wr1   <= #`TCQ rd_pntr;
@@ -6993,13 +6927,13 @@ endgenerate
      end //rd_rst_i==0
    end //always gen_fifo_r_as
 
-endmodule // fifo_generator_v13_1_3_bhv_ver_as
+endmodule // fifo_generator_v13_2_1_bhv_ver_as
 
 
 /*******************************************************************************
  * Declaration of Low Latency Asynchronous FIFO
  ******************************************************************************/
-module fifo_generator_v13_1_3_beh_ver_ll_afifo
+module fifo_generator_v13_2_1_beh_ver_ll_afifo
    
   /***************************************************************************
    * Declare user parameters and their defaults
@@ -7122,12 +7056,12 @@ module fifo_generator_v13_1_3_beh_ver_ll_afifo
     EMPTY <= ll_afifo_empty;
   end
 
-endmodule // fifo_generator_v13_1_3_beh_ver_ll_afifo
+endmodule // fifo_generator_v13_2_1_beh_ver_ll_afifo
 
 /*******************************************************************************
  * Declaration of top-level module
  ******************************************************************************/
-module fifo_generator_v13_1_3_bhv_ver_ss
+module fifo_generator_v13_2_1_bhv_ver_ss
    
   /**************************************************************************
    * Declare user parameters and their defaults
@@ -7236,7 +7170,7 @@ module fifo_generator_v13_1_3_bhv_ver_ss
    /***************************************************************************
     * Parameters used as constants
     **************************************************************************/
-  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus") ? 1 : 0;
+  localparam IS_8SERIES         = (C_FAMILY == "virtexu" || C_FAMILY == "kintexu" || C_FAMILY == "artixu" || C_FAMILY == "virtexuplus" || C_FAMILY == "zynquplus" || C_FAMILY == "kintexuplus" || C_FAMILY == "virtexuplushbm") ? 1 : 0;
    localparam C_DEPTH_RATIO_WR =  
       (C_WR_DEPTH>C_RD_DEPTH) ? (C_WR_DEPTH/C_RD_DEPTH) : 1;
    localparam C_DEPTH_RATIO_RD =  
@@ -8619,14 +8553,29 @@ endgenerate
 
    assign ram_full_comb = going_full | (~leaving_full & full_i);
 
-   always @(posedge CLK or posedge RST_FULL_FF) begin
-     if (RST_FULL_FF)
-       full_i   <= C_FULL_FLAGS_RST_VAL;
-     else if (srst_wrst_busy)
-       full_i   <= #`TCQ C_FULL_FLAGS_RST_VAL;
-     else
-       full_i   <= #`TCQ ram_full_comb;
-    end
+   generate if (C_HAS_RST == 1) begin : grst_full
+     always @(posedge CLK or posedge RST_FULL_FF) begin
+       if (RST_FULL_FF & C_HAS_RST)
+         full_i   <= C_FULL_FLAGS_RST_VAL;
+       else
+         full_i   <= #`TCQ ram_full_comb;
+      end
+   end endgenerate
+
+   generate if (C_HAS_SRST == 1) begin : gsrst_full
+     always @(posedge CLK) begin
+       if (srst_wrst_busy)
+         full_i   <= #`TCQ C_FULL_FLAGS_RST_VAL;
+       else
+         full_i   <= #`TCQ ram_full_comb;
+      end
+   end endgenerate
+
+   generate if (C_HAS_RST == 0 && C_HAS_SRST == 0) begin : gnrst_full
+     always @(posedge CLK) begin
+         full_i   <= #`TCQ ram_full_comb;
+     end
+   end endgenerate
 
    //-----------------------------------------------------------------------------
    // Generate EMPTY flag
@@ -8833,15 +8782,29 @@ endgenerate
      assign ram_afull_comb  = going_afull | (~leaving_afull & almost_full_i);
 
 
-     always @(posedge CLK or posedge RST_FULL_FF) begin
-       if (RST_FULL_FF)
-         almost_full_i   <= C_FULL_FLAGS_RST_VAL;
-       else if (srst_wrst_busy)
-         almost_full_i   <= #`TCQ C_FULL_FLAGS_RST_VAL;
-       else
-         almost_full_i   <= #`TCQ ram_afull_comb;
+    generate if (C_HAS_RST == 1) begin : grst_afull
+      always @(posedge CLK or posedge RST_FULL_FF) begin
+        if (RST_FULL_FF & C_HAS_RST)
+          almost_full_i   <= C_FULL_FLAGS_RST_VAL;
+        else
+          almost_full_i   <= #`TCQ ram_afull_comb;
+       end
+    end endgenerate
+
+    generate if (C_HAS_SRST == 1) begin : gsrst_afull
+      always @(posedge CLK) begin
+        if (srst_wrst_busy)
+          almost_full_i   <= #`TCQ C_FULL_FLAGS_RST_VAL;
+        else
+          almost_full_i   <= #`TCQ ram_afull_comb;
+       end
+    end endgenerate
+
+    generate if (C_HAS_RST == 0 && C_HAS_SRST == 0) begin : gnrst_afull
+      always @(posedge CLK) begin
+          almost_full_i   <= #`TCQ ram_afull_comb;
       end
-  // end endgenerate // gaf_ss
+    end endgenerate
 
    //-----------------------------------------------------------------------------
    // Generate ALMOST_EMPTY flag
@@ -9232,14 +9195,14 @@ endgenerate
      end
    end endgenerate // multiple_pe_inputs
 
-endmodule // fifo_generator_v13_1_3_bhv_ver_ss
+endmodule // fifo_generator_v13_2_1_bhv_ver_ss
 
 
 
 /**************************************************************************
  * First-Word Fall-Through module (preload 0)
  **************************************************************************/
-module fifo_generator_v13_1_3_bhv_ver_preload0
+module fifo_generator_v13_2_1_bhv_ver_preload0
   #(
     parameter  C_DOUT_RST_VAL            = "",
     parameter  C_DOUT_WIDTH              = 8,
@@ -9415,7 +9378,7 @@ assign fab_read_data_valid_i_o = fab_read_data_valid_i;
    reg  sckt_rd_rst_fwft = 1'b0;
    reg  fwft_rst_done_i  = 1'b0;
    wire fwft_rst_done;
-   assign fwft_rst_done = C_EN_SAFETY_CKT ? fwft_rst_done_i : 1'b1;
+   assign fwft_rst_done = 1'b1;//C_EN_SAFETY_CKT ? fwft_rst_done_i : 1'b1;
    always @ (posedge RD_CLK) begin
      sckt_rd_rst_fwft <= #`TCQ SAFETY_CKT_RD_RST;
    end
@@ -10341,7 +10304,7 @@ generate
   end //if
 endgenerate
 
-endmodule //fifo_generator_v13_1_3_bhv_ver_preload0
+endmodule //fifo_generator_v13_2_1_bhv_ver_preload0
 
 
 //-----------------------------------------------------------------------------
@@ -10357,7 +10320,7 @@ endmodule //fifo_generator_v13_1_3_bhv_ver_preload0
 //
 //--------------------------------------------------------------------------
 
-module fifo_generator_v13_1_3_axic_reg_slice #
+module fifo_generator_v13_2_1_axic_reg_slice #
   (
    parameter C_FAMILY     = "virtex7",
    parameter C_DATA_WIDTH = 32,
@@ -10379,6 +10342,27 @@ module fifo_generator_v13_1_3_axic_reg_slice #
    input  wire                      M_READY
    );
 
+  localparam RST_SYNC_STAGES = 5;
+  localparam RST_BUSY_LEN    = 6;
+  reg [1:0] arst_sync_wr  = 2'b11;
+  reg [RST_BUSY_LEN-1:0] sckt_wr_rst_cc = 0;
+  wire sync_reset;
+  wire extnd_reset;
+
+
+  always @(posedge ARESET or posedge ACLK) begin
+    if (ARESET)
+      arst_sync_wr <= 2'b11;
+    else
+      arst_sync_wr <= #`TCQ {arst_sync_wr[0], 1'b0};
+  end
+
+  always @(posedge ACLK) begin
+    sckt_wr_rst_cc   <= #`TCQ {sckt_wr_rst_cc[RST_BUSY_LEN-2:0], arst_sync_wr[1]};
+  end
+
+  assign sync_reset     = |sckt_wr_rst_cc[RST_BUSY_LEN-5:0] | arst_sync_wr[1]; 
+  assign extnd_reset    = |sckt_wr_rst_cc | arst_sync_wr[1];
   generate
   ////////////////////////////////////////////////////////////////////
   //
@@ -10407,7 +10391,7 @@ module fifo_generator_v13_1_3_axic_reg_slice #
 
       reg  areset_d1; // Reset delay register
       always @(posedge ACLK) begin
-        areset_d1 <= ARESET;
+        areset_d1 <= extnd_reset;
       end
       
       // Load storage1 with either slave side data or from storage2
@@ -10449,10 +10433,10 @@ module fifo_generator_v13_1_3_axic_reg_slice #
                        
       // State Machine for handling output signals
       always @(posedge ACLK) begin
-        if (ARESET) begin
+        if (sync_reset || extnd_reset) begin
           s_ready_i <= 1'b0;
           state <= ZERO;
-        end else if (areset_d1) begin
+        end else if (areset_d1 && ~extnd_reset) begin
           s_ready_i <= 1'b1;
         end else begin
           case (state)
@@ -10498,16 +10482,16 @@ module fifo_generator_v13_1_3_axic_reg_slice #
 
       reg  areset_d1; // Reset delay register
       always @(posedge ACLK) begin
-        areset_d1 <= ARESET;
+        areset_d1 <= extnd_reset;
       end
       
       // Load storage1 with slave side data
       always @(posedge ACLK) 
       begin
-        if (ARESET) begin
+        if (sync_reset || extnd_reset) begin
           s_ready_i <= 1'b0;
           m_valid_i <= 1'b0;
-        end else if (areset_d1) begin
+        end else if (areset_d1 && ~extnd_reset) begin
           s_ready_i <= 1'b1;
         end else if (m_valid_i & M_READY) begin
           s_ready_i <= 1'b1;

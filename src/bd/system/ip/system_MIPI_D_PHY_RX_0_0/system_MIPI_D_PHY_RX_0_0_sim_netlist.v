@@ -1,10 +1,10 @@
-// Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
-// Date        : Mon Feb 05 16:48:58 2018
+// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+// Date        : Tue Jun 19 19:15:57 2018
 // Host        : elodlt-ro running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               C:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_MIPI_D_PHY_RX_0_0/system_MIPI_D_PHY_RX_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top system_MIPI_D_PHY_RX_0_0 -prefix
+//               system_MIPI_D_PHY_RX_0_0_ system_MIPI_D_PHY_RX_0_0_sim_netlist.v
 // Design      : system_MIPI_D_PHY_RX_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,336 +12,10 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "system_MIPI_D_PHY_RX_0_0,MIPI_DPHY_Receiver,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MIPI_DPHY_Receiver,Vivado 2016.4" *) 
-(* NotValidForBitStream *)
-module system_MIPI_D_PHY_RX_0_0
-   (dphy_clk_hs_p,
-    dphy_clk_hs_n,
-    dphy_clk_lp_p,
-    dphy_clk_lp_n,
-    dphy_data_hs_p,
-    dphy_data_hs_n,
-    dphy_data_lp_p,
-    dphy_data_lp_n,
-    RefClk,
-    aRst,
-    RxDDRClkHS,
-    aRxClkActiveHS,
-    aClkStopstate,
-    aClkEnable,
-    aClkUlpsActiveNot,
-    aRxUlpsClkNot,
-    aClkForceRxmode,
-    aClkErrControl,
-    RxByteClkHS,
-    aD0Stopstate,
-    aD0Enable,
-    aD0UlpsActiveNot,
-    rbD0RxDataHS,
-    rbD0RxValidHS,
-    rbD0RxActiveHS,
-    rbD0RxSyncHS,
-    rbD0ErrSotHS,
-    rbD0ErrSotSyncHS,
-    aD0ForceRxmode,
-    D0RxClkEsc,
-    aD0RxDataEsc,
-    aD0RxValidEsc,
-    aD0RxLpdtEsc,
-    aD0RxUlpsEsc,
-    aD0RxTriggerEsc,
-    aD0ErrEsc,
-    aD0ErrControl,
-    aD1Stopstate,
-    aD1Enable,
-    aD1UlpsActiveNot,
-    rbD1RxDataHS,
-    rbD1RxValidHS,
-    rbD1RxActiveHS,
-    rbD1RxSyncHS,
-    rbD1ErrSotHS,
-    rbD1ErrSotSyncHS,
-    aD1ForceRxmode,
-    D1RxClkEsc,
-    aD1RxDataEsc,
-    aD1RxValidEsc,
-    aD1RxLpdtEsc,
-    aD1RxUlpsEsc,
-    aD1RxTriggerEsc,
-    aD1ErrEsc,
-    aD1ErrControl,
-    s_axi_lite_awaddr,
-    s_axi_lite_awprot,
-    s_axi_lite_awvalid,
-    s_axi_lite_awready,
-    s_axi_lite_wdata,
-    s_axi_lite_wstrb,
-    s_axi_lite_wvalid,
-    s_axi_lite_wready,
-    s_axi_lite_bresp,
-    s_axi_lite_bvalid,
-    s_axi_lite_bready,
-    s_axi_lite_araddr,
-    s_axi_lite_arprot,
-    s_axi_lite_arvalid,
-    s_axi_lite_arready,
-    s_axi_lite_rdata,
-    s_axi_lite_rresp,
-    s_axi_lite_rvalid,
-    s_axi_lite_rready,
-    s_axi_lite_aclk,
-    s_axi_lite_aresetn);
-  (* x_interface_info = "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_P" *) input dphy_clk_hs_p;
-  (* x_interface_info = "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_N" *) input dphy_clk_hs_n;
-  input dphy_clk_lp_p;
-  input dphy_clk_lp_n;
-  input [1:0]dphy_data_hs_p;
-  input [1:0]dphy_data_hs_n;
-  input [1:0]dphy_data_lp_p;
-  input [1:0]dphy_data_lp_n;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 RefClk CLK" *) input RefClk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 aRst RST" *) input aRst;
-  output RxDDRClkHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXCLKACTIVEHS" *) output aRxClkActiveHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_STOPSTATE" *) output aClkStopstate;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ENABLE" *) input aClkEnable;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ULPSACTIVENOT" *) output aClkUlpsActiveNot;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXULPSCLKNOT" *) output aRxUlpsClkNot;
-  input aClkForceRxmode;
-  output aClkErrControl;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 RxByteClkHS CLK" *) output RxByteClkHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_STOPSTATE" *) output aD0Stopstate;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ENABLE" *) input aD0Enable;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ULPSACTIVENOT" *) output aD0UlpsActiveNot;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAHS" *) output [7:0]rbD0RxDataHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDHS" *) output rbD0RxValidHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXACTIVEHS" *) output rbD0RxActiveHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXSYNCHS" *) output rbD0RxSyncHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTHS" *) output rbD0ErrSotHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTSYNCHS" *) output rbD0ErrSotSyncHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_FORCERXMODE" *) input aD0ForceRxmode;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXCLKESC" *) output D0RxClkEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAESC" *) output [7:0]aD0RxDataEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDESC" *) output aD0RxValidEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXLPDTESC" *) output aD0RxLpdtEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXULPSESC" *) output aD0RxUlpsEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXTRIGGERESC" *) output [3:0]aD0RxTriggerEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRESC" *) output aD0ErrEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRCONTROL" *) output aD0ErrControl;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_STOPSTATE" *) output aD1Stopstate;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ENABLE" *) input aD1Enable;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ULPSACTIVENOT" *) output aD1UlpsActiveNot;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAHS" *) output [7:0]rbD1RxDataHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDHS" *) output rbD1RxValidHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXACTIVEHS" *) output rbD1RxActiveHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXSYNCHS" *) output rbD1RxSyncHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTHS" *) output rbD1ErrSotHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTSYNCHS" *) output rbD1ErrSotSyncHS;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_FORCERXMODE" *) input aD1ForceRxmode;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXCLKESC" *) output D1RxClkEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAESC" *) output [7:0]aD1RxDataEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDESC" *) output aD1RxValidEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXLPDTESC" *) output aD1RxLpdtEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXULPSESC" *) output aD1RxUlpsEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXTRIGGERESC" *) output [3:0]aD1RxTriggerEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRESC" *) output aD1ErrEsc;
-  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRCONTROL" *) output aD1ErrControl;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR" *) input [3:0]s_axi_lite_awaddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWPROT" *) input [2:0]s_axi_lite_awprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID" *) input s_axi_lite_awvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWREADY" *) output s_axi_lite_awready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA" *) input [31:0]s_axi_lite_wdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WSTRB" *) input [3:0]s_axi_lite_wstrb;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WVALID" *) input s_axi_lite_wvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WREADY" *) output s_axi_lite_wready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BRESP" *) output [1:0]s_axi_lite_bresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BVALID" *) output s_axi_lite_bvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BREADY" *) input s_axi_lite_bready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARADDR" *) input [3:0]s_axi_lite_araddr;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARPROT" *) input [2:0]s_axi_lite_arprot;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARVALID" *) input s_axi_lite_arvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY" *) output s_axi_lite_arready;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RDATA" *) output [31:0]s_axi_lite_rdata;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RRESP" *) output [1:0]s_axi_lite_rresp;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RVALID" *) output s_axi_lite_rvalid;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RREADY" *) input s_axi_lite_rready;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 s_axi_lite_aclk CLK" *) input s_axi_lite_aclk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 s_axi_lite_aresetn RST" *) input s_axi_lite_aresetn;
-
-  wire D0RxClkEsc;
-  wire D1RxClkEsc;
-  wire RefClk;
-  wire RxByteClkHS;
-  wire RxDDRClkHS;
-  wire aClkEnable;
-  wire aClkErrControl;
-  wire aClkForceRxmode;
-  wire aClkStopstate;
-  wire aClkUlpsActiveNot;
-  wire aD0Enable;
-  wire aD0ErrControl;
-  wire aD0ErrEsc;
-  wire aD0ForceRxmode;
-  wire [7:0]aD0RxDataEsc;
-  wire aD0RxLpdtEsc;
-  wire [3:0]aD0RxTriggerEsc;
-  wire aD0RxUlpsEsc;
-  wire aD0RxValidEsc;
-  wire aD0Stopstate;
-  wire aD0UlpsActiveNot;
-  wire aD1Enable;
-  wire aD1ErrControl;
-  wire aD1ErrEsc;
-  wire aD1ForceRxmode;
-  wire [7:0]aD1RxDataEsc;
-  wire aD1RxLpdtEsc;
-  wire [3:0]aD1RxTriggerEsc;
-  wire aD1RxUlpsEsc;
-  wire aD1RxValidEsc;
-  wire aD1Stopstate;
-  wire aD1UlpsActiveNot;
-  wire aRst;
-  wire aRxClkActiveHS;
-  wire aRxUlpsClkNot;
-  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire dphy_clk_hs_n;
-  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire dphy_clk_hs_p;
-  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire dphy_clk_lp_n;
-  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire dphy_clk_lp_p;
-  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire [1:0]dphy_data_hs_n;
-  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire [1:0]dphy_data_hs_p;
-  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire [1:0]dphy_data_lp_n;
-  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire [1:0]dphy_data_lp_p;
-  wire rbD0ErrSotHS;
-  wire rbD0ErrSotSyncHS;
-  wire rbD0RxActiveHS;
-  wire [7:0]rbD0RxDataHS;
-  wire rbD0RxSyncHS;
-  wire rbD0RxValidHS;
-  wire rbD1ErrSotHS;
-  wire rbD1ErrSotSyncHS;
-  wire rbD1RxActiveHS;
-  wire [7:0]rbD1RxDataHS;
-  wire rbD1RxSyncHS;
-  wire rbD1RxValidHS;
-  wire s_axi_lite_aclk;
-  wire [3:0]s_axi_lite_araddr;
-  wire s_axi_lite_aresetn;
-  wire [2:0]s_axi_lite_arprot;
-  wire s_axi_lite_arready;
-  wire s_axi_lite_arvalid;
-  wire [3:0]s_axi_lite_awaddr;
-  wire [2:0]s_axi_lite_awprot;
-  wire s_axi_lite_awready;
-  wire s_axi_lite_awvalid;
-  wire s_axi_lite_bready;
-  wire [1:0]s_axi_lite_bresp;
-  wire s_axi_lite_bvalid;
-  wire [31:0]s_axi_lite_rdata;
-  wire s_axi_lite_rready;
-  wire [1:0]s_axi_lite_rresp;
-  wire s_axi_lite_rvalid;
-  wire [31:0]s_axi_lite_wdata;
-  wire s_axi_lite_wready;
-  wire [3:0]s_axi_lite_wstrb;
-  wire s_axi_lite_wvalid;
-
-  (* C_S_AXI_LITE_ADDR_WIDTH = "4" *) 
-  (* C_S_AXI_LITE_DATA_WIDTH = "32" *) 
-  (* C_S_AXI_LITE_FREQ_HZ = "100000000" *) 
-  (* kAddDelayClk_ps = "0" *) 
-  (* kAddDelayData0_ps = "0" *) 
-  (* kAddDelayData1_ps = "0" *) 
-  (* kDebug = "FALSE" *) 
-  (* kGenerateAXIL = "TRUE" *) 
-  (* kGenerateMMCM = "FALSE" *) 
-  (* kNoOfDataLanes = "2" *) 
-  (* kRefClkFreqHz = "200000000" *) 
-  (* kVersionMajor = "1" *) 
-  (* kVersionMinor = "0" *) 
-  system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver U0
-       (.D0RxClkEsc(D0RxClkEsc),
-        .D1RxClkEsc(D1RxClkEsc),
-        .RefClk(RefClk),
-        .RxByteClkHS(RxByteClkHS),
-        .RxDDRClkHS(RxDDRClkHS),
-        .aClkEnable(aClkEnable),
-        .aClkErrControl(aClkErrControl),
-        .aClkForceRxmode(aClkForceRxmode),
-        .aClkStopstate(aClkStopstate),
-        .aClkUlpsActiveNot(aClkUlpsActiveNot),
-        .aD0Enable(aD0Enable),
-        .aD0ErrControl(aD0ErrControl),
-        .aD0ErrEsc(aD0ErrEsc),
-        .aD0ForceRxmode(aD0ForceRxmode),
-        .aD0RxDataEsc(aD0RxDataEsc),
-        .aD0RxLpdtEsc(aD0RxLpdtEsc),
-        .aD0RxTriggerEsc(aD0RxTriggerEsc),
-        .aD0RxUlpsEsc(aD0RxUlpsEsc),
-        .aD0RxValidEsc(aD0RxValidEsc),
-        .aD0Stopstate(aD0Stopstate),
-        .aD0UlpsActiveNot(aD0UlpsActiveNot),
-        .aD1Enable(aD1Enable),
-        .aD1ErrControl(aD1ErrControl),
-        .aD1ErrEsc(aD1ErrEsc),
-        .aD1ForceRxmode(aD1ForceRxmode),
-        .aD1RxDataEsc(aD1RxDataEsc),
-        .aD1RxLpdtEsc(aD1RxLpdtEsc),
-        .aD1RxTriggerEsc(aD1RxTriggerEsc),
-        .aD1RxUlpsEsc(aD1RxUlpsEsc),
-        .aD1RxValidEsc(aD1RxValidEsc),
-        .aD1Stopstate(aD1Stopstate),
-        .aD1UlpsActiveNot(aD1UlpsActiveNot),
-        .aRst(aRst),
-        .aRxClkActiveHS(aRxClkActiveHS),
-        .aRxUlpsClkNot(aRxUlpsClkNot),
-        .dphy_clk_hs_n(dphy_clk_hs_n),
-        .dphy_clk_hs_p(dphy_clk_hs_p),
-        .dphy_clk_lp_n(dphy_clk_lp_n),
-        .dphy_clk_lp_p(dphy_clk_lp_p),
-        .dphy_data_hs_n(dphy_data_hs_n),
-        .dphy_data_hs_p(dphy_data_hs_p),
-        .dphy_data_lp_n(dphy_data_lp_n),
-        .dphy_data_lp_p(dphy_data_lp_p),
-        .rbD0ErrSotHS(rbD0ErrSotHS),
-        .rbD0ErrSotSyncHS(rbD0ErrSotSyncHS),
-        .rbD0RxActiveHS(rbD0RxActiveHS),
-        .rbD0RxDataHS(rbD0RxDataHS),
-        .rbD0RxSyncHS(rbD0RxSyncHS),
-        .rbD0RxValidHS(rbD0RxValidHS),
-        .rbD1ErrSotHS(rbD1ErrSotHS),
-        .rbD1ErrSotSyncHS(rbD1ErrSotSyncHS),
-        .rbD1RxActiveHS(rbD1RxActiveHS),
-        .rbD1RxDataHS(rbD1RxDataHS),
-        .rbD1RxSyncHS(rbD1RxSyncHS),
-        .rbD1RxValidHS(rbD1RxValidHS),
-        .s_axi_lite_aclk(s_axi_lite_aclk),
-        .s_axi_lite_araddr(s_axi_lite_araddr),
-        .s_axi_lite_aresetn(s_axi_lite_aresetn),
-        .s_axi_lite_arprot(s_axi_lite_arprot),
-        .s_axi_lite_arready(s_axi_lite_arready),
-        .s_axi_lite_arvalid(s_axi_lite_arvalid),
-        .s_axi_lite_awaddr(s_axi_lite_awaddr),
-        .s_axi_lite_awprot(s_axi_lite_awprot),
-        .s_axi_lite_awready(s_axi_lite_awready),
-        .s_axi_lite_awvalid(s_axi_lite_awvalid),
-        .s_axi_lite_bready(s_axi_lite_bready),
-        .s_axi_lite_bresp(s_axi_lite_bresp),
-        .s_axi_lite_bvalid(s_axi_lite_bvalid),
-        .s_axi_lite_rdata(s_axi_lite_rdata),
-        .s_axi_lite_rready(s_axi_lite_rready),
-        .s_axi_lite_rresp(s_axi_lite_rresp),
-        .s_axi_lite_rvalid(s_axi_lite_rvalid),
-        .s_axi_lite_wdata(s_axi_lite_wdata),
-        .s_axi_lite_wready(s_axi_lite_wready),
-        .s_axi_lite_wstrb(s_axi_lite_wstrb),
-        .s_axi_lite_wvalid(s_axi_lite_wvalid));
-endmodule
-
-(* ORIG_REF_NAME = "DPHY_LaneSCNN" *) 
 module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
-   (RxDDRClkHS,
+   (aRxClkActiveHS,
+    RxDDRClkHS,
     CLK,
-    aRxClkActiveHS,
     aClkStopstate,
     aRxUlpsClkNot,
     aClkUlpsActiveNot,
@@ -350,9 +24,9 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
     aHS,
     D,
     aLP);
+  output aRxClkActiveHS;
   output RxDDRClkHS;
   output CLK;
-  output aRxClkActiveHS;
   output aClkStopstate;
   output aRxUlpsClkNot;
   output aClkUlpsActiveNot;
@@ -377,24 +51,10 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
   wire aRxClkActiveHS;
   wire aRxUlpsClkNot;
   wire cDelayCntEn;
-  wire \cDelayCnt[0]_i_10_n_0 ;
-  wire \cDelayCnt[0]_i_11_n_0 ;
-  wire \cDelayCnt[0]_i_12_n_0 ;
-  wire \cDelayCnt[0]_i_5_n_0 ;
-  wire \cDelayCnt[0]_i_7__1_n_0 ;
-  wire \cDelayCnt[0]_i_8__1_n_0 ;
+  wire \cDelayCnt[0]_i_5__1_n_0 ;
+  wire \cDelayCnt[0]_i_7_n_0 ;
+  wire \cDelayCnt[0]_i_8_n_0 ;
   wire \cDelayCnt[0]_i_9_n_0 ;
-  wire \cDelayCnt[12]_i_2_n_0 ;
-  wire \cDelayCnt[12]_i_3_n_0 ;
-  wire \cDelayCnt[12]_i_4_n_0 ;
-  wire \cDelayCnt[4]_i_2_n_0 ;
-  wire \cDelayCnt[4]_i_3_n_0 ;
-  wire \cDelayCnt[4]_i_4_n_0 ;
-  wire \cDelayCnt[4]_i_5_n_0 ;
-  wire \cDelayCnt[8]_i_2_n_0 ;
-  wire \cDelayCnt[8]_i_3_n_0 ;
-  wire \cDelayCnt[8]_i_4_n_0 ;
-  wire \cDelayCnt[8]_i_5_n_0 ;
   wire [14:0]cDelayCnt_reg;
   wire \cDelayCnt_reg[0]_i_3_n_0 ;
   wire \cDelayCnt_reg[0]_i_3_n_1 ;
@@ -451,21 +111,21 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
   wire [3:2]\NLW_cDelayCnt_reg[12]_i_1_CO_UNCONNECTED ;
   wire [3:3]\NLW_cDelayCnt_reg[12]_i_1_O_UNCONNECTED ;
 
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter_25 \GenSyncLP[0].GlitchFilterLP 
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter_27 \GenSyncLP[0].GlitchFilterLP 
        (.RefClk(RefClk),
         .in0(cLP[0]),
         .\oSyncStages_reg[1] (cEnable),
         .out(cLPGlitch_0));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2 \GenSyncLP[0].SyncAsyncx 
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28 \GenSyncLP[0].SyncAsyncx 
        (.RefClk(RefClk),
         .aLP(aLP[0]),
         .out(cLPGlitch_0));
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter_26 \GenSyncLP[1].GlitchFilterLP 
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter_29 \GenSyncLP[1].GlitchFilterLP 
        (.RefClk(RefClk),
         .in0(cLP[1]),
         .\oSyncStages_reg[1] (cEnable),
         .out(cLPGlitch_1));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3 \GenSyncLP[1].SyncAsyncx 
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30 \GenSyncLP[1].SyncAsyncx 
        (.RefClk(RefClk),
         .aLP(aLP[1]),
         .out(cLPGlitch_1));
@@ -477,19 +137,19 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .RxDDRClkHS(RxDDRClkHS),
         .aHS(aHS),
         .aRxClkActiveHS(aRxClkActiveHS));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1 SyncAsyncEnable
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31 SyncAsyncEnable
        (.AR(SyncAsyncEnable_n_2),
         .D(D),
         .Q({\state_reg_n_0_[3] ,\state_reg_n_0_[2] ,\state_reg_n_0_[1] ,\state_reg_n_0_[0] }),
         .RefClk(RefClk),
         .SR(SyncAsyncEnable_n_1),
         .out(cEnable));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5 SyncAsyncLocked
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32 SyncAsyncLocked
        (.AR(SyncAsyncEnable_n_2),
         .D({nstate[2],nstate[0]}),
         .\Filter.sOut_reg (\state[0]_i_2__1_n_0 ),
         .\Filter.sOut_reg_0 (\state[0]_i_4__1_n_0 ),
-        .\Filter.sOut_reg_1 (\cDelayCnt[0]_i_12_n_0 ),
+        .\Filter.sOut_reg_1 (\cDelayCnt[0]_i_9_n_0 ),
         .\Filter.sOut_reg_2 (cLP),
         .\Filter.sOut_reg_3 (\state[2]_i_3_n_0 ),
         .Q({\state_reg_n_0_[3] ,\state_reg_n_0_[2] ,\state_reg_n_0_[1] ,\state_reg_n_0_[0] }),
@@ -498,10 +158,10 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .cHSClkLocked_q(cHSClkLocked_q),
         .clear(clear),
         .out(SyncAsyncLocked_n_0),
-        .\state_reg[0] (\cDelayCnt[0]_i_7__1_n_0 ),
+        .\state_reg[0] (\cDelayCnt[0]_i_7_n_0 ),
         .\state_reg[1] (\state[0]_i_3__1_n_0 ),
         .\state_reg[2] (\state[2]_i_5_n_0 ),
-        .\state_reg[3] (\cDelayCnt[0]_i_5_n_0 ),
+        .\state_reg[3] (\cDelayCnt[0]_i_5__1_n_0 ),
         .\state_reg[3]_0 (\state[0]_i_6__1_n_0 ),
         .\state_reg[3]_1 (\state[0]_i_7__1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
@@ -530,22 +190,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .I1(\state_reg_n_0_[3] ),
         .I2(\state_reg_n_0_[1] ),
         .O(aRxUlpsClkNot));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_10 
-       (.I0(cDelayCnt_reg[1]),
-        .O(\cDelayCnt[0]_i_10_n_0 ));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \cDelayCnt[0]_i_11 
-       (.I0(cDelayCnt_reg[0]),
-        .O(\cDelayCnt[0]_i_11_n_0 ));
-  LUT2 #(
-    .INIT(4'hB)) 
-    \cDelayCnt[0]_i_12 
-       (.I0(cLP[0]),
-        .I1(cLP[1]),
-        .O(\cDelayCnt[0]_i_12_n_0 ));
   LUT4 #(
     .INIT(16'h0400)) 
     \cDelayCnt[0]_i_2 
@@ -556,89 +200,35 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .O(cDelayCntEn));
   LUT6 #(
     .INIT(64'h003F004000000000)) 
-    \cDelayCnt[0]_i_5 
+    \cDelayCnt[0]_i_5__1 
        (.I0(\state_reg_n_0_[3] ),
         .I1(\state_reg_n_0_[1] ),
         .I2(\state_reg_n_0_[2] ),
         .I3(\state_reg_n_0_[0] ),
         .I4(cLP[0]),
         .I5(cLP[1]),
-        .O(\cDelayCnt[0]_i_5_n_0 ));
+        .O(\cDelayCnt[0]_i_5__1_n_0 ));
   LUT6 #(
     .INIT(64'hAA0000008822004F)) 
-    \cDelayCnt[0]_i_7__1 
+    \cDelayCnt[0]_i_7 
        (.I0(\state_reg_n_0_[0] ),
         .I1(\state_reg_n_0_[1] ),
         .I2(\state[0]_i_3__1_n_0 ),
         .I3(cLP[1]),
         .I4(cLP[0]),
         .I5(\state_reg_n_0_[2] ),
-        .O(\cDelayCnt[0]_i_7__1_n_0 ));
+        .O(\cDelayCnt[0]_i_7_n_0 ));
   LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_8__1 
-       (.I0(cDelayCnt_reg[3]),
-        .O(\cDelayCnt[0]_i_8__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
+    .INIT(2'h1)) 
+    \cDelayCnt[0]_i_8 
+       (.I0(cDelayCnt_reg[0]),
+        .O(\cDelayCnt[0]_i_8_n_0 ));
+  LUT2 #(
+    .INIT(4'hB)) 
     \cDelayCnt[0]_i_9 
-       (.I0(cDelayCnt_reg[2]),
+       (.I0(cLP[0]),
+        .I1(cLP[1]),
         .O(\cDelayCnt[0]_i_9_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_2 
-       (.I0(cDelayCnt_reg[14]),
-        .O(\cDelayCnt[12]_i_2_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_3 
-       (.I0(cDelayCnt_reg[13]),
-        .O(\cDelayCnt[12]_i_3_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_4 
-       (.I0(cDelayCnt_reg[12]),
-        .O(\cDelayCnt[12]_i_4_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_2 
-       (.I0(cDelayCnt_reg[7]),
-        .O(\cDelayCnt[4]_i_2_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_3 
-       (.I0(cDelayCnt_reg[6]),
-        .O(\cDelayCnt[4]_i_3_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_4 
-       (.I0(cDelayCnt_reg[5]),
-        .O(\cDelayCnt[4]_i_4_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_5 
-       (.I0(cDelayCnt_reg[4]),
-        .O(\cDelayCnt[4]_i_5_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_2 
-       (.I0(cDelayCnt_reg[11]),
-        .O(\cDelayCnt[8]_i_2_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_3 
-       (.I0(cDelayCnt_reg[10]),
-        .O(\cDelayCnt[8]_i_3_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_4 
-       (.I0(cDelayCnt_reg[9]),
-        .O(\cDelayCnt[8]_i_4_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_5 
-       (.I0(cDelayCnt_reg[8]),
-        .O(\cDelayCnt[8]_i_5_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[0] 
@@ -653,7 +243,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
         .O({\cDelayCnt_reg[0]_i_3_n_4 ,\cDelayCnt_reg[0]_i_3_n_5 ,\cDelayCnt_reg[0]_i_3_n_6 ,\cDelayCnt_reg[0]_i_3_n_7 }),
-        .S({\cDelayCnt[0]_i_8__1_n_0 ,\cDelayCnt[0]_i_9_n_0 ,\cDelayCnt[0]_i_10_n_0 ,\cDelayCnt[0]_i_11_n_0 }));
+        .S({cDelayCnt_reg[3:1],\cDelayCnt[0]_i_8_n_0 }));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[10] 
@@ -684,7 +274,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_cDelayCnt_reg[12]_i_1_O_UNCONNECTED [3],\cDelayCnt_reg[12]_i_1_n_5 ,\cDelayCnt_reg[12]_i_1_n_6 ,\cDelayCnt_reg[12]_i_1_n_7 }),
-        .S({1'b0,\cDelayCnt[12]_i_2_n_0 ,\cDelayCnt[12]_i_3_n_0 ,\cDelayCnt[12]_i_4_n_0 }));
+        .S({1'b0,cDelayCnt_reg[14:12]}));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[13] 
@@ -739,7 +329,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[4]_i_1_n_4 ,\cDelayCnt_reg[4]_i_1_n_5 ,\cDelayCnt_reg[4]_i_1_n_6 ,\cDelayCnt_reg[4]_i_1_n_7 }),
-        .S({\cDelayCnt[4]_i_2_n_0 ,\cDelayCnt[4]_i_3_n_0 ,\cDelayCnt[4]_i_4_n_0 ,\cDelayCnt[4]_i_5_n_0 }));
+        .S(cDelayCnt_reg[7:4]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[5] 
@@ -778,7 +368,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[8]_i_1_n_4 ,\cDelayCnt_reg[8]_i_1_n_5 ,\cDelayCnt_reg[8]_i_1_n_6 ,\cDelayCnt_reg[8]_i_1_n_7 }),
-        .S({\cDelayCnt[8]_i_2_n_0 ,\cDelayCnt[8]_i_3_n_0 ,\cDelayCnt[8]_i_4_n_0 ,\cDelayCnt[8]_i_5_n_0 }));
+        .S(cDelayCnt_reg[11:8]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[9] 
@@ -946,7 +536,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN
         .R(SyncAsyncEnable_n_1));
 endmodule
 
-(* ORIG_REF_NAME = "DPHY_LaneSFEN" *) 
 module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
    (rbD0RxValidHS,
     aD0Stopstate,
@@ -985,12 +574,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
   wire CLK;
   wire CLKB;
   wire [0:0]D;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_0 ;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_1 ;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_2 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_0 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_1 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_2 ;
   wire HSDeserializerX_n_2;
   wire HSDeserializerX_n_3;
   wire HSDeserializerX_n_5;
@@ -999,28 +582,20 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
   wire SyncAsyncEnable_n_1;
   wire SyncAsyncForceRxMode_n_0;
   wire SyncAsyncValid_n_1;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ;
   wire aD0ForceRxmode;
   wire aD0Stopstate;
   wire aHS;
   wire [1:0]aLP;
   wire [1:0]aLP_int;
   wire \cDelayCnt[0]_i_3__0_n_0 ;
-  wire \cDelayCnt[0]_i_4__1_n_0 ;
-  wire \cDelayCnt[0]_i_5__1_n_0 ;
-  wire \cDelayCnt[0]_i_6__1_n_0 ;
-  wire \cDelayCnt[0]_i_7__0_n_0 ;
-  wire \cDelayCnt[0]_i_8__0_n_0 ;
-  wire \cDelayCnt[12]_i_2__1_n_0 ;
-  wire \cDelayCnt[12]_i_3__1_n_0 ;
-  wire \cDelayCnt[12]_i_4__1_n_0 ;
-  wire \cDelayCnt[4]_i_2__1_n_0 ;
-  wire \cDelayCnt[4]_i_3__1_n_0 ;
-  wire \cDelayCnt[4]_i_4__1_n_0 ;
-  wire \cDelayCnt[4]_i_5__1_n_0 ;
-  wire \cDelayCnt[8]_i_2__1_n_0 ;
-  wire \cDelayCnt[8]_i_3__1_n_0 ;
-  wire \cDelayCnt[8]_i_4__1_n_0 ;
-  wire \cDelayCnt[8]_i_5__1_n_0 ;
+  wire \cDelayCnt[0]_i_4__0_n_0 ;
+  wire \cDelayCnt[0]_i_5__0_n_0 ;
   wire [14:0]cDelayCnt_reg;
   wire \cDelayCnt_reg[0]_i_2__0_n_0 ;
   wire \cDelayCnt_reg[0]_i_2__0_n_1 ;
@@ -1079,48 +654,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
   wire [3:2]\NLW_cDelayCnt_reg[12]_i_1__1_CO_UNCONNECTED ;
   wire [3:3]\NLW_cDelayCnt_reg[12]_i_1__1_O_UNCONNECTED ;
 
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter_9 \GenSyncLP[0].GlitchFilterLPC 
-       (.\Filter.sOut_reg_0 (\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .\Filter.sOut_reg_1 (\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .RefClk(RefClk),
-        .\cDelayCnt_reg[0] (\GenSyncLP[0].GlitchFilterLPC_n_2 ),
-        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3__0_n_0 ),
-        .\oSyncStages_reg[1] (SyncAsyncForceRxMode_n_0),
-        .out(cLPGlitch_0),
-        .\state_reg[0] (\GenSyncLP[0].GlitchFilterLPC_n_1 ),
-        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
-        .\state_reg[1] (\state_reg_n_0_[1] ),
-        .\state_reg[2] (\state_reg_n_0_[2] ));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10 \GenSyncLP[0].SyncAsyncx 
-       (.D(aLP_int[0]),
-        .RefClk(RefClk),
-        .out(cLPGlitch_0));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11 \GenSyncLP[0].SyncAsyncx_D 
-       (.CLK(CLK),
-        .D(aLP_int[0]));
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 \GenSyncLP[1].GlitchFilterLPC 
-       (.AS(cHSReset_reg_n_0),
-        .\Filter.sOut_reg_0 (\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .\Filter.sOut_reg_1 (\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .RefClk(RefClk),
-        .cDelayCnt_reg({cDelayCnt_reg[14],cDelayCnt_reg[11:9],cDelayCnt_reg[5:4]}),
-        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3__0_n_0 ),
-        .\cDelayCnt_reg[9] (\state[0]_i_6__0_n_0 ),
-        .cHSReset_reg(\GenSyncLP[1].GlitchFilterLPC_n_2 ),
-        .\oSyncStages_reg[1] (cValid),
-        .out(cLPGlitch_1),
-        .\state_reg[0] (\GenSyncLP[1].GlitchFilterLPC_n_1 ),
-        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
-        .\state_reg[1] (\state_reg_n_0_[1] ),
-        .\state_reg[2] (\state_reg_n_0_[2] ));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13 \GenSyncLP[1].SyncAsyncx 
-       (.D(aLP_int[1]),
-        .RefClk(RefClk),
-        .out(cLPGlitch_1));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14 \GenSyncLP[1].SyncAsyncx_D 
-       (.CLK(CLK),
-        .D(aLP_int[1]));
-  system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 HSDeserializerX
+  system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13 HSDeserializerX
        (.AS(cHSReset_reg_n_0),
         .CLK(CLK),
         .CLKB(CLKB),
@@ -1142,21 +676,21 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .rbD0RxDataHS(rbD0RxDataHS),
         .rbD0RxSyncHS(rbD0RxSyncHS),
         .rbD0RxValidHS(rbD0RxValidHS));
-  system_MIPI_D_PHY_RX_0_0_ResetBridge_16 RxClkActiveHSResetBridge
+  system_MIPI_D_PHY_RX_0_0_ResetBridge_14 RxClkActiveHSResetBridge
        (.AR(RxClkActiveHSResetBridge_n_0),
         .AS(AS),
         .RefClk(RefClk));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17 SyncAsyncEnable
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15 SyncAsyncEnable
        (.AR(SyncAsyncEnable_n_1),
         .D(D),
         .RefClk(RefClk),
         .out(cEnable));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18 SyncAsyncForceRxMode
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16 SyncAsyncForceRxMode
        (.AR(SyncAsyncEnable_n_1),
         .RefClk(RefClk),
         .aD0ForceRxmode(aD0ForceRxmode),
         .out(SyncAsyncForceRxMode_n_0));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19 SyncAsyncValid
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17 SyncAsyncValid
        (.AR(RxClkActiveHSResetBridge_n_0),
         .RefClk(RefClk),
         .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3__0_n_0 ),
@@ -1167,6 +701,41 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .\state_reg[0] (\state_reg_n_0_[0] ),
         .\state_reg[1] (\state_reg_n_0_[1] ),
         .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter_18 \UseOwnLP.GenSyncLP[0].GlitchFilterLPC 
+       (.\Filter.sOut_reg_0 (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .\Filter.sOut_reg_1 (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .RefClk(RefClk),
+        .\cDelayCnt_reg[0] (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ),
+        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3__0_n_0 ),
+        .\oSyncStages_reg[1] (SyncAsyncForceRxMode_n_0),
+        .out(cLPGlitch_0),
+        .\state_reg[0] (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ),
+        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
+        .\state_reg[1] (\state_reg_n_0_[1] ),
+        .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19 \UseOwnLP.GenSyncLP[0].SyncAsyncx 
+       (.D(aLP_int[0]),
+        .RefClk(RefClk),
+        .out(cLPGlitch_0));
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter_20 \UseOwnLP.GenSyncLP[1].GlitchFilterLPC 
+       (.AS(cHSReset_reg_n_0),
+        .\Filter.sOut_reg_0 (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .\Filter.sOut_reg_1 (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .RefClk(RefClk),
+        .cDelayCnt_reg({cDelayCnt_reg[14],cDelayCnt_reg[11:9],cDelayCnt_reg[5:4]}),
+        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3__0_n_0 ),
+        .\cDelayCnt_reg[9] (\state[0]_i_6__0_n_0 ),
+        .cHSReset_reg(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ),
+        .\oSyncStages_reg[1] (cValid),
+        .out(cLPGlitch_1),
+        .\state_reg[0] (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ),
+        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
+        .\state_reg[1] (\state_reg_n_0_[1] ),
+        .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21 \UseOwnLP.GenSyncLP[1].SyncAsyncx 
+       (.D(aLP_int[1]),
+        .RefClk(RefClk),
+        .out(cLPGlitch_1));
   LUT3 #(
     .INIT(8'h02)) 
     aD0Stopstate_INST_0
@@ -1177,7 +746,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \cDelayCnt[0]_i_3__0 
-       (.I0(\cDelayCnt[0]_i_8__0_n_0 ),
+       (.I0(\cDelayCnt[0]_i_5__0_n_0 ),
         .I1(cDelayCnt_reg[6]),
         .I2(cDelayCnt_reg[3]),
         .I3(cDelayCnt_reg[8]),
@@ -1185,90 +754,20 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .I5(\state[0]_i_7__0_n_0 ),
         .O(\cDelayCnt[0]_i_3__0_n_0 ));
   LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_4__1 
-       (.I0(cDelayCnt_reg[3]),
-        .O(\cDelayCnt[0]_i_4__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_5__1 
-       (.I0(cDelayCnt_reg[2]),
-        .O(\cDelayCnt[0]_i_5__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_6__1 
-       (.I0(cDelayCnt_reg[1]),
-        .O(\cDelayCnt[0]_i_6__1_n_0 ));
-  LUT1 #(
     .INIT(2'h1)) 
-    \cDelayCnt[0]_i_7__0 
+    \cDelayCnt[0]_i_4__0 
        (.I0(cDelayCnt_reg[0]),
-        .O(\cDelayCnt[0]_i_7__0_n_0 ));
+        .O(\cDelayCnt[0]_i_4__0_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFEFFFF)) 
-    \cDelayCnt[0]_i_8__0 
+    \cDelayCnt[0]_i_5__0 
        (.I0(cDelayCnt_reg[11]),
         .I1(cDelayCnt_reg[14]),
         .I2(cDelayCnt_reg[9]),
         .I3(cDelayCnt_reg[10]),
         .I4(cDelayCnt_reg[4]),
         .I5(cDelayCnt_reg[5]),
-        .O(\cDelayCnt[0]_i_8__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_2__1 
-       (.I0(cDelayCnt_reg[14]),
-        .O(\cDelayCnt[12]_i_2__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_3__1 
-       (.I0(cDelayCnt_reg[13]),
-        .O(\cDelayCnt[12]_i_3__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_4__1 
-       (.I0(cDelayCnt_reg[12]),
-        .O(\cDelayCnt[12]_i_4__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_2__1 
-       (.I0(cDelayCnt_reg[7]),
-        .O(\cDelayCnt[4]_i_2__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_3__1 
-       (.I0(cDelayCnt_reg[6]),
-        .O(\cDelayCnt[4]_i_3__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_4__1 
-       (.I0(cDelayCnt_reg[5]),
-        .O(\cDelayCnt[4]_i_4__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_5__1 
-       (.I0(cDelayCnt_reg[4]),
-        .O(\cDelayCnt[4]_i_5__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_2__1 
-       (.I0(cDelayCnt_reg[11]),
-        .O(\cDelayCnt[8]_i_2__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_3__1 
-       (.I0(cDelayCnt_reg[10]),
-        .O(\cDelayCnt[8]_i_3__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_4__1 
-       (.I0(cDelayCnt_reg[9]),
-        .O(\cDelayCnt[8]_i_4__1_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_5__1 
-       (.I0(cDelayCnt_reg[8]),
-        .O(\cDelayCnt[8]_i_5__1_n_0 ));
+        .O(\cDelayCnt[0]_i_5__0_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[0] 
@@ -1276,14 +775,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2__0_n_7 ),
         .Q(cDelayCnt_reg[0]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[0]_i_2__0 
        (.CI(1'b0),
         .CO({\cDelayCnt_reg[0]_i_2__0_n_0 ,\cDelayCnt_reg[0]_i_2__0_n_1 ,\cDelayCnt_reg[0]_i_2__0_n_2 ,\cDelayCnt_reg[0]_i_2__0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
         .O({\cDelayCnt_reg[0]_i_2__0_n_4 ,\cDelayCnt_reg[0]_i_2__0_n_5 ,\cDelayCnt_reg[0]_i_2__0_n_6 ,\cDelayCnt_reg[0]_i_2__0_n_7 }),
-        .S({\cDelayCnt[0]_i_4__1_n_0 ,\cDelayCnt[0]_i_5__1_n_0 ,\cDelayCnt[0]_i_6__1_n_0 ,\cDelayCnt[0]_i_7__0_n_0 }));
+        .S({cDelayCnt_reg[3:1],\cDelayCnt[0]_i_4__0_n_0 }));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[10] 
@@ -1291,7 +790,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__1_n_5 ),
         .Q(cDelayCnt_reg[10]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[11] 
@@ -1299,7 +798,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__1_n_4 ),
         .Q(cDelayCnt_reg[11]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[12] 
@@ -1307,14 +806,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__1_n_7 ),
         .Q(cDelayCnt_reg[12]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[12]_i_1__1 
        (.CI(\cDelayCnt_reg[8]_i_1__1_n_0 ),
         .CO({\NLW_cDelayCnt_reg[12]_i_1__1_CO_UNCONNECTED [3:2],\cDelayCnt_reg[12]_i_1__1_n_2 ,\cDelayCnt_reg[12]_i_1__1_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_cDelayCnt_reg[12]_i_1__1_O_UNCONNECTED [3],\cDelayCnt_reg[12]_i_1__1_n_5 ,\cDelayCnt_reg[12]_i_1__1_n_6 ,\cDelayCnt_reg[12]_i_1__1_n_7 }),
-        .S({1'b0,\cDelayCnt[12]_i_2__1_n_0 ,\cDelayCnt[12]_i_3__1_n_0 ,\cDelayCnt[12]_i_4__1_n_0 }));
+        .S({1'b0,cDelayCnt_reg[14:12]}));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[13] 
@@ -1322,7 +821,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__1_n_6 ),
         .Q(cDelayCnt_reg[13]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[14] 
@@ -1330,7 +829,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__1_n_5 ),
         .Q(cDelayCnt_reg[14]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[1] 
@@ -1338,7 +837,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2__0_n_6 ),
         .Q(cDelayCnt_reg[1]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[2] 
@@ -1346,7 +845,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2__0_n_5 ),
         .Q(cDelayCnt_reg[2]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[3] 
@@ -1354,7 +853,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2__0_n_4 ),
         .Q(cDelayCnt_reg[3]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[4] 
@@ -1362,14 +861,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__1_n_7 ),
         .Q(cDelayCnt_reg[4]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[4]_i_1__1 
        (.CI(\cDelayCnt_reg[0]_i_2__0_n_0 ),
         .CO({\cDelayCnt_reg[4]_i_1__1_n_0 ,\cDelayCnt_reg[4]_i_1__1_n_1 ,\cDelayCnt_reg[4]_i_1__1_n_2 ,\cDelayCnt_reg[4]_i_1__1_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[4]_i_1__1_n_4 ,\cDelayCnt_reg[4]_i_1__1_n_5 ,\cDelayCnt_reg[4]_i_1__1_n_6 ,\cDelayCnt_reg[4]_i_1__1_n_7 }),
-        .S({\cDelayCnt[4]_i_2__1_n_0 ,\cDelayCnt[4]_i_3__1_n_0 ,\cDelayCnt[4]_i_4__1_n_0 ,\cDelayCnt[4]_i_5__1_n_0 }));
+        .S(cDelayCnt_reg[7:4]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[5] 
@@ -1377,7 +876,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__1_n_6 ),
         .Q(cDelayCnt_reg[5]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[6] 
@@ -1385,7 +884,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__1_n_5 ),
         .Q(cDelayCnt_reg[6]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[7] 
@@ -1393,7 +892,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__1_n_4 ),
         .Q(cDelayCnt_reg[7]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[8] 
@@ -1401,14 +900,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__1_n_7 ),
         .Q(cDelayCnt_reg[8]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[8]_i_1__1 
        (.CI(\cDelayCnt_reg[4]_i_1__1_n_0 ),
         .CO({\cDelayCnt_reg[8]_i_1__1_n_0 ,\cDelayCnt_reg[8]_i_1__1_n_1 ,\cDelayCnt_reg[8]_i_1__1_n_2 ,\cDelayCnt_reg[8]_i_1__1_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[8]_i_1__1_n_4 ,\cDelayCnt_reg[8]_i_1__1_n_5 ,\cDelayCnt_reg[8]_i_1__1_n_6 ,\cDelayCnt_reg[8]_i_1__1_n_7 }),
-        .S({\cDelayCnt[8]_i_2__1_n_0 ,\cDelayCnt[8]_i_3__1_n_0 ,\cDelayCnt[8]_i_4__1_n_0 ,\cDelayCnt[8]_i_5__1_n_0 }));
+        .S(cDelayCnt_reg[11:8]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[9] 
@@ -1416,11 +915,11 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__1_n_6 ),
         .Q(cDelayCnt_reg[9]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDPE cHSReset_reg
        (.C(RefClk),
         .CE(1'b1),
-        .D(\GenSyncLP[1].GlitchFilterLPC_n_2 ),
+        .D(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ),
         .PRE(RxClkActiveHSResetBridge_n_0),
         .Q(cHSReset_reg_n_0));
   FDCE cHSSettled_reg
@@ -1450,8 +949,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
   LUT4 #(
     .INIT(16'hAE00)) 
     \state[0]_i_1 
-       (.I0(\GenSyncLP[0].GlitchFilterLPC_n_1 ),
-        .I1(\GenSyncLP[1].GlitchFilterLPC_n_1 ),
+       (.I0(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ),
+        .I1(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ),
         .I2(\state[0]_i_4__0_n_0 ),
         .I3(cEnable),
         .O(\state[0]_i_1_n_0 ));
@@ -1487,8 +986,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
     .INIT(64'hFFFDC08000000000)) 
     \state[1]_i_1 
        (.I0(\state_reg_n_0_[0] ),
-        .I1(\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .I2(\GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .I1(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .I2(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
         .I3(\state_reg_n_0_[2] ),
         .I4(\state_reg_n_0_[1] ),
         .I5(cEnable),
@@ -1498,8 +997,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
     \state[2]_i_1 
        (.I0(\state_reg_n_0_[1] ),
         .I1(\state_reg_n_0_[2] ),
-        .I2(\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .I3(\GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .I2(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .I3(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
         .I4(\state_reg_n_0_[0] ),
         .I5(cEnable),
         .O(\state[2]_i_1_n_0 ));
@@ -1530,7 +1029,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN
 endmodule
 
 (* ORIG_REF_NAME = "DPHY_LaneSFEN" *) 
-module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
+module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0
    (rbD1RxValidHS,
     aD1Stopstate,
     rbD1RxDataHS,
@@ -1568,12 +1067,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
   wire CLK;
   wire CLKB;
   wire [0:0]D;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_0 ;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_1 ;
-  wire \GenSyncLP[0].GlitchFilterLPC_n_2 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_0 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_1 ;
-  wire \GenSyncLP[1].GlitchFilterLPC_n_2 ;
   wire HSDeserializerX_n_2;
   wire HSDeserializerX_n_3;
   wire HSDeserializerX_n_5;
@@ -1581,28 +1074,20 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
   wire RxClkActiveHSResetBridge_n_0;
   wire SyncAsyncForceRxMode_n_0;
   wire SyncAsyncValid_n_1;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ;
+  wire \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ;
+  wire \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ;
   wire aD1ForceRxmode;
   wire aD1Stopstate;
   wire aHS;
   wire [1:0]aLP;
   wire [1:0]aLP_int;
   wire \cDelayCnt[0]_i_3_n_0 ;
-  wire \cDelayCnt[0]_i_4__0_n_0 ;
-  wire \cDelayCnt[0]_i_5__0_n_0 ;
-  wire \cDelayCnt[0]_i_6__0_n_0 ;
-  wire \cDelayCnt[0]_i_7_n_0 ;
-  wire \cDelayCnt[0]_i_8_n_0 ;
-  wire \cDelayCnt[12]_i_2__0_n_0 ;
-  wire \cDelayCnt[12]_i_3__0_n_0 ;
-  wire \cDelayCnt[12]_i_4__0_n_0 ;
-  wire \cDelayCnt[4]_i_2__0_n_0 ;
-  wire \cDelayCnt[4]_i_3__0_n_0 ;
-  wire \cDelayCnt[4]_i_4__0_n_0 ;
-  wire \cDelayCnt[4]_i_5__0_n_0 ;
-  wire \cDelayCnt[8]_i_2__0_n_0 ;
-  wire \cDelayCnt[8]_i_3__0_n_0 ;
-  wire \cDelayCnt[8]_i_4__0_n_0 ;
-  wire \cDelayCnt[8]_i_5__0_n_0 ;
+  wire \cDelayCnt[0]_i_4_n_0 ;
+  wire \cDelayCnt[0]_i_5_n_0 ;
   wire [14:0]cDelayCnt_reg;
   wire \cDelayCnt_reg[0]_i_2_n_0 ;
   wire \cDelayCnt_reg[0]_i_2_n_1 ;
@@ -1662,47 +1147,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
   wire [3:2]\NLW_cDelayCnt_reg[12]_i_1__0_CO_UNCONNECTED ;
   wire [3:3]\NLW_cDelayCnt_reg[12]_i_1__0_O_UNCONNECTED ;
 
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter \GenSyncLP[0].GlitchFilterLPC 
-       (.\Filter.sOut_reg_0 (\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .\Filter.sOut_reg_1 (\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .RefClk(RefClk),
-        .\cDelayCnt_reg[0] (\GenSyncLP[0].GlitchFilterLPC_n_2 ),
-        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3_n_0 ),
-        .\oSyncStages_reg[1] (SyncAsyncForceRxMode_n_0),
-        .out(cLPGlitch_0),
-        .\state_reg[0] (\GenSyncLP[0].GlitchFilterLPC_n_1 ),
-        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
-        .\state_reg[1] (\state_reg_n_0_[1] ),
-        .\state_reg[2] (\state_reg_n_0_[2] ));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8 \GenSyncLP[0].SyncAsyncx 
-       (.D(aLP_int[0]),
-        .RefClk(RefClk),
-        .out(cLPGlitch_0));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9 \GenSyncLP[0].SyncAsyncx_D 
-       (.CLK(CLK),
-        .D(aLP_int[0]));
-  system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 \GenSyncLP[1].GlitchFilterLPC 
-       (.AS(cHSReset),
-        .\Filter.sOut_reg_0 (\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .\Filter.sOut_reg_1 (\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .RefClk(RefClk),
-        .cDelayCnt_reg({cDelayCnt_reg[14],cDelayCnt_reg[11:9],cDelayCnt_reg[5:4]}),
-        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3_n_0 ),
-        .\cDelayCnt_reg[9] (\state[0]_i_6_n_0 ),
-        .cHSReset_reg(\GenSyncLP[1].GlitchFilterLPC_n_2 ),
-        .\oSyncStages_reg[1] (cValid),
-        .out(cLPGlitch_1),
-        .\state_reg[0] (\GenSyncLP[1].GlitchFilterLPC_n_1 ),
-        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
-        .\state_reg[1] (\state_reg_n_0_[1] ),
-        .\state_reg[2] (\state_reg_n_0_[2] ));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10 \GenSyncLP[1].SyncAsyncx 
-       (.D(aLP_int[1]),
-        .RefClk(RefClk),
-        .out(cLPGlitch_1));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11 \GenSyncLP[1].SyncAsyncx_D 
-       (.CLK(CLK),
-        .D(aLP_int[1]));
   system_MIPI_D_PHY_RX_0_0_HS_Deserializer HSDeserializerX
        (.AS(cHSReset),
         .CLK(CLK),
@@ -1725,21 +1169,21 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .rbD1RxDataHS(rbD1RxDataHS),
         .rbD1RxSyncHS(rbD1RxSyncHS),
         .rbD1RxValidHS(rbD1RxValidHS));
-  system_MIPI_D_PHY_RX_0_0_ResetBridge_5 RxClkActiveHSResetBridge
+  system_MIPI_D_PHY_RX_0_0_ResetBridge_3 RxClkActiveHSResetBridge
        (.AR(RxClkActiveHSResetBridge_n_0),
         .AS(AS),
         .RefClk(RefClk));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6 SyncAsyncEnable
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4 SyncAsyncEnable
        (.AR(cIntRst),
         .D(D),
         .RefClk(RefClk),
         .out(cEnable));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7 SyncAsyncForceRxMode
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5 SyncAsyncForceRxMode
        (.AR(cIntRst),
         .RefClk(RefClk),
         .aD1ForceRxmode(aD1ForceRxmode),
         .out(SyncAsyncForceRxMode_n_0));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13 SyncAsyncValid
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6 SyncAsyncValid
        (.AR(RxClkActiveHSResetBridge_n_0),
         .RefClk(RefClk),
         .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3_n_0 ),
@@ -1750,6 +1194,41 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .\state_reg[0] (\state_reg_n_0_[0] ),
         .\state_reg[1] (\state_reg_n_0_[1] ),
         .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter \UseOwnLP.GenSyncLP[0].GlitchFilterLPC 
+       (.\Filter.sOut_reg_0 (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .\Filter.sOut_reg_1 (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .RefClk(RefClk),
+        .\cDelayCnt_reg[0] (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ),
+        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3_n_0 ),
+        .\oSyncStages_reg[1] (SyncAsyncForceRxMode_n_0),
+        .out(cLPGlitch_0),
+        .\state_reg[0] (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ),
+        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
+        .\state_reg[1] (\state_reg_n_0_[1] ),
+        .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7 \UseOwnLP.GenSyncLP[0].SyncAsyncx 
+       (.D(aLP_int[0]),
+        .RefClk(RefClk),
+        .out(cLPGlitch_0));
+  system_MIPI_D_PHY_RX_0_0_GlitchFilter_8 \UseOwnLP.GenSyncLP[1].GlitchFilterLPC 
+       (.AS(cHSReset),
+        .\Filter.sOut_reg_0 (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .\Filter.sOut_reg_1 (\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .RefClk(RefClk),
+        .cDelayCnt_reg({cDelayCnt_reg[14],cDelayCnt_reg[11:9],cDelayCnt_reg[5:4]}),
+        .\cDelayCnt_reg[6] (\cDelayCnt[0]_i_3_n_0 ),
+        .\cDelayCnt_reg[9] (\state[0]_i_6_n_0 ),
+        .cHSReset_reg(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ),
+        .\oSyncStages_reg[1] (cValid),
+        .out(cLPGlitch_1),
+        .\state_reg[0] (\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ),
+        .\state_reg[0]_0 (\state_reg_n_0_[0] ),
+        .\state_reg[1] (\state_reg_n_0_[1] ),
+        .\state_reg[2] (\state_reg_n_0_[2] ));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9 \UseOwnLP.GenSyncLP[1].SyncAsyncx 
+       (.D(aLP_int[1]),
+        .RefClk(RefClk),
+        .out(cLPGlitch_1));
   LUT3 #(
     .INIT(8'h02)) 
     aD1Stopstate_INST_0
@@ -1760,7 +1239,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFFFFFE)) 
     \cDelayCnt[0]_i_3 
-       (.I0(\cDelayCnt[0]_i_8_n_0 ),
+       (.I0(\cDelayCnt[0]_i_5_n_0 ),
         .I1(cDelayCnt_reg[6]),
         .I2(cDelayCnt_reg[3]),
         .I3(cDelayCnt_reg[8]),
@@ -1768,90 +1247,20 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .I5(\state[0]_i_7_n_0 ),
         .O(\cDelayCnt[0]_i_3_n_0 ));
   LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_4__0 
-       (.I0(cDelayCnt_reg[3]),
-        .O(\cDelayCnt[0]_i_4__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_5__0 
-       (.I0(cDelayCnt_reg[2]),
-        .O(\cDelayCnt[0]_i_5__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[0]_i_6__0 
-       (.I0(cDelayCnt_reg[1]),
-        .O(\cDelayCnt[0]_i_6__0_n_0 ));
-  LUT1 #(
     .INIT(2'h1)) 
-    \cDelayCnt[0]_i_7 
+    \cDelayCnt[0]_i_4 
        (.I0(cDelayCnt_reg[0]),
-        .O(\cDelayCnt[0]_i_7_n_0 ));
+        .O(\cDelayCnt[0]_i_4_n_0 ));
   LUT6 #(
     .INIT(64'hFFFFFFFFFFFEFFFF)) 
-    \cDelayCnt[0]_i_8 
+    \cDelayCnt[0]_i_5 
        (.I0(cDelayCnt_reg[11]),
         .I1(cDelayCnt_reg[14]),
         .I2(cDelayCnt_reg[9]),
         .I3(cDelayCnt_reg[10]),
         .I4(cDelayCnt_reg[4]),
         .I5(cDelayCnt_reg[5]),
-        .O(\cDelayCnt[0]_i_8_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_2__0 
-       (.I0(cDelayCnt_reg[14]),
-        .O(\cDelayCnt[12]_i_2__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_3__0 
-       (.I0(cDelayCnt_reg[13]),
-        .O(\cDelayCnt[12]_i_3__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[12]_i_4__0 
-       (.I0(cDelayCnt_reg[12]),
-        .O(\cDelayCnt[12]_i_4__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_2__0 
-       (.I0(cDelayCnt_reg[7]),
-        .O(\cDelayCnt[4]_i_2__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_3__0 
-       (.I0(cDelayCnt_reg[6]),
-        .O(\cDelayCnt[4]_i_3__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_4__0 
-       (.I0(cDelayCnt_reg[5]),
-        .O(\cDelayCnt[4]_i_4__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[4]_i_5__0 
-       (.I0(cDelayCnt_reg[4]),
-        .O(\cDelayCnt[4]_i_5__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_2__0 
-       (.I0(cDelayCnt_reg[11]),
-        .O(\cDelayCnt[8]_i_2__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_3__0 
-       (.I0(cDelayCnt_reg[10]),
-        .O(\cDelayCnt[8]_i_3__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_4__0 
-       (.I0(cDelayCnt_reg[9]),
-        .O(\cDelayCnt[8]_i_4__0_n_0 ));
-  LUT1 #(
-    .INIT(2'h2)) 
-    \cDelayCnt[8]_i_5__0 
-       (.I0(cDelayCnt_reg[8]),
-        .O(\cDelayCnt[8]_i_5__0_n_0 ));
+        .O(\cDelayCnt[0]_i_5_n_0 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[0] 
@@ -1859,14 +1268,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2_n_7 ),
         .Q(cDelayCnt_reg[0]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[0]_i_2 
        (.CI(1'b0),
         .CO({\cDelayCnt_reg[0]_i_2_n_0 ,\cDelayCnt_reg[0]_i_2_n_1 ,\cDelayCnt_reg[0]_i_2_n_2 ,\cDelayCnt_reg[0]_i_2_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b1}),
         .O({\cDelayCnt_reg[0]_i_2_n_4 ,\cDelayCnt_reg[0]_i_2_n_5 ,\cDelayCnt_reg[0]_i_2_n_6 ,\cDelayCnt_reg[0]_i_2_n_7 }),
-        .S({\cDelayCnt[0]_i_4__0_n_0 ,\cDelayCnt[0]_i_5__0_n_0 ,\cDelayCnt[0]_i_6__0_n_0 ,\cDelayCnt[0]_i_7_n_0 }));
+        .S({cDelayCnt_reg[3:1],\cDelayCnt[0]_i_4_n_0 }));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[10] 
@@ -1874,7 +1283,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__0_n_5 ),
         .Q(cDelayCnt_reg[10]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[11] 
@@ -1882,7 +1291,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__0_n_4 ),
         .Q(cDelayCnt_reg[11]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[12] 
@@ -1890,14 +1299,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__0_n_7 ),
         .Q(cDelayCnt_reg[12]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[12]_i_1__0 
        (.CI(\cDelayCnt_reg[8]_i_1__0_n_0 ),
         .CO({\NLW_cDelayCnt_reg[12]_i_1__0_CO_UNCONNECTED [3:2],\cDelayCnt_reg[12]_i_1__0_n_2 ,\cDelayCnt_reg[12]_i_1__0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\NLW_cDelayCnt_reg[12]_i_1__0_O_UNCONNECTED [3],\cDelayCnt_reg[12]_i_1__0_n_5 ,\cDelayCnt_reg[12]_i_1__0_n_6 ,\cDelayCnt_reg[12]_i_1__0_n_7 }),
-        .S({1'b0,\cDelayCnt[12]_i_2__0_n_0 ,\cDelayCnt[12]_i_3__0_n_0 ,\cDelayCnt[12]_i_4__0_n_0 }));
+        .S({1'b0,cDelayCnt_reg[14:12]}));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[13] 
@@ -1905,7 +1314,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__0_n_6 ),
         .Q(cDelayCnt_reg[13]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[14] 
@@ -1913,7 +1322,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[12]_i_1__0_n_5 ),
         .Q(cDelayCnt_reg[14]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[1] 
@@ -1921,7 +1330,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2_n_6 ),
         .Q(cDelayCnt_reg[1]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[2] 
@@ -1929,7 +1338,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2_n_5 ),
         .Q(cDelayCnt_reg[2]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[3] 
@@ -1937,7 +1346,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[0]_i_2_n_4 ),
         .Q(cDelayCnt_reg[3]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[4] 
@@ -1945,14 +1354,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__0_n_7 ),
         .Q(cDelayCnt_reg[4]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[4]_i_1__0 
        (.CI(\cDelayCnt_reg[0]_i_2_n_0 ),
         .CO({\cDelayCnt_reg[4]_i_1__0_n_0 ,\cDelayCnt_reg[4]_i_1__0_n_1 ,\cDelayCnt_reg[4]_i_1__0_n_2 ,\cDelayCnt_reg[4]_i_1__0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[4]_i_1__0_n_4 ,\cDelayCnt_reg[4]_i_1__0_n_5 ,\cDelayCnt_reg[4]_i_1__0_n_6 ,\cDelayCnt_reg[4]_i_1__0_n_7 }),
-        .S({\cDelayCnt[4]_i_2__0_n_0 ,\cDelayCnt[4]_i_3__0_n_0 ,\cDelayCnt[4]_i_4__0_n_0 ,\cDelayCnt[4]_i_5__0_n_0 }));
+        .S(cDelayCnt_reg[7:4]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[5] 
@@ -1960,7 +1369,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__0_n_6 ),
         .Q(cDelayCnt_reg[5]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[6] 
@@ -1968,7 +1377,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__0_n_5 ),
         .Q(cDelayCnt_reg[6]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[7] 
@@ -1976,7 +1385,7 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[4]_i_1__0_n_4 ),
         .Q(cDelayCnt_reg[7]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[8] 
@@ -1984,14 +1393,14 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__0_n_7 ),
         .Q(cDelayCnt_reg[8]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   CARRY4 \cDelayCnt_reg[8]_i_1__0 
        (.CI(\cDelayCnt_reg[4]_i_1__0_n_0 ),
         .CO({\cDelayCnt_reg[8]_i_1__0_n_0 ,\cDelayCnt_reg[8]_i_1__0_n_1 ,\cDelayCnt_reg[8]_i_1__0_n_2 ,\cDelayCnt_reg[8]_i_1__0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O({\cDelayCnt_reg[8]_i_1__0_n_4 ,\cDelayCnt_reg[8]_i_1__0_n_5 ,\cDelayCnt_reg[8]_i_1__0_n_6 ,\cDelayCnt_reg[8]_i_1__0_n_7 }),
-        .S({\cDelayCnt[8]_i_2__0_n_0 ,\cDelayCnt[8]_i_3__0_n_0 ,\cDelayCnt[8]_i_4__0_n_0 ,\cDelayCnt[8]_i_5__0_n_0 }));
+        .S(cDelayCnt_reg[11:8]));
   FDRE #(
     .INIT(1'b0)) 
     \cDelayCnt_reg[9] 
@@ -1999,11 +1408,11 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .CE(1'b1),
         .D(\cDelayCnt_reg[8]_i_1__0_n_6 ),
         .Q(cDelayCnt_reg[9]),
-        .R(\GenSyncLP[0].GlitchFilterLPC_n_2 ));
+        .R(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2 ));
   FDPE cHSReset_reg
        (.C(RefClk),
         .CE(1'b1),
-        .D(\GenSyncLP[1].GlitchFilterLPC_n_2 ),
+        .D(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2 ),
         .PRE(RxClkActiveHSResetBridge_n_0),
         .Q(cHSReset));
   FDCE cHSSettled_reg
@@ -2033,8 +1442,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
   LUT4 #(
     .INIT(16'hAE00)) 
     \state[0]_i_1 
-       (.I0(\GenSyncLP[0].GlitchFilterLPC_n_1 ),
-        .I1(\GenSyncLP[1].GlitchFilterLPC_n_1 ),
+       (.I0(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1 ),
+        .I1(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1 ),
         .I2(\state[0]_i_4_n_0 ),
         .I3(cEnable),
         .O(\state[0]_i_1_n_0 ));
@@ -2070,8 +1479,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
     .INIT(64'hFFFDC08000000000)) 
     \state[1]_i_1 
        (.I0(\state_reg_n_0_[0] ),
-        .I1(\GenSyncLP[0].GlitchFilterLPC_n_0 ),
-        .I2(\GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .I1(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .I2(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
         .I3(\state_reg_n_0_[2] ),
         .I4(\state_reg_n_0_[1] ),
         .I5(cEnable),
@@ -2081,8 +1490,8 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
     \state[2]_i_1 
        (.I0(\state_reg_n_0_[1] ),
         .I1(\state_reg_n_0_[2] ),
-        .I2(\GenSyncLP[1].GlitchFilterLPC_n_0 ),
-        .I3(\GenSyncLP[0].GlitchFilterLPC_n_0 ),
+        .I2(\UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0 ),
+        .I3(\UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0 ),
         .I4(\state_reg_n_0_[0] ),
         .I5(cEnable),
         .O(\state[2]_i_1_n_0 ));
@@ -2112,7 +1521,6 @@ module system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
         .R(1'b0));
 endmodule
 
-(* ORIG_REF_NAME = "GlitchFilter" *) 
 module system_MIPI_D_PHY_RX_0_0_GlitchFilter
    (\Filter.sOut_reg_0 ,
     \state_reg[0] ,
@@ -2154,7 +1562,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter
   wire \state_reg[1] ;
   wire \state_reg[2] ;
 
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT4 #(
     .INIT(16'h4FF4)) 
     \Filter.cntPeriods[0]_i_1 
@@ -2193,7 +1601,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter
         .D(out),
         .Q(\Filter.sIn_q_reg_n_0 ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair35" *) 
+  (* SOFT_HLUTNM = "soft_lutpair64" *) 
   LUT4 #(
     .INIT(16'hFE02)) 
     \Filter.sOut_i_1__1 
@@ -2231,7 +1639,125 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter
 endmodule
 
 (* ORIG_REF_NAME = "GlitchFilter" *) 
-module system_MIPI_D_PHY_RX_0_0_GlitchFilter_12
+module system_MIPI_D_PHY_RX_0_0_GlitchFilter_18
+   (\Filter.sOut_reg_0 ,
+    \state_reg[0] ,
+    \cDelayCnt_reg[0] ,
+    out,
+    RefClk,
+    \Filter.sOut_reg_1 ,
+    \state_reg[0]_0 ,
+    \state_reg[1] ,
+    \oSyncStages_reg[1] ,
+    \state_reg[2] ,
+    \cDelayCnt_reg[6] );
+  output \Filter.sOut_reg_0 ;
+  output \state_reg[0] ;
+  output \cDelayCnt_reg[0] ;
+  input [0:0]out;
+  input RefClk;
+  input \Filter.sOut_reg_1 ;
+  input \state_reg[0]_0 ;
+  input \state_reg[1] ;
+  input [0:0]\oSyncStages_reg[1] ;
+  input \state_reg[2] ;
+  input \cDelayCnt_reg[6] ;
+
+  wire \Filter.cntPeriods[0]_i_1_n_0 ;
+  wire \Filter.cntPeriods[1]_i_1_n_0 ;
+  wire \Filter.sIn_q_reg_n_0 ;
+  wire \Filter.sOut_i_1__3_n_0 ;
+  wire \Filter.sOut_reg_0 ;
+  wire \Filter.sOut_reg_1 ;
+  wire RefClk;
+  wire \cDelayCnt_reg[0] ;
+  wire \cDelayCnt_reg[6] ;
+  wire [1:0]cntPeriods;
+  wire [0:0]\oSyncStages_reg[1] ;
+  wire [0:0]out;
+  wire \state_reg[0] ;
+  wire \state_reg[0]_0 ;
+  wire \state_reg[1] ;
+  wire \state_reg[2] ;
+
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT4 #(
+    .INIT(16'h4FF4)) 
+    \Filter.cntPeriods[0]_i_1 
+       (.I0(cntPeriods[0]),
+        .I1(cntPeriods[1]),
+        .I2(\Filter.sIn_q_reg_n_0 ),
+        .I3(out),
+        .O(\Filter.cntPeriods[0]_i_1_n_0 ));
+  LUT4 #(
+    .INIT(16'h8FF8)) 
+    \Filter.cntPeriods[1]_i_1 
+       (.I0(cntPeriods[0]),
+        .I1(cntPeriods[1]),
+        .I2(\Filter.sIn_q_reg_n_0 ),
+        .I3(out),
+        .O(\Filter.cntPeriods[1]_i_1_n_0 ));
+  FDRE #(
+    .INIT(1'b1)) 
+    \Filter.cntPeriods_reg[0] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(\Filter.cntPeriods[0]_i_1_n_0 ),
+        .Q(cntPeriods[0]),
+        .R(1'b0));
+  FDRE #(
+    .INIT(1'b1)) 
+    \Filter.cntPeriods_reg[1] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(\Filter.cntPeriods[1]_i_1_n_0 ),
+        .Q(cntPeriods[1]),
+        .R(1'b0));
+  FDRE \Filter.sIn_q_reg 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(out),
+        .Q(\Filter.sIn_q_reg_n_0 ),
+        .R(1'b0));
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  LUT4 #(
+    .INIT(16'hFE02)) 
+    \Filter.sOut_i_1__3 
+       (.I0(\Filter.sIn_q_reg_n_0 ),
+        .I1(cntPeriods[0]),
+        .I2(cntPeriods[1]),
+        .I3(\Filter.sOut_reg_0 ),
+        .O(\Filter.sOut_i_1__3_n_0 ));
+  FDRE \Filter.sOut_reg 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(\Filter.sOut_i_1__3_n_0 ),
+        .Q(\Filter.sOut_reg_0 ),
+        .R(1'b0));
+  LUT6 #(
+    .INIT(64'hFFEEFFFFFFFF8F00)) 
+    \cDelayCnt[0]_i_1__0 
+       (.I0(\Filter.sOut_reg_0 ),
+        .I1(\Filter.sOut_reg_1 ),
+        .I2(\cDelayCnt_reg[6] ),
+        .I3(\state_reg[2] ),
+        .I4(\state_reg[1] ),
+        .I5(\state_reg[0]_0 ),
+        .O(\cDelayCnt_reg[0] ));
+  LUT6 #(
+    .INIT(64'hF070F070627F6270)) 
+    \state[0]_i_2__0 
+       (.I0(\Filter.sOut_reg_0 ),
+        .I1(\Filter.sOut_reg_1 ),
+        .I2(\state_reg[0]_0 ),
+        .I3(\state_reg[1] ),
+        .I4(\oSyncStages_reg[1] ),
+        .I5(\state_reg[2] ),
+        .O(\state_reg[0] ));
+endmodule
+
+(* ORIG_REF_NAME = "GlitchFilter" *) 
+module system_MIPI_D_PHY_RX_0_0_GlitchFilter_20
    (\Filter.sOut_reg_0 ,
     \state_reg[0] ,
     cHSReset_reg,
@@ -2283,7 +1809,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_12
   wire \state_reg[1] ;
   wire \state_reg[2] ;
 
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT4 #(
     .INIT(16'h4FF4)) 
     \Filter.cntPeriods[0]_i_1 
@@ -2322,7 +1848,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_12
         .D(out),
         .Q(\Filter.sIn_q_reg_n_0 ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT4 #(
     .INIT(16'hFE02)) 
     \Filter.sOut_i_1__4 
@@ -2380,7 +1906,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_12
 endmodule
 
 (* ORIG_REF_NAME = "GlitchFilter" *) 
-module system_MIPI_D_PHY_RX_0_0_GlitchFilter_25
+module system_MIPI_D_PHY_RX_0_0_GlitchFilter_27
    (in0,
     out,
     RefClk,
@@ -2459,7 +1985,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_25
 endmodule
 
 (* ORIG_REF_NAME = "GlitchFilter" *) 
-module system_MIPI_D_PHY_RX_0_0_GlitchFilter_26
+module system_MIPI_D_PHY_RX_0_0_GlitchFilter_29
    (in0,
     out,
     RefClk,
@@ -2538,7 +2064,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_26
 endmodule
 
 (* ORIG_REF_NAME = "GlitchFilter" *) 
-module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
+module system_MIPI_D_PHY_RX_0_0_GlitchFilter_8
    (\Filter.sOut_reg_0 ,
     \state_reg[0] ,
     cHSReset_reg,
@@ -2590,7 +2116,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
   wire \state_reg[1] ;
   wire \state_reg[2] ;
 
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT4 #(
     .INIT(16'h4FF4)) 
     \Filter.cntPeriods[0]_i_1 
@@ -2629,7 +2155,7 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
         .D(out),
         .Q(\Filter.sIn_q_reg_n_0 ),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair36" *) 
+  (* SOFT_HLUTNM = "soft_lutpair65" *) 
   LUT4 #(
     .INIT(16'hFE02)) 
     \Filter.sOut_i_1__2 
@@ -2686,136 +2212,17 @@ module system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
         .O(\state[0]_i_5__0_n_0 ));
 endmodule
 
-(* ORIG_REF_NAME = "GlitchFilter" *) 
-module system_MIPI_D_PHY_RX_0_0_GlitchFilter_9
-   (\Filter.sOut_reg_0 ,
-    \state_reg[0] ,
-    \cDelayCnt_reg[0] ,
-    out,
-    RefClk,
-    \Filter.sOut_reg_1 ,
-    \state_reg[0]_0 ,
-    \state_reg[1] ,
-    \oSyncStages_reg[1] ,
-    \state_reg[2] ,
-    \cDelayCnt_reg[6] );
-  output \Filter.sOut_reg_0 ;
-  output \state_reg[0] ;
-  output \cDelayCnt_reg[0] ;
-  input [0:0]out;
-  input RefClk;
-  input \Filter.sOut_reg_1 ;
-  input \state_reg[0]_0 ;
-  input \state_reg[1] ;
-  input [0:0]\oSyncStages_reg[1] ;
-  input \state_reg[2] ;
-  input \cDelayCnt_reg[6] ;
-
-  wire \Filter.cntPeriods[0]_i_1_n_0 ;
-  wire \Filter.cntPeriods[1]_i_1_n_0 ;
-  wire \Filter.sIn_q_reg_n_0 ;
-  wire \Filter.sOut_i_1__3_n_0 ;
-  wire \Filter.sOut_reg_0 ;
-  wire \Filter.sOut_reg_1 ;
-  wire RefClk;
-  wire \cDelayCnt_reg[0] ;
-  wire \cDelayCnt_reg[6] ;
-  wire [1:0]cntPeriods;
-  wire [0:0]\oSyncStages_reg[1] ;
-  wire [0:0]out;
-  wire \state_reg[0] ;
-  wire \state_reg[0]_0 ;
-  wire \state_reg[1] ;
-  wire \state_reg[2] ;
-
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'h4FF4)) 
-    \Filter.cntPeriods[0]_i_1 
-       (.I0(cntPeriods[0]),
-        .I1(cntPeriods[1]),
-        .I2(\Filter.sIn_q_reg_n_0 ),
-        .I3(out),
-        .O(\Filter.cntPeriods[0]_i_1_n_0 ));
-  LUT4 #(
-    .INIT(16'h8FF8)) 
-    \Filter.cntPeriods[1]_i_1 
-       (.I0(cntPeriods[0]),
-        .I1(cntPeriods[1]),
-        .I2(\Filter.sIn_q_reg_n_0 ),
-        .I3(out),
-        .O(\Filter.cntPeriods[1]_i_1_n_0 ));
-  FDRE #(
-    .INIT(1'b1)) 
-    \Filter.cntPeriods_reg[0] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(\Filter.cntPeriods[0]_i_1_n_0 ),
-        .Q(cntPeriods[0]),
-        .R(1'b0));
-  FDRE #(
-    .INIT(1'b1)) 
-    \Filter.cntPeriods_reg[1] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(\Filter.cntPeriods[1]_i_1_n_0 ),
-        .Q(cntPeriods[1]),
-        .R(1'b0));
-  FDRE \Filter.sIn_q_reg 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(out),
-        .Q(\Filter.sIn_q_reg_n_0 ),
-        .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'hFE02)) 
-    \Filter.sOut_i_1__3 
-       (.I0(\Filter.sIn_q_reg_n_0 ),
-        .I1(cntPeriods[0]),
-        .I2(cntPeriods[1]),
-        .I3(\Filter.sOut_reg_0 ),
-        .O(\Filter.sOut_i_1__3_n_0 ));
-  FDRE \Filter.sOut_reg 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(\Filter.sOut_i_1__3_n_0 ),
-        .Q(\Filter.sOut_reg_0 ),
-        .R(1'b0));
-  LUT6 #(
-    .INIT(64'hFFEEFFFFFFFF8F00)) 
-    \cDelayCnt[0]_i_1__0 
-       (.I0(\Filter.sOut_reg_0 ),
-        .I1(\Filter.sOut_reg_1 ),
-        .I2(\cDelayCnt_reg[6] ),
-        .I3(\state_reg[2] ),
-        .I4(\state_reg[1] ),
-        .I5(\state_reg[0]_0 ),
-        .O(\cDelayCnt_reg[0] ));
-  LUT6 #(
-    .INIT(64'hF070F070627F6270)) 
-    \state[0]_i_2__0 
-       (.I0(\Filter.sOut_reg_0 ),
-        .I1(\Filter.sOut_reg_1 ),
-        .I2(\state_reg[0]_0 ),
-        .I3(\state_reg[1] ),
-        .I4(\oSyncStages_reg[1] ),
-        .I5(\state_reg[2] ),
-        .O(\state_reg[0] ));
-endmodule
-
-(* ORIG_REF_NAME = "HS_Clocking" *) 
 module system_MIPI_D_PHY_RX_0_0_HS_Clocking
-   (RxDDRClkHS,
+   (aRxClkActiveHS,
+    RxDDRClkHS,
     CLK,
-    aRxClkActiveHS,
     AS,
     RefClk,
     aHS,
     AR);
+  output aRxClkActiveHS;
   output RxDDRClkHS;
   output CLK;
-  output aRxClkActiveHS;
   output [0:0]AS;
   input RefClk;
   input aHS;
@@ -2877,14 +2284,13 @@ module system_MIPI_D_PHY_RX_0_0_HS_Clocking
   BUFIO SerialClkBuffer
        (.I(HS_ClockDly),
         .O(RxDDRClkHS));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4 SyncAsyncLocked
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33 SyncAsyncLocked
        (.AR(\GenNoMMCM.cBUFR_Rst_reg_n_0 ),
         .AS(AS),
         .CLK(CLK),
         .aRxClkActiveHS(aRxClkActiveHS));
 endmodule
 
-(* ORIG_REF_NAME = "HS_Deserializer" *) 
 module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
    (aLP_int,
     dSyncHard_reg_reg,
@@ -3013,8 +2419,8 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
   wire \dDataOut8[6]_i_2_n_0 ;
   wire \dDataOut8[7]_i_2_n_0 ;
   wire [7:0]dDataOut8__0;
-  (* DONT_TOUCH *) wire [7:0]\dLP[0]_1 ;
-  (* DONT_TOUCH *) wire [7:0]\dLP[1]_0 ;
+  (* DONT_TOUCH *) wire [7:0]\dLP[0]_0 ;
+  (* DONT_TOUCH *) wire [7:0]\dLP[1]_1 ;
   wire dLogicRst;
   wire dSerdesRst;
   wire dSerdesRst_q;
@@ -3085,10 +2491,10 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
   wire NLW_Deserializer_O_UNCONNECTED;
   wire NLW_Deserializer_SHIFTOUT1_UNCONNECTED;
   wire NLW_Deserializer_SHIFTOUT2_UNCONNECTED;
-  wire \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
-  wire \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
-  wire \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
-  wire \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
@@ -3171,6 +2577,17 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .LD(1'b0),
         .LDPIPEEN(1'b0),
         .REGRST(1'b0));
+  system_MIPI_D_PHY_RX_0_0_ResetBridge_11 SerdesReset
+       (.AS(AS),
+        .CLK(CLK),
+        .out(dSerdesRst));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1 SyncAsyncSettled
+       (.CLK(CLK),
+        .Q(\dValid_reg_reg_n_0_[3] ),
+        .cHSSettled(cHSSettled),
+        .dLogicRst(dLogicRst),
+        .dLogicRst_reg(SyncAsyncSettled_n_0),
+        .dSerdesRst_q(dSerdesRst_q));
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
     .DATA_RATE("DDR"),
@@ -3197,7 +2614,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
     .SRVAL_Q2(1'b1),
     .SRVAL_Q3(1'b1),
     .SRVAL_Q4(1'b1)) 
-    \LPxx[0].LP_DeserializerX 
+    \UseOwnLP.LPxx[0].LP_DeserializerX 
        (.BITSLIP(1'b0),
         .CE1(1'b1),
         .CE2(1'b1),
@@ -3213,19 +2630,19 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .OCLK(1'b0),
         .OCLKB(1'b0),
         .OFB(1'b0),
-        .Q1(\dLP[0]_1 [0]),
-        .Q2(\dLP[0]_1 [1]),
-        .Q3(\dLP[0]_1 [2]),
-        .Q4(\dLP[0]_1 [3]),
-        .Q5(\dLP[0]_1 [4]),
-        .Q6(\dLP[0]_1 [5]),
-        .Q7(\dLP[0]_1 [6]),
-        .Q8(\dLP[0]_1 [7]),
+        .Q1(\dLP[0]_0 [0]),
+        .Q2(\dLP[0]_0 [1]),
+        .Q3(\dLP[0]_0 [2]),
+        .Q4(\dLP[0]_0 [3]),
+        .Q5(\dLP[0]_0 [4]),
+        .Q6(\dLP[0]_0 [5]),
+        .Q7(\dLP[0]_0 [6]),
+        .Q8(\dLP[0]_0 [7]),
         .RST(dSerdesRst),
         .SHIFTIN1(1'b0),
         .SHIFTIN2(1'b0),
-        .SHIFTOUT1(\NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
-        .SHIFTOUT2(\NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
+        .SHIFTOUT1(\NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
+        .SHIFTOUT2(\NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
     .DATA_RATE("DDR"),
@@ -3252,7 +2669,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
     .SRVAL_Q2(1'b1),
     .SRVAL_Q3(1'b1),
     .SRVAL_Q4(1'b1)) 
-    \LPxx[1].LP_DeserializerX 
+    \UseOwnLP.LPxx[1].LP_DeserializerX 
        (.BITSLIP(1'b0),
         .CE1(1'b1),
         .CE2(1'b1),
@@ -3268,30 +2685,19 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .OCLK(1'b0),
         .OCLKB(1'b0),
         .OFB(1'b0),
-        .Q1(\dLP[1]_0 [0]),
-        .Q2(\dLP[1]_0 [1]),
-        .Q3(\dLP[1]_0 [2]),
-        .Q4(\dLP[1]_0 [3]),
-        .Q5(\dLP[1]_0 [4]),
-        .Q6(\dLP[1]_0 [5]),
-        .Q7(\dLP[1]_0 [6]),
-        .Q8(\dLP[1]_0 [7]),
+        .Q1(\dLP[1]_1 [0]),
+        .Q2(\dLP[1]_1 [1]),
+        .Q3(\dLP[1]_1 [2]),
+        .Q4(\dLP[1]_1 [3]),
+        .Q5(\dLP[1]_1 [4]),
+        .Q6(\dLP[1]_1 [5]),
+        .Q7(\dLP[1]_1 [6]),
+        .Q8(\dLP[1]_1 [7]),
         .RST(dSerdesRst),
         .SHIFTIN1(1'b0),
         .SHIFTIN2(1'b0),
-        .SHIFTOUT1(\NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
-        .SHIFTOUT2(\NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
-  system_MIPI_D_PHY_RX_0_0_ResetBridge_7 SerdesReset
-       (.AS(AS),
-        .CLK(CLK),
-        .out(dSerdesRst));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12 SyncAsyncSettled
-       (.CLK(CLK),
-        .Q(\dValid_reg_reg_n_0_[3] ),
-        .cHSSettled(cHSSettled),
-        .dLogicRst(dLogicRst),
-        .dLogicRst_reg(SyncAsyncSettled_n_0),
-        .dSerdesRst_q(dSerdesRst_q));
+        .SHIFTOUT1(\NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
+        .SHIFTOUT2(\NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
   LUT4 #(
     .INIT(16'hFB08)) 
     \alignment[0]_i_1 
@@ -3362,7 +2768,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(\dAlignment_int[0]_i_18_n_0 ),
         .I4(dSyncHard_int_i_15_n_0),
         .O(\dAlignment_int[0]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \dAlignment_int[0]_i_12 
@@ -3371,7 +2777,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     \dAlignment_int[0]_i_13 
@@ -3380,7 +2786,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_13_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \dAlignment_int[0]_i_14 
@@ -3389,7 +2795,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][5] ),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \dAlignment_int[0]_i_15 
@@ -3398,7 +2804,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[5]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_16 
@@ -3407,7 +2813,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[4]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \dAlignment_int[0]_i_17 
@@ -3416,7 +2822,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[3]),
         .I3(word_0[1]),
         .O(\dAlignment_int[0]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_18 
@@ -3455,7 +2861,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dAlignment_int[0]_i_8_n_0 ),
         .I5(dSyncSoft_int_i_9_n_0),
         .O(\dAlignment_int[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT4 #(
     .INIT(16'h000E)) 
     \dAlignment_int[0]_i_5 
@@ -3510,7 +2916,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_2_n_0),
         .I5(\dAlignment_int[1]_i_5_n_0 ),
         .O(alignment_out[1]));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_10 
@@ -3528,7 +2934,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataIn_reg_reg_n_0_[1][3] ),
         .I5(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[1]_i_11_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_12 
@@ -3536,7 +2942,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word),
         .O(\dAlignment_int[1]_i_12_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT5 #(
     .INIT(32'h69969669)) 
     \dAlignment_int[1]_i_13 
@@ -3556,7 +2962,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_17_n_0),
         .I5(\dAlignment_int[1]_i_18_n_0 ),
         .O(\dAlignment_int[1]_i_14_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT3 #(
     .INIT(8'h2B)) 
     \dAlignment_int[1]_i_15 
@@ -3564,14 +2970,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[6]),
         .I2(word),
         .O(\dAlignment_int[1]_i_15_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \dAlignment_int[1]_i_16 
        (.I0(word_0[6]),
         .I1(word_0[5]),
         .O(\dAlignment_int[1]_i_16_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     \dAlignment_int[1]_i_17 
@@ -3580,7 +2986,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[1]),
         .I3(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(\dAlignment_int[1]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[1]_i_18 
@@ -3628,7 +3034,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_4_n_0),
         .I5(dSyncHard_int_i_9_n_0),
         .O(\dAlignment_int[1]_i_5_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_6 
@@ -3636,7 +3042,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[4]),
         .I2(word_0[3]),
         .O(\dAlignment_int[1]_i_6_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair57" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_7 
@@ -3684,7 +3090,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dAlignment_int[2]_i_4_n_0 ),
         .I5(dSyncHard_int_i_4_n_0),
         .O(\dAlignment_int[2]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT4 #(
     .INIT(16'hBFEB)) 
     \dAlignment_int[2]_i_3 
@@ -3693,7 +3099,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[3]),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[2]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[2]_i_4 
@@ -3957,7 +3363,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(\dDataIn_reg_reg[2] [0]),
         .I4(dAlignment_int[2]),
         .O(\dDataOut8[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_4 
@@ -3965,7 +3371,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dAlignment_int[2]),
         .I2(\dDataIn_reg_reg[2] [2]),
         .O(\dDataOut8[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_5 
@@ -3990,7 +3396,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[1]_i_2 
@@ -4008,7 +3414,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[2]_i_2 
@@ -4026,7 +3432,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[1]_i_2_n_0 ),
         .I5(\dDataOut8[0]_i_5_n_0 ),
         .O(dDataOut8__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair58" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[3]_i_2 
@@ -4044,7 +3450,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[2]_i_2_n_0 ),
         .I5(\dDataOut8[1]_i_2_n_0 ),
         .O(dDataOut8__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair61" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[4]_i_2 
@@ -4062,7 +3468,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[3]_i_2_n_0 ),
         .I5(\dDataOut8[2]_i_2_n_0 ),
         .O(dDataOut8__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair62" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[5]_i_2 
@@ -4080,7 +3486,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(\dDataOut8[4]_i_2_n_0 ),
         .I5(\dDataOut8[3]_i_2_n_0 ),
         .O(dDataOut8__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair61" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[6]_i_2 
@@ -4192,21 +3598,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word_0[3]),
         .I5(word_0[4]),
         .O(dSyncHard_int));
-  (* SOFT_HLUTNM = "soft_lutpair65" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_10
        (.I0(word_0[5]),
         .I1(word_0[6]),
         .O(dSyncHard_int_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT2 #(
     .INIT(4'h8)) 
     dSyncHard_int_i_11
        (.I0(word),
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_11_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_12
@@ -4215,21 +3621,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_12_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_13
        (.I0(\dDataIn_reg_reg_n_0_[1][2] ),
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .O(dSyncHard_int_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT2 #(
     .INIT(4'h1)) 
     dSyncHard_int_i_14
        (.I0(\dDataIn_reg_reg_n_0_[1][3] ),
         .I1(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncHard_int_i_14_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     dSyncHard_int_i_15
@@ -4238,7 +3644,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(\dDataIn_reg_reg_n_0_[1][2] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_15_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_16
@@ -4247,7 +3653,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word_0[4]),
         .I3(word_0[0]),
         .O(dSyncHard_int_i_16_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_17
@@ -4256,7 +3662,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(word_0[6]),
         .O(dSyncHard_int_i_17_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_18
@@ -4265,7 +3671,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I2(word),
         .I3(word_0[2]),
         .O(dSyncHard_int_i_18_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT4 #(
     .INIT(16'h0010)) 
     dSyncHard_int_i_19
@@ -4284,7 +3690,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(dSyncHard_int_i_8_n_0),
         .I5(dSyncHard_int_i_9_n_0),
         .O(dSyncHard_int_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncHard_int_i_3
@@ -4312,7 +3718,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word_0[4]),
         .I5(dSyncHard_int_i_11_n_0),
         .O(dSyncHard_int_i_5_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT5 #(
     .INIT(32'h00200000)) 
     dSyncHard_int_i_6
@@ -4322,7 +3728,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[4]),
         .I4(word_0[3]),
         .O(dSyncHard_int_i_6_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair35" *) 
   LUT5 #(
     .INIT(32'h00008000)) 
     dSyncHard_int_i_7
@@ -4332,7 +3738,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[3]),
         .I4(dSyncHard_int_i_16_n_0),
         .O(dSyncHard_int_i_7_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT5 #(
     .INIT(32'hFFFF7FFF)) 
     dSyncHard_int_i_8
@@ -4365,7 +3771,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dSyncSoft_int_i_3_n_0),
         .I2(dSyncHard_int_i_2_n_0),
         .O(soft5_out));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT3 #(
     .INIT(8'h71)) 
     dSyncSoft_int_i_10
@@ -4373,7 +3779,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word_0[6]),
         .O(dSyncSoft_int_i_10_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT5 #(
     .INIT(32'hD4D4FFD4)) 
     dSyncSoft_int_i_11
@@ -4403,7 +3809,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I4(word),
         .I5(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_13_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_14
@@ -4411,7 +3817,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][2] ),
         .I2(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_14_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair57" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_15
@@ -4419,7 +3825,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncSoft_int_i_15_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT5 #(
     .INIT(32'hF3515100)) 
     dSyncSoft_int_i_16
@@ -4429,7 +3835,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[3]),
         .I4(word_0[4]),
         .O(dSyncSoft_int_i_16_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT3 #(
     .INIT(8'hB2)) 
     dSyncSoft_int_i_17
@@ -4437,7 +3843,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[3]),
         .I2(word_0[5]),
         .O(dSyncSoft_int_i_17_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_18
@@ -4445,7 +3851,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[4]),
         .I2(word_0[3]),
         .O(dSyncSoft_int_i_18_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT5 #(
     .INIT(32'h5D0CFF5D)) 
     dSyncSoft_int_i_19
@@ -4455,7 +3861,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[1]),
         .I4(word_0[2]),
         .O(dSyncSoft_int_i_19_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncSoft_int_i_2
@@ -4463,7 +3869,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(dSyncSoft_int_i_4_n_0),
         .I2(dSyncSoft_int_i_5_n_0),
         .O(dSyncSoft_int_i_2_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair36" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_20
@@ -4471,14 +3877,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[1]),
         .I2(word_0[2]),
         .O(dSyncSoft_int_i_20_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair64" *) 
+  (* SOFT_HLUTNM = "soft_lutpair62" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_21
        (.I0(word),
         .I1(word_0[0]),
         .O(dSyncSoft_int_i_21_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT5 #(
     .INIT(32'h2B2BFF2B)) 
     dSyncSoft_int_i_22
@@ -4488,7 +3894,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I3(word_0[6]),
         .I4(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_22_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_23
@@ -4496,7 +3902,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
         .I1(word_0[1]),
         .I2(word_0[2]),
         .O(dSyncSoft_int_i_23_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_24
@@ -4589,10 +3995,10 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
     \dValid_reg[2]_i_1 
        (.I0(dSyncHard_reg_reg),
         .I1(dSyncSoft_reg_reg),
-        .I2(\dLP[0]_1 [0]),
-        .I3(\dLP[1]_0 [0]),
-        .I4(\dLP[0]_1 [1]),
-        .I5(\dLP[1]_0 [1]),
+        .I2(\dLP[0]_0 [0]),
+        .I3(\dLP[1]_1 [0]),
+        .I4(\dLP[0]_0 [1]),
+        .I5(\dLP[1]_1 [1]),
         .O(p_3_out));
   FDRE \dValid_reg_reg[2] 
        (.C(CLK),
@@ -4628,21 +4034,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
        (.I0(dSyncErr_reg_reg),
         .I1(dSyncErr_reg),
         .O(rbD1ErrSotHS));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT2 #(
     .INIT(4'h2)) 
     rbD1ErrSotSyncHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncSoft_reg),
         .O(rbD1ErrSotSyncHS));
-  (* SOFT_HLUTNM = "soft_lutpair58" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT2 #(
     .INIT(4'hE)) 
     rbD1RxActiveHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncHard_reg_reg),
         .O(rbD1RxActiveHS));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT4 #(
     .INIT(16'h4F44)) 
     rbD1RxSyncHS_INST_0
@@ -4654,7 +4060,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer
 endmodule
 
 (* ORIG_REF_NAME = "HS_Deserializer" *) 
-module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
+module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13
    (aLP_int,
     dSyncHard_reg_reg,
     dSyncSoft_reg_reg,
@@ -4800,8 +4206,8 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
   wire \dDataOut8[6]_i_2_n_0 ;
   wire \dDataOut8[7]_i_2_n_0 ;
   wire [7:0]dDataOut8__0;
-  (* DONT_TOUCH *) wire [7:0]\dLP[0]_1 ;
-  (* DONT_TOUCH *) wire [7:0]\dLP[1]_0 ;
+  (* DONT_TOUCH *) wire [7:0]\dLP[0]_0 ;
+  (* DONT_TOUCH *) wire [7:0]\dLP[1]_1 ;
   wire dLogicRst;
   wire dSerdesRst;
   wire dSerdesRst_q;
@@ -4871,10 +4277,10 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
   wire NLW_Deserializer_O_UNCONNECTED;
   wire NLW_Deserializer_SHIFTOUT1_UNCONNECTED;
   wire NLW_Deserializer_SHIFTOUT2_UNCONNECTED;
-  wire \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
-  wire \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
-  wire \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
-  wire \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ;
+  wire \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ;
 
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
@@ -4957,6 +4363,17 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .LD(1'b0),
         .LDPIPEEN(1'b0),
         .REGRST(1'b0));
+  system_MIPI_D_PHY_RX_0_0_ResetBridge_23 SerdesReset
+       (.AS(AS),
+        .CLK(CLK),
+        .out(dSerdesRst));
+  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24 SyncAsyncSettled
+       (.CLK(CLK),
+        .Q(\dValid_reg_reg_n_0_[3] ),
+        .cHSSettled_reg(cHSSettled_reg),
+        .dLogicRst(dLogicRst),
+        .dLogicRst_reg(SyncAsyncSettled_n_0),
+        .dSerdesRst_q(dSerdesRst_q));
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
     .DATA_RATE("DDR"),
@@ -4983,7 +4400,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
     .SRVAL_Q2(1'b1),
     .SRVAL_Q3(1'b1),
     .SRVAL_Q4(1'b1)) 
-    \LPxx[0].LP_DeserializerX 
+    \UseOwnLP.LPxx[0].LP_DeserializerX 
        (.BITSLIP(1'b0),
         .CE1(1'b1),
         .CE2(1'b1),
@@ -4999,19 +4416,19 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .OCLK(1'b0),
         .OCLKB(1'b0),
         .OFB(1'b0),
-        .Q1(\dLP[0]_1 [0]),
-        .Q2(\dLP[0]_1 [1]),
-        .Q3(\dLP[0]_1 [2]),
-        .Q4(\dLP[0]_1 [3]),
-        .Q5(\dLP[0]_1 [4]),
-        .Q6(\dLP[0]_1 [5]),
-        .Q7(\dLP[0]_1 [6]),
-        .Q8(\dLP[0]_1 [7]),
+        .Q1(\dLP[0]_0 [0]),
+        .Q2(\dLP[0]_0 [1]),
+        .Q3(\dLP[0]_0 [2]),
+        .Q4(\dLP[0]_0 [3]),
+        .Q5(\dLP[0]_0 [4]),
+        .Q6(\dLP[0]_0 [5]),
+        .Q7(\dLP[0]_0 [6]),
+        .Q8(\dLP[0]_0 [7]),
         .RST(dSerdesRst),
         .SHIFTIN1(1'b0),
         .SHIFTIN2(1'b0),
-        .SHIFTOUT1(\NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
-        .SHIFTOUT2(\NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
+        .SHIFTOUT1(\NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
+        .SHIFTOUT2(\NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
   (* box_type = "PRIMITIVE" *) 
   ISERDESE2 #(
     .DATA_RATE("DDR"),
@@ -5038,7 +4455,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
     .SRVAL_Q2(1'b1),
     .SRVAL_Q3(1'b1),
     .SRVAL_Q4(1'b1)) 
-    \LPxx[1].LP_DeserializerX 
+    \UseOwnLP.LPxx[1].LP_DeserializerX 
        (.BITSLIP(1'b0),
         .CE1(1'b1),
         .CE2(1'b1),
@@ -5054,30 +4471,19 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .OCLK(1'b0),
         .OCLKB(1'b0),
         .OFB(1'b0),
-        .Q1(\dLP[1]_0 [0]),
-        .Q2(\dLP[1]_0 [1]),
-        .Q3(\dLP[1]_0 [2]),
-        .Q4(\dLP[1]_0 [3]),
-        .Q5(\dLP[1]_0 [4]),
-        .Q6(\dLP[1]_0 [5]),
-        .Q7(\dLP[1]_0 [6]),
-        .Q8(\dLP[1]_0 [7]),
+        .Q1(\dLP[1]_1 [0]),
+        .Q2(\dLP[1]_1 [1]),
+        .Q3(\dLP[1]_1 [2]),
+        .Q4(\dLP[1]_1 [3]),
+        .Q5(\dLP[1]_1 [4]),
+        .Q6(\dLP[1]_1 [5]),
+        .Q7(\dLP[1]_1 [6]),
+        .Q8(\dLP[1]_1 [7]),
         .RST(dSerdesRst),
         .SHIFTIN1(1'b0),
         .SHIFTIN2(1'b0),
-        .SHIFTOUT1(\NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
-        .SHIFTOUT2(\NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
-  system_MIPI_D_PHY_RX_0_0_ResetBridge_21 SerdesReset
-       (.AS(AS),
-        .CLK(CLK),
-        .out(dSerdesRst));
-  system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22 SyncAsyncSettled
-       (.CLK(CLK),
-        .Q(\dValid_reg_reg_n_0_[3] ),
-        .cHSSettled_reg(cHSSettled_reg),
-        .dLogicRst(dLogicRst),
-        .dLogicRst_reg(SyncAsyncSettled_n_0),
-        .dSerdesRst_q(dSerdesRst_q));
+        .SHIFTOUT1(\NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED ),
+        .SHIFTOUT2(\NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED ));
   LUT4 #(
     .INIT(16'hFB08)) 
     \alignment[0]_i_1 
@@ -5138,7 +4544,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(\dAlignment_int[0]_i_18__0_n_0 ),
         .I4(dSyncHard_int_i_15__0_n_0),
         .O(\dAlignment_int[0]_i_11__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
     .INIT(16'h0400)) 
     \dAlignment_int[0]_i_12__0 
@@ -5147,7 +4553,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_12__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     \dAlignment_int[0]_i_13__0 
@@ -5156,7 +4562,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[0]_i_13__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     \dAlignment_int[0]_i_14__0 
@@ -5165,7 +4571,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][5] ),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_14__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair19" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \dAlignment_int[0]_i_15__0 
@@ -5174,7 +4580,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[5]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_15__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_16__0 
@@ -5183,7 +4589,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[4]),
         .I3(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[0]_i_16__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'hBFFF)) 
     \dAlignment_int[0]_i_17__0 
@@ -5192,7 +4598,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[3]),
         .I3(word[1]),
         .O(\dAlignment_int[0]_i_17__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT4 #(
     .INIT(16'hFFDF)) 
     \dAlignment_int[0]_i_18__0 
@@ -5241,7 +4647,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dAlignment_int[0]_i_8__0_n_0 ),
         .I5(dSyncSoft_int_i_9__0_n_0),
         .O(\dAlignment_int[0]_i_4__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT4 #(
     .INIT(16'h000E)) 
     \dAlignment_int[0]_i_5__0 
@@ -5286,7 +4692,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
        (.I0(\dDataIn_reg_reg_n_0_[1][1] ),
         .I1(word[1]),
         .O(\dAlignment_int[0]_i_9__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_10__0 
@@ -5304,7 +4710,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataIn_reg_reg_n_0_[1][3] ),
         .I5(\dDataIn_reg_reg_n_0_[1][2] ),
         .O(\dAlignment_int[1]_i_11__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_12__0 
@@ -5312,7 +4718,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .O(\dAlignment_int[1]_i_12__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'h69969669)) 
     \dAlignment_int[1]_i_13__0 
@@ -5332,7 +4738,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_17__0_n_0),
         .I5(\dAlignment_int[1]_i_18__0_n_0 ),
         .O(\dAlignment_int[1]_i_14__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h2B)) 
     \dAlignment_int[1]_i_15__0 
@@ -5340,14 +4746,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[6]),
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .O(\dAlignment_int[1]_i_15__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \dAlignment_int[1]_i_16__0 
        (.I0(word[6]),
         .I1(word[5]),
         .O(\dAlignment_int[1]_i_16__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     \dAlignment_int[1]_i_17__0 
@@ -5356,7 +4762,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[1]),
         .I3(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(\dAlignment_int[1]_i_17__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[1]_i_18__0 
@@ -5414,7 +4820,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_4__0_n_0),
         .I5(dSyncHard_int_i_9__0_n_0),
         .O(\dAlignment_int[1]_i_5__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'h69)) 
     \dAlignment_int[1]_i_6__0 
@@ -5422,7 +4828,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[4]),
         .I2(word[3]),
         .O(\dAlignment_int[1]_i_6__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair24" *) 
   LUT3 #(
     .INIT(8'h96)) 
     \dAlignment_int[1]_i_7__0 
@@ -5470,7 +4876,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dAlignment_int[2]_i_4__0_n_0 ),
         .I5(dSyncHard_int_i_4__0_n_0),
         .O(\dAlignment_int[2]_i_2__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT4 #(
     .INIT(16'hBFEB)) 
     \dAlignment_int[2]_i_3__0 
@@ -5479,7 +4885,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[3]),
         .I3(\dDataIn_reg_reg_n_0_[1][3] ),
         .O(\dAlignment_int[2]_i_3__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \dAlignment_int[2]_i_4__0 
@@ -5743,7 +5149,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(\dDataIn_reg_reg_n_0_[2][0] ),
         .I4(\dAlignment_int_reg_n_0_[2] ),
         .O(\dDataOut8[0]_i_3_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_4 
@@ -5751,7 +5157,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dAlignment_int_reg_n_0_[2] ),
         .I2(\dDataIn_reg_reg_n_0_[2][2] ),
         .O(\dDataOut8[0]_i_4_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[0]_i_5 
@@ -5776,7 +5182,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[1]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[1]_i_2 
@@ -5794,7 +5200,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[0]_i_5_n_0 ),
         .I5(\dDataOut8[0]_i_4_n_0 ),
         .O(dDataOut8__0[2]));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[2]_i_2 
@@ -5812,7 +5218,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[1]_i_2_n_0 ),
         .I5(\dDataOut8[0]_i_5_n_0 ),
         .O(dDataOut8__0[3]));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[3]_i_2 
@@ -5830,7 +5236,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[2]_i_2_n_0 ),
         .I5(\dDataOut8[1]_i_2_n_0 ),
         .O(dDataOut8__0[4]));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[4]_i_2 
@@ -5848,7 +5254,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[3]_i_2_n_0 ),
         .I5(\dDataOut8[2]_i_2_n_0 ),
         .O(dDataOut8__0[5]));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[5]_i_2 
@@ -5866,7 +5272,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataOut8[4]_i_2_n_0 ),
         .I5(\dDataOut8[3]_i_2_n_0 ),
         .O(dDataOut8__0[6]));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \dDataOut8[6]_i_2 
@@ -5968,21 +5374,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .D(dSyncErr_int_i_1__0_n_0),
         .Q(dSyncErr_reg_reg),
         .R(dLogicRst));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_10__0
        (.I0(word[5]),
         .I1(word[6]),
         .O(dSyncHard_int_i_10__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'h8)) 
     dSyncHard_int_i_11__0
        (.I0(\dDataIn_reg_reg_n_0_[1][0] ),
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_11__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair20" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_12__0
@@ -5991,21 +5397,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_12__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT2 #(
     .INIT(4'h2)) 
     dSyncHard_int_i_13__0
        (.I0(\dDataIn_reg_reg_n_0_[1][2] ),
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .O(dSyncHard_int_i_13__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair23" *) 
+  (* SOFT_HLUTNM = "soft_lutpair21" *) 
   LUT2 #(
     .INIT(4'h1)) 
     dSyncHard_int_i_14__0
        (.I0(\dDataIn_reg_reg_n_0_[1][3] ),
         .I1(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncHard_int_i_14__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     dSyncHard_int_i_15__0
@@ -6014,7 +5420,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][2] ),
         .I3(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncHard_int_i_15__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair22" *) 
+  (* SOFT_HLUTNM = "soft_lutpair20" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_16__0
@@ -6023,7 +5429,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(word[4]),
         .I3(word[0]),
         .O(dSyncHard_int_i_16__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair18" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT4 #(
     .INIT(16'hFFFE)) 
     dSyncHard_int_i_17__0
@@ -6032,7 +5438,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(word[6]),
         .O(dSyncHard_int_i_17__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT4 #(
     .INIT(16'hFBFF)) 
     dSyncHard_int_i_18__0
@@ -6041,7 +5447,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I2(\dDataIn_reg_reg_n_0_[1][0] ),
         .I3(word[2]),
         .O(dSyncHard_int_i_18__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT4 #(
     .INIT(16'h0010)) 
     dSyncHard_int_i_19__0
@@ -6070,7 +5476,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(dSyncHard_int_i_8__0_n_0),
         .I5(dSyncHard_int_i_9__0_n_0),
         .O(dSyncHard_int_i_2__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncHard_int_i_3__0
@@ -6098,7 +5504,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(word[4]),
         .I5(dSyncHard_int_i_11__0_n_0),
         .O(dSyncHard_int_i_5__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT5 #(
     .INIT(32'h00200000)) 
     dSyncHard_int_i_6__0
@@ -6108,7 +5514,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[4]),
         .I4(word[3]),
         .O(dSyncHard_int_i_6__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT5 #(
     .INIT(32'h00008000)) 
     dSyncHard_int_i_7__0
@@ -6118,7 +5524,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[3]),
         .I4(dSyncHard_int_i_16__0_n_0),
         .O(dSyncHard_int_i_7__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT5 #(
     .INIT(32'hFFFF7FFF)) 
     dSyncHard_int_i_8__0
@@ -6144,7 +5550,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .D(dSyncHard_int_i_2__0_n_0),
         .Q(dSyncHard_reg_reg),
         .R(dLogicRst));
-  (* SOFT_HLUTNM = "soft_lutpair17" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'h71)) 
     dSyncSoft_int_i_10__0
@@ -6152,7 +5558,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][1] ),
         .I2(word[6]),
         .O(dSyncSoft_int_i_10__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT5 #(
     .INIT(32'hD4D4FFD4)) 
     dSyncSoft_int_i_11__0
@@ -6182,7 +5588,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I4(\dDataIn_reg_reg_n_0_[1][0] ),
         .I5(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_13__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair24" *) 
+  (* SOFT_HLUTNM = "soft_lutpair22" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_14__0
@@ -6190,7 +5596,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][2] ),
         .I2(\dDataIn_reg_reg_n_0_[1][1] ),
         .O(dSyncSoft_int_i_14__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_15__0
@@ -6198,7 +5604,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(\dDataIn_reg_reg_n_0_[1][5] ),
         .I2(\dDataIn_reg_reg_n_0_[1][4] ),
         .O(dSyncSoft_int_i_15__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT5 #(
     .INIT(32'hF3515100)) 
     dSyncSoft_int_i_16__0
@@ -6208,7 +5614,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[3]),
         .I4(word[4]),
         .O(dSyncSoft_int_i_16__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'hB2)) 
     dSyncSoft_int_i_17__0
@@ -6216,7 +5622,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[3]),
         .I2(word[5]),
         .O(dSyncSoft_int_i_17__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair25" *) 
+  (* SOFT_HLUTNM = "soft_lutpair23" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_18__0
@@ -6224,7 +5630,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[4]),
         .I2(word[3]),
         .O(dSyncSoft_int_i_18__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT5 #(
     .INIT(32'h5D0CFF5D)) 
     dSyncSoft_int_i_19__0
@@ -6241,7 +5647,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(dSyncSoft_int_i_3__0_n_0),
         .I2(dSyncHard_int_i_2__0_n_0),
         .O(soft5_out));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'h69)) 
     dSyncSoft_int_i_20__0
@@ -6249,14 +5655,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[1]),
         .I2(word[2]),
         .O(dSyncSoft_int_i_20__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_21__0
        (.I0(\dDataIn_reg_reg_n_0_[1][0] ),
         .I1(word[0]),
         .O(dSyncSoft_int_i_21__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT5 #(
     .INIT(32'h2B2BFF2B)) 
     dSyncSoft_int_i_22__0
@@ -6266,7 +5672,7 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I3(word[6]),
         .I4(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_22__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'h96)) 
     dSyncSoft_int_i_23__0
@@ -6274,14 +5680,14 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .I1(word[1]),
         .I2(word[2]),
         .O(dSyncSoft_int_i_23__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'hB)) 
     dSyncSoft_int_i_24__0
        (.I0(word[6]),
         .I1(\dDataIn_reg_reg_n_0_[0][0] ),
         .O(dSyncSoft_int_i_24__0_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'h01)) 
     dSyncSoft_int_i_2__0
@@ -6375,10 +5781,10 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
     \dValid_reg[2]_i_1__0 
        (.I0(dSyncHard_reg_reg),
         .I1(dSyncSoft_reg_reg),
-        .I2(\dLP[0]_1 [0]),
-        .I3(\dLP[1]_0 [0]),
-        .I4(\dLP[0]_1 [1]),
-        .I5(\dLP[1]_0 [1]),
+        .I2(\dLP[0]_0 [0]),
+        .I3(\dLP[1]_1 [0]),
+        .I4(\dLP[0]_0 [1]),
+        .I5(\dLP[1]_1 [1]),
         .O(p_3_out));
   FDRE \dValid_reg_reg[2] 
        (.C(CLK),
@@ -6414,21 +5820,21 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
        (.I0(dSyncErr_reg_reg),
         .I1(dSyncErr_reg),
         .O(rbD0ErrSotHS));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT2 #(
     .INIT(4'h2)) 
     rbD0ErrSotSyncHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncSoft_reg),
         .O(rbD0ErrSotSyncHS));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair25" *) 
   LUT2 #(
     .INIT(4'hE)) 
     rbD0RxActiveHS_INST_0
        (.I0(dSyncSoft_reg_reg),
         .I1(dSyncHard_reg_reg),
         .O(rbD0RxActiveHS));
-  (* SOFT_HLUTNM = "soft_lutpair21" *) 
+  (* SOFT_HLUTNM = "soft_lutpair19" *) 
   LUT4 #(
     .INIT(16'h4F44)) 
     rbD0RxSyncHS_INST_0
@@ -6439,7 +5845,6 @@ module system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
         .O(rbD0RxSyncHS));
 endmodule
 
-(* ORIG_REF_NAME = "InputBuffer" *) 
 module system_MIPI_D_PHY_RX_0_0_InputBuffer
    (aHS,
     aLP,
@@ -6465,9 +5870,7 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUFDS #(
-    .DQS_BIAS("FALSE")) 
-    LaneHighSpeed
+  IBUFDS LaneHighSpeed
        (.I(dphy_clk_hs_p),
         .IB(dphy_clk_hs_n),
         .O(aHS));
@@ -6475,20 +5878,20 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower0
+  IBUF \LaneWithLP.LaneLowPower0 
        (.I(dphy_clk_lp_n),
         .O(aLP[0]));
   (* CAPACITANCE = "DONT_CARE" *) 
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower1
+  IBUF \LaneWithLP.LaneLowPower1 
        (.I(dphy_clk_lp_p),
         .O(aLP[1]));
 endmodule
 
 (* ORIG_REF_NAME = "InputBuffer" *) 
-module system_MIPI_D_PHY_RX_0_0_InputBuffer_0
+module system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0
    (aHS,
     aLP,
     dphy_data_hs_p,
@@ -6513,9 +5916,7 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer_0
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUFDS #(
-    .DQS_BIAS("FALSE")) 
-    LaneHighSpeed
+  IBUFDS LaneHighSpeed
        (.I(dphy_data_hs_p),
         .IB(dphy_data_hs_n),
         .O(aHS));
@@ -6523,20 +5924,20 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer_0
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower0
+  IBUF \LaneWithLP.LaneLowPower0 
        (.I(dphy_data_lp_n),
         .O(aLP[0]));
   (* CAPACITANCE = "DONT_CARE" *) 
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower1
+  IBUF \LaneWithLP.LaneLowPower1 
        (.I(dphy_data_lp_p),
         .O(aLP[1]));
 endmodule
 
 (* ORIG_REF_NAME = "InputBuffer" *) 
-module system_MIPI_D_PHY_RX_0_0_InputBuffer_2
+module system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1
    (aHS,
     aLP,
     dphy_data_hs_p,
@@ -6561,9 +5962,7 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer_2
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUFDS #(
-    .DQS_BIAS("FALSE")) 
-    LaneHighSpeed
+  IBUFDS LaneHighSpeed
        (.I(dphy_data_hs_p),
         .IB(dphy_data_hs_n),
         .O(aHS));
@@ -6571,23 +5970,23 @@ module system_MIPI_D_PHY_RX_0_0_InputBuffer_2
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower0
+  IBUF \LaneWithLP.LaneLowPower0 
        (.I(dphy_data_lp_n),
         .O(aLP[0]));
   (* CAPACITANCE = "DONT_CARE" *) 
   (* IBUF_DELAY_VALUE = "0" *) 
   (* IFD_DELAY_VALUE = "AUTO" *) 
   (* box_type = "PRIMITIVE" *) 
-  IBUF LaneLowPower1
+  IBUF \LaneWithLP.LaneLowPower1 
        (.I(dphy_data_lp_p),
         .O(aLP[1]));
 endmodule
 
 (* C_S_AXI_LITE_ADDR_WIDTH = "4" *) (* C_S_AXI_LITE_DATA_WIDTH = "32" *) (* C_S_AXI_LITE_FREQ_HZ = "100000000" *) 
-(* ORIG_REF_NAME = "MIPI_DPHY_Receiver" *) (* kAddDelayClk_ps = "0" *) (* kAddDelayData0_ps = "0" *) 
-(* kAddDelayData1_ps = "0" *) (* kDebug = "FALSE" *) (* kGenerateAXIL = "TRUE" *) 
-(* kGenerateMMCM = "FALSE" *) (* kNoOfDataLanes = "2" *) (* kRefClkFreqHz = "200000000" *) 
-(* kVersionMajor = "1" *) (* kVersionMinor = "0" *) 
+(* kAddDelayClk_ps = "0" *) (* kAddDelayData0_ps = "0" *) (* kAddDelayData1_ps = "0" *) 
+(* kDebug = "FALSE" *) (* kGenerateAXIL = "TRUE" *) (* kGenerateMMCM = "FALSE" *) 
+(* kLPFromLane0 = "FALSE" *) (* kNoOfDataLanes = "2" *) (* kRefClkFreqHz = "200000000" *) 
+(* kVersionMajor = "1" *) (* kVersionMinor = "2" *) 
 module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
    (dphy_clk_hs_p,
     dphy_clk_hs_n,
@@ -6749,8 +6148,6 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
   wire HS_Data_0;
   wire HS_Data_1;
   wire [1:0]LP_Clock;
-  wire [1:0]\LP_Data[0] ;
-  wire [1:0]\LP_Data[1] ;
   wire RST;
   wire RefClk;
   wire RxByteClkHS;
@@ -6765,6 +6162,8 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
   wire aD1Enable;
   wire aD1ForceRxmode;
   wire aD1Stopstate;
+  wire [1:0]\aLPBuf[0] ;
+  wire [1:0]\aLPBuf[1] ;
   wire aLaneSCNNEnable;
   wire aLaneSFENEnable_0;
   wire aLaneSFENEnable_1;
@@ -6896,7 +6295,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .aD0ForceRxmode(aD0ForceRxmode),
         .aD0Stopstate(aD0Stopstate),
         .aHS(HS_Data_0),
-        .aLP(\LP_Data[0] ),
+        .aLP(\aLPBuf[0] ),
         .dphy_clk_hs_n(RxDDRClkHS),
         .rbD0ErrSotHS(rbD0ErrSotHS),
         .rbD0ErrSotSyncHS(rbD0ErrSotSyncHS),
@@ -6904,14 +6303,14 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .rbD0RxDataHS(rbD0RxDataHS),
         .rbD0RxSyncHS(rbD0RxSyncHS),
         .rbD0RxValidHS(rbD0RxValidHS));
-  system_MIPI_D_PHY_RX_0_0_InputBuffer_0 \DataLaneGen[0].InputBufferDataX 
+  system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0 \DataLaneGen[0].InputBufferDataX 
        (.aHS(HS_Data_0),
-        .aLP(\LP_Data[0] ),
+        .aLP(\aLPBuf[0] ),
         .dphy_data_hs_n(dphy_data_hs_n[0]),
         .dphy_data_hs_p(dphy_data_hs_p[0]),
         .dphy_data_lp_n(dphy_data_lp_n[0]),
         .dphy_data_lp_p(dphy_data_lp_p[0]));
-  system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 \DataLaneGen[1].DPHY_LaneSFEN_X 
+  system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0 \DataLaneGen[1].DPHY_LaneSFEN_X 
        (.AS(aNotRxClkActiveHS),
         .CLK(RxByteClkHS),
         .CLKB(RxDDRClkHS),
@@ -6920,7 +6319,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .aD1ForceRxmode(aD1ForceRxmode),
         .aD1Stopstate(aD1Stopstate),
         .aHS(HS_Data_1),
-        .aLP(\LP_Data[1] ),
+        .aLP(\aLPBuf[1] ),
         .dphy_clk_hs_n(RxDDRClkHS),
         .rbD1ErrSotHS(rbD1ErrSotHS),
         .rbD1ErrSotSyncHS(rbD1ErrSotSyncHS),
@@ -6928,9 +6327,9 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .rbD1RxDataHS(rbD1RxDataHS),
         .rbD1RxSyncHS(rbD1RxSyncHS),
         .rbD1RxValidHS(rbD1RxValidHS));
-  system_MIPI_D_PHY_RX_0_0_InputBuffer_2 \DataLaneGen[1].InputBufferDataX 
+  system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1 \DataLaneGen[1].InputBufferDataX 
        (.aHS(HS_Data_1),
-        .aLP(\LP_Data[1] ),
+        .aLP(\aLPBuf[1] ),
         .dphy_data_hs_n(dphy_data_hs_n[1]),
         .dphy_data_hs_p(dphy_data_hs_p[1]),
         .dphy_data_lp_n(dphy_data_lp_n[1]),
@@ -7057,7 +6456,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .s_axi_lite_wready(s_axi_lite_wready),
         .s_axi_lite_wstrb(s_axi_lite_wstrb),
         .s_axi_lite_wvalid(s_axi_lite_wvalid));
-  system_MIPI_D_PHY_RX_0_0_ResetBridge_3 \YesAXILITE.CoreSoftReset 
+  system_MIPI_D_PHY_RX_0_0_ResetBridge_2 \YesAXILITE.CoreSoftReset 
        (.AS(aReset),
         .RefClk(RefClk),
         .SS(rIntRst),
@@ -7075,7 +6474,6 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
         .rDlyLckd(rDlyLckd));
 endmodule
 
-(* ORIG_REF_NAME = "MIPI_DPHY_Receiver_S_AXI_Lite" *) 
 module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
    (s_axi_lite_awready,
     s_axi_lite_wready,
@@ -7085,16 +6483,16 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
     Q,
     s_axi_lite_rdata,
     s_axi_lite_aclk,
-    s_axi_lite_aresetn,
     s_axi_lite_wvalid,
     s_axi_lite_awvalid,
+    s_axi_lite_aresetn,
     s_axi_lite_bready,
     s_axi_lite_arvalid,
     s_axi_lite_rready,
+    s_axi_lite_wstrb,
     s_axi_lite_araddr,
     s_axi_lite_awaddr,
-    s_axi_lite_wdata,
-    s_axi_lite_wstrb);
+    s_axi_lite_wdata);
   output s_axi_lite_awready;
   output s_axi_lite_wready;
   output s_axi_lite_arready;
@@ -7103,16 +6501,16 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
   output [1:0]Q;
   output [31:0]s_axi_lite_rdata;
   input s_axi_lite_aclk;
-  input s_axi_lite_aresetn;
   input s_axi_lite_wvalid;
   input s_axi_lite_awvalid;
+  input s_axi_lite_aresetn;
   input s_axi_lite_bready;
   input s_axi_lite_arvalid;
   input s_axi_lite_rready;
+  input [3:0]s_axi_lite_wstrb;
   input [1:0]s_axi_lite_araddr;
   input [1:0]s_axi_lite_awaddr;
   input [31:0]s_axi_lite_wdata;
-  input [3:0]s_axi_lite_wstrb;
 
   wire [1:0]Q;
   wire [3:2]axi_araddr;
@@ -7223,7 +6621,6 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .D(axi_arready_i_1_n_0),
         .Q(s_axi_lite_arready),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \axi_awaddr[2]_i_1 
@@ -7233,6 +6630,7 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .I3(s_axi_lite_awready),
         .I4(axi_awaddr[2]),
         .O(\axi_awaddr[2]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT5 #(
     .INIT(32'hFFBF0080)) 
     \axi_awaddr[3]_i_1 
@@ -7291,61 +6689,61 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .R(axi_awready_i_1_n_0));
   (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[0]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(Q[0]),
+       (.I0(Q[0]),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[0]));
   (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[10]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[10] ),
+       (.I0(\control_reg_reg_n_0_[10] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[10]));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair69" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[11]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[11] ),
+       (.I0(\control_reg_reg_n_0_[11] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[11]));
   (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[12]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[12] ),
+       (.I0(\control_reg_reg_n_0_[12] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[12]));
   (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[13]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[13] ),
+       (.I0(\control_reg_reg_n_0_[13] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[13]));
-  (* SOFT_HLUTNM = "soft_lutpair69" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \axi_rdata[14]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[14] ),
-        .I2(axi_araddr[3]),
-        .O(reg_data_out[14]));
   (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
+    \axi_rdata[14]_i_1 
+       (.I0(\control_reg_reg_n_0_[14] ),
+        .I1(axi_araddr[2]),
+        .I2(axi_araddr[3]),
+        .O(reg_data_out[14]));
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  LUT3 #(
+    .INIT(8'h02)) 
     \axi_rdata[15]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[15] ),
+       (.I0(\control_reg_reg_n_0_[15] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[15]));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'hA4)) 
     \axi_rdata[16]_i_1 
@@ -7355,31 +6753,31 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .O(reg_data_out[16]));
   (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[17]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[17] ),
+       (.I0(\control_reg_reg_n_0_[17] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[17]));
   (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[18]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[18] ),
+       (.I0(\control_reg_reg_n_0_[18] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[18]));
   (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[19]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[19] ),
+       (.I0(\control_reg_reg_n_0_[19] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[19]));
   (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'hA4)) 
     \axi_rdata[1]_i_1 
        (.I0(axi_araddr[2]),
         .I1(Q[1]),
@@ -7387,98 +6785,98 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .O(reg_data_out[1]));
   (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[20]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[20] ),
+       (.I0(\control_reg_reg_n_0_[20] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[20]));
   (* SOFT_HLUTNM = "soft_lutpair80" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[21]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[21] ),
+       (.I0(\control_reg_reg_n_0_[21] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[21]));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \axi_rdata[22]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[22] ),
-        .I2(axi_araddr[3]),
-        .O(reg_data_out[22]));
-  (* SOFT_HLUTNM = "soft_lutpair81" *) 
-  LUT3 #(
-    .INIT(8'h04)) 
-    \axi_rdata[23]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[23] ),
-        .I2(axi_araddr[3]),
-        .O(reg_data_out[23]));
   (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
+    \axi_rdata[22]_i_1 
+       (.I0(\control_reg_reg_n_0_[22] ),
+        .I1(axi_araddr[2]),
+        .I2(axi_araddr[3]),
+        .O(reg_data_out[22]));
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  LUT3 #(
+    .INIT(8'h02)) 
+    \axi_rdata[23]_i_1 
+       (.I0(\control_reg_reg_n_0_[23] ),
+        .I1(axi_araddr[2]),
+        .I2(axi_araddr[3]),
+        .O(reg_data_out[23]));
+  (* SOFT_HLUTNM = "soft_lutpair81" *) 
+  LUT3 #(
+    .INIT(8'h02)) 
     \axi_rdata[24]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[24] ),
+       (.I0(\control_reg_reg_n_0_[24] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[24]));
   (* SOFT_HLUTNM = "soft_lutpair81" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[25]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[25] ),
+       (.I0(\control_reg_reg_n_0_[25] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[25]));
   (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[26]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[26] ),
+       (.I0(\control_reg_reg_n_0_[26] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[26]));
-  (* SOFT_HLUTNM = "soft_lutpair83" *) 
+  (* SOFT_HLUTNM = "soft_lutpair82" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[27]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[27] ),
+       (.I0(\control_reg_reg_n_0_[27] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[27]));
   (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[28]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[28] ),
+       (.I0(\control_reg_reg_n_0_[28] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[28]));
-  (* SOFT_HLUTNM = "soft_lutpair82" *) 
+  (* SOFT_HLUTNM = "soft_lutpair83" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[29]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[29] ),
+       (.I0(\control_reg_reg_n_0_[29] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[29]));
   (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[2]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[2] ),
+       (.I0(\control_reg_reg_n_0_[2] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[2]));
   (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[30]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[30] ),
+       (.I0(\control_reg_reg_n_0_[30] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[30]));
   LUT3 #(
@@ -7490,66 +6888,66 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .O(\axi_rdata[31]_i_1_n_0 ));
   (* SOFT_HLUTNM = "soft_lutpair84" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[31]_i_2 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[31] ),
+       (.I0(\control_reg_reg_n_0_[31] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[31]));
   (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[3]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[3] ),
+       (.I0(\control_reg_reg_n_0_[3] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[3]));
   (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[4]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[4] ),
+       (.I0(\control_reg_reg_n_0_[4] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[4]));
   (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[5]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[5] ),
+       (.I0(\control_reg_reg_n_0_[5] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[5]));
   (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[6]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[6] ),
+       (.I0(\control_reg_reg_n_0_[6] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[6]));
   (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[7]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[7] ),
+       (.I0(\control_reg_reg_n_0_[7] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[7]));
   (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[8]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[8] ),
+       (.I0(\control_reg_reg_n_0_[8] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[8]));
   (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
-    .INIT(8'h04)) 
+    .INIT(8'h02)) 
     \axi_rdata[9]_i_1 
-       (.I0(axi_araddr[2]),
-        .I1(\control_reg_reg_n_0_[9] ),
+       (.I0(\control_reg_reg_n_0_[9] ),
+        .I1(axi_araddr[2]),
         .I2(axi_araddr[3]),
         .O(reg_data_out[9]));
   FDRE \axi_rdata_reg[0] 
@@ -8008,7 +7406,6 @@ module system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
         .R(axi_awready_i_1_n_0));
 endmodule
 
-(* ORIG_REF_NAME = "ResetBridge" *) 
 module system_MIPI_D_PHY_RX_0_0_ResetBridge
    (out,
     \GenIDELAYCTRL.rDlyRst_reg ,
@@ -8033,7 +7430,7 @@ module system_MIPI_D_PHY_RX_0_0_ResetBridge
   wire [0:0]\oSyncStages_reg[1] ;
   wire [0:0]out;
 
-  system_MIPI_D_PHY_RX_0_0_SyncAsync_24 SyncAsyncx
+  system_MIPI_D_PHY_RX_0_0_SyncAsync_26 SyncAsyncx
        (.E(E),
         .\GenIDELAYCTRL.rDlyRst_reg (\GenIDELAYCTRL.rDlyRst_reg ),
         .RST(RST),
@@ -8044,26 +7441,7 @@ module system_MIPI_D_PHY_RX_0_0_ResetBridge
 endmodule
 
 (* ORIG_REF_NAME = "ResetBridge" *) 
-module system_MIPI_D_PHY_RX_0_0_ResetBridge_16
-   (AR,
-    RefClk,
-    AS);
-  output [0:0]AR;
-  input RefClk;
-  input [0:0]AS;
-
-  wire [0:0]AR;
-  wire [0:0]AS;
-  wire RefClk;
-
-  system_MIPI_D_PHY_RX_0_0_SyncAsync_20 SyncAsyncx
-       (.AR(AR),
-        .AS(AS),
-        .RefClk(RefClk));
-endmodule
-
-(* ORIG_REF_NAME = "ResetBridge" *) 
-module system_MIPI_D_PHY_RX_0_0_ResetBridge_21
+module system_MIPI_D_PHY_RX_0_0_ResetBridge_11
    (out,
     CLK,
     AS);
@@ -8075,14 +7453,33 @@ module system_MIPI_D_PHY_RX_0_0_ResetBridge_21
   wire CLK;
   wire [0:0]out;
 
-  system_MIPI_D_PHY_RX_0_0_SyncAsync_23 SyncAsyncx
+  system_MIPI_D_PHY_RX_0_0_SyncAsync_12 SyncAsyncx
        (.AS(AS),
         .CLK(CLK),
         .out(out));
 endmodule
 
 (* ORIG_REF_NAME = "ResetBridge" *) 
-module system_MIPI_D_PHY_RX_0_0_ResetBridge_3
+module system_MIPI_D_PHY_RX_0_0_ResetBridge_14
+   (AR,
+    RefClk,
+    AS);
+  output [0:0]AR;
+  input RefClk;
+  input [0:0]AS;
+
+  wire [0:0]AR;
+  wire [0:0]AS;
+  wire RefClk;
+
+  system_MIPI_D_PHY_RX_0_0_SyncAsync_22 SyncAsyncx
+       (.AR(AR),
+        .AS(AS),
+        .RefClk(RefClk));
+endmodule
+
+(* ORIG_REF_NAME = "ResetBridge" *) 
+module system_MIPI_D_PHY_RX_0_0_ResetBridge_2
    (out,
     SS,
     \oSyncStages_reg[1] ,
@@ -8109,26 +7506,7 @@ module system_MIPI_D_PHY_RX_0_0_ResetBridge_3
 endmodule
 
 (* ORIG_REF_NAME = "ResetBridge" *) 
-module system_MIPI_D_PHY_RX_0_0_ResetBridge_5
-   (AR,
-    RefClk,
-    AS);
-  output [0:0]AR;
-  input RefClk;
-  input [0:0]AS;
-
-  wire [0:0]AR;
-  wire [0:0]AS;
-  wire RefClk;
-
-  system_MIPI_D_PHY_RX_0_0_SyncAsync_6 SyncAsyncx
-       (.AR(AR),
-        .AS(AS),
-        .RefClk(RefClk));
-endmodule
-
-(* ORIG_REF_NAME = "ResetBridge" *) 
-module system_MIPI_D_PHY_RX_0_0_ResetBridge_7
+module system_MIPI_D_PHY_RX_0_0_ResetBridge_23
    (out,
     CLK,
     AS);
@@ -8140,13 +7518,31 @@ module system_MIPI_D_PHY_RX_0_0_ResetBridge_7
   wire CLK;
   wire [0:0]out;
 
-  system_MIPI_D_PHY_RX_0_0_SyncAsync_8 SyncAsyncx
+  system_MIPI_D_PHY_RX_0_0_SyncAsync_25 SyncAsyncx
        (.AS(AS),
         .CLK(CLK),
         .out(out));
 endmodule
 
-(* ORIG_REF_NAME = "SyncAsync" *) 
+(* ORIG_REF_NAME = "ResetBridge" *) 
+module system_MIPI_D_PHY_RX_0_0_ResetBridge_3
+   (AR,
+    RefClk,
+    AS);
+  output [0:0]AR;
+  input RefClk;
+  input [0:0]AS;
+
+  wire [0:0]AR;
+  wire [0:0]AS;
+  wire RefClk;
+
+  system_MIPI_D_PHY_RX_0_0_SyncAsync_10 SyncAsyncx
+       (.AR(AR),
+        .AS(AS),
+        .RefClk(RefClk));
+endmodule
+
 module system_MIPI_D_PHY_RX_0_0_SyncAsync
    (out,
     SS,
@@ -8195,7 +7591,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync_20
+module system_MIPI_D_PHY_RX_0_0_SyncAsync_10
    (AR,
     RefClk,
     AS);
@@ -8231,7 +7627,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync_20
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync_23
+module system_MIPI_D_PHY_RX_0_0_SyncAsync_12
    (out,
     CLK,
     AS);
@@ -8267,7 +7663,79 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync_23
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync_24
+module system_MIPI_D_PHY_RX_0_0_SyncAsync_22
+   (AR,
+    RefClk,
+    AS);
+  output [0:0]AR;
+  input RefClk;
+  input [0:0]AS;
+
+  wire [0:0]AS;
+  wire RefClk;
+  (* async_reg = "true" *) wire [1:0]oSyncStages;
+
+  assign AR[0] = oSyncStages[1];
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDPE #(
+    .INIT(1'b1)) 
+    \oSyncStages_reg[0] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(1'b0),
+        .PRE(AS),
+        .Q(oSyncStages[0]));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDPE #(
+    .INIT(1'b1)) 
+    \oSyncStages_reg[1] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(oSyncStages[0]),
+        .PRE(AS),
+        .Q(oSyncStages[1]));
+endmodule
+
+(* ORIG_REF_NAME = "SyncAsync" *) 
+module system_MIPI_D_PHY_RX_0_0_SyncAsync_25
+   (out,
+    CLK,
+    AS);
+  output [0:0]out;
+  input CLK;
+  input [0:0]AS;
+
+  wire [0:0]AS;
+  wire CLK;
+  (* async_reg = "true" *) wire [1:0]oSyncStages;
+
+  assign out[0] = oSyncStages[1];
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDPE #(
+    .INIT(1'b1)) 
+    \oSyncStages_reg[0] 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(1'b0),
+        .PRE(AS),
+        .Q(oSyncStages[0]));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDPE #(
+    .INIT(1'b1)) 
+    \oSyncStages_reg[1] 
+       (.C(CLK),
+        .CE(1'b1),
+        .D(oSyncStages[0]),
+        .PRE(AS),
+        .Q(oSyncStages[1]));
+endmodule
+
+(* ORIG_REF_NAME = "SyncAsync" *) 
+module system_MIPI_D_PHY_RX_0_0_SyncAsync_26
    (out,
     \GenIDELAYCTRL.rDlyRst_reg ,
     E,
@@ -8319,78 +7787,6 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync_24
         .CE(1'b1),
         .D(oSyncStages[0]),
         .PRE(aRst),
-        .Q(oSyncStages[1]));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync_6
-   (AR,
-    RefClk,
-    AS);
-  output [0:0]AR;
-  input RefClk;
-  input [0:0]AS;
-
-  wire [0:0]AS;
-  wire RefClk;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  assign AR[0] = oSyncStages[1];
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDPE #(
-    .INIT(1'b1)) 
-    \oSyncStages_reg[0] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(1'b0),
-        .PRE(AS),
-        .Q(oSyncStages[0]));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDPE #(
-    .INIT(1'b1)) 
-    \oSyncStages_reg[1] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .PRE(AS),
-        .Q(oSyncStages[1]));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync_8
-   (out,
-    CLK,
-    AS);
-  output [0:0]out;
-  input CLK;
-  input [0:0]AS;
-
-  wire [0:0]AS;
-  wire CLK;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  assign out[0] = oSyncStages[1];
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDPE #(
-    .INIT(1'b1)) 
-    \oSyncStages_reg[0] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(1'b0),
-        .PRE(AS),
-        .Q(oSyncStages[0]));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDPE #(
-    .INIT(1'b1)) 
-    \oSyncStages_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .PRE(AS),
         .Q(oSyncStages[1]));
 endmodule
 
@@ -8470,36 +7866,26 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15
    (out,
-    SR,
     AR,
-    Q,
     RefClk,
     D);
   output [0:0]out;
-  output [0:0]SR;
   output [0:0]AR;
-  input [3:0]Q;
   input RefClk;
   input [0:0]D;
 
   wire [0:0]AR;
   wire [0:0]D;
-  wire [3:0]Q;
   wire RefClk;
-  wire [0:0]SR;
   (* async_reg = "true" *) wire [1:0]oSyncStages;
 
   assign out[0] = oSyncStages[1];
-  LUT5 #(
-    .INIT(32'hFFFDFFFF)) 
-    \GenNoMMCM.cBUFR_Rst_i_1 
+  LUT1 #(
+    .INIT(2'h1)) 
+    \oSyncStages[1]_i_1__1 
        (.I0(oSyncStages[1]),
-        .I1(Q[1]),
-        .I2(Q[0]),
-        .I3(Q[3]),
-        .I4(Q[2]),
         .O(AR));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -8521,294 +7907,25 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1
         .D(oSyncStages[0]),
         .Q(oSyncStages[1]),
         .R(1'b0));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \state[3]_i_1 
-       (.I0(oSyncStages[1]),
-        .O(SR));
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16
    (out,
-    RefClk,
-    D);
-  output [0:0]out;
-  input RefClk;
-  input [0:0]D;
-
-  wire [0:0]D;
-  wire RefClk;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  assign out[0] = oSyncStages[1];
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13
-   (out,
-    RefClk,
-    D);
-  output [0:0]out;
-  input RefClk;
-  input [0:0]D;
-
-  wire [0:0]D;
-  wire RefClk;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  assign out[0] = oSyncStages[1];
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11
-   (CLK,
-    D);
-  input CLK;
-  input [0:0]D;
-
-  wire CLK;
-  wire [0:0]D;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14
-   (CLK,
-    D);
-  input CLK;
-  input [0:0]D;
-
-  wire CLK;
-  wire [0:0]D;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12
-   (dLogicRst_reg,
-    CLK,
-    cHSSettled,
-    dSerdesRst_q,
-    Q,
-    dLogicRst);
-  output dLogicRst_reg;
-  input CLK;
-  input cHSSettled;
-  input dSerdesRst_q;
-  input [0:0]Q;
-  input dLogicRst;
-
-  wire CLK;
-  wire [0:0]Q;
-  wire aReset0;
-  wire cHSSettled;
-  wire dLogicRst;
-  wire dLogicRst_reg;
-  wire dSerdesRst_q;
-  (* async_reg = "true" *) wire oSyncStages;
-
-  LUT4 #(
-    .INIT(16'hBB0B)) 
-    dLogicRst_i_1
-       (.I0(dSerdesRst_q),
-        .I1(oSyncStages),
-        .I2(Q),
-        .I3(dLogicRst),
-        .O(dLogicRst_reg));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \oSyncStages[0]_i_1__2 
-       (.I0(cHSSettled),
-        .O(aReset0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(aReset0),
-        .D(1'b1),
-        .Q(oSyncStages));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22
-   (dLogicRst_reg,
-    CLK,
-    cHSSettled_reg,
-    dSerdesRst_q,
-    Q,
-    dLogicRst);
-  output dLogicRst_reg;
-  input CLK;
-  input cHSSettled_reg;
-  input dSerdesRst_q;
-  input [0:0]Q;
-  input dLogicRst;
-
-  wire CLK;
-  wire [0:0]Q;
-  wire cHSSettled_reg;
-  wire dLogicRst;
-  wire dLogicRst_reg;
-  wire dSerdesRst_q;
-  (* async_reg = "true" *) wire oSyncStages;
-  wire \oSyncStages[0]_i_1__3_n_0 ;
-
-  LUT4 #(
-    .INIT(16'hBB0B)) 
-    dLogicRst_i_1__0
-       (.I0(dSerdesRst_q),
-        .I1(oSyncStages),
-        .I2(Q),
-        .I3(dLogicRst),
-        .O(dLogicRst_reg));
-  LUT1 #(
-    .INIT(2'h1)) 
-    \oSyncStages[0]_i_1__3 
-       (.I0(cHSSettled_reg),
-        .O(\oSyncStages[0]_i_1__3_n_0 ));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDCE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(CLK),
-        .CE(1'b1),
-        .CLR(\oSyncStages[0]_i_1__3_n_0 ),
-        .D(1'b1),
-        .Q(oSyncStages));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13
-   (out,
-    cHSSettled_reg,
-    \cDelayCnt_reg[6] ,
-    \state_reg[1] ,
-    \state_reg[0] ,
-    \state_reg[2] ,
-    cHSSettled,
     RefClk,
     AR,
-    rbD1RxValidHS);
+    aD0ForceRxmode);
   output [0:0]out;
-  output cHSSettled_reg;
-  input \cDelayCnt_reg[6] ;
-  input \state_reg[1] ;
-  input \state_reg[0] ;
-  input \state_reg[2] ;
-  input cHSSettled;
   input RefClk;
   input [0:0]AR;
-  input rbD1RxValidHS;
+  input aD0ForceRxmode;
 
   wire [0:0]AR;
   wire RefClk;
-  wire \cDelayCnt_reg[6] ;
-  wire cHSSettled;
-  wire cHSSettled_reg;
+  wire aD0ForceRxmode;
   (* async_reg = "true" *) wire [1:0]oSyncStages;
-  wire rbD1RxValidHS;
-  wire \state_reg[0] ;
-  wire \state_reg[1] ;
-  wire \state_reg[2] ;
 
   assign out[0] = oSyncStages[1];
-  LUT6 #(
-    .INIT(64'hFFFFFFAF00030000)) 
-    cHSSettled_i_1
-       (.I0(oSyncStages[1]),
-        .I1(\cDelayCnt_reg[6] ),
-        .I2(\state_reg[1] ),
-        .I3(\state_reg[0] ),
-        .I4(\state_reg[2] ),
-        .I5(cHSSettled),
-        .O(cHSSettled_reg));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDCE #(
@@ -8817,7 +7934,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13
        (.C(RefClk),
         .CE(1'b1),
         .CLR(AR),
-        .D(rbD1RxValidHS),
+        .D(aD0ForceRxmode),
         .Q(oSyncStages[0]));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -8832,7 +7949,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17
    (out,
     cHSSettled_reg,
     \cDelayCnt_reg[6] ,
@@ -8899,7 +8016,79 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19
+   (out,
+    RefClk,
+    D);
+  output [0:0]out;
+  input RefClk;
+  input [0:0]D;
+
+  wire [0:0]D;
+  wire RefClk;
+  (* async_reg = "true" *) wire [1:0]oSyncStages;
+
+  assign out[0] = oSyncStages[1];
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[0] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(D),
+        .Q(oSyncStages[0]),
+        .R(1'b0));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[1] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(oSyncStages[0]),
+        .Q(oSyncStages[1]),
+        .R(1'b0));
+endmodule
+
+(* ORIG_REF_NAME = "SyncAsync" *) 
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21
+   (out,
+    RefClk,
+    D);
+  output [0:0]out;
+  input RefClk;
+  input [0:0]D;
+
+  wire [0:0]D;
+  wire RefClk;
+  (* async_reg = "true" *) wire [1:0]oSyncStages;
+
+  assign out[0] = oSyncStages[1];
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[0] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(D),
+        .Q(oSyncStages[0]),
+        .R(1'b0));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDRE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[1] 
+       (.C(RefClk),
+        .CE(1'b1),
+        .D(oSyncStages[0]),
+        .Q(oSyncStages[1]),
+        .R(1'b0));
+endmodule
+
+(* ORIG_REF_NAME = "SyncAsync" *) 
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28
    (out,
     RefClk,
     aLP);
@@ -8935,7 +8124,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30
    (out,
     RefClk,
     aLP);
@@ -8971,51 +8160,66 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4
-   (aRxClkActiveHS,
-    AS,
-    CLK,
-    AR);
-  output aRxClkActiveHS;
-  output [0:0]AS;
-  input CLK;
-  input [0:0]AR;
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31
+   (out,
+    SR,
+    AR,
+    Q,
+    RefClk,
+    D);
+  output [0:0]out;
+  output [0:0]SR;
+  output [0:0]AR;
+  input [3:0]Q;
+  input RefClk;
+  input [0:0]D;
 
   wire [0:0]AR;
-  wire [0:0]AS;
-  wire CLK;
+  wire [0:0]D;
+  wire [3:0]Q;
+  wire RefClk;
+  wire [0:0]SR;
   (* async_reg = "true" *) wire [1:0]oSyncStages;
 
-  assign aRxClkActiveHS = oSyncStages[1];
-  LUT1 #(
-    .INIT(2'h1)) 
-    \oSyncStages[1]_i_1 
+  assign out[0] = oSyncStages[1];
+  LUT5 #(
+    .INIT(32'hFFFDFFFF)) 
+    \GenNoMMCM.cBUFR_Rst_i_1 
        (.I0(oSyncStages[1]),
-        .O(AS));
+        .I1(Q[1]),
+        .I2(Q[0]),
+        .I3(Q[3]),
+        .I4(Q[2]),
+        .O(AR));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \oSyncStages_reg[0] 
-       (.C(CLK),
+       (.C(RefClk),
         .CE(1'b1),
-        .CLR(AR),
-        .D(1'b1),
-        .Q(oSyncStages[0]));
+        .D(D),
+        .Q(oSyncStages[0]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \oSyncStages_reg[1] 
-       (.C(CLK),
+       (.C(RefClk),
         .CE(1'b1),
-        .CLR(AR),
         .D(oSyncStages[0]),
-        .Q(oSyncStages[1]));
+        .Q(oSyncStages[1]),
+        .R(1'b0));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \state[3]_i_1 
+       (.I0(oSyncStages[1]),
+        .O(SR));
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32
    (out,
     D,
     clear,
@@ -9065,7 +8269,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5
   wire [3:0]Q;
   wire RefClk;
   wire aRxClkActiveHS;
-  wire \cDelayCnt[0]_i_4_n_0 ;
+  wire \cDelayCnt[0]_i_4__1_n_0 ;
   wire \cDelayCnt[0]_i_6_n_0 ;
   wire cHSClkLocked_q;
   wire clear;
@@ -9084,21 +8288,21 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5
   LUT4 #(
     .INIT(16'hFFFE)) 
     \cDelayCnt[0]_i_1__1 
-       (.I0(\cDelayCnt[0]_i_4_n_0 ),
+       (.I0(\cDelayCnt[0]_i_4__1_n_0 ),
         .I1(\state_reg[3] ),
         .I2(\cDelayCnt[0]_i_6_n_0 ),
         .I3(\state_reg[0] ),
         .O(clear));
   LUT6 #(
     .INIT(64'hFFFF000000001C10)) 
-    \cDelayCnt[0]_i_4 
+    \cDelayCnt[0]_i_4__1 
        (.I0(Q[1]),
         .I1(Q[2]),
         .I2(Q[0]),
         .I3(\state[2]_i_4_n_0 ),
         .I4(\Filter.sOut_reg_1 ),
         .I5(Q[3]),
-        .O(\cDelayCnt[0]_i_4_n_0 ));
+        .O(\cDelayCnt[0]_i_4__1_n_0 ));
   LUT6 #(
     .INIT(64'h0000000200000000)) 
     \cDelayCnt[0]_i_6 
@@ -9177,7 +8381,51 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33
+   (aRxClkActiveHS,
+    AS,
+    CLK,
+    AR);
+  output aRxClkActiveHS;
+  output [0:0]AS;
+  input CLK;
+  input [0:0]AR;
+
+  wire [0:0]AR;
+  wire [0:0]AS;
+  wire CLK;
+  (* async_reg = "true" *) wire [1:0]oSyncStages;
+
+  assign aRxClkActiveHS = oSyncStages[1];
+  LUT1 #(
+    .INIT(2'h1)) 
+    \oSyncStages[1]_i_1 
+       (.I0(oSyncStages[1]),
+        .O(AS));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDCE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[0] 
+       (.C(CLK),
+        .CE(1'b1),
+        .CLR(AR),
+        .D(1'b1),
+        .Q(oSyncStages[0]));
+  (* ASYNC_REG *) 
+  (* KEEP = "yes" *) 
+  FDCE #(
+    .INIT(1'b0)) 
+    \oSyncStages_reg[1] 
+       (.C(CLK),
+        .CE(1'b1),
+        .CLR(AR),
+        .D(oSyncStages[0]),
+        .Q(oSyncStages[1]));
+endmodule
+
+(* ORIG_REF_NAME = "SyncAsync" *) 
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4
    (out,
     AR,
     RefClk,
@@ -9221,51 +8469,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17
-   (out,
-    AR,
-    RefClk,
-    D);
-  output [0:0]out;
-  output [0:0]AR;
-  input RefClk;
-  input [0:0]D;
-
-  wire [0:0]AR;
-  wire [0:0]D;
-  wire RefClk;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
-
-  assign out[0] = oSyncStages[1];
-  LUT1 #(
-    .INIT(2'h1)) 
-    \oSyncStages[1]_i_1__1 
-       (.I0(oSyncStages[1]),
-        .O(AR));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[0] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(RefClk),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
-endmodule
-
-(* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5
    (out,
     RefClk,
     AR,
@@ -9304,22 +8508,50 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6
    (out,
+    cHSSettled_reg,
+    \cDelayCnt_reg[6] ,
+    \state_reg[1] ,
+    \state_reg[0] ,
+    \state_reg[2] ,
+    cHSSettled,
     RefClk,
     AR,
-    aD0ForceRxmode);
+    rbD1RxValidHS);
   output [0:0]out;
+  output cHSSettled_reg;
+  input \cDelayCnt_reg[6] ;
+  input \state_reg[1] ;
+  input \state_reg[0] ;
+  input \state_reg[2] ;
+  input cHSSettled;
   input RefClk;
   input [0:0]AR;
-  input aD0ForceRxmode;
+  input rbD1RxValidHS;
 
   wire [0:0]AR;
   wire RefClk;
-  wire aD0ForceRxmode;
+  wire \cDelayCnt_reg[6] ;
+  wire cHSSettled;
+  wire cHSSettled_reg;
   (* async_reg = "true" *) wire [1:0]oSyncStages;
+  wire rbD1RxValidHS;
+  wire \state_reg[0] ;
+  wire \state_reg[1] ;
+  wire \state_reg[2] ;
 
   assign out[0] = oSyncStages[1];
+  LUT6 #(
+    .INIT(64'hFFFFFFAF00030000)) 
+    cHSSettled_i_1
+       (.I0(oSyncStages[1]),
+        .I1(\cDelayCnt_reg[6] ),
+        .I2(\state_reg[1] ),
+        .I3(\state_reg[0] ),
+        .I4(\state_reg[2] ),
+        .I5(cHSSettled),
+        .O(cHSSettled_reg));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
   FDCE #(
@@ -9328,7 +8560,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18
        (.C(RefClk),
         .CE(1'b1),
         .CLR(AR),
-        .D(aD0ForceRxmode),
+        .D(rbD1RxValidHS),
         .Q(oSyncStages[0]));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
@@ -9343,7 +8575,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7
    (out,
     RefClk,
     D);
@@ -9379,7 +8611,7 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9
    (out,
     RefClk,
     D);
@@ -9415,69 +8647,427 @@ module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9
-   (CLK,
-    D);
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1
+   (dLogicRst_reg,
+    CLK,
+    cHSSettled,
+    dSerdesRst_q,
+    Q,
+    dLogicRst);
+  output dLogicRst_reg;
   input CLK;
-  input [0:0]D;
+  input cHSSettled;
+  input dSerdesRst_q;
+  input [0:0]Q;
+  input dLogicRst;
 
   wire CLK;
-  wire [0:0]D;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
+  wire [0:0]Q;
+  wire aReset0;
+  wire cHSSettled;
+  wire dLogicRst;
+  wire dLogicRst_reg;
+  wire dSerdesRst_q;
+  (* async_reg = "true" *) wire oSyncStages;
 
+  LUT4 #(
+    .INIT(16'hBB0B)) 
+    dLogicRst_i_1
+       (.I0(dSerdesRst_q),
+        .I1(oSyncStages),
+        .I2(Q),
+        .I3(dLogicRst),
+        .O(dLogicRst_reg));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \oSyncStages[0]_i_1__2 
+       (.I0(cHSSettled),
+        .O(aReset0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDRE #(
+  FDCE #(
     .INIT(1'b0)) 
     \oSyncStages_reg[0] 
        (.C(CLK),
         .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
+        .CLR(aReset0),
+        .D(1'b1),
+        .Q(oSyncStages));
 endmodule
 
 (* ORIG_REF_NAME = "SyncAsync" *) 
-module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11
-   (CLK,
-    D);
+module system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24
+   (dLogicRst_reg,
+    CLK,
+    cHSSettled_reg,
+    dSerdesRst_q,
+    Q,
+    dLogicRst);
+  output dLogicRst_reg;
   input CLK;
-  input [0:0]D;
+  input cHSSettled_reg;
+  input dSerdesRst_q;
+  input [0:0]Q;
+  input dLogicRst;
 
   wire CLK;
-  wire [0:0]D;
-  (* async_reg = "true" *) wire [1:0]oSyncStages;
+  wire [0:0]Q;
+  wire cHSSettled_reg;
+  wire dLogicRst;
+  wire dLogicRst_reg;
+  wire dSerdesRst_q;
+  (* async_reg = "true" *) wire oSyncStages;
+  wire \oSyncStages[0]_i_1__3_n_0 ;
 
+  LUT4 #(
+    .INIT(16'hBB0B)) 
+    dLogicRst_i_1__0
+       (.I0(dSerdesRst_q),
+        .I1(oSyncStages),
+        .I2(Q),
+        .I3(dLogicRst),
+        .O(dLogicRst_reg));
+  LUT1 #(
+    .INIT(2'h1)) 
+    \oSyncStages[0]_i_1__3 
+       (.I0(cHSSettled_reg),
+        .O(\oSyncStages[0]_i_1__3_n_0 ));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDRE #(
+  FDCE #(
     .INIT(1'b0)) 
     \oSyncStages_reg[0] 
        (.C(CLK),
         .CE(1'b1),
-        .D(D),
-        .Q(oSyncStages[0]),
-        .R(1'b0));
-  (* ASYNC_REG *) 
-  (* KEEP = "yes" *) 
-  FDRE #(
-    .INIT(1'b0)) 
-    \oSyncStages_reg[1] 
-       (.C(CLK),
-        .CE(1'b1),
-        .D(oSyncStages[0]),
-        .Q(oSyncStages[1]),
-        .R(1'b0));
+        .CLR(\oSyncStages[0]_i_1__3_n_0 ),
+        .D(1'b1),
+        .Q(oSyncStages));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "system_MIPI_D_PHY_RX_0_0,MIPI_DPHY_Receiver,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MIPI_DPHY_Receiver,Vivado 2017.4" *) 
+(* NotValidForBitStream *)
+module system_MIPI_D_PHY_RX_0_0
+   (dphy_clk_hs_p,
+    dphy_clk_hs_n,
+    dphy_clk_lp_p,
+    dphy_clk_lp_n,
+    dphy_data_hs_p,
+    dphy_data_hs_n,
+    dphy_data_lp_p,
+    dphy_data_lp_n,
+    RefClk,
+    aRst,
+    RxDDRClkHS,
+    aRxClkActiveHS,
+    aClkStopstate,
+    aClkEnable,
+    aClkUlpsActiveNot,
+    aRxUlpsClkNot,
+    aClkForceRxmode,
+    aClkErrControl,
+    RxByteClkHS,
+    aD0Stopstate,
+    aD0Enable,
+    aD0UlpsActiveNot,
+    rbD0RxDataHS,
+    rbD0RxValidHS,
+    rbD0RxActiveHS,
+    rbD0RxSyncHS,
+    rbD0ErrSotHS,
+    rbD0ErrSotSyncHS,
+    aD0ForceRxmode,
+    D0RxClkEsc,
+    aD0RxDataEsc,
+    aD0RxValidEsc,
+    aD0RxLpdtEsc,
+    aD0RxUlpsEsc,
+    aD0RxTriggerEsc,
+    aD0ErrEsc,
+    aD0ErrControl,
+    aD1Stopstate,
+    aD1Enable,
+    aD1UlpsActiveNot,
+    rbD1RxDataHS,
+    rbD1RxValidHS,
+    rbD1RxActiveHS,
+    rbD1RxSyncHS,
+    rbD1ErrSotHS,
+    rbD1ErrSotSyncHS,
+    aD1ForceRxmode,
+    D1RxClkEsc,
+    aD1RxDataEsc,
+    aD1RxValidEsc,
+    aD1RxLpdtEsc,
+    aD1RxUlpsEsc,
+    aD1RxTriggerEsc,
+    aD1ErrEsc,
+    aD1ErrControl,
+    s_axi_lite_awaddr,
+    s_axi_lite_awprot,
+    s_axi_lite_awvalid,
+    s_axi_lite_awready,
+    s_axi_lite_wdata,
+    s_axi_lite_wstrb,
+    s_axi_lite_wvalid,
+    s_axi_lite_wready,
+    s_axi_lite_bresp,
+    s_axi_lite_bvalid,
+    s_axi_lite_bready,
+    s_axi_lite_araddr,
+    s_axi_lite_arprot,
+    s_axi_lite_arvalid,
+    s_axi_lite_arready,
+    s_axi_lite_rdata,
+    s_axi_lite_rresp,
+    s_axi_lite_rvalid,
+    s_axi_lite_rready,
+    s_axi_lite_aclk,
+    s_axi_lite_aresetn);
+  (* x_interface_info = "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_P" *) (* x_interface_parameter = "XIL_INTERFACENAME dphy_hs_clock, CAN_DEBUG false, FREQ_HZ 336000000" *) input dphy_clk_hs_p;
+  (* x_interface_info = "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_N" *) input dphy_clk_hs_n;
+  input dphy_clk_lp_p;
+  input dphy_clk_lp_n;
+  input [1:0]dphy_data_hs_p;
+  input [1:0]dphy_data_hs_n;
+  input [1:0]dphy_data_lp_p;
+  input [1:0]dphy_data_lp_n;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 RefClk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME RefClk, ASSOCIATED_RESET aRst, FREQ_HZ 200000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input RefClk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 aRst RST" *) (* x_interface_parameter = "XIL_INTERFACENAME aRst, POLARITY ACTIVE_HIGH" *) input aRst;
+  output RxDDRClkHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXCLKACTIVEHS" *) output aRxClkActiveHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_STOPSTATE" *) output aClkStopstate;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ENABLE" *) input aClkEnable;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ULPSACTIVENOT" *) output aClkUlpsActiveNot;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXULPSCLKNOT" *) output aRxUlpsClkNot;
+  input aClkForceRxmode;
+  output aClkErrControl;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 RxByteClkHS CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME RxByteClkHS, FREQ_HZ 84000000, ASSOCIATED_BUSIF D_PHY_PPI, PHASE 0.000, CLK_DOMAIN system_MIPI_D_PHY_RX_0_0_RxByteClkHS" *) output RxByteClkHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_STOPSTATE" *) output aD0Stopstate;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ENABLE" *) input aD0Enable;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ULPSACTIVENOT" *) output aD0UlpsActiveNot;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAHS" *) output [7:0]rbD0RxDataHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDHS" *) output rbD0RxValidHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXACTIVEHS" *) output rbD0RxActiveHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXSYNCHS" *) output rbD0RxSyncHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTHS" *) output rbD0ErrSotHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTSYNCHS" *) output rbD0ErrSotSyncHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_FORCERXMODE" *) input aD0ForceRxmode;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXCLKESC" *) output D0RxClkEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAESC" *) output [7:0]aD0RxDataEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDESC" *) output aD0RxValidEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXLPDTESC" *) output aD0RxLpdtEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXULPSESC" *) output aD0RxUlpsEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXTRIGGERESC" *) output [3:0]aD0RxTriggerEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRESC" *) output aD0ErrEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRCONTROL" *) output aD0ErrControl;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_STOPSTATE" *) output aD1Stopstate;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ENABLE" *) input aD1Enable;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ULPSACTIVENOT" *) output aD1UlpsActiveNot;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAHS" *) output [7:0]rbD1RxDataHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDHS" *) output rbD1RxValidHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXACTIVEHS" *) output rbD1RxActiveHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXSYNCHS" *) output rbD1RxSyncHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTHS" *) output rbD1ErrSotHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTSYNCHS" *) output rbD1ErrSotSyncHS;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_FORCERXMODE" *) input aD1ForceRxmode;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXCLKESC" *) output D1RxClkEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAESC" *) output [7:0]aD1RxDataEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDESC" *) output aD1RxValidEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXLPDTESC" *) output aD1RxLpdtEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXULPSESC" *) output aD1RxUlpsEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXTRIGGERESC" *) output [3:0]aD1RxTriggerEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRESC" *) output aD1ErrEsc;
+  (* x_interface_info = "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRCONTROL" *) output aD1ErrControl;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_LITE, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 50000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input [3:0]s_axi_lite_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWPROT" *) input [2:0]s_axi_lite_awprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID" *) input s_axi_lite_awvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWREADY" *) output s_axi_lite_awready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA" *) input [31:0]s_axi_lite_wdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WSTRB" *) input [3:0]s_axi_lite_wstrb;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WVALID" *) input s_axi_lite_wvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE WREADY" *) output s_axi_lite_wready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BRESP" *) output [1:0]s_axi_lite_bresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BVALID" *) output s_axi_lite_bvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE BREADY" *) input s_axi_lite_bready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARADDR" *) input [3:0]s_axi_lite_araddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARPROT" *) input [2:0]s_axi_lite_arprot;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARVALID" *) input s_axi_lite_arvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY" *) output s_axi_lite_arready;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RDATA" *) output [31:0]s_axi_lite_rdata;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RRESP" *) output [1:0]s_axi_lite_rresp;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RVALID" *) output s_axi_lite_rvalid;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI_LITE RREADY" *) input s_axi_lite_rready;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 s_axi_lite_aclk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME s_axi_lite_aclk, ASSOCIATED_RESET s_axi_lite_aresetn, ASSOCIATED_BUSIF S_AXI_LITE, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input s_axi_lite_aclk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 s_axi_lite_aresetn RST" *) (* x_interface_parameter = "XIL_INTERFACENAME s_axi_lite_aresetn, POLARITY ACTIVE_LOW" *) input s_axi_lite_aresetn;
+
+  wire D0RxClkEsc;
+  wire D1RxClkEsc;
+  wire RefClk;
+  wire RxByteClkHS;
+  wire RxDDRClkHS;
+  wire aClkEnable;
+  wire aClkErrControl;
+  wire aClkForceRxmode;
+  wire aClkStopstate;
+  wire aClkUlpsActiveNot;
+  wire aD0Enable;
+  wire aD0ErrControl;
+  wire aD0ErrEsc;
+  wire aD0ForceRxmode;
+  wire [7:0]aD0RxDataEsc;
+  wire aD0RxLpdtEsc;
+  wire [3:0]aD0RxTriggerEsc;
+  wire aD0RxUlpsEsc;
+  wire aD0RxValidEsc;
+  wire aD0Stopstate;
+  wire aD0UlpsActiveNot;
+  wire aD1Enable;
+  wire aD1ErrControl;
+  wire aD1ErrEsc;
+  wire aD1ForceRxmode;
+  wire [7:0]aD1RxDataEsc;
+  wire aD1RxLpdtEsc;
+  wire [3:0]aD1RxTriggerEsc;
+  wire aD1RxUlpsEsc;
+  wire aD1RxValidEsc;
+  wire aD1Stopstate;
+  wire aD1UlpsActiveNot;
+  wire aRst;
+  wire aRxClkActiveHS;
+  wire aRxUlpsClkNot;
+  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire dphy_clk_hs_n;
+  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire dphy_clk_hs_p;
+  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire dphy_clk_lp_n;
+  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire dphy_clk_lp_p;
+  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire [1:0]dphy_data_hs_n;
+  (* DIFF_TERM = 0 *) (* IBUF_LOW_PWR = 0 *) (* IOSTANDARD = "LVDS_25" *) wire [1:0]dphy_data_hs_p;
+  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire [1:0]dphy_data_lp_n;
+  (* IBUF_LOW_PWR *) (* IOSTANDARD = "HSUL_12" *) wire [1:0]dphy_data_lp_p;
+  wire rbD0ErrSotHS;
+  wire rbD0ErrSotSyncHS;
+  wire rbD0RxActiveHS;
+  wire [7:0]rbD0RxDataHS;
+  wire rbD0RxSyncHS;
+  wire rbD0RxValidHS;
+  wire rbD1ErrSotHS;
+  wire rbD1ErrSotSyncHS;
+  wire rbD1RxActiveHS;
+  wire [7:0]rbD1RxDataHS;
+  wire rbD1RxSyncHS;
+  wire rbD1RxValidHS;
+  wire s_axi_lite_aclk;
+  wire [3:0]s_axi_lite_araddr;
+  wire s_axi_lite_aresetn;
+  wire [2:0]s_axi_lite_arprot;
+  wire s_axi_lite_arready;
+  wire s_axi_lite_arvalid;
+  wire [3:0]s_axi_lite_awaddr;
+  wire [2:0]s_axi_lite_awprot;
+  wire s_axi_lite_awready;
+  wire s_axi_lite_awvalid;
+  wire s_axi_lite_bready;
+  wire [1:0]s_axi_lite_bresp;
+  wire s_axi_lite_bvalid;
+  wire [31:0]s_axi_lite_rdata;
+  wire s_axi_lite_rready;
+  wire [1:0]s_axi_lite_rresp;
+  wire s_axi_lite_rvalid;
+  wire [31:0]s_axi_lite_wdata;
+  wire s_axi_lite_wready;
+  wire [3:0]s_axi_lite_wstrb;
+  wire s_axi_lite_wvalid;
+
+  (* C_S_AXI_LITE_ADDR_WIDTH = "4" *) 
+  (* C_S_AXI_LITE_DATA_WIDTH = "32" *) 
+  (* C_S_AXI_LITE_FREQ_HZ = "100000000" *) 
+  (* kAddDelayClk_ps = "0" *) 
+  (* kAddDelayData0_ps = "0" *) 
+  (* kAddDelayData1_ps = "0" *) 
+  (* kDebug = "FALSE" *) 
+  (* kGenerateAXIL = "TRUE" *) 
+  (* kGenerateMMCM = "FALSE" *) 
+  (* kLPFromLane0 = "FALSE" *) 
+  (* kNoOfDataLanes = "2" *) 
+  (* kRefClkFreqHz = "200000000" *) 
+  (* kVersionMajor = "1" *) 
+  (* kVersionMinor = "2" *) 
+  system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver U0
+       (.D0RxClkEsc(D0RxClkEsc),
+        .D1RxClkEsc(D1RxClkEsc),
+        .RefClk(RefClk),
+        .RxByteClkHS(RxByteClkHS),
+        .RxDDRClkHS(RxDDRClkHS),
+        .aClkEnable(aClkEnable),
+        .aClkErrControl(aClkErrControl),
+        .aClkForceRxmode(aClkForceRxmode),
+        .aClkStopstate(aClkStopstate),
+        .aClkUlpsActiveNot(aClkUlpsActiveNot),
+        .aD0Enable(aD0Enable),
+        .aD0ErrControl(aD0ErrControl),
+        .aD0ErrEsc(aD0ErrEsc),
+        .aD0ForceRxmode(aD0ForceRxmode),
+        .aD0RxDataEsc(aD0RxDataEsc),
+        .aD0RxLpdtEsc(aD0RxLpdtEsc),
+        .aD0RxTriggerEsc(aD0RxTriggerEsc),
+        .aD0RxUlpsEsc(aD0RxUlpsEsc),
+        .aD0RxValidEsc(aD0RxValidEsc),
+        .aD0Stopstate(aD0Stopstate),
+        .aD0UlpsActiveNot(aD0UlpsActiveNot),
+        .aD1Enable(aD1Enable),
+        .aD1ErrControl(aD1ErrControl),
+        .aD1ErrEsc(aD1ErrEsc),
+        .aD1ForceRxmode(aD1ForceRxmode),
+        .aD1RxDataEsc(aD1RxDataEsc),
+        .aD1RxLpdtEsc(aD1RxLpdtEsc),
+        .aD1RxTriggerEsc(aD1RxTriggerEsc),
+        .aD1RxUlpsEsc(aD1RxUlpsEsc),
+        .aD1RxValidEsc(aD1RxValidEsc),
+        .aD1Stopstate(aD1Stopstate),
+        .aD1UlpsActiveNot(aD1UlpsActiveNot),
+        .aRst(aRst),
+        .aRxClkActiveHS(aRxClkActiveHS),
+        .aRxUlpsClkNot(aRxUlpsClkNot),
+        .dphy_clk_hs_n(dphy_clk_hs_n),
+        .dphy_clk_hs_p(dphy_clk_hs_p),
+        .dphy_clk_lp_n(dphy_clk_lp_n),
+        .dphy_clk_lp_p(dphy_clk_lp_p),
+        .dphy_data_hs_n(dphy_data_hs_n),
+        .dphy_data_hs_p(dphy_data_hs_p),
+        .dphy_data_lp_n(dphy_data_lp_n),
+        .dphy_data_lp_p(dphy_data_lp_p),
+        .rbD0ErrSotHS(rbD0ErrSotHS),
+        .rbD0ErrSotSyncHS(rbD0ErrSotSyncHS),
+        .rbD0RxActiveHS(rbD0RxActiveHS),
+        .rbD0RxDataHS(rbD0RxDataHS),
+        .rbD0RxSyncHS(rbD0RxSyncHS),
+        .rbD0RxValidHS(rbD0RxValidHS),
+        .rbD1ErrSotHS(rbD1ErrSotHS),
+        .rbD1ErrSotSyncHS(rbD1ErrSotSyncHS),
+        .rbD1RxActiveHS(rbD1RxActiveHS),
+        .rbD1RxDataHS(rbD1RxDataHS),
+        .rbD1RxSyncHS(rbD1RxSyncHS),
+        .rbD1RxValidHS(rbD1RxValidHS),
+        .s_axi_lite_aclk(s_axi_lite_aclk),
+        .s_axi_lite_araddr(s_axi_lite_araddr),
+        .s_axi_lite_aresetn(s_axi_lite_aresetn),
+        .s_axi_lite_arprot(s_axi_lite_arprot),
+        .s_axi_lite_arready(s_axi_lite_arready),
+        .s_axi_lite_arvalid(s_axi_lite_arvalid),
+        .s_axi_lite_awaddr(s_axi_lite_awaddr),
+        .s_axi_lite_awprot(s_axi_lite_awprot),
+        .s_axi_lite_awready(s_axi_lite_awready),
+        .s_axi_lite_awvalid(s_axi_lite_awvalid),
+        .s_axi_lite_bready(s_axi_lite_bready),
+        .s_axi_lite_bresp(s_axi_lite_bresp),
+        .s_axi_lite_bvalid(s_axi_lite_bvalid),
+        .s_axi_lite_rdata(s_axi_lite_rdata),
+        .s_axi_lite_rready(s_axi_lite_rready),
+        .s_axi_lite_rresp(s_axi_lite_rresp),
+        .s_axi_lite_rvalid(s_axi_lite_rvalid),
+        .s_axi_lite_wdata(s_axi_lite_wdata),
+        .s_axi_lite_wready(s_axi_lite_wready),
+        .s_axi_lite_wstrb(s_axi_lite_wstrb),
+        .s_axi_lite_wvalid(s_axi_lite_wvalid));
 endmodule
 `ifndef GLBL
 `define GLBL
@@ -9529,8 +9119,8 @@ module glbl ();
     reg JTAG_USER_TDO3_GLBL = 1'bz;
     reg JTAG_USER_TDO4_GLBL = 1'bz;
 
-    assign (weak1, weak0) GSR = GSR_int;
-    assign (weak1, weak0) GTS = GTS_int;
+    assign (strong1, weak0) GSR = GSR_int;
+    assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
 
     initial begin

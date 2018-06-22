@@ -1,10 +1,10 @@
--- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
--- Date        : Tue Dec 19 13:26:24 2017
--- Host        : WK73 running 64-bit Service Pack 1  (build 7601)
--- Command     : write_vhdl -force -mode funcsim
---               C:/sam_work/git/digilent/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_AXI_BayerToRGB_1_0/system_AXI_BayerToRGB_1_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+-- Date        : Tue Jun 19 19:03:07 2018
+-- Host        : elodlt-ro running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_AXI_BayerToRGB_1_0 -prefix
+--               system_AXI_BayerToRGB_1_0_ system_AXI_BayerToRGB_1_0_sim_netlist.vhdl
 -- Design      : system_AXI_BayerToRGB_1_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -24,8 +24,6 @@ entity system_AXI_BayerToRGB_1_0_LineBuffer is
     Q : in STD_LOGIC_VECTOR ( 9 downto 0 );
     \sLineBufferReadDataBuf_reg[9]\ : in STD_LOGIC_VECTOR ( 9 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_AXI_BayerToRGB_1_0_LineBuffer : entity is "LineBuffer";
 end system_AXI_BayerToRGB_1_0_LineBuffer;
 
 architecture STRUCTURE of system_AXI_BayerToRGB_1_0_LineBuffer is
@@ -42,8 +40,6 @@ architecture STRUCTURE of system_AXI_BayerToRGB_1_0_LineBuffer is
   signal NLW_pLineBuffer_reg_DOPBDOP_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_pLineBuffer_reg_ECCPARITY_UNCONNECTED : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal NLW_pLineBuffer_reg_RDADDRECC_UNCONNECTED : STD_LOGIC_VECTOR ( 8 downto 0 );
-  attribute CLOCK_DOMAINS : string;
-  attribute CLOCK_DOMAINS of pLineBuffer_reg : label is "COMMON";
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ : string;
   attribute \MEM.PORTA.DATA_BIT_LAYOUT\ of pLineBuffer_reg : label is "p0_d10";
   attribute \MEM.PORTB.DATA_BIT_LAYOUT\ : string;
@@ -262,8 +258,6 @@ entity system_AXI_BayerToRGB_1_0_AXI_BayerToRGB is
     s_axis_video_tuser : in STD_LOGIC;
     s_axis_video_tlast : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_AXI_BayerToRGB_1_0_AXI_BayerToRGB : entity is "AXI_BayerToRGB";
 end system_AXI_BayerToRGB_1_0_AXI_BayerToRGB;
 
 architecture STRUCTURE of system_AXI_BayerToRGB_1_0_AXI_BayerToRGB is
@@ -471,8 +465,8 @@ architecture STRUCTURE of system_AXI_BayerToRGB_1_0_AXI_BayerToRGB is
   attribute METHODOLOGY_DRC_VIOS of \sAXIMasterGreen_reg[7]_i_1\ : label is "{SYNTH-8 {cell *THIS*}}";
   attribute METHODOLOGY_DRC_VIOS of \sAXIMasterGreen_reg[9]_i_1\ : label is "{SYNTH-8 {cell *THIS*}}";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \sAXIMasterRed[8]_i_4\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \sAXIMasterRed[9]_i_4\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \sAXIMasterRed[8]_i_4\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \sAXIMasterRed[9]_i_4\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \sCntColumns[1]_i_1\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \sCntColumns[2]_i_1\ : label is "soft_lutpair23";
   attribute SOFT_HLUTNM of \sCntColumns[3]_i_1\ : label is "soft_lutpair6";
@@ -481,11 +475,11 @@ architecture STRUCTURE of system_AXI_BayerToRGB_1_0_AXI_BayerToRGB is
   attribute SOFT_HLUTNM of \sCntColumns[7]_i_1\ : label is "soft_lutpair24";
   attribute SOFT_HLUTNM of \sCntColumns[8]_i_1\ : label is "soft_lutpair5";
   attribute SOFT_HLUTNM of \sCntColumns[9]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \sCntLines[0]_i_3\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \sCntLines[0]_i_3\ : label is "soft_lutpair21";
   attribute SOFT_HLUTNM of \sCntRemPixels[0]_i_1\ : label is "soft_lutpair22";
   attribute SOFT_HLUTNM of \sCntRemPixels[1]_i_1\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \sOtherPixelsData[10]_i_1\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \sOtherPixelsData[11]_i_1\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \sOtherPixelsData[11]_i_1\ : label is "soft_lutpair18";
   attribute SOFT_HLUTNM of \sOtherPixelsData[12]_i_1\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \sOtherPixelsData[13]_i_1\ : label is "soft_lutpair10";
   attribute SOFT_HLUTNM of \sOtherPixelsData[14]_i_1\ : label is "soft_lutpair12";
@@ -503,14 +497,14 @@ architecture STRUCTURE of system_AXI_BayerToRGB_1_0_AXI_BayerToRGB is
   attribute SOFT_HLUTNM of \sOtherPixelsData[27]_i_1\ : label is "soft_lutpair14";
   attribute SOFT_HLUTNM of \sOtherPixelsData[28]_i_1\ : label is "soft_lutpair15";
   attribute SOFT_HLUTNM of \sOtherPixelsData[29]_i_1\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \sOtherPixelsData[4]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \sOtherPixelsData[5]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \sOtherPixelsData[6]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \sOtherPixelsData[4]_i_1\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \sOtherPixelsData[5]_i_1\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \sOtherPixelsData[6]_i_1\ : label is "soft_lutpair17";
   attribute SOFT_HLUTNM of \sOtherPixelsData[7]_i_1\ : label is "soft_lutpair16";
   attribute SOFT_HLUTNM of \sOtherPixelsData[8]_i_1\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \sOtherPixelsData[9]_i_1\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \sStrobesShiftReg[0][FirstColumn]_i_2\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of s_axis_video_tready_INST_0 : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \sOtherPixelsData[9]_i_1\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \sStrobesShiftReg[0][FirstColumn]_i_2\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of s_axis_video_tready_INST_0 : label is "soft_lutpair18";
 begin
   m_axis_video_tdata(29 downto 0) <= \^m_axis_video_tdata\(29 downto 0);
   m_axis_video_tvalid <= \^m_axis_video_tvalid\;
@@ -557,119 +551,119 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterBlue[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][0]\,
+      I0 => \sPixel_reg_n_0_[0][0]\,
       I1 => \sPixel_reg_n_0_[1][0]\,
       I2 => \sPixel_reg_n_0_[2][0]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][0]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][0]\,
       O => \sAXIMasterBlue[0]_i_1_n_0\
     );
 \sAXIMasterBlue[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][1]\,
+      I0 => \sPixel_reg_n_0_[0][1]\,
       I1 => \sPixel_reg_n_0_[1][1]\,
       I2 => \sPixel_reg_n_0_[2][1]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][1]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][1]\,
       O => \sAXIMasterBlue[1]_i_1_n_0\
     );
 \sAXIMasterBlue[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][2]\,
+      I0 => \sPixel_reg_n_0_[0][2]\,
       I1 => \sPixel_reg_n_0_[1][2]\,
       I2 => \sPixel_reg_n_0_[2][2]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][2]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][2]\,
       O => \sAXIMasterBlue[2]_i_1_n_0\
     );
 \sAXIMasterBlue[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][3]\,
+      I0 => \sPixel_reg_n_0_[0][3]\,
       I1 => \sPixel_reg_n_0_[1][3]\,
       I2 => \sPixel_reg_n_0_[2][3]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][3]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][3]\,
       O => \sAXIMasterBlue[3]_i_1_n_0\
     );
 \sAXIMasterBlue[4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][4]\,
+      I0 => \sPixel_reg_n_0_[0][4]\,
       I1 => \sPixel_reg_n_0_[1][4]\,
       I2 => \sPixel_reg_n_0_[2][4]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][4]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][4]\,
       O => \sAXIMasterBlue[4]_i_1_n_0\
     );
 \sAXIMasterBlue[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][5]\,
+      I0 => \sPixel_reg_n_0_[0][5]\,
       I1 => \sPixel_reg_n_0_[1][5]\,
       I2 => \sPixel_reg_n_0_[2][5]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][5]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][5]\,
       O => \sAXIMasterBlue[5]_i_1_n_0\
     );
 \sAXIMasterBlue[6]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][6]\,
+      I0 => \sPixel_reg_n_0_[0][6]\,
       I1 => \sPixel_reg_n_0_[1][6]\,
       I2 => \sPixel_reg_n_0_[2][6]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][6]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][6]\,
       O => \sAXIMasterBlue[6]_i_1_n_0\
     );
 \sAXIMasterBlue[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][7]\,
+      I0 => \sPixel_reg_n_0_[0][7]\,
       I1 => \sPixel_reg_n_0_[1][7]\,
       I2 => \sPixel_reg_n_0_[2][7]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][7]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][7]\,
       O => \sAXIMasterBlue[7]_i_1_n_0\
     );
 \sAXIMasterBlue[8]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][8]\,
+      I0 => \sPixel_reg_n_0_[0][8]\,
       I1 => \sPixel_reg_n_0_[1][8]\,
       I2 => \sPixel_reg_n_0_[2][8]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][8]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][8]\,
       O => \sAXIMasterBlue[8]_i_1_n_0\
     );
 \sAXIMasterBlue[9]_i_1\: unisim.vcomponents.LUT5
@@ -686,15 +680,15 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterBlue[9]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[3][9]\,
+      I0 => \sPixel_reg_n_0_[0][9]\,
       I1 => \sPixel_reg_n_0_[1][9]\,
       I2 => \sPixel_reg_n_0_[2][9]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[0][9]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[3][9]\,
       O => \sAXIMasterBlue[9]_i_2_n_0\
     );
 \sAXIMasterBlue_reg[0]\: unisim.vcomponents.FDRE
@@ -791,241 +785,241 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterGreen[3]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][3]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][3]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][3]\,
       O => \sAXIMasterGreen[3]_i_2_n_0\
     );
 \sAXIMasterGreen[3]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][2]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][2]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][2]\,
       O => \sAXIMasterGreen[3]_i_3_n_0\
     );
 \sAXIMasterGreen[3]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][1]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][1]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][1]\,
       O => \sAXIMasterGreen[3]_i_4_n_0\
     );
 \sAXIMasterGreen[3]_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][0]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][0]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][0]\,
       O => \sAXIMasterGreen[3]_i_5_n_0\
     );
 \sAXIMasterGreen[3]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][3]\,
       I1 => \sPixel_reg_n_0_[3][3]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][3]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][3]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][3]\,
       O => \sAXIMasterGreen[3]_i_6_n_0\
     );
 \sAXIMasterGreen[3]_i_7\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][2]\,
       I1 => \sPixel_reg_n_0_[3][2]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][2]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][2]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][2]\,
       O => \sAXIMasterGreen[3]_i_7_n_0\
     );
 \sAXIMasterGreen[3]_i_8\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][1]\,
       I1 => \sPixel_reg_n_0_[3][1]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][1]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][1]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][1]\,
       O => \sAXIMasterGreen[3]_i_8_n_0\
     );
 \sAXIMasterGreen[3]_i_9\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][0]\,
       I1 => \sPixel_reg_n_0_[3][0]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][0]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][0]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][0]\,
       O => \sAXIMasterGreen[3]_i_9_n_0\
     );
 \sAXIMasterGreen[7]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][7]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][7]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][7]\,
       O => \sAXIMasterGreen[7]_i_2_n_0\
     );
 \sAXIMasterGreen[7]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][6]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][6]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][6]\,
       O => \sAXIMasterGreen[7]_i_3_n_0\
     );
 \sAXIMasterGreen[7]_i_4\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][5]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][5]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][5]\,
       O => \sAXIMasterGreen[7]_i_4_n_0\
     );
 \sAXIMasterGreen[7]_i_5\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][4]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][4]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][4]\,
       O => \sAXIMasterGreen[7]_i_5_n_0\
     );
 \sAXIMasterGreen[7]_i_6\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][7]\,
       I1 => \sPixel_reg_n_0_[3][7]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][7]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][7]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][7]\,
       O => \sAXIMasterGreen[7]_i_6_n_0\
     );
 \sAXIMasterGreen[7]_i_7\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][6]\,
       I1 => \sPixel_reg_n_0_[3][6]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][6]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][6]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][6]\,
       O => \sAXIMasterGreen[7]_i_7_n_0\
     );
 \sAXIMasterGreen[7]_i_8\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][5]\,
       I1 => \sPixel_reg_n_0_[3][5]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][5]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][5]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][5]\,
       O => \sAXIMasterGreen[7]_i_8_n_0\
     );
 \sAXIMasterGreen[7]_i_9\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][4]\,
       I1 => \sPixel_reg_n_0_[3][4]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][4]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][4]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][4]\,
       O => \sAXIMasterGreen[7]_i_9_n_0\
     );
 \sAXIMasterGreen[9]_i_2\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][9]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][9]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][9]\,
       O => \sAXIMasterGreen[9]_i_2_n_0\
     );
 \sAXIMasterGreen[9]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E2B8"
+      INIT => X"EB28"
     )
         port map (
       I0 => \sPixel_reg_n_0_[3][8]\,
-      I1 => sCrntPositionIndicatorDly3(1),
-      I2 => \sPixel_reg_n_0_[2][8]\,
-      I3 => sCrntPositionIndicatorDly3(0),
+      I1 => sCrntPositionIndicatorDly3(0),
+      I2 => sCrntPositionIndicatorDly3(1),
+      I3 => \sPixel_reg_n_0_[2][8]\,
       O => \sAXIMasterGreen[9]_i_3_n_0\
     );
 \sAXIMasterGreen[9]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][9]\,
       I1 => \sPixel_reg_n_0_[3][9]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][9]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][9]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][9]\,
       O => \sAXIMasterGreen[9]_i_4_n_0\
     );
 \sAXIMasterGreen[9]_i_5\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"53A3353A5CACC5CA"
+      INIT => X"5A33335A5ACCCC5A"
     )
         port map (
       I0 => \sPixel_reg_n_0_[2][8]\,
       I1 => \sPixel_reg_n_0_[3][8]\,
-      I2 => sCrntPositionIndicatorDly3(0),
-      I3 => \sPixel_reg_n_0_[1][8]\,
-      I4 => sCrntPositionIndicatorDly3(1),
+      I2 => \sPixel_reg_n_0_[1][8]\,
+      I3 => sCrntPositionIndicatorDly3(1),
+      I4 => sCrntPositionIndicatorDly3(0),
       I5 => \sPixel_reg_n_0_[0][8]\,
       O => \sAXIMasterGreen[9]_i_5_n_0\
     );
@@ -1165,106 +1159,106 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterRed[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][0]\,
+      I0 => \sPixel_reg_n_0_[3][0]\,
       I1 => \sPixel_reg_n_0_[2][0]\,
       I2 => \sPixel_reg_n_0_[1][0]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][0]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][0]\,
       O => \sAXIMasterRed[0]_i_1_n_0\
     );
 \sAXIMasterRed[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][1]\,
+      I0 => \sPixel_reg_n_0_[3][1]\,
       I1 => \sPixel_reg_n_0_[2][1]\,
       I2 => \sPixel_reg_n_0_[1][1]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][1]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][1]\,
       O => \sAXIMasterRed[1]_i_1_n_0\
     );
 \sAXIMasterRed[2]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][2]\,
+      I0 => \sPixel_reg_n_0_[3][2]\,
       I1 => \sPixel_reg_n_0_[2][2]\,
       I2 => \sPixel_reg_n_0_[1][2]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][2]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][2]\,
       O => \sAXIMasterRed[2]_i_1_n_0\
     );
 \sAXIMasterRed[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][3]\,
+      I0 => \sPixel_reg_n_0_[3][3]\,
       I1 => \sPixel_reg_n_0_[2][3]\,
       I2 => \sPixel_reg_n_0_[1][3]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][3]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][3]\,
       O => \sAXIMasterRed[3]_i_1_n_0\
     );
 \sAXIMasterRed[4]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][4]\,
+      I0 => \sPixel_reg_n_0_[3][4]\,
       I1 => \sPixel_reg_n_0_[2][4]\,
       I2 => \sPixel_reg_n_0_[1][4]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][4]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][4]\,
       O => \sAXIMasterRed[4]_i_1_n_0\
     );
 \sAXIMasterRed[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][5]\,
+      I0 => \sPixel_reg_n_0_[3][5]\,
       I1 => \sPixel_reg_n_0_[2][5]\,
       I2 => \sPixel_reg_n_0_[1][5]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][5]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][5]\,
       O => \sAXIMasterRed[5]_i_1_n_0\
     );
 \sAXIMasterRed[6]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][6]\,
+      I0 => \sPixel_reg_n_0_[3][6]\,
       I1 => \sPixel_reg_n_0_[2][6]\,
       I2 => \sPixel_reg_n_0_[1][6]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][6]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][6]\,
       O => \sAXIMasterRed[6]_i_1_n_0\
     );
 \sAXIMasterRed[7]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][7]\,
+      I0 => \sPixel_reg_n_0_[3][7]\,
       I1 => \sPixel_reg_n_0_[2][7]\,
       I2 => \sPixel_reg_n_0_[1][7]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][7]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][7]\,
       O => \sAXIMasterRed[7]_i_1_n_0\
     );
 \sAXIMasterRed[8]_i_1\: unisim.vcomponents.LUT6
@@ -1293,15 +1287,15 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterRed[8]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][8]\,
+      I0 => \sPixel_reg_n_0_[3][8]\,
       I1 => \sPixel_reg_n_0_[2][8]\,
       I2 => \sPixel_reg_n_0_[1][8]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][8]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][8]\,
       O => \sAXIMasterRed[8]_i_3_n_0\
     );
 \sAXIMasterRed[8]_i_4\: unisim.vcomponents.LUT2
@@ -1335,15 +1329,15 @@ m_axis_video_tvalid_reg: unisim.vcomponents.FDRE
     );
 \sAXIMasterRed[9]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACCAACCF0FFF000"
+      INIT => X"FFF0CCAA00F0CCAA"
     )
         port map (
-      I0 => \sPixel_reg_n_0_[0][9]\,
+      I0 => \sPixel_reg_n_0_[3][9]\,
       I1 => \sPixel_reg_n_0_[2][9]\,
       I2 => \sPixel_reg_n_0_[1][9]\,
-      I3 => sCrntPositionIndicatorDly3(1),
-      I4 => \sPixel_reg_n_0_[3][9]\,
-      I5 => sCrntPositionIndicatorDly3(0),
+      I3 => sCrntPositionIndicatorDly3(0),
+      I4 => sCrntPositionIndicatorDly3(1),
+      I5 => \sPixel_reg_n_0_[0][9]\,
       O => \sAXIMasterRed[9]_i_3_n_0\
     );
 \sAXIMasterRed[9]_i_4\: unisim.vcomponents.LUT4
@@ -3262,15 +3256,15 @@ sLineBufferWrite_reg: unisim.vcomponents.FDRE
     );
 \sStrobesShiftReg[0][Last]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E0E000E0E0E0E0E0"
+      INIT => X"A8A800A8A8A8A8A8"
     )
         port map (
-      I0 => \sStrobesShiftReg_reg[0][Last]__0\,
+      I0 => sStreamReset_n,
       I1 => \sCntLines[0]_i_2_n_0\,
-      I2 => sStreamReset_n,
-      I3 => s_axis_video_tvalid,
+      I2 => \sStrobesShiftReg_reg[0][Last]__0\,
+      I3 => m_axis_video_tready,
       I4 => \sAXIMasterRed[8]_i_4_n_0\,
-      I5 => m_axis_video_tready,
+      I5 => s_axis_video_tvalid,
       O => \sStrobesShiftReg[0][Last]_i_1_n_0\
     );
 \sStrobesShiftReg[0][User]_i_1\: unisim.vcomponents.LUT6
@@ -3435,12 +3429,30 @@ entity system_AXI_BayerToRGB_1_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of system_AXI_BayerToRGB_1_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of system_AXI_BayerToRGB_1_0 : entity is "AXI_BayerToRGB,Vivado 2016.4";
+  attribute x_core_info of system_AXI_BayerToRGB_1_0 : entity is "AXI_BayerToRGB,Vivado 2017.4";
 end system_AXI_BayerToRGB_1_0;
 
 architecture STRUCTURE of system_AXI_BayerToRGB_1_0 is
   signal \<const0>\ : STD_LOGIC;
   signal \^m_axis_video_tdata\ : STD_LOGIC_VECTOR ( 29 downto 0 );
+  attribute x_interface_info : string;
+  attribute x_interface_info of StreamClk : signal is "xilinx.com:signal:clock:1.0 AXI_Stream_Clk CLK";
+  attribute x_interface_parameter : string;
+  attribute x_interface_parameter of StreamClk : signal is "XIL_INTERFACENAME AXI_Stream_Clk, ASSOCIATED_BUSIF AXI_Stream_Master:AXI_Slave_Interface, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1";
+  attribute x_interface_info of m_axis_video_tlast : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TLAST";
+  attribute x_interface_info of m_axis_video_tready : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TREADY";
+  attribute x_interface_parameter of m_axis_video_tready : signal is "XIL_INTERFACENAME AXI_Stream_Master, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef";
+  attribute x_interface_info of m_axis_video_tuser : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TUSER";
+  attribute x_interface_info of m_axis_video_tvalid : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TVALID";
+  attribute x_interface_info of sStreamReset_n : signal is "xilinx.com:signal:reset:1.0 AXI_Stream_Reset_n RST";
+  attribute x_interface_parameter of sStreamReset_n : signal is "XIL_INTERFACENAME AXI_Stream_Reset_n, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of s_axis_video_tlast : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TLAST";
+  attribute x_interface_info of s_axis_video_tready : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TREADY";
+  attribute x_interface_parameter of s_axis_video_tready : signal is "XIL_INTERFACENAME AXI_Slave_Interface, TDATA_NUM_BYTES 5, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef";
+  attribute x_interface_info of s_axis_video_tuser : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TUSER";
+  attribute x_interface_info of s_axis_video_tvalid : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TVALID";
+  attribute x_interface_info of m_axis_video_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA";
+  attribute x_interface_info of s_axis_video_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA";
 begin
   m_axis_video_tdata(31) <= \<const0>\;
   m_axis_video_tdata(30) <= \<const0>\;

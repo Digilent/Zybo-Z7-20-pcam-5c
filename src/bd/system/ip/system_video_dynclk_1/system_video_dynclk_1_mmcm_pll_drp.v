@@ -338,11 +338,11 @@ module system_video_dynclk_1_mmcm_drp
       
       // Store CLKOUT0 divide and phase
       ram[1]  = (S1_CLKOUT0_FRAC_EN == 0) ?
-						{7'h08, 16'h1000, S1_CLKOUT0[15:0]}:
-						{7'h08, 16'h1000, S1_CLKOUT0_FRAC_CALC[15:0]};
-      ram[2]  = (S1_CLKOUT0_FRAC_EN == 0) ?
 						{7'h09, 16'h8000, S1_CLKOUT0[31:16]}:
 						{7'h09, 16'h8000, S1_CLKOUT0_FRAC_CALC[31:16]};
+      ram[2]  = (S1_CLKOUT0_FRAC_EN == 0) ?
+						{7'h08, 16'h1000, S1_CLKOUT0[15:0]}:
+						{7'h08, 16'h1000, S1_CLKOUT0_FRAC_CALC[15:0]};
 
       // Store CLKOUT1 divide and phase
       ram[3]  = {7'h0A, 16'h1000, S1_CLKOUT1[15:0]};
@@ -364,13 +364,13 @@ module system_video_dynclk_1_mmcm_drp
       ram[11] = {7'h06, 16'h1000, S1_CLKOUT5[15:0]};
       ram[12] = (S1_CLKOUT0_FRAC_EN == 0) ?
                 {7'h07, 16'hC000, S1_CLKOUT5[31:16]}:
-                {7'h07, 16'hC000, S1_CLKOUT5[31:30], S1_CLKOUT0_FRAC_CALC[35:32],S1_CLKOUT5[25:16]}; 
+                {7'h07, 16'hC000, S1_CLKOUT5[31:30], S1_CLKOUT0_FRAC_CALC[35:32], S1_CLKOUT5[25:16]}; 
       
       // Store CLKOUT6 divide and phase
       ram[13] = {7'h12, 16'h1000, S1_CLKOUT6[15:0]};
       ram[14] = (S1_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h13, 16'hC000, S1_CLKOUT6[31:16]}:
-                {7'h13, 16'hC000, S1_CLKOUT6[31:30], S1_CLKFBOUT_FRAC_CALC[35:32],S1_CLKOUT6[25:16]};
+                {7'h13, 16'hC000, S1_CLKOUT6[31:30], S1_CLKFBOUT_FRAC_CALC[35:32], S1_CLKOUT6[25:16]};
       
       // Store the input divider
       ram[15] = {7'h16, 16'hC000, {2'h0, S1_DIVCLK[23:22], S1_DIVCLK[11:0]} };
@@ -378,11 +378,12 @@ module system_video_dynclk_1_mmcm_drp
       // Store the feedback divide and phase
       ram[16] = (S1_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h14, 16'h1000, S1_CLKFBOUT[15:0]}:
-                {7'h14, 16'h1000, S1_CLKFBOUT_FRAC_CALC[15:0]};
+                {7'h14, 16'h1000, S1_CLKFBOUT_FRAC_CALC[15:0]}; 
       ram[17] = (S1_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h15, 16'h8000, S1_CLKFBOUT[31:16]}:
                 {7'h15, 16'h8000, S1_CLKFBOUT_FRAC_CALC[31:16]};
-    
+      
+
       // Store the lock settings
       ram[18] = {7'h18, 16'hFC00, {6'h00, S1_LOCK[29:20]} };
       ram[19] = {7'h19, 16'h8000, {1'b0 , S1_LOCK[34:30], S1_LOCK[9:0]} };
@@ -409,15 +410,15 @@ module system_video_dynclk_1_mmcm_drp
    always @(posedge SCLK) begin
    if (LOAD) begin 
       // Store the power bits
-      ram[23] <= {7'h28, 16'h0000, 16'hFFFF};
+      ram[23] = {7'h28, 16'h0000, 16'hFFFF};
       
       // Store CLKOUT0 divide and phase
       ram[24] <= (S2_CLKOUT0_FRAC_EN == 0) ?
-                {7'h08, 16'h1000, S2_CLKOUT0[15:0]}:
-                {7'h08, 16'h1000, S2_CLKOUT0_FRAC_CALC[15:0]};
-      ram[25] <= (S2_CLKOUT0_FRAC_EN == 0) ?
                 {7'h09, 16'h8000, S2_CLKOUT0[31:16]}:
                 {7'h09, 16'h8000, S2_CLKOUT0_FRAC_CALC[31:16]};
+      ram[25] <= (S2_CLKOUT0_FRAC_EN == 0) ?
+                {7'h08, 16'h1000, S2_CLKOUT0[15:0]}:
+                {7'h08, 16'h1000, S2_CLKOUT0_FRAC_CALC[15:0]};
       
       // Store CLKOUT1 divide and phase
       ram[26] <= {7'h0A, 16'h1000, S2_CLKOUT1[15:0]};
@@ -439,13 +440,13 @@ module system_video_dynclk_1_mmcm_drp
       ram[34] <= {7'h06, 16'h1000, S2_CLKOUT5[15:0]};
       ram[35] <= (S2_CLKOUT0_FRAC_EN == 0) ?
                 {7'h07, 16'hC000, S2_CLKOUT5[31:16]}:
-                {7'h07, 16'hC000, S2_CLKOUT5[31:30], S2_CLKOUT0_FRAC_CALC[35:32],S2_CLKOUT5[25:16]};
+                {7'h07, 16'hC000, S2_CLKOUT5[31:30], S2_CLKOUT0_FRAC_CALC[35:32], S2_CLKOUT5[25:16]}; 
       
       // Store CLKOUT6 divide and phase
       ram[36] <= {7'h12, 16'h1000, S2_CLKOUT6[15:0]};
       ram[37] <= (S2_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h13, 16'hC000, S2_CLKOUT6[31:16]}:
-                {7'h13, 16'hC000, S2_CLKOUT6[31:30], S2_CLKFBOUT_FRAC_CALC[35:32],S2_CLKOUT6[25:16]};
+                {7'h13, 16'hC000, S2_CLKOUT6[31:30], S2_CLKFBOUT_FRAC_CALC[35:32], S2_CLKOUT6[25:16]};
       
       // Store the input divider
       ram[38] <= {7'h16, 16'hC000, {2'h0, S2_DIVCLK[23:22], S2_DIVCLK[11:0]} };
@@ -453,11 +454,12 @@ module system_video_dynclk_1_mmcm_drp
       // Store the feedback divide and phase
       ram[39] <= (S2_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h14, 16'h1000, S2_CLKFBOUT[15:0]}:
-					 {7'h14, 16'h1000, S2_CLKFBOUT_FRAC_CALC[15:0]};
+                {7'h14, 16'h1000, S2_CLKFBOUT_FRAC_CALC[15:0]}; 
       ram[40] <= (S2_CLKFBOUT_FRAC_EN == 0) ?
                 {7'h15, 16'h8000, S2_CLKFBOUT[31:16]}:
                 {7'h15, 16'h8000, S2_CLKFBOUT_FRAC_CALC[31:16]};
-      
+ 
+
       // Store the lock settings
       ram[41] <= {7'h18, 16'hFC00, {6'h00, S2_LOCK[29:20]} };
       ram[42] <= {7'h19, 16'h8000, {1'b0 , S2_LOCK[34:30], S2_LOCK[9:0]} };

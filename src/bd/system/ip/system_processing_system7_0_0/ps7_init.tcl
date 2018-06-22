@@ -746,7 +746,10 @@ proc ps_version { } {
 }
 
 proc ps7_post_config {} {
-    variable PCW_SILICON_VER_1_0
+    set saved_mode [configparams force-mem-accesses]                  
+    configparams force-mem-accesses 1 
+    
+	variable PCW_SILICON_VER_1_0
     variable PCW_SILICON_VER_2_0
     variable PCW_SILICON_VER_3_0
     set sil_ver [ps_version]
@@ -758,6 +761,7 @@ proc ps7_post_config {} {
     } else {
         ps7_post_config_3_0   
     }
+	configparams force-mem-accesses $saved_mode                                       
 }
 
 proc ps7_debug {} {

@@ -1,10 +1,10 @@
-// Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
-// Date        : Mon Feb 05 16:50:06 2018
+// Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+// Date        : Wed Jun 20 16:17:07 2018
 // Host        : elodlt-ro running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_DVIClocking_0_0/system_DVIClocking_0_0_sim_netlist.v
+//               C:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_DVIClocking_0_0/system_DVIClocking_0_0_sim_netlist.v
 // Design      : system_DVIClocking_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "system_DVIClocking_0_0,DVIClocking,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "DVIClocking,Vivado 2016.4" *) 
+(* CHECK_LICENSE_TYPE = "system_DVIClocking_0_0,DVIClocking,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "DVIClocking,Vivado 2017.4" *) 
 (* NotValidForBitStream *)
 module system_DVIClocking_0_0
    (PixelClk5X,
@@ -42,14 +42,14 @@ endmodule
 
 (* ORIG_REF_NAME = "DVIClocking" *) 
 module system_DVIClocking_0_0_DVIClocking
-   (SerialClk,
+   (aLockedOut,
+    SerialClk,
     PixelClk,
-    aLockedOut,
     PixelClk5X,
     aLockedIn);
+  output aLockedOut;
   output SerialClk;
   output PixelClk;
-  output aLockedOut;
   input PixelClk5X;
   input aLockedIn;
 
@@ -196,8 +196,8 @@ module glbl ();
     reg JTAG_USER_TDO3_GLBL = 1'bz;
     reg JTAG_USER_TDO4_GLBL = 1'bz;
 
-    assign (weak1, weak0) GSR = GSR_int;
-    assign (weak1, weak0) GTS = GTS_int;
+    assign (strong1, weak0) GSR = GSR_int;
+    assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
 
     initial begin

@@ -562,12 +562,11 @@ config_reg <= load_enable_reg(0 to 30) & load_enable_reg_d;
    drdy => drdy,
    dwe => dwe,
   -- Status and control signals                
-   reset => reset,
+   reset => reset, 
    locked => locked_int,
    -- Clock in ports
    clk_in1 => clk_in1
  );
-
 mmcm_drp_inst: system_video_dynclk_1_mmcm_drp generic map (
   S1_CLKFBOUT_MULT          =>  37,
   S1_CLKFBOUT_PHASE         =>  0,

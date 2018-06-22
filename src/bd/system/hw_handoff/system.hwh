@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Feb 05 16:47:28 2018" VIVADOVERSION="2016.4">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 20 16:15:44 2018" VIVADOVERSION="2017.4">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="system" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
   <EXTERNALPORTS>
     <PORT DIR="IO" NAME="DDR_cas_n" SIGIS="undef"/>
     <PORT DIR="IO" NAME="DDR_cke" SIGIS="undef"/>
-    <PORT DIR="IO" NAME="DDR_ck_n" SIGIS="undef"/>
-    <PORT DIR="IO" NAME="DDR_ck_p" SIGIS="undef"/>
+    <PORT CLKFREQUENCY="100000000" DIR="IO" NAME="DDR_ck_n" SIGIS="clk"/>
+    <PORT CLKFREQUENCY="100000000" DIR="IO" NAME="DDR_ck_p" SIGIS="clk"/>
     <PORT DIR="IO" NAME="DDR_cs_n" SIGIS="undef"/>
-    <PORT DIR="IO" NAME="DDR_reset_n" SIGIS="undef"/>
+    <PORT DIR="IO" NAME="DDR_reset_n" SIGIS="rst"/>
     <PORT DIR="IO" NAME="DDR_odt" SIGIS="undef"/>
     <PORT DIR="IO" NAME="DDR_ras_n" SIGIS="undef"/>
     <PORT DIR="IO" NAME="DDR_we_n" SIGIS="undef"/>
@@ -34,10 +34,10 @@
     <PORT DIR="I" NAME="cam_iic_scl_i" SIGIS="undef"/>
     <PORT DIR="O" NAME="cam_iic_scl_o" SIGIS="undef"/>
     <PORT DIR="O" NAME="cam_iic_scl_t" SIGIS="undef"/>
-    <PORT DIR="I" NAME="dphy_hs_clock_clk_p" SIGIS="undef"/>
-    <PORT DIR="I" NAME="dphy_hs_clock_clk_n" SIGIS="undef"/>
-    <PORT DIR="O" NAME="hdmi_tx_clk_p" SIGIS="undef"/>
-    <PORT DIR="O" NAME="hdmi_tx_clk_n" SIGIS="undef"/>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="dphy_hs_clock_clk_p" SIGIS="clk"/>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="dphy_hs_clock_clk_n" SIGIS="clk"/>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="hdmi_tx_clk_p" SIGIS="clk"/>
+    <PORT CLKFREQUENCY="100000000" DIR="O" NAME="hdmi_tx_clk_n" SIGIS="clk"/>
     <PORT DIR="O" LEFT="2" NAME="hdmi_tx_data_p" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="O" LEFT="2" NAME="hdmi_tx_data_n" RIGHT="0" SIGIS="undef"/>
     <PORT DIR="I" NAME="dphy_clk_lp_n" SIGIS="undef" SIGNAME="External_Ports_dphy_clk_lp_n">
@@ -74,6 +74,7 @@
 
   <EXTERNALINTERFACES>
     <BUSINTERFACE BUSNAME="processing_system7_0_DDR" DATAWIDTH="8" NAME="DDR" TYPE="INITIATOR">
+      <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
       <PARAMETER NAME="TIMEPERIOD_PS" VALUE="1250"/>
       <PARAMETER NAME="MEMORY_TYPE" VALUE="COMPONENTS"/>
       <PARAMETER NAME="MEMORY_PART"/>
@@ -106,6 +107,7 @@
       </PORTMAPS>
     </BUSINTERFACE>
     <BUSINTERFACE BUSNAME="processing_system7_0_FIXED_IO" NAME="FIXED_IO" TYPE="INITIATOR">
+      <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
       <PORTMAPS>
         <PORTMAP LOGICAL="MIO" PHYSICAL="FIXED_IO_mio"/>
         <PORTMAP LOGICAL="DDR_VRN" PHYSICAL="FIXED_IO_ddr_vrn"/>
@@ -133,6 +135,7 @@
       </PORTMAPS>
     </BUSINTERFACE>
     <BUSINTERFACE BUSNAME="External_Interface_dphy_hs_clock" NAME="dphy_hs_clock" TYPE="TARGET">
+      <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
       <PARAMETER NAME="FREQ_HZ" VALUE="336000000"/>
       <PORTMAPS>
         <PORTMAP LOGICAL="CLK_P" PHYSICAL="dphy_hs_clock_clk_p"/>
@@ -583,7 +586,7 @@
       </PORTS>
       <BUSINTERFACES/>
     </MODULE>
-    <MODULE FULLNAME="/MIPI_CSI_2_RX_0" HWVERSION="1.0" INSTANCE="MIPI_CSI_2_RX_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MIPI_CSI_2_RX" VLNV="digilentinc.com:ip:MIPI_CSI_2_RX:1.0">
+    <MODULE FULLNAME="/MIPI_CSI_2_RX_0" HWVERSION="1.1" INSTANCE="MIPI_CSI_2_RX_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MIPI_CSI_2_RX" VLNV="digilentinc.com:ip:MIPI_CSI_2_RX:1.1">
       <DOCUMENTS>
         <DOCUMENT SOURCE="c:/git/Zybo-Z7-20-pcam-5c/repo/vivado-library/ip/MIPI_CSI_2_RX/docs/mipi_csi_2_rx.pdf"/>
       </DOCUMENTS>
@@ -594,10 +597,10 @@
         <PARAMETER NAME="C_S_AXI_LITE_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S_AXI_LITE_ADDR_WIDTH" VALUE="4"/>
         <PARAMETER NAME="kVersionMajor" VALUE="1"/>
-        <PARAMETER NAME="kVersionMinor" VALUE="0"/>
+        <PARAMETER NAME="kVersionMinor" VALUE="1"/>
         <PARAMETER NAME="kTargetDT" VALUE="RAW10"/>
         <PARAMETER NAME="kGenerateAXIL" VALUE="true"/>
-        <PARAMETER NAME="kDebug" VALUE="false"/>
+        <PARAMETER NAME="kDebug" VALUE="true"/>
         <PARAMETER NAME="kLaneCount" VALUE="2"/>
         <PARAMETER NAME="C_M_AXIS_COMPONENT_WIDTH" VALUE="10"/>
         <PARAMETER NAME="C_M_AXIS_TDATA_WIDTH" VALUE="40"/>
@@ -930,7 +933,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/MIPI_D_PHY_RX_0" HWVERSION="1.0" INSTANCE="MIPI_D_PHY_RX_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MIPI_D_PHY_RX" VLNV="digilentinc.com:ip:MIPI_D_PHY_RX:1.0">
+    <MODULE FULLNAME="/MIPI_D_PHY_RX_0" HWVERSION="1.2" INSTANCE="MIPI_D_PHY_RX_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="MIPI_D_PHY_RX" VLNV="digilentinc.com:ip:MIPI_D_PHY_RX:1.2">
       <DOCUMENTS>
         <DOCUMENT SOURCE="c:/git/Zybo-Z7-20-pcam-5c/repo/vivado-library/ip/MIPI_D_PHY_RX/docs/mipi_d_phy_rx.pdf"/>
       </DOCUMENTS>
@@ -941,7 +944,7 @@
         <PARAMETER NAME="C_S_AXI_LITE_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_S_AXI_LITE_ADDR_WIDTH" VALUE="4"/>
         <PARAMETER NAME="kVersionMajor" VALUE="1"/>
-        <PARAMETER NAME="kVersionMinor" VALUE="0"/>
+        <PARAMETER NAME="kVersionMinor" VALUE="2"/>
         <PARAMETER NAME="kNoOfDataLanes" VALUE="2"/>
         <PARAMETER NAME="kGenerateMMCM" VALUE="false"/>
         <PARAMETER NAME="kGenerateAXIL" VALUE="true"/>
@@ -951,14 +954,15 @@
         <PARAMETER NAME="kRefClkFreqHz" VALUE="200000000"/>
         <PARAMETER NAME="kDebug" VALUE="false"/>
         <PARAMETER NAME="C_S_AXI_LITE_FREQ_HZ" VALUE="100000000"/>
+        <PARAMETER NAME="kLPFromLane0" VALUE="false"/>
         <PARAMETER NAME="Component_Name" VALUE="system_MIPI_D_PHY_RX_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_S_AXI_LITE_BASEADDR" VALUE="0x43C20000"/>
         <PARAMETER NAME="C_S_AXI_LITE_HIGHADDR" VALUE="0x43C2FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="I" NAME="dphy_clk_hs_p" SIGIS="undef"/>
-        <PORT DIR="I" NAME="dphy_clk_hs_n" SIGIS="undef"/>
+        <PORT DIR="I" NAME="dphy_clk_hs_p" SIGIS="clk"/>
+        <PORT DIR="I" NAME="dphy_clk_hs_n" SIGIS="clk"/>
         <PORT DIR="I" NAME="dphy_clk_lp_p" SIGIS="undef" SIGNAME="External_Ports_dphy_clk_lp_p">
           <CONNECTIONS>
             <CONNECTION INSTANCE="External_Ports" PORT="dphy_clk_lp_p"/>
@@ -1054,7 +1058,7 @@
         <PORT DIR="O" NAME="rbD0ErrSotHS" SIGIS="undef"/>
         <PORT DIR="O" NAME="rbD0ErrSotSyncHS" SIGIS="undef"/>
         <PORT DIR="I" NAME="aD0ForceRxmode" SIGIS="undef"/>
-        <PORT DIR="O" NAME="D0RxClkEsc" SIGIS="undef"/>
+        <PORT DIR="O" NAME="D0RxClkEsc" SIGIS="clk"/>
         <PORT DIR="O" LEFT="7" NAME="aD0RxDataEsc" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="aD0RxValidEsc" SIGIS="undef"/>
         <PORT DIR="O" NAME="aD0RxLpdtEsc" SIGIS="undef"/>
@@ -1092,7 +1096,7 @@
         <PORT DIR="O" NAME="rbD1ErrSotHS" SIGIS="undef"/>
         <PORT DIR="O" NAME="rbD1ErrSotSyncHS" SIGIS="undef"/>
         <PORT DIR="I" NAME="aD1ForceRxmode" SIGIS="undef"/>
-        <PORT DIR="O" NAME="D1RxClkEsc" SIGIS="undef"/>
+        <PORT DIR="O" NAME="D1RxClkEsc" SIGIS="clk"/>
         <PORT DIR="O" LEFT="7" NAME="aD1RxDataEsc" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="aD1RxValidEsc" SIGIS="undef"/>
         <PORT DIR="O" NAME="aD1RxLpdtEsc" SIGIS="undef"/>
@@ -1263,6 +1267,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="External_Interface_dphy_hs_clock" NAME="dphy_hs_clock" TYPE="TARGET" VLNV="xilinx.com:interface:diff_clock:1.0">
+          <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="336000000"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="CLK_P" PHYSICAL="dphy_clk_hs_p"/>
@@ -2676,9 +2681,9 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/axi_vdma_0" HWVERSION="6.2" INSTANCE="axi_vdma_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_vdma" VLNV="xilinx.com:ip:axi_vdma:6.2">
+    <MODULE FULLNAME="/axi_vdma_0" HWVERSION="6.3" INSTANCE="axi_vdma_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi_vdma" VLNV="xilinx.com:ip:axi_vdma:6.3">
       <DOCUMENTS>
-        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_vdma;v=v6_2;d=pg020_axi_vdma.pdf"/>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi_vdma;v=v6_3;d=pg020_axi_vdma.pdf"/>
       </DOCUMENTS>
       <ADDRESSBLOCKS>
         <ADDRESSBLOCK ACCESS="read-write" INTERFACE="S_AXI_LITE" NAME="Reg" RANGE="256" USAGE="register">
@@ -4180,7 +4185,7 @@
         <PARAMETER NAME="C_S_AXI_LITE_ADDR_WIDTH" VALUE="9"/>
         <PARAMETER NAME="C_S_AXI_LITE_DATA_WIDTH" VALUE="32"/>
         <PARAMETER NAME="C_DLYTMR_RESOLUTION" VALUE="125"/>
-        <PARAMETER NAME="C_PRMRY_IS_ACLK_ASYNC" VALUE="1"/>
+        <PARAMETER NAME="C_PRMRY_IS_ACLK_ASYNC" VALUE="0"/>
         <PARAMETER NAME="C_ENABLE_VIDPRMTR_READS" VALUE="1"/>
         <PARAMETER NAME="C_DYNAMIC_RESOLUTION" VALUE="1"/>
         <PARAMETER NAME="C_NUM_FSTORES" VALUE="3"/>
@@ -4239,6 +4244,7 @@
         <PARAMETER NAME="C_ENABLE_DEBUG_INFO_15" VALUE="1"/>
         <PARAMETER NAME="C_INSTANCE" VALUE="axi_vdma"/>
         <PARAMETER NAME="C_SELECT_XPM" VALUE="0"/>
+        <PARAMETER NAME="C_ENABLE_VERT_FLIP" VALUE="0"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
         <PARAMETER NAME="Component_Name" VALUE="system_axi_vdma_0_0"/>
         <PARAMETER NAME="c_m_axi_mm2s_data_width" VALUE="64"/>
@@ -4268,32 +4274,34 @@
         <PARAMETER NAME="c_mm2s_max_burst_length" VALUE="8"/>
         <PARAMETER NAME="c_include_sg" VALUE="0"/>
         <PARAMETER NAME="c_dlytmr_resolution" VALUE="125"/>
-        <PARAMETER NAME="c_prmry_is_aclk_async" VALUE="1"/>
+        <PARAMETER NAME="c_prmry_is_aclk_async" VALUE="0"/>
         <PARAMETER NAME="c_dynamic_resolution" VALUE="1"/>
         <PARAMETER NAME="c_s2mm_max_burst_length" VALUE="8"/>
         <PARAMETER NAME="c_include_s2mm" VALUE="1"/>
-        <PARAMETER NAME="c_enable_debug_all" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_0" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_1" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_2" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_3" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_4" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_5" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_6" VALUE="1"/>
-        <PARAMETER NAME="c_enable_debug_info_7" VALUE="1"/>
-        <PARAMETER NAME="c_enable_debug_info_8" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_9" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_10" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_11" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_12" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_13" VALUE="0"/>
-        <PARAMETER NAME="c_enable_debug_info_14" VALUE="1"/>
-        <PARAMETER NAME="c_enable_debug_info_15" VALUE="1"/>
+        <PARAMETER NAME="c_enable_all" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_rst_out" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_buf_empty" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_param_updt" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_fsync_out" VALUE="0"/>
+        <PARAMETER NAME="c_enable_tstvec" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_frmstr_reg" VALUE="0"/>
+        <PARAMETER NAME="c_enable_mm2s_delay_counter" VALUE="1"/>
+        <PARAMETER NAME="c_enable_mm2s_frm_counter" VALUE="1"/>
+        <PARAMETER NAME="c_enable_s2mm_rst_out" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_buf_full" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_param_updt" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_fsync_out" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_sts_reg" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_frmstr_reg" VALUE="0"/>
+        <PARAMETER NAME="c_enable_s2mm_delay_counter" VALUE="1"/>
+        <PARAMETER NAME="c_enable_s2mm_frm_counter" VALUE="1"/>
         <PARAMETER NAME="c_include_mm2s_dre" VALUE="0"/>
         <PARAMETER NAME="c_flush_on_fsync" VALUE="1"/>
         <PARAMETER NAME="c_s2mm_genlock_repeat_en" VALUE="1"/>
         <PARAMETER NAME="c_mm2s_genlock_repeat_en" VALUE="0"/>
         <PARAMETER NAME="c_addr_width" VALUE="32"/>
+        <PARAMETER NAME="c_single_interface" VALUE="0"/>
+        <PARAMETER NAME="c_enable_vert_flip" VALUE="0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
         <PARAMETER NAME="C_BASEADDR" VALUE="0x43000000"/>
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4300FFFF"/>
@@ -4821,9 +4829,9 @@
         <PERIPHERAL INSTANCE="v_axi4s_vid_out_0"/>
       </PERIPHERALS>
     </MODULE>
-    <MODULE FULLNAME="/clk_wiz_0" HWVERSION="5.3" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.3">
+    <MODULE FULLNAME="/clk_wiz_0" HWVERSION="5.4" INSTANCE="clk_wiz_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.4">
       <DOCUMENTS>
-        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v5_3;d=pg065-clk-wiz.pdf"/>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v5_4;d=pg065-clk-wiz.pdf"/>
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="C_CLKOUT2_USED" VALUE="1"/>
@@ -5076,29 +5084,29 @@
         <PARAMETER NAME="C_INTERFACE_SELECTION" VALUE="0"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="11"/>
         <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_POWER_REG" VALUE="FFFF"/>
-        <PARAMETER NAME="C_CLKOUT0_1" VALUE="1186"/>
+        <PARAMETER NAME="C_POWER_REG" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT0_1" VALUE="0000"/>
         <PARAMETER NAME="C_CLKOUT0_2" VALUE="0000"/>
-        <PARAMETER NAME="C_CLKOUT1_1" VALUE="1082"/>
+        <PARAMETER NAME="C_CLKOUT1_1" VALUE="0000"/>
         <PARAMETER NAME="C_CLKOUT1_2" VALUE="0000"/>
-        <PARAMETER NAME="C_CLKOUT2_1" VALUE="1042"/>
-        <PARAMETER NAME="C_CLKOUT2_2" VALUE="0080"/>
-        <PARAMETER NAME="C_CLKOUT3_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT3_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT4_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT4_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT5_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT5_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT6_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT6_2" VALUE="00c0"/>
+        <PARAMETER NAME="C_CLKOUT2_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT2_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT3_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT3_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT4_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT4_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT5_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT5_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT6_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT6_2" VALUE="0000"/>
         <PARAMETER NAME="C_CLKFBOUT_1" VALUE="0000"/>
         <PARAMETER NAME="C_CLKFBOUT_2" VALUE="0000"/>
-        <PARAMETER NAME="C_DIVCLK" VALUE="1041"/>
-        <PARAMETER NAME="C_LOCK_1" VALUE="03e8"/>
-        <PARAMETER NAME="C_LOCK_2" VALUE="4401"/>
-        <PARAMETER NAME="C_LOCK_3" VALUE="47e9"/>
-        <PARAMETER NAME="C_FILTER_1" VALUE="0800"/>
-        <PARAMETER NAME="C_FILTER_2" VALUE="9990"/>
+        <PARAMETER NAME="C_DIVCLK" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_1" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_2" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_3" VALUE="0000"/>
+        <PARAMETER NAME="C_FILTER_1" VALUE="0000"/>
+        <PARAMETER NAME="C_FILTER_2" VALUE="0000"/>
         <PARAMETER NAME="C_DIVIDE1_AUTO" VALUE="1"/>
         <PARAMETER NAME="C_DIVIDE2_AUTO" VALUE="0.3333333333333333"/>
         <PARAMETER NAME="C_DIVIDE3_AUTO" VALUE="0.25"/>
@@ -5399,41 +5407,41 @@
         <PORT CLKFREQUENCY="50000000" DIR="O" NAME="clk_out1" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out1">
           <CONNECTIONS>
             <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="AxiLiteClk"/>
-            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_aclk"/>
+            <CONNECTION INSTANCE="MIPI_D_PHY_RX_0" PORT="s_axi_lite_aclk"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="s_axi_lite_aclk"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="rst_clk_wiz_0_50M" PORT="slowest_sync_clk"/>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="vtg" PORT="s_axi_aclk"/>
+            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_aclk"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="ACLK"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M01_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M02_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M03_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M04_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M05_ACLK"/>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ACLK"/>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_aclk"/>
-            <CONNECTION INSTANCE="MIPI_D_PHY_RX_0" PORT="s_axi_lite_aclk"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="150000000" DIR="O" NAME="clk_out2" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out2">
           <CONNECTIONS>
             <CONNECTION INSTANCE="AXI_BayerToRGB_1" PORT="StreamClk"/>
             <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="StreamClk"/>
-            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="video_aclk"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axi_mm2s_aclk"/>
-            <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axi_s2mm_aclk"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axis_mm2s_aclk"/>
+            <CONNECTION INSTANCE="axi_vdma_0" PORT="m_axi_s2mm_aclk"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="s_axis_s2mm_aclk"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP2_ACLK"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aclk"/>
+            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="video_aclk"/>
             <CONNECTION INSTANCE="axi_mem_intercon" PORT="ACLK"/>
-            <CONNECTION INSTANCE="axi_mem_intercon" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="axi_mem_intercon" PORT="S00_ACLK"/>
+            <CONNECTION INSTANCE="axi_mem_intercon" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="ACLK"/>
-            <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="S00_ACLK"/>
+            <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="M00_ACLK"/>
           </CONNECTIONS>
         </PORT>
         <PORT CLKFREQUENCY="200000000" DIR="O" NAME="clk_out3" SIGIS="clk" SIGNAME="clk_wiz_0_clk_out3">
@@ -5453,9 +5461,6 @@
       <DOCUMENTS>
         <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=processing_system7;v=v5_3;d=pg082-processing-system7.pdf"/>
       </DOCUMENTS>
-      <ADDRESSBLOCKS>
-        <ADDRESSBLOCK ACCESS="" INTERFACE="S_AXI_HP0" NAME="HP0_DDR_LOWOCM" RANGE="1073741824" USAGE="memory"/>
-      </ADDRESSBLOCKS>
       <PARAMETERS>
         <PARAMETER NAME="C_EN_EMIO_PJTAG" VALUE="0"/>
         <PARAMETER NAME="C_EN_EMIO_ENET0" VALUE="0"/>
@@ -5499,6 +5504,7 @@
         <PARAMETER NAME="C_USE_M_AXI_GP0" VALUE="1"/>
         <PARAMETER NAME="C_USE_M_AXI_GP1" VALUE="0"/>
         <PARAMETER NAME="C_USE_S_AXI_GP0" VALUE="0"/>
+        <PARAMETER NAME="C_USE_S_AXI_GP1" VALUE="0"/>
         <PARAMETER NAME="C_USE_S_AXI_HP0" VALUE="1"/>
         <PARAMETER NAME="C_USE_S_AXI_HP1" VALUE="0"/>
         <PARAMETER NAME="C_USE_S_AXI_HP2" VALUE="1"/>
@@ -5968,6 +5974,9 @@
         <PARAMETER NAME="PCW_QSPI_GRP_SINGLE_SS_IO" VALUE="MIO 1 .. 6"/>
         <PARAMETER NAME="PCW_QSPI_GRP_SS1_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_QSPI_GRP_SS1_IO" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_SINGLE_QSPI_DATA_MODE" VALUE="x4"/>
+        <PARAMETER NAME="PCW_DUAL_STACK_QSPI_DATA_MODE" VALUE="&lt;Select>"/>
+        <PARAMETER NAME="PCW_DUAL_PARALLEL_QSPI_DATA_MODE" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_QSPI_GRP_IO1_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_QSPI_GRP_IO1_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_QSPI_GRP_FBCLK_ENABLE" VALUE="1"/>
@@ -6336,7 +6345,7 @@
         <PARAMETER NAME="preset" VALUE="None"/>
         <PARAMETER NAME="PCW_UIPARAM_GENERATE_SUMMARY" VALUE="NA"/>
         <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#USB 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#USB Reset#GPIO#UART 1#UART 1#GPIO#GPIO#Enet 0#Enet 0"/>
-        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#gpio[47]#tx#rx#gpio[50]#gpio[51]#mdc#mdio"/>
+        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#data[4]#dir#stp#nxt#data[0]#data[1]#data[2]#data[3]#clk#data[5]#data[6]#data[7]#clk#cmd#data[0]#data[1]#data[2]#data[3]#reset#gpio[47]#tx#rx#gpio[50]#gpio[51]#mdc#mdio"/>
         <PARAMETER NAME="PCW_PS7_SI_REV" VALUE="PRODUCTION"/>
         <PARAMETER NAME="PCW_FPGA_FCLK0_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_FPGA_FCLK1_ENABLE" VALUE="0"/>
@@ -7022,10 +7031,10 @@
         <PORT DIR="IO" LEFT="53" NAME="MIO" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="IO" NAME="DDR_CAS_n" SIGIS="undef"/>
         <PORT DIR="IO" NAME="DDR_CKE" SIGIS="undef"/>
-        <PORT DIR="IO" NAME="DDR_Clk_n" SIGIS="undef"/>
-        <PORT DIR="IO" NAME="DDR_Clk" SIGIS="undef"/>
+        <PORT DIR="IO" NAME="DDR_Clk_n" SIGIS="clk"/>
+        <PORT DIR="IO" NAME="DDR_Clk" SIGIS="clk"/>
         <PORT DIR="IO" NAME="DDR_CS_n" SIGIS="undef"/>
-        <PORT DIR="IO" NAME="DDR_DRSTB" SIGIS="undef"/>
+        <PORT DIR="IO" NAME="DDR_DRSTB" SIGIS="rst"/>
         <PORT DIR="IO" NAME="DDR_ODT" SIGIS="undef"/>
         <PORT DIR="IO" NAME="DDR_RAS_n" SIGIS="undef"/>
         <PORT DIR="IO" NAME="DDR_WEB" SIGIS="undef"/>
@@ -7050,6 +7059,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="processing_system7_0_DDR" DATAWIDTH="8" NAME="DDR" TYPE="INITIATOR" VLNV="xilinx.com:interface:ddrx:1.0">
+          <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
           <PARAMETER NAME="TIMEPERIOD_PS" VALUE="1250"/>
           <PARAMETER NAME="MEMORY_TYPE" VALUE="COMPONENTS"/>
           <PARAMETER NAME="MEMORY_PART"/>
@@ -7082,6 +7092,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="processing_system7_0_FIXED_IO" NAME="FIXED_IO" TYPE="INITIATOR" VLNV="xilinx.com:display_processing_system7:fixedio:1.0">
+          <PARAMETER NAME="CAN_DEBUG" VALUE="false"/>
           <PORTMAPS>
             <PORTMAP LOGICAL="MIO" PHYSICAL="MIO"/>
             <PORTMAP LOGICAL="DDR_VRN" PHYSICAL="DDR_VRN"/>
@@ -8040,93 +8051,6 @@
             <CONNECTION INSTANCE="axi_vdma_0" PORT="s_axi_lite_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M01_AXI_awvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_awready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M01_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_wvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_wready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_bvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_bready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" NAME="M01_AXI_arvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_arready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M01_AXI_rvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_rready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="31" NAME="M02_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M02_AXI_araddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="vtg" PORT="s_axi_araddr"/>
@@ -8317,12 +8241,12 @@
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_awprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_awvalid">
+        <PORT DIR="O" NAME="M04_AXI_awvalid" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_awvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_awvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_awready">
+        <PORT DIR="I" NAME="M04_AXI_awready" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_awready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_awready"/>
           </CONNECTIONS>
@@ -8337,12 +8261,12 @@
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_wvalid">
+        <PORT DIR="O" NAME="M04_AXI_wvalid" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_wvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_wvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_wready">
+        <PORT DIR="I" NAME="M04_AXI_wready" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_wready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_wready"/>
           </CONNECTIONS>
@@ -8352,12 +8276,12 @@
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_bresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_bvalid">
+        <PORT DIR="I" NAME="M04_AXI_bvalid" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_bvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_bvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_bready">
+        <PORT DIR="O" NAME="M04_AXI_bready" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_bready"/>
           </CONNECTIONS>
@@ -8372,12 +8296,12 @@
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_arprot"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_arvalid">
+        <PORT DIR="O" NAME="M04_AXI_arvalid" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_arvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_arvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_arready">
+        <PORT DIR="I" NAME="M04_AXI_arready" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_arready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_arready"/>
           </CONNECTIONS>
@@ -8392,12 +8316,12 @@
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_rresp"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M04_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_rvalid">
+        <PORT DIR="I" NAME="M04_AXI_rvalid" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_rvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_rvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M04_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_rready">
+        <PORT DIR="O" NAME="M04_AXI_rready" SIGIS="undef" SIGNAME="MIPI_CSI_2_RX_0_s_axi_lite_rready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_rready"/>
           </CONNECTIONS>
@@ -8497,6 +8421,91 @@
             <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="S_AXI_RREADY"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_arready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_arvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_awready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_awvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_bready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_bvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_rready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_rvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M01_AXI_wready" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M01_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_wvalid" SIGIS="undef" SIGNAME="ps7_0_axi_periph_M01_AXI_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processing_system7_0_M_AXI_GP0" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
@@ -8563,25 +8572,23 @@
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M01_AXI" DATAWIDTH="32" NAME="M01_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PORTMAPS>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M01_AXI_araddr"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M01_AXI_arready"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M01_AXI_arvalid"/>
             <PORTMAP LOGICAL="AWADDR" PHYSICAL="M01_AXI_awaddr"/>
-            <PORTMAP LOGICAL="AWPROT" PHYSICAL="M01_AXI_awprot"/>
-            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M01_AXI_awvalid"/>
             <PORTMAP LOGICAL="AWREADY" PHYSICAL="M01_AXI_awready"/>
-            <PORTMAP LOGICAL="WDATA" PHYSICAL="M01_AXI_wdata"/>
-            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M01_AXI_wstrb"/>
-            <PORTMAP LOGICAL="WVALID" PHYSICAL="M01_AXI_wvalid"/>
-            <PORTMAP LOGICAL="WREADY" PHYSICAL="M01_AXI_wready"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="M01_AXI_awvalid"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="M01_AXI_bready"/>
             <PORTMAP LOGICAL="BRESP" PHYSICAL="M01_AXI_bresp"/>
             <PORTMAP LOGICAL="BVALID" PHYSICAL="M01_AXI_bvalid"/>
-            <PORTMAP LOGICAL="BREADY" PHYSICAL="M01_AXI_bready"/>
-            <PORTMAP LOGICAL="ARADDR" PHYSICAL="M01_AXI_araddr"/>
-            <PORTMAP LOGICAL="ARPROT" PHYSICAL="M01_AXI_arprot"/>
-            <PORTMAP LOGICAL="ARVALID" PHYSICAL="M01_AXI_arvalid"/>
-            <PORTMAP LOGICAL="ARREADY" PHYSICAL="M01_AXI_arready"/>
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M01_AXI_rdata"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="M01_AXI_rready"/>
             <PORTMAP LOGICAL="RRESP" PHYSICAL="M01_AXI_rresp"/>
             <PORTMAP LOGICAL="RVALID" PHYSICAL="M01_AXI_rvalid"/>
-            <PORTMAP LOGICAL="RREADY" PHYSICAL="M01_AXI_rready"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="M01_AXI_wdata"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="M01_AXI_wready"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="M01_AXI_wstrb"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="M01_AXI_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M02_AXI" DATAWIDTH="32" NAME="M02_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
@@ -8694,8 +8701,8 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT DIR="O" NAME="TMDS_Clk_p" SIGIS="undef"/>
-        <PORT DIR="O" NAME="TMDS_Clk_n" SIGIS="undef"/>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDS_Clk_p" SIGIS="clk"/>
+        <PORT CLKFREQUENCY="100000000" DIR="O" NAME="TMDS_Clk_n" SIGIS="clk"/>
         <PORT DIR="O" LEFT="2" NAME="TMDS_Data_p" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="TMDS_Data_n" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="aRst_n" SIGIS="rst" SIGNAME="v_axi4s_vid_out_0_locked">
@@ -8809,23 +8816,23 @@
             <CONNECTION INSTANCE="AXI_BayerToRGB_1" PORT="sStreamReset_n"/>
             <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="aAxiLiteReset_n"/>
             <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="sStreamReset_n"/>
-            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_aresetn"/>
+            <CONNECTION INSTANCE="MIPI_D_PHY_RX_0" PORT="s_axi_lite_aresetn"/>
             <CONNECTION INSTANCE="axi_vdma_0" PORT="axi_resetn"/>
             <CONNECTION INSTANCE="v_axi4s_vid_out_0" PORT="aresetn"/>
+            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="vtg" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="axi_mem_intercon" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="MIPI_CSI_2_RX_0" PORT="s_axi_lite_aresetn"/>
             <CONNECTION INSTANCE="axi_mem_intercon" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_mem_intercon" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="S00_ARESETN"/>
+            <CONNECTION INSTANCE="axi_mem_intercon_1" PORT="M00_ARESETN"/>
+            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M01_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M02_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M03_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M04_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M05_ARESETN"/>
-            <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
-            <CONNECTION INSTANCE="video_dynclk" PORT="s_axi_aresetn"/>
-            <CONNECTION INSTANCE="MIPI_D_PHY_RX_0" PORT="s_axi_lite_aresetn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -8901,6 +8908,9 @@
         <PARAMETER NAME="C_VTG_MASTER_SLAVE" VALUE="1"/>
         <PARAMETER NAME="C_HYSTERESIS_LEVEL" VALUE="12"/>
         <PARAMETER NAME="C_SYNC_LOCK_THRESHOLD" VALUE="4"/>
+        <PARAMETER NAME="C_INCLUDE_PIXEL_REPEAT" VALUE="0"/>
+        <PARAMETER NAME="C_INCLUDE_PIXEL_REMAP_420" VALUE="0"/>
+        <PARAMETER NAME="C_ADDR_WIDTH_PIXEL_REMAP_420" VALUE="10"/>
         <PARAMETER NAME="Component_Name" VALUE="system_v_axi4s_vid_out_0_0"/>
         <PARAMETER NAME="C_S_AXIS_VIDEO_FORMAT" VALUE="2"/>
         <PARAMETER NAME="C_S_AXIS_VIDEO_DATA_WIDTH" VALUE="8"/>
@@ -9063,9 +9073,9 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE FULLNAME="/video_dynclk" HWVERSION="5.3" INSTANCE="video_dynclk" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.3">
+    <MODULE FULLNAME="/video_dynclk" HWVERSION="5.4" INSTANCE="video_dynclk" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="clk_wiz" VLNV="xilinx.com:ip:clk_wiz:5.4">
       <DOCUMENTS>
-        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v5_3;d=pg065-clk-wiz.pdf"/>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=clk_wiz;v=v5_4;d=pg065-clk-wiz.pdf"/>
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="C_CLKOUT2_USED" VALUE="0"/>
@@ -9201,8 +9211,8 @@
         <PARAMETER NAME="C_MMCM_NOTES" VALUE="None"/>
         <PARAMETER NAME="C_MMCM_BANDWIDTH" VALUE="OPTIMIZED"/>
         <PARAMETER NAME="C_MMCM_CLKFBOUT_MULT_F" VALUE="37.125"/>
-        <PARAMETER NAME="C_MMCM_CLKIN1_PERIOD" VALUE="10.0"/>
-        <PARAMETER NAME="C_MMCM_CLKIN2_PERIOD" VALUE="10.0"/>
+        <PARAMETER NAME="C_MMCM_CLKIN1_PERIOD" VALUE="10.000"/>
+        <PARAMETER NAME="C_MMCM_CLKIN2_PERIOD" VALUE="10.000"/>
         <PARAMETER NAME="C_MMCM_CLKOUT4_CASCADE" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_CLOCK_HOLD" VALUE="FALSE"/>
         <PARAMETER NAME="C_MMCM_COMPENSATION" VALUE="ZHOLD"/>
@@ -9318,29 +9328,29 @@
         <PARAMETER NAME="C_INTERFACE_SELECTION" VALUE="1"/>
         <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="11"/>
         <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_POWER_REG" VALUE="FFFF"/>
-        <PARAMETER NAME="C_CLKOUT0_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT0_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT1_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT1_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT2_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT2_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT3_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT3_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT4_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT4_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT5_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT5_2" VALUE="00c0"/>
-        <PARAMETER NAME="C_CLKOUT6_1" VALUE="1041"/>
-        <PARAMETER NAME="C_CLKOUT6_2" VALUE="24c0"/>
+        <PARAMETER NAME="C_POWER_REG" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT0_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT0_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT1_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT1_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT2_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT2_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT3_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT3_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT4_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT4_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT5_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT5_2" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT6_1" VALUE="0000"/>
+        <PARAMETER NAME="C_CLKOUT6_2" VALUE="0000"/>
         <PARAMETER NAME="C_CLKFBOUT_1" VALUE="0000"/>
-        <PARAMETER NAME="C_CLKFBOUT_2" VALUE="1800"/>
-        <PARAMETER NAME="C_DIVCLK" VALUE="0083"/>
-        <PARAMETER NAME="C_LOCK_1" VALUE="00fa"/>
-        <PARAMETER NAME="C_LOCK_2" VALUE="7c01"/>
-        <PARAMETER NAME="C_LOCK_3" VALUE="7fe9"/>
-        <PARAMETER NAME="C_FILTER_1" VALUE="0800"/>
-        <PARAMETER NAME="C_FILTER_2" VALUE="1890"/>
+        <PARAMETER NAME="C_CLKFBOUT_2" VALUE="0000"/>
+        <PARAMETER NAME="C_DIVCLK" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_1" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_2" VALUE="0000"/>
+        <PARAMETER NAME="C_LOCK_3" VALUE="0000"/>
+        <PARAMETER NAME="C_FILTER_1" VALUE="0000"/>
+        <PARAMETER NAME="C_FILTER_2" VALUE="0000"/>
         <PARAMETER NAME="C_DIVIDE1_AUTO" VALUE="1"/>
         <PARAMETER NAME="C_DIVIDE2_AUTO" VALUE="7.425"/>
         <PARAMETER NAME="C_DIVIDE3_AUTO" VALUE="7.425"/>
@@ -9526,8 +9536,8 @@
         <PARAMETER NAME="MMCM_CLKFBOUT_MULT_F" VALUE="37.125"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_PHASE" VALUE="0.000"/>
         <PARAMETER NAME="MMCM_CLKFBOUT_USE_FINE_PS" VALUE="false"/>
-        <PARAMETER NAME="MMCM_CLKIN1_PERIOD" VALUE="10.0"/>
-        <PARAMETER NAME="MMCM_CLKIN2_PERIOD" VALUE="10.0"/>
+        <PARAMETER NAME="MMCM_CLKIN1_PERIOD" VALUE="10.000"/>
+        <PARAMETER NAME="MMCM_CLKIN2_PERIOD" VALUE="10.000"/>
         <PARAMETER NAME="MMCM_CLKOUT4_CASCADE" VALUE="false"/>
         <PARAMETER NAME="MMCM_CLOCK_HOLD" VALUE="false"/>
         <PARAMETER NAME="MMCM_COMPENSATION" VALUE="ZHOLD"/>
@@ -9735,14 +9745,14 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="video_dynclk_locked">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="DVIClocking_0" PORT="aLockedIn"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT CLKFREQUENCY="742500000" DIR="O" NAME="pxl_clk_5x" SIGIS="clk" SIGNAME="video_dynclk_pxl_clk_5x">
           <CONNECTIONS>
             <CONNECTION INSTANCE="DVIClocking_0" PORT="PixelClk5X"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="locked" SIGIS="undef" SIGNAME="video_dynclk_locked">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="DVIClocking_0" PORT="aLockedIn"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>

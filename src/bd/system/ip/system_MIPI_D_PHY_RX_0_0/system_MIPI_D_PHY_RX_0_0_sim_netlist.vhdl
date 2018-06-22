@@ -1,10 +1,10 @@
--- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2016.4 (win64) Build 1756540 Mon Jan 23 19:11:23 MST 2017
--- Date        : Mon Feb 05 16:48:59 2018
+-- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
+-- Date        : Tue Jun 19 19:15:57 2018
 -- Host        : elodlt-ro running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               C:/git/Zybo-Z7-20-pcam-5c/src/bd/system/ip/system_MIPI_D_PHY_RX_0_0/system_MIPI_D_PHY_RX_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_MIPI_D_PHY_RX_0_0 -prefix
+--               system_MIPI_D_PHY_RX_0_0_ system_MIPI_D_PHY_RX_0_0_sim_netlist.vhdl
 -- Design      : system_MIPI_D_PHY_RX_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -28,8 +28,6 @@ entity system_MIPI_D_PHY_RX_0_0_GlitchFilter is
     \state_reg[2]\ : in STD_LOGIC;
     \cDelayCnt_reg[6]\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter : entity is "GlitchFilter";
 end system_MIPI_D_PHY_RX_0_0_GlitchFilter;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter is
@@ -40,8 +38,8 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter is
   signal \^filter.sout_reg_0\ : STD_LOGIC;
   signal cntPeriods : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \Filter.sOut_i_1__1\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair64";
+  attribute SOFT_HLUTNM of \Filter.sOut_i_1__1\ : label is "soft_lutpair64";
 begin
   \Filter.sOut_reg_0\ <= \^filter.sout_reg_0\;
 \Filter.cntPeriods[0]_i_1\: unisim.vcomponents.LUT4
@@ -146,7 +144,139 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 is
+entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_18 is
+  port (
+    \Filter.sOut_reg_0\ : out STD_LOGIC;
+    \state_reg[0]\ : out STD_LOGIC;
+    \cDelayCnt_reg[0]\ : out STD_LOGIC;
+    \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    \Filter.sOut_reg_1\ : in STD_LOGIC;
+    \state_reg[0]_0\ : in STD_LOGIC;
+    \state_reg[1]\ : in STD_LOGIC;
+    \oSyncStages_reg[1]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \state_reg[2]\ : in STD_LOGIC;
+    \cDelayCnt_reg[6]\ : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_18 : entity is "GlitchFilter";
+end system_MIPI_D_PHY_RX_0_0_GlitchFilter_18;
+
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_18 is
+  signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
+  signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
+  signal \Filter.sIn_q_reg_n_0\ : STD_LOGIC;
+  signal \Filter.sOut_i_1__3_n_0\ : STD_LOGIC;
+  signal \^filter.sout_reg_0\ : STD_LOGIC;
+  signal cntPeriods : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute SOFT_HLUTNM : string;
+  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \Filter.sOut_i_1__3\ : label is "soft_lutpair33";
+begin
+  \Filter.sOut_reg_0\ <= \^filter.sout_reg_0\;
+\Filter.cntPeriods[0]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"4FF4"
+    )
+        port map (
+      I0 => cntPeriods(0),
+      I1 => cntPeriods(1),
+      I2 => \Filter.sIn_q_reg_n_0\,
+      I3 => \out\(0),
+      O => \Filter.cntPeriods[0]_i_1_n_0\
+    );
+\Filter.cntPeriods[1]_i_1\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"8FF8"
+    )
+        port map (
+      I0 => cntPeriods(0),
+      I1 => cntPeriods(1),
+      I2 => \Filter.sIn_q_reg_n_0\,
+      I3 => \out\(0),
+      O => \Filter.cntPeriods[1]_i_1_n_0\
+    );
+\Filter.cntPeriods_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => \Filter.cntPeriods[0]_i_1_n_0\,
+      Q => cntPeriods(0),
+      R => '0'
+    );
+\Filter.cntPeriods_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => \Filter.cntPeriods[1]_i_1_n_0\,
+      Q => cntPeriods(1),
+      R => '0'
+    );
+\Filter.sIn_q_reg\: unisim.vcomponents.FDRE
+     port map (
+      C => RefClk,
+      CE => '1',
+      D => \out\(0),
+      Q => \Filter.sIn_q_reg_n_0\,
+      R => '0'
+    );
+\Filter.sOut_i_1__3\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"FE02"
+    )
+        port map (
+      I0 => \Filter.sIn_q_reg_n_0\,
+      I1 => cntPeriods(0),
+      I2 => cntPeriods(1),
+      I3 => \^filter.sout_reg_0\,
+      O => \Filter.sOut_i_1__3_n_0\
+    );
+\Filter.sOut_reg\: unisim.vcomponents.FDRE
+     port map (
+      C => RefClk,
+      CE => '1',
+      D => \Filter.sOut_i_1__3_n_0\,
+      Q => \^filter.sout_reg_0\,
+      R => '0'
+    );
+\cDelayCnt[0]_i_1__0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFEEFFFFFFFF8F00"
+    )
+        port map (
+      I0 => \^filter.sout_reg_0\,
+      I1 => \Filter.sOut_reg_1\,
+      I2 => \cDelayCnt_reg[6]\,
+      I3 => \state_reg[2]\,
+      I4 => \state_reg[1]\,
+      I5 => \state_reg[0]_0\,
+      O => \cDelayCnt_reg[0]\
+    );
+\state[0]_i_2__0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"F070F070627F6270"
+    )
+        port map (
+      I0 => \^filter.sout_reg_0\,
+      I1 => \Filter.sOut_reg_1\,
+      I2 => \state_reg[0]_0\,
+      I3 => \state_reg[1]\,
+      I4 => \oSyncStages_reg[1]\(0),
+      I5 => \state_reg[2]\,
+      O => \state_reg[0]\
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_20 is
   port (
     \Filter.sOut_reg_0\ : out STD_LOGIC;
     \state_reg[0]\ : out STD_LOGIC;
@@ -164,10 +294,10 @@ entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 is
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 : entity is "GlitchFilter";
-end system_MIPI_D_PHY_RX_0_0_GlitchFilter_12;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_20 : entity is "GlitchFilter";
+end system_MIPI_D_PHY_RX_0_0_GlitchFilter_20;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_20 is
   signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.sIn_q_reg_n_0\ : STD_LOGIC;
@@ -177,8 +307,8 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_12 is
   signal cntPeriods : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \state[0]_i_5_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \Filter.sOut_i_1__4\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \Filter.sOut_i_1__4\ : label is "soft_lutpair34";
 begin
   \Filter.sOut_reg_0\ <= \^filter.sout_reg_0\;
 \Filter.cntPeriods[0]_i_1\: unisim.vcomponents.LUT4
@@ -309,7 +439,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_25 is
+entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_27 is
   port (
     in0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -317,10 +447,10 @@ entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_25 is
     \oSyncStages_reg[1]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_25 : entity is "GlitchFilter";
-end system_MIPI_D_PHY_RX_0_0_GlitchFilter_25;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_27 : entity is "GlitchFilter";
+end system_MIPI_D_PHY_RX_0_0_GlitchFilter_27;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_25 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_27 is
   signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.sOut_i_1_n_0\ : STD_LOGIC;
@@ -410,7 +540,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_26 is
+entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_29 is
   port (
     in0 : out STD_LOGIC_VECTOR ( 0 to 0 );
     \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -418,10 +548,10 @@ entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_26 is
     \oSyncStages_reg[1]\ : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_26 : entity is "GlitchFilter";
-end system_MIPI_D_PHY_RX_0_0_GlitchFilter_26;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_29 : entity is "GlitchFilter";
+end system_MIPI_D_PHY_RX_0_0_GlitchFilter_29;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_26 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_29 is
   signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.sIn_q_reg_n_0\ : STD_LOGIC;
@@ -511,7 +641,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 is
+entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_8 is
   port (
     \Filter.sOut_reg_0\ : out STD_LOGIC;
     \state_reg[0]\ : out STD_LOGIC;
@@ -529,10 +659,10 @@ entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 is
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 : entity is "GlitchFilter";
-end system_MIPI_D_PHY_RX_0_0_GlitchFilter_4;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_8 : entity is "GlitchFilter";
+end system_MIPI_D_PHY_RX_0_0_GlitchFilter_8;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_8 is
   signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
   signal \Filter.sIn_q_reg_n_0\ : STD_LOGIC;
@@ -542,8 +672,8 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_4 is
   signal cntPeriods : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \state[0]_i_5__0_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \Filter.sOut_i_1__2\ : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair65";
+  attribute SOFT_HLUTNM of \Filter.sOut_i_1__2\ : label is "soft_lutpair65";
 begin
   \Filter.sOut_reg_0\ <= \^filter.sout_reg_0\;
 \Filter.cntPeriods[0]_i_1\: unisim.vcomponents.LUT4
@@ -674,138 +804,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_GlitchFilter_9 is
-  port (
-    \Filter.sOut_reg_0\ : out STD_LOGIC;
-    \state_reg[0]\ : out STD_LOGIC;
-    \cDelayCnt_reg[0]\ : out STD_LOGIC;
-    \out\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    \Filter.sOut_reg_1\ : in STD_LOGIC;
-    \state_reg[0]_0\ : in STD_LOGIC;
-    \state_reg[1]\ : in STD_LOGIC;
-    \oSyncStages_reg[1]\ : in STD_LOGIC_VECTOR ( 0 to 0 );
-    \state_reg[2]\ : in STD_LOGIC;
-    \cDelayCnt_reg[6]\ : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_GlitchFilter_9 : entity is "GlitchFilter";
-end system_MIPI_D_PHY_RX_0_0_GlitchFilter_9;
-
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_GlitchFilter_9 is
-  signal \Filter.cntPeriods[0]_i_1_n_0\ : STD_LOGIC;
-  signal \Filter.cntPeriods[1]_i_1_n_0\ : STD_LOGIC;
-  signal \Filter.sIn_q_reg_n_0\ : STD_LOGIC;
-  signal \Filter.sOut_i_1__3_n_0\ : STD_LOGIC;
-  signal \^filter.sout_reg_0\ : STD_LOGIC;
-  signal cntPeriods : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \Filter.cntPeriods[0]_i_1\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \Filter.sOut_i_1__3\ : label is "soft_lutpair4";
-begin
-  \Filter.sOut_reg_0\ <= \^filter.sout_reg_0\;
-\Filter.cntPeriods[0]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"4FF4"
-    )
-        port map (
-      I0 => cntPeriods(0),
-      I1 => cntPeriods(1),
-      I2 => \Filter.sIn_q_reg_n_0\,
-      I3 => \out\(0),
-      O => \Filter.cntPeriods[0]_i_1_n_0\
-    );
-\Filter.cntPeriods[1]_i_1\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"8FF8"
-    )
-        port map (
-      I0 => cntPeriods(0),
-      I1 => cntPeriods(1),
-      I2 => \Filter.sIn_q_reg_n_0\,
-      I3 => \out\(0),
-      O => \Filter.cntPeriods[1]_i_1_n_0\
-    );
-\Filter.cntPeriods_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => \Filter.cntPeriods[0]_i_1_n_0\,
-      Q => cntPeriods(0),
-      R => '0'
-    );
-\Filter.cntPeriods_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => \Filter.cntPeriods[1]_i_1_n_0\,
-      Q => cntPeriods(1),
-      R => '0'
-    );
-\Filter.sIn_q_reg\: unisim.vcomponents.FDRE
-     port map (
-      C => RefClk,
-      CE => '1',
-      D => \out\(0),
-      Q => \Filter.sIn_q_reg_n_0\,
-      R => '0'
-    );
-\Filter.sOut_i_1__3\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FE02"
-    )
-        port map (
-      I0 => \Filter.sIn_q_reg_n_0\,
-      I1 => cntPeriods(0),
-      I2 => cntPeriods(1),
-      I3 => \^filter.sout_reg_0\,
-      O => \Filter.sOut_i_1__3_n_0\
-    );
-\Filter.sOut_reg\: unisim.vcomponents.FDRE
-     port map (
-      C => RefClk,
-      CE => '1',
-      D => \Filter.sOut_i_1__3_n_0\,
-      Q => \^filter.sout_reg_0\,
-      R => '0'
-    );
-\cDelayCnt[0]_i_1__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFEEFFFFFFFF8F00"
-    )
-        port map (
-      I0 => \^filter.sout_reg_0\,
-      I1 => \Filter.sOut_reg_1\,
-      I2 => \cDelayCnt_reg[6]\,
-      I3 => \state_reg[2]\,
-      I4 => \state_reg[1]\,
-      I5 => \state_reg[0]_0\,
-      O => \cDelayCnt_reg[0]\
-    );
-\state[0]_i_2__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"F070F070627F6270"
-    )
-        port map (
-      I0 => \^filter.sout_reg_0\,
-      I1 => \Filter.sOut_reg_1\,
-      I2 => \state_reg[0]_0\,
-      I3 => \state_reg[1]\,
-      I4 => \oSyncStages_reg[1]\(0),
-      I5 => \state_reg[2]\,
-      O => \state_reg[0]\
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
 entity system_MIPI_D_PHY_RX_0_0_InputBuffer is
   port (
     aHS : out STD_LOGIC;
@@ -815,8 +813,6 @@ entity system_MIPI_D_PHY_RX_0_0_InputBuffer is
     dphy_clk_lp_n : in STD_LOGIC;
     dphy_clk_lp_p : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_InputBuffer : entity is "InputBuffer";
 end system_MIPI_D_PHY_RX_0_0_InputBuffer;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer is
@@ -828,30 +824,27 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer is
   attribute IFD_DELAY_VALUE of LaneHighSpeed : label is "AUTO";
   attribute box_type : string;
   attribute box_type of LaneHighSpeed : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower0 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower0 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower0 : label is "AUTO";
-  attribute box_type of LaneLowPower0 : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower1 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower1 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower1 : label is "AUTO";
-  attribute box_type of LaneLowPower1 : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower0\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower0\ : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower1\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower1\ : label is "PRIMITIVE";
 begin
 LaneHighSpeed: unisim.vcomponents.IBUFDS
-    generic map(
-      DQS_BIAS => "FALSE"
-    )
-        port map (
+     port map (
       I => dphy_clk_hs_p,
       IB => dphy_clk_hs_n,
       O => aHS
     );
-LaneLowPower0: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower0\: unisim.vcomponents.IBUF
      port map (
       I => dphy_clk_lp_n,
       O => aLP(0)
     );
-LaneLowPower1: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower1\: unisim.vcomponents.IBUF
      port map (
       I => dphy_clk_lp_p,
       O => aLP(1)
@@ -861,7 +854,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_InputBuffer_0 is
+entity \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0\ is
   port (
     aHS : out STD_LOGIC;
     aLP : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -871,10 +864,10 @@ entity system_MIPI_D_PHY_RX_0_0_InputBuffer_0 is
     dphy_data_lp_p : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_InputBuffer_0 : entity is "InputBuffer";
-end system_MIPI_D_PHY_RX_0_0_InputBuffer_0;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0\ : entity is "InputBuffer";
+end \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0\;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer_0 is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0\ is
   attribute CAPACITANCE : string;
   attribute CAPACITANCE of LaneHighSpeed : label is "DONT_CARE";
   attribute IBUF_DELAY_VALUE : string;
@@ -883,30 +876,27 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer_0 is
   attribute IFD_DELAY_VALUE of LaneHighSpeed : label is "AUTO";
   attribute box_type : string;
   attribute box_type of LaneHighSpeed : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower0 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower0 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower0 : label is "AUTO";
-  attribute box_type of LaneLowPower0 : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower1 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower1 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower1 : label is "AUTO";
-  attribute box_type of LaneLowPower1 : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower0\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower0\ : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower1\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower1\ : label is "PRIMITIVE";
 begin
 LaneHighSpeed: unisim.vcomponents.IBUFDS
-    generic map(
-      DQS_BIAS => "FALSE"
-    )
-        port map (
+     port map (
       I => dphy_data_hs_p(0),
       IB => dphy_data_hs_n(0),
       O => aHS
     );
-LaneLowPower0: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower0\: unisim.vcomponents.IBUF
      port map (
       I => dphy_data_lp_n(0),
       O => aLP(0)
     );
-LaneLowPower1: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower1\: unisim.vcomponents.IBUF
      port map (
       I => dphy_data_lp_p(0),
       O => aLP(1)
@@ -916,7 +906,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_InputBuffer_2 is
+entity \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1\ is
   port (
     aHS : out STD_LOGIC;
     aLP : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -926,10 +916,10 @@ entity system_MIPI_D_PHY_RX_0_0_InputBuffer_2 is
     dphy_data_lp_p : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_InputBuffer_2 : entity is "InputBuffer";
-end system_MIPI_D_PHY_RX_0_0_InputBuffer_2;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1\ : entity is "InputBuffer";
+end \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1\;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer_2 is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1\ is
   attribute CAPACITANCE : string;
   attribute CAPACITANCE of LaneHighSpeed : label is "DONT_CARE";
   attribute IBUF_DELAY_VALUE : string;
@@ -938,30 +928,27 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_InputBuffer_2 is
   attribute IFD_DELAY_VALUE of LaneHighSpeed : label is "AUTO";
   attribute box_type : string;
   attribute box_type of LaneHighSpeed : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower0 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower0 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower0 : label is "AUTO";
-  attribute box_type of LaneLowPower0 : label is "PRIMITIVE";
-  attribute CAPACITANCE of LaneLowPower1 : label is "DONT_CARE";
-  attribute IBUF_DELAY_VALUE of LaneLowPower1 : label is "0";
-  attribute IFD_DELAY_VALUE of LaneLowPower1 : label is "AUTO";
-  attribute box_type of LaneLowPower1 : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower0\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower0\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower0\ : label is "PRIMITIVE";
+  attribute CAPACITANCE of \LaneWithLP.LaneLowPower1\ : label is "DONT_CARE";
+  attribute IBUF_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "0";
+  attribute IFD_DELAY_VALUE of \LaneWithLP.LaneLowPower1\ : label is "AUTO";
+  attribute box_type of \LaneWithLP.LaneLowPower1\ : label is "PRIMITIVE";
 begin
 LaneHighSpeed: unisim.vcomponents.IBUFDS
-    generic map(
-      DQS_BIAS => "FALSE"
-    )
-        port map (
+     port map (
       I => dphy_data_hs_p(0),
       IB => dphy_data_hs_n(0),
       O => aHS
     );
-LaneLowPower0: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower0\: unisim.vcomponents.IBUF
      port map (
       I => dphy_data_lp_n(0),
       O => aLP(0)
     );
-LaneLowPower1: unisim.vcomponents.IBUF
+\LaneWithLP.LaneLowPower1\: unisim.vcomponents.IBUF
      port map (
       I => dphy_data_lp_p(0),
       O => aLP(1)
@@ -981,19 +968,17 @@ entity system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite is
     Q : out STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_lite_aclk : in STD_LOGIC;
-    s_axi_lite_aresetn : in STD_LOGIC;
     s_axi_lite_wvalid : in STD_LOGIC;
     s_axi_lite_awvalid : in STD_LOGIC;
+    s_axi_lite_aresetn : in STD_LOGIC;
     s_axi_lite_bready : in STD_LOGIC;
     s_axi_lite_arvalid : in STD_LOGIC;
     s_axi_lite_rready : in STD_LOGIC;
+    s_axi_lite_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 )
+    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite : entity is "MIPI_DPHY_Receiver_S_AXI_Lite";
 end system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite is
@@ -1054,30 +1039,30 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver_S_AXI_Lite
   signal \^s_axi_lite_wready\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of axi_arready_i_1 : label is "soft_lutpair67";
-  attribute SOFT_HLUTNM of \axi_awaddr[2]_i_1\ : label is "soft_lutpair66";
+  attribute SOFT_HLUTNM of \axi_awaddr[3]_i_1\ : label is "soft_lutpair66";
   attribute SOFT_HLUTNM of axi_awready_i_2 : label is "soft_lutpair66";
   attribute SOFT_HLUTNM of \axi_rdata[0]_i_1\ : label is "soft_lutpair69";
   attribute SOFT_HLUTNM of \axi_rdata[10]_i_1\ : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of \axi_rdata[11]_i_1\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \axi_rdata[11]_i_1\ : label is "soft_lutpair69";
   attribute SOFT_HLUTNM of \axi_rdata[12]_i_1\ : label is "soft_lutpair75";
   attribute SOFT_HLUTNM of \axi_rdata[13]_i_1\ : label is "soft_lutpair76";
-  attribute SOFT_HLUTNM of \axi_rdata[14]_i_1\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \axi_rdata[15]_i_1\ : label is "soft_lutpair76";
-  attribute SOFT_HLUTNM of \axi_rdata[16]_i_1\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \axi_rdata[14]_i_1\ : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \axi_rdata[15]_i_1\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \axi_rdata[16]_i_1\ : label is "soft_lutpair75";
   attribute SOFT_HLUTNM of \axi_rdata[17]_i_1\ : label is "soft_lutpair77";
   attribute SOFT_HLUTNM of \axi_rdata[18]_i_1\ : label is "soft_lutpair78";
   attribute SOFT_HLUTNM of \axi_rdata[19]_i_1\ : label is "soft_lutpair79";
   attribute SOFT_HLUTNM of \axi_rdata[1]_i_1\ : label is "soft_lutpair70";
   attribute SOFT_HLUTNM of \axi_rdata[20]_i_1\ : label is "soft_lutpair79";
   attribute SOFT_HLUTNM of \axi_rdata[21]_i_1\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of \axi_rdata[22]_i_1\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of \axi_rdata[23]_i_1\ : label is "soft_lutpair81";
-  attribute SOFT_HLUTNM of \axi_rdata[24]_i_1\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \axi_rdata[22]_i_1\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \axi_rdata[23]_i_1\ : label is "soft_lutpair80";
+  attribute SOFT_HLUTNM of \axi_rdata[24]_i_1\ : label is "soft_lutpair81";
   attribute SOFT_HLUTNM of \axi_rdata[25]_i_1\ : label is "soft_lutpair81";
   attribute SOFT_HLUTNM of \axi_rdata[26]_i_1\ : label is "soft_lutpair82";
-  attribute SOFT_HLUTNM of \axi_rdata[27]_i_1\ : label is "soft_lutpair83";
+  attribute SOFT_HLUTNM of \axi_rdata[27]_i_1\ : label is "soft_lutpair82";
   attribute SOFT_HLUTNM of \axi_rdata[28]_i_1\ : label is "soft_lutpair83";
-  attribute SOFT_HLUTNM of \axi_rdata[29]_i_1\ : label is "soft_lutpair82";
+  attribute SOFT_HLUTNM of \axi_rdata[29]_i_1\ : label is "soft_lutpair83";
   attribute SOFT_HLUTNM of \axi_rdata[2]_i_1\ : label is "soft_lutpair70";
   attribute SOFT_HLUTNM of \axi_rdata[30]_i_1\ : label is "soft_lutpair84";
   attribute SOFT_HLUTNM of \axi_rdata[31]_i_2\ : label is "soft_lutpair84";
@@ -1242,71 +1227,71 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
     );
 \axi_rdata[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \^q\(0),
+      I0 => \^q\(0),
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(0)
     );
 \axi_rdata[10]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[10]\,
+      I0 => \control_reg_reg_n_0_[10]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(10)
     );
 \axi_rdata[11]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[11]\,
+      I0 => \control_reg_reg_n_0_[11]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(11)
     );
 \axi_rdata[12]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[12]\,
+      I0 => \control_reg_reg_n_0_[12]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(12)
     );
 \axi_rdata[13]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[13]\,
+      I0 => \control_reg_reg_n_0_[13]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(13)
     );
 \axi_rdata[14]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[14]\,
+      I0 => \control_reg_reg_n_0_[14]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(14)
     );
 \axi_rdata[15]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[15]\,
+      I0 => \control_reg_reg_n_0_[15]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(15)
     );
@@ -1322,37 +1307,37 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
     );
 \axi_rdata[17]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[17]\,
+      I0 => \control_reg_reg_n_0_[17]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(17)
     );
 \axi_rdata[18]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[18]\,
+      I0 => \control_reg_reg_n_0_[18]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(18)
     );
 \axi_rdata[19]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[19]\,
+      I0 => \control_reg_reg_n_0_[19]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(19)
     );
 \axi_rdata[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"A4"
     )
         port map (
       I0 => axi_araddr(2),
@@ -1362,121 +1347,121 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
     );
 \axi_rdata[20]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[20]\,
+      I0 => \control_reg_reg_n_0_[20]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(20)
     );
 \axi_rdata[21]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[21]\,
+      I0 => \control_reg_reg_n_0_[21]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(21)
     );
 \axi_rdata[22]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[22]\,
+      I0 => \control_reg_reg_n_0_[22]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(22)
     );
 \axi_rdata[23]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[23]\,
+      I0 => \control_reg_reg_n_0_[23]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(23)
     );
 \axi_rdata[24]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[24]\,
+      I0 => \control_reg_reg_n_0_[24]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(24)
     );
 \axi_rdata[25]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[25]\,
+      I0 => \control_reg_reg_n_0_[25]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(25)
     );
 \axi_rdata[26]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[26]\,
+      I0 => \control_reg_reg_n_0_[26]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(26)
     );
 \axi_rdata[27]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[27]\,
+      I0 => \control_reg_reg_n_0_[27]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(27)
     );
 \axi_rdata[28]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[28]\,
+      I0 => \control_reg_reg_n_0_[28]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(28)
     );
 \axi_rdata[29]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[29]\,
+      I0 => \control_reg_reg_n_0_[29]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(29)
     );
 \axi_rdata[2]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[2]\,
+      I0 => \control_reg_reg_n_0_[2]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(2)
     );
 \axi_rdata[30]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[30]\,
+      I0 => \control_reg_reg_n_0_[30]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(30)
     );
@@ -1492,81 +1477,81 @@ axi_bvalid_reg: unisim.vcomponents.FDRE
     );
 \axi_rdata[31]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[31]\,
+      I0 => \control_reg_reg_n_0_[31]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(31)
     );
 \axi_rdata[3]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[3]\,
+      I0 => \control_reg_reg_n_0_[3]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(3)
     );
 \axi_rdata[4]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[4]\,
+      I0 => \control_reg_reg_n_0_[4]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(4)
     );
 \axi_rdata[5]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[5]\,
+      I0 => \control_reg_reg_n_0_[5]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(5)
     );
 \axi_rdata[6]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[6]\,
+      I0 => \control_reg_reg_n_0_[6]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(6)
     );
 \axi_rdata[7]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[7]\,
+      I0 => \control_reg_reg_n_0_[7]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(7)
     );
 \axi_rdata[8]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[8]\,
+      I0 => \control_reg_reg_n_0_[8]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(8)
     );
 \axi_rdata[9]_i_1\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"04"
+      INIT => X"02"
     )
         port map (
-      I0 => axi_araddr(2),
-      I1 => \control_reg_reg_n_0_[9]\,
+      I0 => \control_reg_reg_n_0_[9]\,
+      I1 => axi_araddr(2),
       I2 => axi_araddr(3),
       O => reg_data_out(9)
     );
@@ -2187,8 +2172,6 @@ entity system_MIPI_D_PHY_RX_0_0_SyncAsync is
     RefClk : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync : entity is "SyncAsync";
 end system_MIPI_D_PHY_RX_0_0_SyncAsync;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync is
@@ -2239,17 +2222,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_SyncAsync_20 is
+entity system_MIPI_D_PHY_RX_0_0_SyncAsync_10 is
   port (
     AR : out STD_LOGIC_VECTOR ( 0 to 0 );
     RefClk : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_20 : entity is "SyncAsync";
-end system_MIPI_D_PHY_RX_0_0_SyncAsync_20;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_10 : entity is "SyncAsync";
+end system_MIPI_D_PHY_RX_0_0_SyncAsync_10;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_20 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_10 is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -2288,17 +2271,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_SyncAsync_23 is
+entity system_MIPI_D_PHY_RX_0_0_SyncAsync_12 is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     CLK : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_23 : entity is "SyncAsync";
-end system_MIPI_D_PHY_RX_0_0_SyncAsync_23;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_12 : entity is "SyncAsync";
+end system_MIPI_D_PHY_RX_0_0_SyncAsync_12;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_23 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_12 is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -2337,7 +2320,105 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_SyncAsync_24 is
+entity system_MIPI_D_PHY_RX_0_0_SyncAsync_22 is
+  port (
+    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_22 : entity is "SyncAsync";
+end system_MIPI_D_PHY_RX_0_0_SyncAsync_22;
+
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_22 is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  AR(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDPE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => '0',
+      PRE => AS(0),
+      Q => oSyncStages(0)
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDPE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      PRE => AS(0),
+      Q => oSyncStages(1)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity system_MIPI_D_PHY_RX_0_0_SyncAsync_25 is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    CLK : in STD_LOGIC;
+    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_25 : entity is "SyncAsync";
+end system_MIPI_D_PHY_RX_0_0_SyncAsync_25;
+
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_25 is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDPE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => CLK,
+      CE => '1',
+      D => '0',
+      PRE => AS(0),
+      Q => oSyncStages(0)
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDPE
+    generic map(
+      INIT => '1'
+    )
+        port map (
+      C => CLK,
+      CE => '1',
+      D => oSyncStages(0),
+      PRE => AS(0),
+      Q => oSyncStages(1)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity system_MIPI_D_PHY_RX_0_0_SyncAsync_26 is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     \GenIDELAYCTRL.rDlyRst_reg\ : out STD_LOGIC;
@@ -2348,10 +2429,10 @@ entity system_MIPI_D_PHY_RX_0_0_SyncAsync_24 is
     aRst : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_24 : entity is "SyncAsync";
-end system_MIPI_D_PHY_RX_0_0_SyncAsync_24;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_26 : entity is "SyncAsync";
+end system_MIPI_D_PHY_RX_0_0_SyncAsync_26;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_24 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_26 is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -2394,104 +2475,6 @@ begin
       CE => '1',
       D => oSyncStages(0),
       PRE => aRst,
-      Q => oSyncStages(1)
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_SyncAsync_6 is
-  port (
-    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_6 : entity is "SyncAsync";
-end system_MIPI_D_PHY_RX_0_0_SyncAsync_6;
-
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_6 is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  AR(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => '0',
-      PRE => AS(0),
-      Q => oSyncStages(0)
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      PRE => AS(0),
-      Q => oSyncStages(1)
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_SyncAsync_8 is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    CLK : in STD_LOGIC;
-    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_SyncAsync_8 : entity is "SyncAsync";
-end system_MIPI_D_PHY_RX_0_0_SyncAsync_8;
-
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_SyncAsync_8 is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => '0',
-      PRE => AS(0),
-      Q => oSyncStages(0)
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDPE
-    generic map(
-      INIT => '1'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => oSyncStages(0),
-      PRE => AS(0),
       Q => oSyncStages(1)
     );
 end STRUCTURE;
@@ -2583,7 +2566,380 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    D : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages[1]_i_1__1\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => oSyncStages(1),
+      O => AR(0)
+    );
+\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => D(0),
+      Q => oSyncStages(0),
+      R => '0'
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      Q => oSyncStages(1),
+      R => '0'
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    AR : in STD_LOGIC_VECTOR ( 0 to 0 );
+    aD0ForceRxmode : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      CLR => AR(0),
+      D => aD0ForceRxmode,
+      Q => oSyncStages(0)
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      CLR => AR(0),
+      D => oSyncStages(0),
+      Q => oSyncStages(1)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    cHSSettled_reg : out STD_LOGIC;
+    \cDelayCnt_reg[6]\ : in STD_LOGIC;
+    \state_reg[1]\ : in STD_LOGIC;
+    \state_reg[0]\ : in STD_LOGIC;
+    \state_reg[2]\ : in STD_LOGIC;
+    cHSSettled_reg_0 : in STD_LOGIC;
+    RefClk : in STD_LOGIC;
+    AR : in STD_LOGIC_VECTOR ( 0 to 0 );
+    rbD0RxValidHS : in STD_LOGIC
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\cHSSettled_i_1__0\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFAF00030000"
+    )
+        port map (
+      I0 => oSyncStages(1),
+      I1 => \cDelayCnt_reg[6]\,
+      I2 => \state_reg[1]\,
+      I3 => \state_reg[0]\,
+      I4 => \state_reg[2]\,
+      I5 => cHSSettled_reg_0,
+      O => cHSSettled_reg
+    );
+\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      CLR => AR(0),
+      D => rbD0RxValidHS,
+      Q => oSyncStages(0)
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      CLR => AR(0),
+      D => oSyncStages(0),
+      Q => oSyncStages(1)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    D : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => D(0),
+      Q => oSyncStages(0),
+      R => '0'
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      Q => oSyncStages(1),
+      R => '0'
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    D : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => D(0),
+      Q => oSyncStages(0),
+      R => '0'
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      Q => oSyncStages(1),
+      R => '0'
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    aLP : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => aLP(0),
+      Q => oSyncStages(0),
+      R => '0'
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      Q => oSyncStages(1),
+      R => '0'
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30\ is
+  port (
+    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    aLP : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  \out\(0) <= oSyncStages(1);
+\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => aLP(0),
+      Q => oSyncStages(0),
+      R => '0'
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => RefClk,
+      CE => '1',
+      D => oSyncStages(0),
+      Q => oSyncStages(1),
+      R => '0'
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2593,10 +2949,10 @@ entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ is
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -2655,609 +3011,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11\ is
-  port (
-    CLK : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14\ is
-  port (
-    CLK : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12\ is
-  port (
-    dLogicRst_reg : out STD_LOGIC;
-    CLK : in STD_LOGIC;
-    cHSSettled : in STD_LOGIC;
-    dSerdesRst_q : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dLogicRst : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12\ is
-  signal aReset0 : STD_LOGIC;
-  signal oSyncStages : STD_LOGIC;
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-begin
-dLogicRst_i_1: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"BB0B"
-    )
-        port map (
-      I0 => dSerdesRst_q,
-      I1 => oSyncStages,
-      I2 => Q(0),
-      I3 => dLogicRst,
-      O => dLogicRst_reg
-    );
-\oSyncStages[0]_i_1__2\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => cHSSettled,
-      O => aReset0
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      CLR => aReset0,
-      D => '1',
-      Q => oSyncStages
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22\ is
-  port (
-    dLogicRst_reg : out STD_LOGIC;
-    CLK : in STD_LOGIC;
-    cHSSettled_reg : in STD_LOGIC;
-    dSerdesRst_q : in STD_LOGIC;
-    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dLogicRst : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22\ is
-  signal oSyncStages : STD_LOGIC;
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  signal \oSyncStages[0]_i_1__3_n_0\ : STD_LOGIC;
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-begin
-\dLogicRst_i_1__0\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"BB0B"
-    )
-        port map (
-      I0 => dSerdesRst_q,
-      I1 => oSyncStages,
-      I2 => Q(0),
-      I3 => dLogicRst,
-      O => dLogicRst_reg
-    );
-\oSyncStages[0]_i_1__3\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => cHSSettled_reg,
-      O => \oSyncStages[0]_i_1__3_n_0\
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      CLR => \oSyncStages[0]_i_1__3_n_0\,
-      D => '1',
-      Q => oSyncStages
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    cHSSettled_reg : out STD_LOGIC;
-    \cDelayCnt_reg[6]\ : in STD_LOGIC;
-    \state_reg[1]\ : in STD_LOGIC;
-    \state_reg[0]\ : in STD_LOGIC;
-    \state_reg[2]\ : in STD_LOGIC;
-    cHSSettled : in STD_LOGIC;
-    RefClk : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 );
-    rbD1RxValidHS : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-cHSSettled_i_1: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFAF00030000"
-    )
-        port map (
-      I0 => oSyncStages(1),
-      I1 => \cDelayCnt_reg[6]\,
-      I2 => \state_reg[1]\,
-      I3 => \state_reg[0]\,
-      I4 => \state_reg[2]\,
-      I5 => cHSSettled,
-      O => cHSSettled_reg
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      CLR => AR(0),
-      D => rbD1RxValidHS,
-      Q => oSyncStages(0)
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      CLR => AR(0),
-      D => oSyncStages(0),
-      Q => oSyncStages(1)
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    cHSSettled_reg : out STD_LOGIC;
-    \cDelayCnt_reg[6]\ : in STD_LOGIC;
-    \state_reg[1]\ : in STD_LOGIC;
-    \state_reg[0]\ : in STD_LOGIC;
-    \state_reg[2]\ : in STD_LOGIC;
-    cHSSettled_reg_0 : in STD_LOGIC;
-    RefClk : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 );
-    rbD0RxValidHS : in STD_LOGIC
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\cHSSettled_i_1__0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFFFFFAF00030000"
-    )
-        port map (
-      I0 => oSyncStages(1),
-      I1 => \cDelayCnt_reg[6]\,
-      I2 => \state_reg[1]\,
-      I3 => \state_reg[0]\,
-      I4 => \state_reg[2]\,
-      I5 => cHSSettled_reg_0,
-      O => cHSSettled_reg
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      CLR => AR(0),
-      D => rbD0RxValidHS,
-      Q => oSyncStages(0)
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      CLR => AR(0),
-      D => oSyncStages(0),
-      Q => oSyncStages(1)
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    aLP : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => aLP(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    aLP : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => aLP(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4\ is
-  port (
-    aRxClkActiveHS : out STD_LOGIC;
-    AS : out STD_LOGIC_VECTOR ( 0 to 0 );
-    CLK : in STD_LOGIC;
-    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  aRxClkActiveHS <= oSyncStages(1);
-\oSyncStages[1]_i_1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => oSyncStages(1),
-      O => AS(0)
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      CLR => AR(0),
-      D => '1',
-      Q => oSyncStages(0)
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => CLK,
-      CE => '1',
-      CLR => AR(0),
-      D => oSyncStages(0),
-      Q => oSyncStages(1)
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     D : out STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -3280,11 +3034,11 @@ entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\ is
     aRxClkActiveHS : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\ is
-  signal \cDelayCnt[0]_i_4_n_0\ : STD_LOGIC;
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32\ is
+  signal \cDelayCnt[0]_i_4__1_n_0\ : STD_LOGIC;
   signal \cDelayCnt[0]_i_6_n_0\ : STD_LOGIC;
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
@@ -3305,13 +3059,13 @@ begin
       INIT => X"FFFE"
     )
         port map (
-      I0 => \cDelayCnt[0]_i_4_n_0\,
+      I0 => \cDelayCnt[0]_i_4__1_n_0\,
       I1 => \state_reg[3]\,
       I2 => \cDelayCnt[0]_i_6_n_0\,
       I3 => \state_reg[0]\,
       O => clear
     );
-\cDelayCnt[0]_i_4\: unisim.vcomponents.LUT6
+\cDelayCnt[0]_i_4__1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFF000000001C10"
     )
@@ -3322,7 +3076,7 @@ begin
       I3 => \state[2]_i_4_n_0\,
       I4 => \Filter.sOut_reg_1\,
       I5 => Q(3),
-      O => \cDelayCnt[0]_i_4_n_0\
+      O => \cDelayCnt[0]_i_4__1_n_0\
     );
 \cDelayCnt[0]_i_6\: unisim.vcomponents.LUT6
     generic map(
@@ -3424,7 +3178,65 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33\ is
+  port (
+    aRxClkActiveHS : out STD_LOGIC;
+    AS : out STD_LOGIC_VECTOR ( 0 to 0 );
+    CLK : in STD_LOGIC;
+    AR : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33\;
+
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33\ is
+  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+  attribute async_reg : string;
+  attribute async_reg of oSyncStages : signal is "true";
+  attribute ASYNC_REG_boolean : boolean;
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
+  attribute KEEP : string;
+  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
+  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
+  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
+begin
+  aRxClkActiveHS <= oSyncStages(1);
+\oSyncStages[1]_i_1\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => oSyncStages(1),
+      O => AS(0)
+    );
+\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => CLK,
+      CE => '1',
+      CLR => AR(0),
+      D => '1',
+      Q => oSyncStages(0)
+    );
+\oSyncStages_reg[1]\: unisim.vcomponents.FDCE
+    generic map(
+      INIT => '0'
+    )
+        port map (
+      C => CLK,
+      CE => '1',
+      CLR => AR(0),
+      D => oSyncStages(0),
+      Q => oSyncStages(1)
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     AR : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -3432,10 +3244,10 @@ entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\ is
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -3482,65 +3294,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17\ is
-  port (
-    \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
-    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17\;
-
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
-  attribute async_reg : string;
-  attribute async_reg of oSyncStages : signal is "true";
-  attribute ASYNC_REG_boolean : boolean;
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
-  attribute KEEP : string;
-  attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
-begin
-  \out\(0) <= oSyncStages(1);
-\oSyncStages[1]_i_1__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => oSyncStages(1),
-      O => AR(0)
-    );
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
-    );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
-    generic map(
-      INIT => '0'
-    )
-        port map (
-      C => RefClk,
-      CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     RefClk : in STD_LOGIC;
@@ -3548,10 +3302,10 @@ entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\ is
     aD1ForceRxmode : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -3590,18 +3344,24 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    cHSSettled_reg : out STD_LOGIC;
+    \cDelayCnt_reg[6]\ : in STD_LOGIC;
+    \state_reg[1]\ : in STD_LOGIC;
+    \state_reg[0]\ : in STD_LOGIC;
+    \state_reg[2]\ : in STD_LOGIC;
+    cHSSettled : in STD_LOGIC;
     RefClk : in STD_LOGIC;
     AR : in STD_LOGIC_VECTOR ( 0 to 0 );
-    aD0ForceRxmode : in STD_LOGIC
+    rbD1RxValidHS : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -3613,6 +3373,19 @@ architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18
   attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
 begin
   \out\(0) <= oSyncStages(1);
+cHSSettled_i_1: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFAF00030000"
+    )
+        port map (
+      I0 => oSyncStages(1),
+      I1 => \cDelayCnt_reg[6]\,
+      I2 => \state_reg[1]\,
+      I3 => \state_reg[0]\,
+      I4 => \state_reg[2]\,
+      I5 => cHSSettled,
+      O => cHSSettled_reg
+    );
 \oSyncStages_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
@@ -3621,7 +3394,7 @@ begin
       C => RefClk,
       CE => '1',
       CLR => AR(0),
-      D => aD0ForceRxmode,
+      D => rbD1RxValidHS,
       Q => oSyncStages(0)
     );
 \oSyncStages_reg[1]\: unisim.vcomponents.FDCE
@@ -3640,17 +3413,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     RefClk : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -3689,17 +3462,17 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9\ is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     RefClk : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10\ is
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9\ is
   signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
@@ -3738,94 +3511,116 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ is
   port (
+    dLogicRst_reg : out STD_LOGIC;
     CLK : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
+    cHSSettled : in STD_LOGIC;
+    dSerdesRst_q : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dLogicRst : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\ is
+  signal aReset0 : STD_LOGIC;
+  signal oSyncStages : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
   attribute KEEP : string;
   attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
 begin
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+dLogicRst_i_1: unisim.vcomponents.LUT4
     generic map(
-      INIT => '0'
+      INIT => X"BB0B"
     )
         port map (
-      C => CLK,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
+      I0 => dSerdesRst_q,
+      I1 => oSyncStages,
+      I2 => Q(0),
+      I3 => dLogicRst,
+      O => dLogicRst_reg
     );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+\oSyncStages[0]_i_1__2\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => cHSSettled,
+      O => aReset0
+    );
+\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => CLK,
       CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
+      CLR => aReset0,
+      D => '1',
+      Q => oSyncStages
     );
 end STRUCTURE;
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11\ is
+entity \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24\ is
   port (
+    dLogicRst_reg : out STD_LOGIC;
     CLK : in STD_LOGIC;
-    D : in STD_LOGIC_VECTOR ( 0 to 0 )
+    cHSSettled_reg : in STD_LOGIC;
+    dSerdesRst_q : in STD_LOGIC;
+    Q : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dLogicRst : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11\ : entity is "SyncAsync";
-end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11\;
+  attribute ORIG_REF_NAME of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24\ : entity is "SyncAsync";
+end \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24\;
 
-architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11\ is
-  signal oSyncStages : STD_LOGIC_VECTOR ( 1 downto 0 );
+architecture STRUCTURE of \system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24\ is
+  signal oSyncStages : STD_LOGIC;
   attribute async_reg : string;
   attribute async_reg of oSyncStages : signal is "true";
+  signal \oSyncStages[0]_i_1__3_n_0\ : STD_LOGIC;
   attribute ASYNC_REG_boolean : boolean;
   attribute ASYNC_REG_boolean of \oSyncStages_reg[0]\ : label is std.standard.true;
   attribute KEEP : string;
   attribute KEEP of \oSyncStages_reg[0]\ : label is "yes";
-  attribute ASYNC_REG_boolean of \oSyncStages_reg[1]\ : label is std.standard.true;
-  attribute KEEP of \oSyncStages_reg[1]\ : label is "yes";
 begin
-\oSyncStages_reg[0]\: unisim.vcomponents.FDRE
+\dLogicRst_i_1__0\: unisim.vcomponents.LUT4
     generic map(
-      INIT => '0'
+      INIT => X"BB0B"
     )
         port map (
-      C => CLK,
-      CE => '1',
-      D => D(0),
-      Q => oSyncStages(0),
-      R => '0'
+      I0 => dSerdesRst_q,
+      I1 => oSyncStages,
+      I2 => Q(0),
+      I3 => dLogicRst,
+      O => dLogicRst_reg
     );
-\oSyncStages_reg[1]\: unisim.vcomponents.FDRE
+\oSyncStages[0]_i_1__3\: unisim.vcomponents.LUT1
+    generic map(
+      INIT => X"1"
+    )
+        port map (
+      I0 => cHSSettled_reg,
+      O => \oSyncStages[0]_i_1__3_n_0\
+    );
+\oSyncStages_reg[0]\: unisim.vcomponents.FDCE
     generic map(
       INIT => '0'
     )
         port map (
       C => CLK,
       CE => '1',
-      D => oSyncStages(0),
-      Q => oSyncStages(1),
-      R => '0'
+      CLR => \oSyncStages[0]_i_1__3_n_0\,
+      D => '1',
+      Q => oSyncStages
     );
 end STRUCTURE;
 library IEEE;
@@ -3834,16 +3629,14 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity system_MIPI_D_PHY_RX_0_0_HS_Clocking is
   port (
+    aRxClkActiveHS : out STD_LOGIC;
     RxDDRClkHS : out STD_LOGIC;
     CLK : out STD_LOGIC;
-    aRxClkActiveHS : out STD_LOGIC;
     AS : out STD_LOGIC_VECTOR ( 0 to 0 );
     RefClk : in STD_LOGIC;
     aHS : in STD_LOGIC;
     AR : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_HS_Clocking : entity is "HS_Clocking";
 end system_MIPI_D_PHY_RX_0_0_HS_Clocking;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Clocking is
@@ -3909,7 +3702,7 @@ SerialClkBuffer: unisim.vcomponents.BUFIO
       I => HS_ClockDly,
       O => RxDDRClkHS
     );
-SyncAsyncLocked: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized4\
+SyncAsyncLocked: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_33\
      port map (
       AR(0) => \GenNoMMCM.cBUFR_Rst_reg_n_0\,
       AS(0) => AS(0),
@@ -3931,13 +3724,11 @@ entity system_MIPI_D_PHY_RX_0_0_ResetBridge is
     RefClk : in STD_LOGIC;
     aRst : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge : entity is "ResetBridge";
 end system_MIPI_D_PHY_RX_0_0_ResetBridge;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge is
 begin
-SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_24
+SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_26
      port map (
       E(0) => E(0),
       \GenIDELAYCTRL.rDlyRst_reg\ => \GenIDELAYCTRL.rDlyRst_reg\,
@@ -3952,42 +3743,19 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_ResetBridge_16 is
-  port (
-    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_16 : entity is "ResetBridge";
-end system_MIPI_D_PHY_RX_0_0_ResetBridge_16;
-
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_16 is
-begin
-SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_20
-     port map (
-      AR(0) => AR(0),
-      AS(0) => AS(0),
-      RefClk => RefClk
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_ResetBridge_21 is
+entity system_MIPI_D_PHY_RX_0_0_ResetBridge_11 is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     CLK : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_21 : entity is "ResetBridge";
-end system_MIPI_D_PHY_RX_0_0_ResetBridge_21;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_11 : entity is "ResetBridge";
+end system_MIPI_D_PHY_RX_0_0_ResetBridge_11;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_21 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_11 is
 begin
-SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_23
+SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_12
      port map (
       AS(0) => AS(0),
       CLK => CLK,
@@ -3998,7 +3766,30 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_ResetBridge_3 is
+entity system_MIPI_D_PHY_RX_0_0_ResetBridge_14 is
+  port (
+    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_14 : entity is "ResetBridge";
+end system_MIPI_D_PHY_RX_0_0_ResetBridge_14;
+
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_14 is
+begin
+SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_22
+     port map (
+      AR(0) => AR(0),
+      AS(0) => AS(0),
+      RefClk => RefClk
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
+entity system_MIPI_D_PHY_RX_0_0_ResetBridge_2 is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     SS : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -4007,10 +3798,10 @@ entity system_MIPI_D_PHY_RX_0_0_ResetBridge_3 is
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_3 : entity is "ResetBridge";
-end system_MIPI_D_PHY_RX_0_0_ResetBridge_3;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_2 : entity is "ResetBridge";
+end system_MIPI_D_PHY_RX_0_0_ResetBridge_2;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_3 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_2 is
 begin
 SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync
      port map (
@@ -4025,42 +3816,19 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_ResetBridge_5 is
-  port (
-    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    RefClk : in STD_LOGIC;
-    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_5 : entity is "ResetBridge";
-end system_MIPI_D_PHY_RX_0_0_ResetBridge_5;
-
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_5 is
-begin
-SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_6
-     port map (
-      AR(0) => AR(0),
-      AS(0) => AS(0),
-      RefClk => RefClk
-    );
-end STRUCTURE;
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-library UNISIM;
-use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_ResetBridge_7 is
+entity system_MIPI_D_PHY_RX_0_0_ResetBridge_23 is
   port (
     \out\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     CLK : in STD_LOGIC;
     AS : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_7 : entity is "ResetBridge";
-end system_MIPI_D_PHY_RX_0_0_ResetBridge_7;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_23 : entity is "ResetBridge";
+end system_MIPI_D_PHY_RX_0_0_ResetBridge_23;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_7 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_23 is
 begin
-SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_8
+SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_25
      port map (
       AS(0) => AS(0),
       CLK => CLK,
@@ -4071,11 +3839,34 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
+entity system_MIPI_D_PHY_RX_0_0_ResetBridge_3 is
+  port (
+    AR : out STD_LOGIC_VECTOR ( 0 to 0 );
+    RefClk : in STD_LOGIC;
+    AS : in STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_ResetBridge_3 : entity is "ResetBridge";
+end system_MIPI_D_PHY_RX_0_0_ResetBridge_3;
+
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_ResetBridge_3 is
+begin
+SyncAsyncx: entity work.system_MIPI_D_PHY_RX_0_0_SyncAsync_10
+     port map (
+      AR(0) => AR(0),
+      AS(0) => AS(0),
+      RefClk => RefClk
+    );
+end STRUCTURE;
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+library UNISIM;
+use UNISIM.VCOMPONENTS.ALL;
 entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN is
   port (
+    aRxClkActiveHS : out STD_LOGIC;
     RxDDRClkHS : out STD_LOGIC;
     CLK : out STD_LOGIC;
-    aRxClkActiveHS : out STD_LOGIC;
     aClkStopstate : out STD_LOGIC;
     aRxUlpsClkNot : out STD_LOGIC;
     aClkUlpsActiveNot : out STD_LOGIC;
@@ -4085,8 +3876,6 @@ entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN is
     D : in STD_LOGIC_VECTOR ( 0 to 0 );
     aLP : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN : entity is "DPHY_LaneSCNN";
 end system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN is
@@ -4095,24 +3884,10 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN is
   signal SyncAsyncLocked_n_0 : STD_LOGIC;
   signal \^arxclkactivehs\ : STD_LOGIC;
   signal cDelayCntEn : STD_LOGIC;
-  signal \cDelayCnt[0]_i_10_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_11_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_12_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_5_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_7__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_8__1_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_5__1_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_7_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_8_n_0\ : STD_LOGIC;
   signal \cDelayCnt[0]_i_9_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_2_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_3_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_4_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_2_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_3_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_4_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_5_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_2_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_3_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_4_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_5_n_0\ : STD_LOGIC;
   signal cDelayCnt_reg : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal \cDelayCnt_reg[0]_i_3_n_0\ : STD_LOGIC;
   signal \cDelayCnt_reg[0]_i_3_n_1\ : STD_LOGIC;
@@ -4177,27 +3952,27 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSCNN is
   attribute SOFT_HLUTNM of \state[2]_i_5\ : label is "soft_lutpair3";
 begin
   aRxClkActiveHS <= \^arxclkactivehs\;
-\GenSyncLP[0].GlitchFilterLP\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_25
+\GenSyncLP[0].GlitchFilterLP\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_27
      port map (
       RefClk => RefClk,
       in0(0) => cLP(0),
       \oSyncStages_reg[1]\(0) => cEnable,
       \out\(0) => cLPGlitch_0
     );
-\GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized2\
+\GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_28\
      port map (
       RefClk => RefClk,
       aLP(0) => aLP(0),
       \out\(0) => cLPGlitch_0
     );
-\GenSyncLP[1].GlitchFilterLP\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_26
+\GenSyncLP[1].GlitchFilterLP\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_29
      port map (
       RefClk => RefClk,
       in0(0) => cLP(1),
       \oSyncStages_reg[1]\(0) => cEnable,
       \out\(0) => cLPGlitch_1
     );
-\GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized3\
+\GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_30\
      port map (
       RefClk => RefClk,
       aLP(0) => aLP(1),
@@ -4213,7 +3988,7 @@ HSClockingX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Clocking
       aHS => aHS,
       aRxClkActiveHS => \^arxclkactivehs\
     );
-SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\
+SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_31\
      port map (
       AR(0) => SyncAsyncEnable_n_2,
       D(0) => D(0),
@@ -4225,14 +4000,14 @@ SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1
       SR(0) => SyncAsyncEnable_n_1,
       \out\(0) => cEnable
     );
-SyncAsyncLocked: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5\
+SyncAsyncLocked: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_32\
      port map (
       AR(0) => SyncAsyncEnable_n_2,
       D(1) => nstate(2),
       D(0) => nstate(0),
       \Filter.sOut_reg\ => \state[0]_i_2__1_n_0\,
       \Filter.sOut_reg_0\ => \state[0]_i_4__1_n_0\,
-      \Filter.sOut_reg_1\ => \cDelayCnt[0]_i_12_n_0\,
+      \Filter.sOut_reg_1\ => \cDelayCnt[0]_i_9_n_0\,
       \Filter.sOut_reg_2\(1 downto 0) => cLP(1 downto 0),
       \Filter.sOut_reg_3\ => \state[2]_i_3_n_0\,
       Q(3) => \state_reg_n_0_[3]\,
@@ -4244,10 +4019,10 @@ SyncAsyncLocked: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized5
       cHSClkLocked_q => cHSClkLocked_q,
       clear => clear,
       \out\(0) => SyncAsyncLocked_n_0,
-      \state_reg[0]\ => \cDelayCnt[0]_i_7__1_n_0\,
+      \state_reg[0]\ => \cDelayCnt[0]_i_7_n_0\,
       \state_reg[1]\ => \state[0]_i_3__1_n_0\,
       \state_reg[2]\ => \state[2]_i_5_n_0\,
-      \state_reg[3]\ => \cDelayCnt[0]_i_5_n_0\,
+      \state_reg[3]\ => \cDelayCnt[0]_i_5__1_n_0\,
       \state_reg[3]_0\ => \state[0]_i_6__1_n_0\,
       \state_reg[3]_1\ => \state[0]_i_7__1_n_0\
     );
@@ -4283,31 +4058,6 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       I2 => \state_reg_n_0_[1]\,
       O => aRxUlpsClkNot
     );
-\cDelayCnt[0]_i_10\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(1),
-      O => \cDelayCnt[0]_i_10_n_0\
-    );
-\cDelayCnt[0]_i_11\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => cDelayCnt_reg(0),
-      O => \cDelayCnt[0]_i_11_n_0\
-    );
-\cDelayCnt[0]_i_12\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"B"
-    )
-        port map (
-      I0 => cLP(0),
-      I1 => cLP(1),
-      O => \cDelayCnt[0]_i_12_n_0\
-    );
 \cDelayCnt[0]_i_2\: unisim.vcomponents.LUT4
     generic map(
       INIT => X"0400"
@@ -4319,7 +4069,7 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       I3 => \state_reg_n_0_[0]\,
       O => cDelayCntEn
     );
-\cDelayCnt[0]_i_5\: unisim.vcomponents.LUT6
+\cDelayCnt[0]_i_5__1\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"003F004000000000"
     )
@@ -4330,9 +4080,9 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       I3 => \state_reg_n_0_[0]\,
       I4 => cLP(0),
       I5 => cLP(1),
-      O => \cDelayCnt[0]_i_5_n_0\
+      O => \cDelayCnt[0]_i_5__1_n_0\
     );
-\cDelayCnt[0]_i_7__1\: unisim.vcomponents.LUT6
+\cDelayCnt[0]_i_7\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"AA0000008822004F"
     )
@@ -4343,111 +4093,24 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       I3 => cLP(1),
       I4 => cLP(0),
       I5 => \state_reg_n_0_[2]\,
-      O => \cDelayCnt[0]_i_7__1_n_0\
+      O => \cDelayCnt[0]_i_7_n_0\
     );
-\cDelayCnt[0]_i_8__1\: unisim.vcomponents.LUT1
+\cDelayCnt[0]_i_8\: unisim.vcomponents.LUT1
     generic map(
-      INIT => X"2"
+      INIT => X"1"
     )
         port map (
-      I0 => cDelayCnt_reg(3),
-      O => \cDelayCnt[0]_i_8__1_n_0\
+      I0 => cDelayCnt_reg(0),
+      O => \cDelayCnt[0]_i_8_n_0\
     );
-\cDelayCnt[0]_i_9\: unisim.vcomponents.LUT1
+\cDelayCnt[0]_i_9\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"2"
+      INIT => X"B"
     )
         port map (
-      I0 => cDelayCnt_reg(2),
+      I0 => cLP(0),
+      I1 => cLP(1),
       O => \cDelayCnt[0]_i_9_n_0\
-    );
-\cDelayCnt[12]_i_2\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(14),
-      O => \cDelayCnt[12]_i_2_n_0\
-    );
-\cDelayCnt[12]_i_3\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(13),
-      O => \cDelayCnt[12]_i_3_n_0\
-    );
-\cDelayCnt[12]_i_4\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(12),
-      O => \cDelayCnt[12]_i_4_n_0\
-    );
-\cDelayCnt[4]_i_2\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(7),
-      O => \cDelayCnt[4]_i_2_n_0\
-    );
-\cDelayCnt[4]_i_3\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(6),
-      O => \cDelayCnt[4]_i_3_n_0\
-    );
-\cDelayCnt[4]_i_4\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(5),
-      O => \cDelayCnt[4]_i_4_n_0\
-    );
-\cDelayCnt[4]_i_5\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(4),
-      O => \cDelayCnt[4]_i_5_n_0\
-    );
-\cDelayCnt[8]_i_2\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(11),
-      O => \cDelayCnt[8]_i_2_n_0\
-    );
-\cDelayCnt[8]_i_3\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(10),
-      O => \cDelayCnt[8]_i_3_n_0\
-    );
-\cDelayCnt[8]_i_4\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(9),
-      O => \cDelayCnt[8]_i_4_n_0\
-    );
-\cDelayCnt[8]_i_5\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(8),
-      O => \cDelayCnt[8]_i_5_n_0\
     );
 \cDelayCnt_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -4473,10 +4136,8 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[0]_i_3_n_5\,
       O(1) => \cDelayCnt_reg[0]_i_3_n_6\,
       O(0) => \cDelayCnt_reg[0]_i_3_n_7\,
-      S(3) => \cDelayCnt[0]_i_8__1_n_0\,
-      S(2) => \cDelayCnt[0]_i_9_n_0\,
-      S(1) => \cDelayCnt[0]_i_10_n_0\,
-      S(0) => \cDelayCnt[0]_i_11_n_0\
+      S(3 downto 1) => cDelayCnt_reg(3 downto 1),
+      S(0) => \cDelayCnt[0]_i_8_n_0\
     );
 \cDelayCnt_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -4524,9 +4185,7 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       O(1) => \cDelayCnt_reg[12]_i_1_n_6\,
       O(0) => \cDelayCnt_reg[12]_i_1_n_7\,
       S(3) => '0',
-      S(2) => \cDelayCnt[12]_i_2_n_0\,
-      S(1) => \cDelayCnt[12]_i_3_n_0\,
-      S(0) => \cDelayCnt[12]_i_4_n_0\
+      S(2 downto 0) => cDelayCnt_reg(14 downto 12)
     );
 \cDelayCnt_reg[13]\: unisim.vcomponents.FDRE
     generic map(
@@ -4607,10 +4266,7 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[4]_i_1_n_5\,
       O(1) => \cDelayCnt_reg[4]_i_1_n_6\,
       O(0) => \cDelayCnt_reg[4]_i_1_n_7\,
-      S(3) => \cDelayCnt[4]_i_2_n_0\,
-      S(2) => \cDelayCnt[4]_i_3_n_0\,
-      S(1) => \cDelayCnt[4]_i_4_n_0\,
-      S(0) => \cDelayCnt[4]_i_5_n_0\
+      S(3 downto 0) => cDelayCnt_reg(7 downto 4)
     );
 \cDelayCnt_reg[5]\: unisim.vcomponents.FDRE
     generic map(
@@ -4669,10 +4325,7 @@ aRxUlpsClkNot_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[8]_i_1_n_5\,
       O(1) => \cDelayCnt_reg[8]_i_1_n_6\,
       O(0) => \cDelayCnt_reg[8]_i_1_n_7\,
-      S(3) => \cDelayCnt[8]_i_2_n_0\,
-      S(2) => \cDelayCnt[8]_i_3_n_0\,
-      S(1) => \cDelayCnt[8]_i_4_n_0\,
-      S(0) => \cDelayCnt[8]_i_5_n_0\
+      S(3 downto 0) => cDelayCnt_reg(11 downto 8)
     );
 \cDelayCnt_reg[9]\: unisim.vcomponents.FDRE
     generic map(
@@ -4926,8 +4579,6 @@ entity system_MIPI_D_PHY_RX_0_0_HS_Deserializer is
     dSyncHard_reg : in STD_LOGIC;
     dSyncErr_reg : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_HS_Deserializer : entity is "HS_Deserializer";
 end system_MIPI_D_PHY_RX_0_0_HS_Deserializer;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer is
@@ -5007,11 +4658,11 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer is
   signal \dDataOut8[6]_i_2_n_0\ : STD_LOGIC;
   signal \dDataOut8[7]_i_2_n_0\ : STD_LOGIC;
   signal \dDataOut8__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dLP[0]_1\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \dLP[0]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   attribute DONT_TOUCH : boolean;
-  attribute DONT_TOUCH of \dLP[0]_1\ : signal is std.standard.true;
-  signal \dLP[1]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  attribute DONT_TOUCH of \dLP[1]_0\ : signal is std.standard.true;
+  attribute DONT_TOUCH of \dLP[0]_0\ : signal is std.standard.true;
+  signal \dLP[1]_1\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  attribute DONT_TOUCH of \dLP[1]_1\ : signal is std.standard.true;
   signal dLogicRst : STD_LOGIC;
   signal dSerdesRst : STD_LOGIC;
   signal dSerdesRst_q : STD_LOGIC;
@@ -5072,74 +4723,74 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer is
   signal NLW_Deserializer_O_UNCONNECTED : STD_LOGIC;
   signal NLW_Deserializer_SHIFTOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_Deserializer_SHIFTOUT2_UNCONNECTED : STD_LOGIC;
-  signal \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
   attribute box_type : string;
   attribute box_type of Deserializer : label is "PRIMITIVE";
   attribute box_type of InputDelay : label is "PRIMITIVE";
-  attribute box_type of \LPxx[0].LP_DeserializerX\ : label is "PRIMITIVE";
-  attribute box_type of \LPxx[1].LP_DeserializerX\ : label is "PRIMITIVE";
+  attribute box_type of \UseOwnLP.LPxx[0].LP_DeserializerX\ : label is "PRIMITIVE";
+  attribute box_type of \UseOwnLP.LPxx[1].LP_DeserializerX\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_12\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_13\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_14\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_15\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_16\ : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_17\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_18\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_5\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_10\ : label is "soft_lutpair55";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_12\ : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_13\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_15\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_16\ : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_17\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_18\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_6\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_7\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_3\ : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_4\ : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of \dDataOut8[0]_i_4\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \dDataOut8[0]_i_5\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \dDataOut8[1]_i_2\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \dDataOut8[2]_i_2\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of \dDataOut8[3]_i_2\ : label is "soft_lutpair60";
-  attribute SOFT_HLUTNM of \dDataOut8[4]_i_2\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \dDataOut8[5]_i_2\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \dDataOut8[6]_i_2\ : label is "soft_lutpair63";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_10 : label is "soft_lutpair65";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_11 : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_12 : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_13 : label is "soft_lutpair59";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_14 : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_15 : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_16 : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_17 : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_18 : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_19 : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_3 : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_6 : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_7 : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of dSyncHard_int_i_8 : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_10 : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_11 : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_14 : label is "soft_lutpair55";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_15 : label is "soft_lutpair59";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_16 : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_17 : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_18 : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_19 : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_2 : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_20 : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_21 : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_22 : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_23 : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of dSyncSoft_int_i_24 : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of rbD1ErrSotSyncHS_INST_0 : label is "soft_lutpair52";
-  attribute SOFT_HLUTNM of rbD1RxActiveHS_INST_0 : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of rbD1RxSyncHS_INST_0 : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_12\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_13\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_14\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_15\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_16\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_17\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_18\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_5\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_10\ : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_12\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_13\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_15\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_16\ : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_17\ : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_18\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_6\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_7\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_3\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_4\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \dDataOut8[0]_i_4\ : label is "soft_lutpair58";
+  attribute SOFT_HLUTNM of \dDataOut8[0]_i_5\ : label is "soft_lutpair59";
+  attribute SOFT_HLUTNM of \dDataOut8[1]_i_2\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \dDataOut8[2]_i_2\ : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of \dDataOut8[3]_i_2\ : label is "soft_lutpair58";
+  attribute SOFT_HLUTNM of \dDataOut8[4]_i_2\ : label is "soft_lutpair59";
+  attribute SOFT_HLUTNM of \dDataOut8[5]_i_2\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \dDataOut8[6]_i_2\ : label is "soft_lutpair61";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_10 : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_11 : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_12 : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_13 : label is "soft_lutpair57";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_14 : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_15 : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_16 : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_17 : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_18 : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_19 : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_3 : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_6 : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_7 : label is "soft_lutpair35";
+  attribute SOFT_HLUTNM of dSyncHard_int_i_8 : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_10 : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_11 : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_14 : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_15 : label is "soft_lutpair57";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_16 : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_17 : label is "soft_lutpair54";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_18 : label is "soft_lutpair54";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_19 : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_2 : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_20 : label is "soft_lutpair36";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_21 : label is "soft_lutpair62";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_22 : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_23 : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of dSyncSoft_int_i_24 : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of rbD1ErrSotSyncHS_INST_0 : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of rbD1RxActiveHS_INST_0 : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of rbD1RxSyncHS_INST_0 : label is "soft_lutpair50";
 begin
   dSyncErr_reg_reg <= \^dsyncerr_reg_reg\;
   dSyncHard_reg_reg <= \^dsynchard_reg_reg\;
@@ -5233,7 +4884,22 @@ InputDelay: unisim.vcomponents.IDELAYE2
       LDPIPEEN => '0',
       REGRST => '0'
     );
-\LPxx[0].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
+SerdesReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_11
+     port map (
+      AS(0) => AS(0),
+      CLK => CLK,
+      \out\(0) => dSerdesRst
+    );
+SyncAsyncSettled: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1\
+     port map (
+      CLK => CLK,
+      Q(0) => \dValid_reg_reg_n_0_[3]\,
+      cHSSettled => cHSSettled,
+      dLogicRst => dLogicRst,
+      dLogicRst_reg => SyncAsyncSettled_n_0,
+      dSerdesRst_q => dSerdesRst_q
+    );
+\UseOwnLP.LPxx[0].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
     generic map(
       DATA_RATE => "DDR",
       DATA_WIDTH => 8,
@@ -5276,21 +4942,21 @@ InputDelay: unisim.vcomponents.IDELAYE2
       OCLK => '0',
       OCLKB => '0',
       OFB => '0',
-      Q1 => \dLP[0]_1\(0),
-      Q2 => \dLP[0]_1\(1),
-      Q3 => \dLP[0]_1\(2),
-      Q4 => \dLP[0]_1\(3),
-      Q5 => \dLP[0]_1\(4),
-      Q6 => \dLP[0]_1\(5),
-      Q7 => \dLP[0]_1\(6),
-      Q8 => \dLP[0]_1\(7),
+      Q1 => \dLP[0]_0\(0),
+      Q2 => \dLP[0]_0\(1),
+      Q3 => \dLP[0]_0\(2),
+      Q4 => \dLP[0]_0\(3),
+      Q5 => \dLP[0]_0\(4),
+      Q6 => \dLP[0]_0\(5),
+      Q7 => \dLP[0]_0\(6),
+      Q8 => \dLP[0]_0\(7),
       RST => dSerdesRst,
       SHIFTIN1 => '0',
       SHIFTIN2 => '0',
-      SHIFTOUT1 => \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
-      SHIFTOUT2 => \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
+      SHIFTOUT1 => \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
+      SHIFTOUT2 => \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
     );
-\LPxx[1].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
+\UseOwnLP.LPxx[1].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
     generic map(
       DATA_RATE => "DDR",
       DATA_WIDTH => 8,
@@ -5333,34 +4999,19 @@ InputDelay: unisim.vcomponents.IDELAYE2
       OCLK => '0',
       OCLKB => '0',
       OFB => '0',
-      Q1 => \dLP[1]_0\(0),
-      Q2 => \dLP[1]_0\(1),
-      Q3 => \dLP[1]_0\(2),
-      Q4 => \dLP[1]_0\(3),
-      Q5 => \dLP[1]_0\(4),
-      Q6 => \dLP[1]_0\(5),
-      Q7 => \dLP[1]_0\(6),
-      Q8 => \dLP[1]_0\(7),
+      Q1 => \dLP[1]_1\(0),
+      Q2 => \dLP[1]_1\(1),
+      Q3 => \dLP[1]_1\(2),
+      Q4 => \dLP[1]_1\(3),
+      Q5 => \dLP[1]_1\(4),
+      Q6 => \dLP[1]_1\(5),
+      Q7 => \dLP[1]_1\(6),
+      Q8 => \dLP[1]_1\(7),
       RST => dSerdesRst,
       SHIFTIN1 => '0',
       SHIFTIN2 => '0',
-      SHIFTOUT1 => \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
-      SHIFTOUT2 => \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
-    );
-SerdesReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_7
-     port map (
-      AS(0) => AS(0),
-      CLK => CLK,
-      \out\(0) => dSerdesRst
-    );
-SyncAsyncSettled: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12\
-     port map (
-      CLK => CLK,
-      Q(0) => \dValid_reg_reg_n_0_[3]\,
-      cHSSettled => cHSSettled,
-      dLogicRst => dLogicRst,
-      dLogicRst_reg => SyncAsyncSettled_n_0,
-      dSerdesRst_q => dSerdesRst_q
+      SHIFTOUT1 => \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
+      SHIFTOUT2 => \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
     );
 \alignment[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -7038,10 +6689,10 @@ dValid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \^dsynchard_reg_reg\,
       I1 => \^dsyncsoft_reg_reg\,
-      I2 => \dLP[0]_1\(0),
-      I3 => \dLP[1]_0\(0),
-      I4 => \dLP[0]_1\(1),
-      I5 => \dLP[1]_0\(1),
+      I2 => \dLP[0]_0\(0),
+      I3 => \dLP[1]_1\(0),
+      I4 => \dLP[0]_0\(1),
+      I5 => \dLP[1]_1\(1),
       O => p_3_out(1)
     );
 \dValid_reg_reg[2]\: unisim.vcomponents.FDRE
@@ -7124,7 +6775,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 is
+entity system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13 is
   port (
     aLP_int : out STD_LOGIC_VECTOR ( 1 downto 0 );
     dSyncHard_reg_reg : out STD_LOGIC;
@@ -7149,10 +6800,10 @@ entity system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 is
     dSyncErr_reg : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 : entity is "HS_Deserializer";
-end system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13 : entity is "HS_Deserializer";
+end system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 is
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13 is
   signal DataInDly : STD_LOGIC;
   signal InputDelay_n_1 : STD_LOGIC;
   signal InputDelay_n_2 : STD_LOGIC;
@@ -7247,11 +6898,11 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 is
   signal \dDataOut8[6]_i_2_n_0\ : STD_LOGIC;
   signal \dDataOut8[7]_i_2_n_0\ : STD_LOGIC;
   signal \dDataOut8__0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  signal \dLP[0]_1\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  signal \dLP[0]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
   attribute DONT_TOUCH : boolean;
-  attribute DONT_TOUCH of \dLP[0]_1\ : signal is std.standard.true;
-  signal \dLP[1]_0\ : STD_LOGIC_VECTOR ( 7 downto 0 );
-  attribute DONT_TOUCH of \dLP[1]_0\ : signal is std.standard.true;
+  attribute DONT_TOUCH of \dLP[0]_0\ : signal is std.standard.true;
+  signal \dLP[1]_1\ : STD_LOGIC_VECTOR ( 7 downto 0 );
+  attribute DONT_TOUCH of \dLP[1]_1\ : signal is std.standard.true;
   signal dLogicRst : STD_LOGIC;
   signal dSerdesRst : STD_LOGIC;
   signal dSerdesRst_q : STD_LOGIC;
@@ -7311,74 +6962,74 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15 is
   signal NLW_Deserializer_O_UNCONNECTED : STD_LOGIC;
   signal NLW_Deserializer_SHIFTOUT1_UNCONNECTED : STD_LOGIC;
   signal NLW_Deserializer_SHIFTOUT2_UNCONNECTED : STD_LOGIC;
-  signal \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
-  signal \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\ : STD_LOGIC;
+  signal \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\ : STD_LOGIC;
   attribute box_type : string;
   attribute box_type of Deserializer : label is "PRIMITIVE";
   attribute box_type of InputDelay : label is "PRIMITIVE";
-  attribute box_type of \LPxx[0].LP_DeserializerX\ : label is "PRIMITIVE";
-  attribute box_type of \LPxx[1].LP_DeserializerX\ : label is "PRIMITIVE";
+  attribute box_type of \UseOwnLP.LPxx[0].LP_DeserializerX\ : label is "PRIMITIVE";
+  attribute box_type of \UseOwnLP.LPxx[1].LP_DeserializerX\ : label is "PRIMITIVE";
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_12__0\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_13__0\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_14__0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_15__0\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_16__0\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_17__0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_18__0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_5__0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_10__0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_12__0\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_13__0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_15__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_16__0\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_17__0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_18__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_6__0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_7__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_3__0\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_4__0\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \dDataOut8[0]_i_4\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \dDataOut8[0]_i_5\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \dDataOut8[1]_i_2\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \dDataOut8[2]_i_2\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \dDataOut8[3]_i_2\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \dDataOut8[4]_i_2\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \dDataOut8[5]_i_2\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \dDataOut8[6]_i_2\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_10__0\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_11__0\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_12__0\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_13__0\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_14__0\ : label is "soft_lutpair23";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_15__0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_16__0\ : label is "soft_lutpair22";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_17__0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_18__0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_19__0\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_3__0\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_6__0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_7__0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \dSyncHard_int_i_8__0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_10__0\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_11__0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_14__0\ : label is "soft_lutpair24";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_15__0\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_16__0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_17__0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_18__0\ : label is "soft_lutpair25";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_19__0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_20__0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_21__0\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_22__0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_23__0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_24__0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \dSyncSoft_int_i_2__0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of rbD0ErrSotSyncHS_INST_0 : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of rbD0RxActiveHS_INST_0 : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of rbD0RxSyncHS_INST_0 : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_12__0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_13__0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_14__0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_15__0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_16__0\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_17__0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_18__0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \dAlignment_int[0]_i_5__0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_10__0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_12__0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_13__0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_15__0\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_16__0\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_17__0\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_18__0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_6__0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \dAlignment_int[1]_i_7__0\ : label is "soft_lutpair24";
+  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_3__0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \dAlignment_int[2]_i_4__0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \dDataOut8[0]_i_4\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \dDataOut8[0]_i_5\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \dDataOut8[1]_i_2\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \dDataOut8[2]_i_2\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \dDataOut8[3]_i_2\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \dDataOut8[4]_i_2\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \dDataOut8[5]_i_2\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \dDataOut8[6]_i_2\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_10__0\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_11__0\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_12__0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_13__0\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_14__0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_15__0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_16__0\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_17__0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_18__0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_19__0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_3__0\ : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_6__0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_7__0\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \dSyncHard_int_i_8__0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_10__0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_11__0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_14__0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_15__0\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_16__0\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_17__0\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_18__0\ : label is "soft_lutpair23";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_19__0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_20__0\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_21__0\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_22__0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_23__0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_24__0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \dSyncSoft_int_i_2__0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of rbD0ErrSotSyncHS_INST_0 : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of rbD0RxActiveHS_INST_0 : label is "soft_lutpair25";
+  attribute SOFT_HLUTNM of rbD0RxSyncHS_INST_0 : label is "soft_lutpair19";
 begin
   dSyncErr_reg_reg <= \^dsyncerr_reg_reg\;
   dSyncHard_reg_reg <= \^dsynchard_reg_reg\;
@@ -7472,7 +7123,22 @@ InputDelay: unisim.vcomponents.IDELAYE2
       LDPIPEEN => '0',
       REGRST => '0'
     );
-\LPxx[0].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
+SerdesReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_23
+     port map (
+      AS(0) => AS(0),
+      CLK => CLK,
+      \out\(0) => dSerdesRst
+    );
+SyncAsyncSettled: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized1_24\
+     port map (
+      CLK => CLK,
+      Q(0) => \dValid_reg_reg_n_0_[3]\,
+      cHSSettled_reg => cHSSettled_reg,
+      dLogicRst => dLogicRst,
+      dLogicRst_reg => SyncAsyncSettled_n_0,
+      dSerdesRst_q => dSerdesRst_q
+    );
+\UseOwnLP.LPxx[0].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
     generic map(
       DATA_RATE => "DDR",
       DATA_WIDTH => 8,
@@ -7515,21 +7181,21 @@ InputDelay: unisim.vcomponents.IDELAYE2
       OCLK => '0',
       OCLKB => '0',
       OFB => '0',
-      Q1 => \dLP[0]_1\(0),
-      Q2 => \dLP[0]_1\(1),
-      Q3 => \dLP[0]_1\(2),
-      Q4 => \dLP[0]_1\(3),
-      Q5 => \dLP[0]_1\(4),
-      Q6 => \dLP[0]_1\(5),
-      Q7 => \dLP[0]_1\(6),
-      Q8 => \dLP[0]_1\(7),
+      Q1 => \dLP[0]_0\(0),
+      Q2 => \dLP[0]_0\(1),
+      Q3 => \dLP[0]_0\(2),
+      Q4 => \dLP[0]_0\(3),
+      Q5 => \dLP[0]_0\(4),
+      Q6 => \dLP[0]_0\(5),
+      Q7 => \dLP[0]_0\(6),
+      Q8 => \dLP[0]_0\(7),
       RST => dSerdesRst,
       SHIFTIN1 => '0',
       SHIFTIN2 => '0',
-      SHIFTOUT1 => \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
-      SHIFTOUT2 => \NLW_LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
+      SHIFTOUT1 => \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
+      SHIFTOUT2 => \NLW_UseOwnLP.LPxx[0].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
     );
-\LPxx[1].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
+\UseOwnLP.LPxx[1].LP_DeserializerX\: unisim.vcomponents.ISERDESE2
     generic map(
       DATA_RATE => "DDR",
       DATA_WIDTH => 8,
@@ -7572,34 +7238,19 @@ InputDelay: unisim.vcomponents.IDELAYE2
       OCLK => '0',
       OCLKB => '0',
       OFB => '0',
-      Q1 => \dLP[1]_0\(0),
-      Q2 => \dLP[1]_0\(1),
-      Q3 => \dLP[1]_0\(2),
-      Q4 => \dLP[1]_0\(3),
-      Q5 => \dLP[1]_0\(4),
-      Q6 => \dLP[1]_0\(5),
-      Q7 => \dLP[1]_0\(6),
-      Q8 => \dLP[1]_0\(7),
+      Q1 => \dLP[1]_1\(0),
+      Q2 => \dLP[1]_1\(1),
+      Q3 => \dLP[1]_1\(2),
+      Q4 => \dLP[1]_1\(3),
+      Q5 => \dLP[1]_1\(4),
+      Q6 => \dLP[1]_1\(5),
+      Q7 => \dLP[1]_1\(6),
+      Q8 => \dLP[1]_1\(7),
       RST => dSerdesRst,
       SHIFTIN1 => '0',
       SHIFTIN2 => '0',
-      SHIFTOUT1 => \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
-      SHIFTOUT2 => \NLW_LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
-    );
-SerdesReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_21
-     port map (
-      AS(0) => AS(0),
-      CLK => CLK,
-      \out\(0) => dSerdesRst
-    );
-SyncAsyncSettled: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized12_22\
-     port map (
-      CLK => CLK,
-      Q(0) => \dValid_reg_reg_n_0_[3]\,
-      cHSSettled_reg => cHSSettled_reg,
-      dLogicRst => dLogicRst,
-      dLogicRst_reg => SyncAsyncSettled_n_0,
-      dSerdesRst_q => dSerdesRst_q
+      SHIFTOUT1 => \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT1_UNCONNECTED\,
+      SHIFTOUT2 => \NLW_UseOwnLP.LPxx[1].LP_DeserializerX_SHIFTOUT2_UNCONNECTED\
     );
 \alignment[0]_i_1\: unisim.vcomponents.LUT4
     generic map(
@@ -9277,10 +8928,10 @@ dValid_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \^dsynchard_reg_reg\,
       I1 => \^dsyncsoft_reg_reg\,
-      I2 => \dLP[0]_1\(0),
-      I3 => \dLP[1]_0\(0),
-      I4 => \dLP[0]_1\(1),
-      I5 => \dLP[1]_0\(1),
+      I2 => \dLP[0]_0\(0),
+      I3 => \dLP[1]_1\(0),
+      I4 => \dLP[0]_0\(1),
+      I5 => \dLP[1]_1\(1),
       O => p_3_out(1)
     );
 \dValid_reg_reg[2]\: unisim.vcomponents.FDRE
@@ -9382,17 +9033,9 @@ entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN is
     AS : in STD_LOGIC_VECTOR ( 0 to 0 );
     aD0ForceRxmode : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN : entity is "DPHY_LaneSFEN";
 end system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN is
-  signal \GenSyncLP[0].GlitchFilterLPC_n_0\ : STD_LOGIC;
-  signal \GenSyncLP[0].GlitchFilterLPC_n_1\ : STD_LOGIC;
-  signal \GenSyncLP[0].GlitchFilterLPC_n_2\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_0\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_1\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_2\ : STD_LOGIC;
   signal HSDeserializerX_n_2 : STD_LOGIC;
   signal HSDeserializerX_n_3 : STD_LOGIC;
   signal HSDeserializerX_n_5 : STD_LOGIC;
@@ -9400,24 +9043,16 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN is
   signal SyncAsyncEnable_n_1 : STD_LOGIC;
   signal SyncAsyncForceRxMode_n_0 : STD_LOGIC;
   signal SyncAsyncValid_n_1 : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\ : STD_LOGIC;
   signal aLP_int : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \cDelayCnt[0]_i_3__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_4__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_5__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_6__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_7__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_8__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_2__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_3__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_4__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_2__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_3__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_4__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_5__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_2__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_3__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_4__1_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_5__1_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_4__0_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_5__0_n_0\ : STD_LOGIC;
   signal cDelayCnt_reg : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal \cDelayCnt_reg[0]_i_2__0_n_0\ : STD_LOGIC;
   signal \cDelayCnt_reg[0]_i_2__0_n_1\ : STD_LOGIC;
@@ -9471,62 +9106,7 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN is
   signal \NLW_cDelayCnt_reg[12]_i_1__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
 begin
   rbD0RxValidHS <= \^rbd0rxvalidhs\;
-\GenSyncLP[0].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_9
-     port map (
-      \Filter.sOut_reg_0\ => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      \Filter.sOut_reg_1\ => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      RefClk => RefClk,
-      \cDelayCnt_reg[0]\ => \GenSyncLP[0].GlitchFilterLPC_n_2\,
-      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3__0_n_0\,
-      \oSyncStages_reg[1]\(0) => SyncAsyncForceRxMode_n_0,
-      \out\(0) => cLPGlitch_0,
-      \state_reg[0]\ => \GenSyncLP[0].GlitchFilterLPC_n_1\,
-      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
-      \state_reg[1]\ => \state_reg_n_0_[1]\,
-      \state_reg[2]\ => \state_reg_n_0_[2]\
-    );
-\GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8_10\
-     port map (
-      D(0) => aLP_int(0),
-      RefClk => RefClk,
-      \out\(0) => cLPGlitch_0
-    );
-\GenSyncLP[0].SyncAsyncx_D\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9_11\
-     port map (
-      CLK => CLK,
-      D(0) => aLP_int(0)
-    );
-\GenSyncLP[1].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_12
-     port map (
-      AS(0) => cHSReset_reg_n_0,
-      \Filter.sOut_reg_0\ => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      \Filter.sOut_reg_1\ => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      RefClk => RefClk,
-      cDelayCnt_reg(5) => cDelayCnt_reg(14),
-      cDelayCnt_reg(4 downto 2) => cDelayCnt_reg(11 downto 9),
-      cDelayCnt_reg(1 downto 0) => cDelayCnt_reg(5 downto 4),
-      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3__0_n_0\,
-      \cDelayCnt_reg[9]\ => \state[0]_i_6__0_n_0\,
-      cHSReset_reg => \GenSyncLP[1].GlitchFilterLPC_n_2\,
-      \oSyncStages_reg[1]\(0) => cValid,
-      \out\(0) => cLPGlitch_1,
-      \state_reg[0]\ => \GenSyncLP[1].GlitchFilterLPC_n_1\,
-      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
-      \state_reg[1]\ => \state_reg_n_0_[1]\,
-      \state_reg[2]\ => \state_reg_n_0_[2]\
-    );
-\GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10_13\
-     port map (
-      D(0) => aLP_int(1),
-      RefClk => RefClk,
-      \out\(0) => cLPGlitch_1
-    );
-\GenSyncLP[1].SyncAsyncx_D\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11_14\
-     port map (
-      CLK => CLK,
-      D(0) => aLP_int(1)
-    );
-HSDeserializerX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
+HSDeserializerX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Deserializer_13
      port map (
       AS(0) => cHSReset_reg_n_0,
       CLK => CLK,
@@ -9550,27 +9130,27 @@ HSDeserializerX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Deserializer_15
       rbD0RxSyncHS => rbD0RxSyncHS,
       rbD0RxValidHS => \^rbd0rxvalidhs\
     );
-RxClkActiveHSResetBridge: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_16
+RxClkActiveHSResetBridge: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_14
      port map (
       AR(0) => RxClkActiveHSResetBridge_n_0,
       AS(0) => AS(0),
       RefClk => RefClk
     );
-SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6_17\
+SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_15\
      port map (
       AR(0) => SyncAsyncEnable_n_1,
       D(0) => D(0),
       RefClk => RefClk,
       \out\(0) => cEnable
     );
-SyncAsyncForceRxMode: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7_18\
+SyncAsyncForceRxMode: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_16\
      port map (
       AR(0) => SyncAsyncEnable_n_1,
       RefClk => RefClk,
       aD0ForceRxmode => aD0ForceRxmode,
       \out\(0) => SyncAsyncForceRxMode_n_0
     );
-SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13_19\
+SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_17\
      port map (
       AR(0) => RxClkActiveHSResetBridge_n_0,
       RefClk => RefClk,
@@ -9582,6 +9162,51 @@ SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13
       \state_reg[0]\ => \state_reg_n_0_[0]\,
       \state_reg[1]\ => \state_reg_n_0_[1]\,
       \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[0].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_18
+     port map (
+      \Filter.sOut_reg_0\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      \Filter.sOut_reg_1\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      RefClk => RefClk,
+      \cDelayCnt_reg[0]\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\,
+      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3__0_n_0\,
+      \oSyncStages_reg[1]\(0) => SyncAsyncForceRxMode_n_0,
+      \out\(0) => cLPGlitch_0,
+      \state_reg[0]\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\,
+      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
+      \state_reg[1]\ => \state_reg_n_0_[1]\,
+      \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_19\
+     port map (
+      D(0) => aLP_int(0),
+      RefClk => RefClk,
+      \out\(0) => cLPGlitch_0
+    );
+\UseOwnLP.GenSyncLP[1].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_20
+     port map (
+      AS(0) => cHSReset_reg_n_0,
+      \Filter.sOut_reg_0\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      \Filter.sOut_reg_1\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      RefClk => RefClk,
+      cDelayCnt_reg(5) => cDelayCnt_reg(14),
+      cDelayCnt_reg(4 downto 2) => cDelayCnt_reg(11 downto 9),
+      cDelayCnt_reg(1 downto 0) => cDelayCnt_reg(5 downto 4),
+      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3__0_n_0\,
+      \cDelayCnt_reg[9]\ => \state[0]_i_6__0_n_0\,
+      cHSReset_reg => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\,
+      \oSyncStages_reg[1]\(0) => cValid,
+      \out\(0) => cLPGlitch_1,
+      \state_reg[0]\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\,
+      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
+      \state_reg[1]\ => \state_reg_n_0_[1]\,
+      \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_21\
+     port map (
+      D(0) => aLP_int(1),
+      RefClk => RefClk,
+      \out\(0) => cLPGlitch_1
     );
 aD0Stopstate_INST_0: unisim.vcomponents.LUT3
     generic map(
@@ -9598,7 +9223,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       INIT => X"FFFFFFFFFFFFFFFE"
     )
         port map (
-      I0 => \cDelayCnt[0]_i_8__0_n_0\,
+      I0 => \cDelayCnt[0]_i_5__0_n_0\,
       I1 => cDelayCnt_reg(6),
       I2 => cDelayCnt_reg(3),
       I3 => cDelayCnt_reg(8),
@@ -9606,39 +9231,15 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       I5 => \state[0]_i_7__0_n_0\,
       O => \cDelayCnt[0]_i_3__0_n_0\
     );
-\cDelayCnt[0]_i_4__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(3),
-      O => \cDelayCnt[0]_i_4__1_n_0\
-    );
-\cDelayCnt[0]_i_5__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(2),
-      O => \cDelayCnt[0]_i_5__1_n_0\
-    );
-\cDelayCnt[0]_i_6__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(1),
-      O => \cDelayCnt[0]_i_6__1_n_0\
-    );
-\cDelayCnt[0]_i_7__0\: unisim.vcomponents.LUT1
+\cDelayCnt[0]_i_4__0\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
       I0 => cDelayCnt_reg(0),
-      O => \cDelayCnt[0]_i_7__0_n_0\
+      O => \cDelayCnt[0]_i_4__0_n_0\
     );
-\cDelayCnt[0]_i_8__0\: unisim.vcomponents.LUT6
+\cDelayCnt[0]_i_5__0\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFFFFFFFEFFFF"
     )
@@ -9649,95 +9250,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       I3 => cDelayCnt_reg(10),
       I4 => cDelayCnt_reg(4),
       I5 => cDelayCnt_reg(5),
-      O => \cDelayCnt[0]_i_8__0_n_0\
-    );
-\cDelayCnt[12]_i_2__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(14),
-      O => \cDelayCnt[12]_i_2__1_n_0\
-    );
-\cDelayCnt[12]_i_3__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(13),
-      O => \cDelayCnt[12]_i_3__1_n_0\
-    );
-\cDelayCnt[12]_i_4__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(12),
-      O => \cDelayCnt[12]_i_4__1_n_0\
-    );
-\cDelayCnt[4]_i_2__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(7),
-      O => \cDelayCnt[4]_i_2__1_n_0\
-    );
-\cDelayCnt[4]_i_3__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(6),
-      O => \cDelayCnt[4]_i_3__1_n_0\
-    );
-\cDelayCnt[4]_i_4__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(5),
-      O => \cDelayCnt[4]_i_4__1_n_0\
-    );
-\cDelayCnt[4]_i_5__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(4),
-      O => \cDelayCnt[4]_i_5__1_n_0\
-    );
-\cDelayCnt[8]_i_2__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(11),
-      O => \cDelayCnt[8]_i_2__1_n_0\
-    );
-\cDelayCnt[8]_i_3__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(10),
-      O => \cDelayCnt[8]_i_3__1_n_0\
-    );
-\cDelayCnt[8]_i_4__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(9),
-      O => \cDelayCnt[8]_i_4__1_n_0\
-    );
-\cDelayCnt[8]_i_5__1\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(8),
-      O => \cDelayCnt[8]_i_5__1_n_0\
+      O => \cDelayCnt[0]_i_5__0_n_0\
     );
 \cDelayCnt_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -9748,7 +9261,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2__0_n_7\,
       Q => cDelayCnt_reg(0),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[0]_i_2__0\: unisim.vcomponents.CARRY4
      port map (
@@ -9763,10 +9276,8 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[0]_i_2__0_n_5\,
       O(1) => \cDelayCnt_reg[0]_i_2__0_n_6\,
       O(0) => \cDelayCnt_reg[0]_i_2__0_n_7\,
-      S(3) => \cDelayCnt[0]_i_4__1_n_0\,
-      S(2) => \cDelayCnt[0]_i_5__1_n_0\,
-      S(1) => \cDelayCnt[0]_i_6__1_n_0\,
-      S(0) => \cDelayCnt[0]_i_7__0_n_0\
+      S(3 downto 1) => cDelayCnt_reg(3 downto 1),
+      S(0) => \cDelayCnt[0]_i_4__0_n_0\
     );
 \cDelayCnt_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -9777,7 +9288,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__1_n_5\,
       Q => cDelayCnt_reg(10),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[11]\: unisim.vcomponents.FDRE
     generic map(
@@ -9788,7 +9299,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__1_n_4\,
       Q => cDelayCnt_reg(11),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[12]\: unisim.vcomponents.FDRE
     generic map(
@@ -9799,7 +9310,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__1_n_7\,
       Q => cDelayCnt_reg(12),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[12]_i_1__1\: unisim.vcomponents.CARRY4
      port map (
@@ -9814,9 +9325,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       O(1) => \cDelayCnt_reg[12]_i_1__1_n_6\,
       O(0) => \cDelayCnt_reg[12]_i_1__1_n_7\,
       S(3) => '0',
-      S(2) => \cDelayCnt[12]_i_2__1_n_0\,
-      S(1) => \cDelayCnt[12]_i_3__1_n_0\,
-      S(0) => \cDelayCnt[12]_i_4__1_n_0\
+      S(2 downto 0) => cDelayCnt_reg(14 downto 12)
     );
 \cDelayCnt_reg[13]\: unisim.vcomponents.FDRE
     generic map(
@@ -9827,7 +9336,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__1_n_6\,
       Q => cDelayCnt_reg(13),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[14]\: unisim.vcomponents.FDRE
     generic map(
@@ -9838,7 +9347,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__1_n_5\,
       Q => cDelayCnt_reg(14),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[1]\: unisim.vcomponents.FDRE
     generic map(
@@ -9849,7 +9358,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2__0_n_6\,
       Q => cDelayCnt_reg(1),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[2]\: unisim.vcomponents.FDRE
     generic map(
@@ -9860,7 +9369,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2__0_n_5\,
       Q => cDelayCnt_reg(2),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[3]\: unisim.vcomponents.FDRE
     generic map(
@@ -9871,7 +9380,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2__0_n_4\,
       Q => cDelayCnt_reg(3),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[4]\: unisim.vcomponents.FDRE
     generic map(
@@ -9882,7 +9391,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__1_n_7\,
       Q => cDelayCnt_reg(4),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[4]_i_1__1\: unisim.vcomponents.CARRY4
      port map (
@@ -9897,10 +9406,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[4]_i_1__1_n_5\,
       O(1) => \cDelayCnt_reg[4]_i_1__1_n_6\,
       O(0) => \cDelayCnt_reg[4]_i_1__1_n_7\,
-      S(3) => \cDelayCnt[4]_i_2__1_n_0\,
-      S(2) => \cDelayCnt[4]_i_3__1_n_0\,
-      S(1) => \cDelayCnt[4]_i_4__1_n_0\,
-      S(0) => \cDelayCnt[4]_i_5__1_n_0\
+      S(3 downto 0) => cDelayCnt_reg(7 downto 4)
     );
 \cDelayCnt_reg[5]\: unisim.vcomponents.FDRE
     generic map(
@@ -9911,7 +9417,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__1_n_6\,
       Q => cDelayCnt_reg(5),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[6]\: unisim.vcomponents.FDRE
     generic map(
@@ -9922,7 +9428,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__1_n_5\,
       Q => cDelayCnt_reg(6),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[7]\: unisim.vcomponents.FDRE
     generic map(
@@ -9933,7 +9439,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__1_n_4\,
       Q => cDelayCnt_reg(7),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[8]\: unisim.vcomponents.FDRE
     generic map(
@@ -9944,7 +9450,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__1_n_7\,
       Q => cDelayCnt_reg(8),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[8]_i_1__1\: unisim.vcomponents.CARRY4
      port map (
@@ -9959,10 +9465,7 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[8]_i_1__1_n_5\,
       O(1) => \cDelayCnt_reg[8]_i_1__1_n_6\,
       O(0) => \cDelayCnt_reg[8]_i_1__1_n_7\,
-      S(3) => \cDelayCnt[8]_i_2__1_n_0\,
-      S(2) => \cDelayCnt[8]_i_3__1_n_0\,
-      S(1) => \cDelayCnt[8]_i_4__1_n_0\,
-      S(0) => \cDelayCnt[8]_i_5__1_n_0\
+      S(3 downto 0) => cDelayCnt_reg(11 downto 8)
     );
 \cDelayCnt_reg[9]\: unisim.vcomponents.FDRE
     generic map(
@@ -9973,13 +9476,13 @@ aD0Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__1_n_6\,
       Q => cDelayCnt_reg(9),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 cHSReset_reg: unisim.vcomponents.FDPE
      port map (
       C => RefClk,
       CE => '1',
-      D => \GenSyncLP[1].GlitchFilterLPC_n_2\,
+      D => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\,
       PRE => RxClkActiveHSResetBridge_n_0,
       Q => cHSReset_reg_n_0
     );
@@ -10020,8 +9523,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
       INIT => X"AE00"
     )
         port map (
-      I0 => \GenSyncLP[0].GlitchFilterLPC_n_1\,
-      I1 => \GenSyncLP[1].GlitchFilterLPC_n_1\,
+      I0 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\,
+      I1 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\,
       I2 => \state[0]_i_4__0_n_0\,
       I3 => cEnable,
       O => \state[0]_i_1_n_0\
@@ -10069,8 +9572,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => \state_reg_n_0_[0]\,
-      I1 => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      I2 => \GenSyncLP[1].GlitchFilterLPC_n_0\,
+      I1 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      I2 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
       I3 => \state_reg_n_0_[2]\,
       I4 => \state_reg_n_0_[1]\,
       I5 => cEnable,
@@ -10083,8 +9586,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \state_reg_n_0_[1]\,
       I1 => \state_reg_n_0_[2]\,
-      I2 => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      I3 => \GenSyncLP[0].GlitchFilterLPC_n_0\,
+      I2 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      I3 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
       I4 => \state_reg_n_0_[0]\,
       I5 => cEnable,
       O => \state[2]_i_1_n_0\
@@ -10127,7 +9630,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 is
+entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0 is
   port (
     rbD1RxValidHS : out STD_LOGIC;
     aD1Stopstate : out STD_LOGIC;
@@ -10147,40 +9650,26 @@ entity system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 is
     aD1ForceRxmode : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 : entity is "DPHY_LaneSFEN";
-end system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1;
+  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0 : entity is "DPHY_LaneSFEN";
+end system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0;
 
-architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 is
-  signal \GenSyncLP[0].GlitchFilterLPC_n_0\ : STD_LOGIC;
-  signal \GenSyncLP[0].GlitchFilterLPC_n_1\ : STD_LOGIC;
-  signal \GenSyncLP[0].GlitchFilterLPC_n_2\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_0\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_1\ : STD_LOGIC;
-  signal \GenSyncLP[1].GlitchFilterLPC_n_2\ : STD_LOGIC;
+architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0 is
   signal HSDeserializerX_n_2 : STD_LOGIC;
   signal HSDeserializerX_n_3 : STD_LOGIC;
   signal HSDeserializerX_n_5 : STD_LOGIC;
   signal RxClkActiveHSResetBridge_n_0 : STD_LOGIC;
   signal SyncAsyncForceRxMode_n_0 : STD_LOGIC;
   signal SyncAsyncValid_n_1 : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\ : STD_LOGIC;
+  signal \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\ : STD_LOGIC;
   signal aLP_int : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \cDelayCnt[0]_i_3_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_4__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_5__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_6__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_7_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[0]_i_8_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_2__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_3__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[12]_i_4__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_2__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_3__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_4__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[4]_i_5__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_2__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_3__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_4__0_n_0\ : STD_LOGIC;
-  signal \cDelayCnt[8]_i_5__0_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_4_n_0\ : STD_LOGIC;
+  signal \cDelayCnt[0]_i_5_n_0\ : STD_LOGIC;
   signal cDelayCnt_reg : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal \cDelayCnt_reg[0]_i_2_n_0\ : STD_LOGIC;
   signal \cDelayCnt_reg[0]_i_2_n_1\ : STD_LOGIC;
@@ -10235,61 +9724,6 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1 is
   signal \NLW_cDelayCnt_reg[12]_i_1__0_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
 begin
   rbD1RxValidHS <= \^rbd1rxvalidhs\;
-\GenSyncLP[0].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter
-     port map (
-      \Filter.sOut_reg_0\ => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      \Filter.sOut_reg_1\ => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      RefClk => RefClk,
-      \cDelayCnt_reg[0]\ => \GenSyncLP[0].GlitchFilterLPC_n_2\,
-      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3_n_0\,
-      \oSyncStages_reg[1]\(0) => SyncAsyncForceRxMode_n_0,
-      \out\(0) => cLPGlitch_0,
-      \state_reg[0]\ => \GenSyncLP[0].GlitchFilterLPC_n_1\,
-      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
-      \state_reg[1]\ => \state_reg_n_0_[1]\,
-      \state_reg[2]\ => \state_reg_n_0_[2]\
-    );
-\GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized8\
-     port map (
-      D(0) => aLP_int(0),
-      RefClk => RefClk,
-      \out\(0) => cLPGlitch_0
-    );
-\GenSyncLP[0].SyncAsyncx_D\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized9\
-     port map (
-      CLK => CLK,
-      D(0) => aLP_int(0)
-    );
-\GenSyncLP[1].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_4
-     port map (
-      AS(0) => cHSReset,
-      \Filter.sOut_reg_0\ => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      \Filter.sOut_reg_1\ => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      RefClk => RefClk,
-      cDelayCnt_reg(5) => cDelayCnt_reg(14),
-      cDelayCnt_reg(4 downto 2) => cDelayCnt_reg(11 downto 9),
-      cDelayCnt_reg(1 downto 0) => cDelayCnt_reg(5 downto 4),
-      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3_n_0\,
-      \cDelayCnt_reg[9]\ => \state[0]_i_6_n_0\,
-      cHSReset_reg => \GenSyncLP[1].GlitchFilterLPC_n_2\,
-      \oSyncStages_reg[1]\(0) => cValid,
-      \out\(0) => cLPGlitch_1,
-      \state_reg[0]\ => \GenSyncLP[1].GlitchFilterLPC_n_1\,
-      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
-      \state_reg[1]\ => \state_reg_n_0_[1]\,
-      \state_reg[2]\ => \state_reg_n_0_[2]\
-    );
-\GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized10\
-     port map (
-      D(0) => aLP_int(1),
-      RefClk => RefClk,
-      \out\(0) => cLPGlitch_1
-    );
-\GenSyncLP[1].SyncAsyncx_D\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized11\
-     port map (
-      CLK => CLK,
-      D(0) => aLP_int(1)
-    );
 HSDeserializerX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Deserializer
      port map (
       AS(0) => cHSReset,
@@ -10314,27 +9748,27 @@ HSDeserializerX: entity work.system_MIPI_D_PHY_RX_0_0_HS_Deserializer
       rbD1RxSyncHS => rbD1RxSyncHS,
       rbD1RxValidHS => \^rbd1rxvalidhs\
     );
-RxClkActiveHSResetBridge: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_5
+RxClkActiveHSResetBridge: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_3
      port map (
       AR(0) => RxClkActiveHSResetBridge_n_0,
       AS(0) => AS(0),
       RefClk => RefClk
     );
-SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized6\
+SyncAsyncEnable: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_4\
      port map (
       AR(0) => cIntRst,
       D(0) => D(0),
       RefClk => RefClk,
       \out\(0) => cEnable
     );
-SyncAsyncForceRxMode: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized7\
+SyncAsyncForceRxMode: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_5\
      port map (
       AR(0) => cIntRst,
       RefClk => RefClk,
       aD1ForceRxmode => aD1ForceRxmode,
       \out\(0) => SyncAsyncForceRxMode_n_0
     );
-SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13\
+SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_6\
      port map (
       AR(0) => RxClkActiveHSResetBridge_n_0,
       RefClk => RefClk,
@@ -10346,6 +9780,51 @@ SyncAsyncValid: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized13
       \state_reg[0]\ => \state_reg_n_0_[0]\,
       \state_reg[1]\ => \state_reg_n_0_[1]\,
       \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[0].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter
+     port map (
+      \Filter.sOut_reg_0\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      \Filter.sOut_reg_1\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      RefClk => RefClk,
+      \cDelayCnt_reg[0]\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\,
+      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3_n_0\,
+      \oSyncStages_reg[1]\(0) => SyncAsyncForceRxMode_n_0,
+      \out\(0) => cLPGlitch_0,
+      \state_reg[0]\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\,
+      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
+      \state_reg[1]\ => \state_reg_n_0_[1]\,
+      \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[0].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_7\
+     port map (
+      D(0) => aLP_int(0),
+      RefClk => RefClk,
+      \out\(0) => cLPGlitch_0
+    );
+\UseOwnLP.GenSyncLP[1].GlitchFilterLPC\: entity work.system_MIPI_D_PHY_RX_0_0_GlitchFilter_8
+     port map (
+      AS(0) => cHSReset,
+      \Filter.sOut_reg_0\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      \Filter.sOut_reg_1\ => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      RefClk => RefClk,
+      cDelayCnt_reg(5) => cDelayCnt_reg(14),
+      cDelayCnt_reg(4 downto 2) => cDelayCnt_reg(11 downto 9),
+      cDelayCnt_reg(1 downto 0) => cDelayCnt_reg(5 downto 4),
+      \cDelayCnt_reg[6]\ => \cDelayCnt[0]_i_3_n_0\,
+      \cDelayCnt_reg[9]\ => \state[0]_i_6_n_0\,
+      cHSReset_reg => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\,
+      \oSyncStages_reg[1]\(0) => cValid,
+      \out\(0) => cLPGlitch_1,
+      \state_reg[0]\ => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\,
+      \state_reg[0]_0\ => \state_reg_n_0_[0]\,
+      \state_reg[1]\ => \state_reg_n_0_[1]\,
+      \state_reg[2]\ => \state_reg_n_0_[2]\
+    );
+\UseOwnLP.GenSyncLP[1].SyncAsyncx\: entity work.\system_MIPI_D_PHY_RX_0_0_SyncAsync__parameterized0_9\
+     port map (
+      D(0) => aLP_int(1),
+      RefClk => RefClk,
+      \out\(0) => cLPGlitch_1
     );
 aD1Stopstate_INST_0: unisim.vcomponents.LUT3
     generic map(
@@ -10362,7 +9841,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       INIT => X"FFFFFFFFFFFFFFFE"
     )
         port map (
-      I0 => \cDelayCnt[0]_i_8_n_0\,
+      I0 => \cDelayCnt[0]_i_5_n_0\,
       I1 => cDelayCnt_reg(6),
       I2 => cDelayCnt_reg(3),
       I3 => cDelayCnt_reg(8),
@@ -10370,39 +9849,15 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       I5 => \state[0]_i_7_n_0\,
       O => \cDelayCnt[0]_i_3_n_0\
     );
-\cDelayCnt[0]_i_4__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(3),
-      O => \cDelayCnt[0]_i_4__0_n_0\
-    );
-\cDelayCnt[0]_i_5__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(2),
-      O => \cDelayCnt[0]_i_5__0_n_0\
-    );
-\cDelayCnt[0]_i_6__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(1),
-      O => \cDelayCnt[0]_i_6__0_n_0\
-    );
-\cDelayCnt[0]_i_7\: unisim.vcomponents.LUT1
+\cDelayCnt[0]_i_4\: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
     )
         port map (
       I0 => cDelayCnt_reg(0),
-      O => \cDelayCnt[0]_i_7_n_0\
+      O => \cDelayCnt[0]_i_4_n_0\
     );
-\cDelayCnt[0]_i_8\: unisim.vcomponents.LUT6
+\cDelayCnt[0]_i_5\: unisim.vcomponents.LUT6
     generic map(
       INIT => X"FFFFFFFFFFFEFFFF"
     )
@@ -10413,95 +9868,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       I3 => cDelayCnt_reg(10),
       I4 => cDelayCnt_reg(4),
       I5 => cDelayCnt_reg(5),
-      O => \cDelayCnt[0]_i_8_n_0\
-    );
-\cDelayCnt[12]_i_2__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(14),
-      O => \cDelayCnt[12]_i_2__0_n_0\
-    );
-\cDelayCnt[12]_i_3__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(13),
-      O => \cDelayCnt[12]_i_3__0_n_0\
-    );
-\cDelayCnt[12]_i_4__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(12),
-      O => \cDelayCnt[12]_i_4__0_n_0\
-    );
-\cDelayCnt[4]_i_2__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(7),
-      O => \cDelayCnt[4]_i_2__0_n_0\
-    );
-\cDelayCnt[4]_i_3__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(6),
-      O => \cDelayCnt[4]_i_3__0_n_0\
-    );
-\cDelayCnt[4]_i_4__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(5),
-      O => \cDelayCnt[4]_i_4__0_n_0\
-    );
-\cDelayCnt[4]_i_5__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(4),
-      O => \cDelayCnt[4]_i_5__0_n_0\
-    );
-\cDelayCnt[8]_i_2__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(11),
-      O => \cDelayCnt[8]_i_2__0_n_0\
-    );
-\cDelayCnt[8]_i_3__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(10),
-      O => \cDelayCnt[8]_i_3__0_n_0\
-    );
-\cDelayCnt[8]_i_4__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(9),
-      O => \cDelayCnt[8]_i_4__0_n_0\
-    );
-\cDelayCnt[8]_i_5__0\: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"2"
-    )
-        port map (
-      I0 => cDelayCnt_reg(8),
-      O => \cDelayCnt[8]_i_5__0_n_0\
+      O => \cDelayCnt[0]_i_5_n_0\
     );
 \cDelayCnt_reg[0]\: unisim.vcomponents.FDRE
     generic map(
@@ -10512,7 +9879,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2_n_7\,
       Q => cDelayCnt_reg(0),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[0]_i_2\: unisim.vcomponents.CARRY4
      port map (
@@ -10527,10 +9894,8 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[0]_i_2_n_5\,
       O(1) => \cDelayCnt_reg[0]_i_2_n_6\,
       O(0) => \cDelayCnt_reg[0]_i_2_n_7\,
-      S(3) => \cDelayCnt[0]_i_4__0_n_0\,
-      S(2) => \cDelayCnt[0]_i_5__0_n_0\,
-      S(1) => \cDelayCnt[0]_i_6__0_n_0\,
-      S(0) => \cDelayCnt[0]_i_7_n_0\
+      S(3 downto 1) => cDelayCnt_reg(3 downto 1),
+      S(0) => \cDelayCnt[0]_i_4_n_0\
     );
 \cDelayCnt_reg[10]\: unisim.vcomponents.FDRE
     generic map(
@@ -10541,7 +9906,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__0_n_5\,
       Q => cDelayCnt_reg(10),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[11]\: unisim.vcomponents.FDRE
     generic map(
@@ -10552,7 +9917,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__0_n_4\,
       Q => cDelayCnt_reg(11),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[12]\: unisim.vcomponents.FDRE
     generic map(
@@ -10563,7 +9928,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__0_n_7\,
       Q => cDelayCnt_reg(12),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[12]_i_1__0\: unisim.vcomponents.CARRY4
      port map (
@@ -10578,9 +9943,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       O(1) => \cDelayCnt_reg[12]_i_1__0_n_6\,
       O(0) => \cDelayCnt_reg[12]_i_1__0_n_7\,
       S(3) => '0',
-      S(2) => \cDelayCnt[12]_i_2__0_n_0\,
-      S(1) => \cDelayCnt[12]_i_3__0_n_0\,
-      S(0) => \cDelayCnt[12]_i_4__0_n_0\
+      S(2 downto 0) => cDelayCnt_reg(14 downto 12)
     );
 \cDelayCnt_reg[13]\: unisim.vcomponents.FDRE
     generic map(
@@ -10591,7 +9954,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__0_n_6\,
       Q => cDelayCnt_reg(13),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[14]\: unisim.vcomponents.FDRE
     generic map(
@@ -10602,7 +9965,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[12]_i_1__0_n_5\,
       Q => cDelayCnt_reg(14),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[1]\: unisim.vcomponents.FDRE
     generic map(
@@ -10613,7 +9976,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2_n_6\,
       Q => cDelayCnt_reg(1),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[2]\: unisim.vcomponents.FDRE
     generic map(
@@ -10624,7 +9987,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2_n_5\,
       Q => cDelayCnt_reg(2),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[3]\: unisim.vcomponents.FDRE
     generic map(
@@ -10635,7 +9998,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[0]_i_2_n_4\,
       Q => cDelayCnt_reg(3),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[4]\: unisim.vcomponents.FDRE
     generic map(
@@ -10646,7 +10009,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__0_n_7\,
       Q => cDelayCnt_reg(4),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[4]_i_1__0\: unisim.vcomponents.CARRY4
      port map (
@@ -10661,10 +10024,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[4]_i_1__0_n_5\,
       O(1) => \cDelayCnt_reg[4]_i_1__0_n_6\,
       O(0) => \cDelayCnt_reg[4]_i_1__0_n_7\,
-      S(3) => \cDelayCnt[4]_i_2__0_n_0\,
-      S(2) => \cDelayCnt[4]_i_3__0_n_0\,
-      S(1) => \cDelayCnt[4]_i_4__0_n_0\,
-      S(0) => \cDelayCnt[4]_i_5__0_n_0\
+      S(3 downto 0) => cDelayCnt_reg(7 downto 4)
     );
 \cDelayCnt_reg[5]\: unisim.vcomponents.FDRE
     generic map(
@@ -10675,7 +10035,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__0_n_6\,
       Q => cDelayCnt_reg(5),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[6]\: unisim.vcomponents.FDRE
     generic map(
@@ -10686,7 +10046,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__0_n_5\,
       Q => cDelayCnt_reg(6),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[7]\: unisim.vcomponents.FDRE
     generic map(
@@ -10697,7 +10057,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[4]_i_1__0_n_4\,
       Q => cDelayCnt_reg(7),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[8]\: unisim.vcomponents.FDRE
     generic map(
@@ -10708,7 +10068,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__0_n_7\,
       Q => cDelayCnt_reg(8),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 \cDelayCnt_reg[8]_i_1__0\: unisim.vcomponents.CARRY4
      port map (
@@ -10723,10 +10083,7 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       O(2) => \cDelayCnt_reg[8]_i_1__0_n_5\,
       O(1) => \cDelayCnt_reg[8]_i_1__0_n_6\,
       O(0) => \cDelayCnt_reg[8]_i_1__0_n_7\,
-      S(3) => \cDelayCnt[8]_i_2__0_n_0\,
-      S(2) => \cDelayCnt[8]_i_3__0_n_0\,
-      S(1) => \cDelayCnt[8]_i_4__0_n_0\,
-      S(0) => \cDelayCnt[8]_i_5__0_n_0\
+      S(3 downto 0) => cDelayCnt_reg(11 downto 8)
     );
 \cDelayCnt_reg[9]\: unisim.vcomponents.FDRE
     generic map(
@@ -10737,13 +10094,13 @@ aD1Stopstate_INST_0: unisim.vcomponents.LUT3
       CE => '1',
       D => \cDelayCnt_reg[8]_i_1__0_n_6\,
       Q => cDelayCnt_reg(9),
-      R => \GenSyncLP[0].GlitchFilterLPC_n_2\
+      R => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_2\
     );
 cHSReset_reg: unisim.vcomponents.FDPE
      port map (
       C => RefClk,
       CE => '1',
-      D => \GenSyncLP[1].GlitchFilterLPC_n_2\,
+      D => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_2\,
       PRE => RxClkActiveHSResetBridge_n_0,
       Q => cHSReset
     );
@@ -10784,8 +10141,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
       INIT => X"AE00"
     )
         port map (
-      I0 => \GenSyncLP[0].GlitchFilterLPC_n_1\,
-      I1 => \GenSyncLP[1].GlitchFilterLPC_n_1\,
+      I0 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_1\,
+      I1 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_1\,
       I2 => \state[0]_i_4_n_0\,
       I3 => cEnable,
       O => \state[0]_i_1_n_0\
@@ -10833,8 +10190,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
     )
         port map (
       I0 => \state_reg_n_0_[0]\,
-      I1 => \GenSyncLP[0].GlitchFilterLPC_n_0\,
-      I2 => \GenSyncLP[1].GlitchFilterLPC_n_0\,
+      I1 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
+      I2 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
       I3 => \state_reg_n_0_[2]\,
       I4 => \state_reg_n_0_[1]\,
       I5 => cEnable,
@@ -10847,8 +10204,8 @@ dSyncSoft_reg_reg: unisim.vcomponents.FDRE
         port map (
       I0 => \state_reg_n_0_[1]\,
       I1 => \state_reg_n_0_[2]\,
-      I2 => \GenSyncLP[1].GlitchFilterLPC_n_0\,
-      I3 => \GenSyncLP[0].GlitchFilterLPC_n_0\,
+      I2 => \UseOwnLP.GenSyncLP[1].GlitchFilterLPC_n_0\,
+      I3 => \UseOwnLP.GenSyncLP[0].GlitchFilterLPC_n_0\,
       I4 => \state_reg_n_0_[0]\,
       I5 => cEnable,
       O => \state[2]_i_1_n_0\
@@ -10976,8 +10333,6 @@ entity system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver is
   attribute C_S_AXI_LITE_DATA_WIDTH of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 32;
   attribute C_S_AXI_LITE_FREQ_HZ : integer;
   attribute C_S_AXI_LITE_FREQ_HZ of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 100000000;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is "MIPI_DPHY_Receiver";
   attribute kAddDelayClk_ps : integer;
   attribute kAddDelayClk_ps of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 0;
   attribute kAddDelayData0_ps : integer;
@@ -10990,6 +10345,8 @@ entity system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver is
   attribute kGenerateAXIL of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is "TRUE";
   attribute kGenerateMMCM : string;
   attribute kGenerateMMCM of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is "FALSE";
+  attribute kLPFromLane0 : string;
+  attribute kLPFromLane0 of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is "FALSE";
   attribute kNoOfDataLanes : integer;
   attribute kNoOfDataLanes of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 2;
   attribute kRefClkFreqHz : integer;
@@ -10997,7 +10354,7 @@ entity system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver is
   attribute kVersionMajor : integer;
   attribute kVersionMajor of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 1;
   attribute kVersionMinor : integer;
-  attribute kVersionMinor of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 0;
+  attribute kVersionMinor of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver : entity is 2;
 end system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver is
@@ -11008,12 +10365,12 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver is
   signal HS_Data_0 : STD_LOGIC;
   signal HS_Data_1 : STD_LOGIC;
   signal LP_Clock : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal \LP_Data[0]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal \LP_Data[1]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal RST : STD_LOGIC;
   signal \^rxbyteclkhs\ : STD_LOGIC;
   signal \^rxddrclkhs\ : STD_LOGIC;
   signal \YesAXILITE.AXI_Lite_Control_n_5\ : STD_LOGIC;
+  signal \aLPBuf[0]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal \aLPBuf[1]\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal aLaneSCNNEnable : STD_LOGIC;
   signal aLaneSFENEnable_0 : STD_LOGIC;
   signal aLaneSFENEnable_1 : STD_LOGIC;
@@ -11121,7 +10478,7 @@ CoreAsyncReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge
       aD0ForceRxmode => aD0ForceRxmode,
       aD0Stopstate => aD0Stopstate,
       aHS => HS_Data_0,
-      aLP(1 downto 0) => \LP_Data[0]\(1 downto 0),
+      aLP(1 downto 0) => \aLPBuf[0]\(1 downto 0),
       dphy_clk_hs_n => \^rxddrclkhs\,
       rbD0ErrSotHS => rbD0ErrSotHS,
       rbD0ErrSotSyncHS => rbD0ErrSotSyncHS,
@@ -11130,16 +10487,16 @@ CoreAsyncReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge
       rbD0RxSyncHS => rbD0RxSyncHS,
       rbD0RxValidHS => rbD0RxValidHS
     );
-\DataLaneGen[0].InputBufferDataX\: entity work.system_MIPI_D_PHY_RX_0_0_InputBuffer_0
+\DataLaneGen[0].InputBufferDataX\: entity work.\system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0\
      port map (
       aHS => HS_Data_0,
-      aLP(1 downto 0) => \LP_Data[0]\(1 downto 0),
+      aLP(1 downto 0) => \aLPBuf[0]\(1 downto 0),
       dphy_data_hs_n(0) => dphy_data_hs_n(0),
       dphy_data_hs_p(0) => dphy_data_hs_p(0),
       dphy_data_lp_n(0) => dphy_data_lp_n(0),
       dphy_data_lp_p(0) => dphy_data_lp_p(0)
     );
-\DataLaneGen[1].DPHY_LaneSFEN_X\: entity work.system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_1
+\DataLaneGen[1].DPHY_LaneSFEN_X\: entity work.system_MIPI_D_PHY_RX_0_0_DPHY_LaneSFEN_0
      port map (
       AS(0) => aNotRxClkActiveHS,
       CLK => \^rxbyteclkhs\,
@@ -11149,7 +10506,7 @@ CoreAsyncReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge
       aD1ForceRxmode => aD1ForceRxmode,
       aD1Stopstate => aD1Stopstate,
       aHS => HS_Data_1,
-      aLP(1 downto 0) => \LP_Data[1]\(1 downto 0),
+      aLP(1 downto 0) => \aLPBuf[1]\(1 downto 0),
       dphy_clk_hs_n => \^rxddrclkhs\,
       rbD1ErrSotHS => rbD1ErrSotHS,
       rbD1ErrSotSyncHS => rbD1ErrSotSyncHS,
@@ -11158,10 +10515,10 @@ CoreAsyncReset: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge
       rbD1RxSyncHS => rbD1RxSyncHS,
       rbD1RxValidHS => rbD1RxValidHS
     );
-\DataLaneGen[1].InputBufferDataX\: entity work.system_MIPI_D_PHY_RX_0_0_InputBuffer_2
+\DataLaneGen[1].InputBufferDataX\: entity work.\system_MIPI_D_PHY_RX_0_0_InputBuffer__parameterized0_1\
      port map (
       aHS => HS_Data_1,
-      aLP(1 downto 0) => \LP_Data[1]\(1 downto 0),
+      aLP(1 downto 0) => \aLPBuf[1]\(1 downto 0),
       dphy_data_hs_n(0) => dphy_data_hs_n(1),
       dphy_data_hs_p(0) => dphy_data_hs_p(1),
       dphy_data_lp_n(0) => dphy_data_lp_n(1),
@@ -11327,7 +10684,7 @@ GND: unisim.vcomponents.GND
       s_axi_lite_wstrb(3 downto 0) => s_axi_lite_wstrb(3 downto 0),
       s_axi_lite_wvalid => s_axi_lite_wvalid
     );
-\YesAXILITE.CoreSoftReset\: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_3
+\YesAXILITE.CoreSoftReset\: entity work.system_MIPI_D_PHY_RX_0_0_ResetBridge_2
      port map (
       AS(0) => aReset,
       RefClk => RefClk,
@@ -11438,7 +10795,7 @@ entity system_MIPI_D_PHY_RX_0_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of system_MIPI_D_PHY_RX_0_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of system_MIPI_D_PHY_RX_0_0 : entity is "MIPI_DPHY_Receiver,Vivado 2016.4";
+  attribute x_core_info of system_MIPI_D_PHY_RX_0_0 : entity is "MIPI_DPHY_Receiver,Vivado 2017.4";
 end system_MIPI_D_PHY_RX_0_0;
 
 architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0 is
@@ -11460,6 +10817,8 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0 is
   attribute kGenerateAXIL of U0 : label is "TRUE";
   attribute kGenerateMMCM : string;
   attribute kGenerateMMCM of U0 : label is "FALSE";
+  attribute kLPFromLane0 : string;
+  attribute kLPFromLane0 of U0 : label is "FALSE";
   attribute kNoOfDataLanes : integer;
   attribute kNoOfDataLanes of U0 : label is 2;
   attribute kRefClkFreqHz : integer;
@@ -11467,7 +10826,83 @@ architecture STRUCTURE of system_MIPI_D_PHY_RX_0_0 is
   attribute kVersionMajor : integer;
   attribute kVersionMajor of U0 : label is 1;
   attribute kVersionMinor : integer;
-  attribute kVersionMinor of U0 : label is 0;
+  attribute kVersionMinor of U0 : label is 2;
+  attribute x_interface_info : string;
+  attribute x_interface_info of D0RxClkEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXCLKESC";
+  attribute x_interface_info of D1RxClkEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXCLKESC";
+  attribute x_interface_info of RefClk : signal is "xilinx.com:signal:clock:1.0 RefClk CLK";
+  attribute x_interface_parameter : string;
+  attribute x_interface_parameter of RefClk : signal is "XIL_INTERFACENAME RefClk, ASSOCIATED_RESET aRst, FREQ_HZ 200000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1";
+  attribute x_interface_info of RxByteClkHS : signal is "xilinx.com:signal:clock:1.0 RxByteClkHS CLK";
+  attribute x_interface_parameter of RxByteClkHS : signal is "XIL_INTERFACENAME RxByteClkHS, FREQ_HZ 84000000, ASSOCIATED_BUSIF D_PHY_PPI, PHASE 0.000, CLK_DOMAIN system_MIPI_D_PHY_RX_0_0_RxByteClkHS";
+  attribute x_interface_info of aClkEnable : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ENABLE";
+  attribute x_interface_info of aClkStopstate : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_STOPSTATE";
+  attribute x_interface_info of aClkUlpsActiveNot : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_ULPSACTIVENOT";
+  attribute x_interface_info of aD0Enable : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ENABLE";
+  attribute x_interface_info of aD0ErrControl : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRCONTROL";
+  attribute x_interface_info of aD0ErrEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRESC";
+  attribute x_interface_info of aD0ForceRxmode : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_FORCERXMODE";
+  attribute x_interface_info of aD0RxLpdtEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXLPDTESC";
+  attribute x_interface_info of aD0RxUlpsEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXULPSESC";
+  attribute x_interface_info of aD0RxValidEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDESC";
+  attribute x_interface_info of aD0Stopstate : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_STOPSTATE";
+  attribute x_interface_info of aD0UlpsActiveNot : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ULPSACTIVENOT";
+  attribute x_interface_info of aD1Enable : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ENABLE";
+  attribute x_interface_info of aD1ErrControl : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRCONTROL";
+  attribute x_interface_info of aD1ErrEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRESC";
+  attribute x_interface_info of aD1ForceRxmode : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_FORCERXMODE";
+  attribute x_interface_info of aD1RxLpdtEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXLPDTESC";
+  attribute x_interface_info of aD1RxUlpsEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXULPSESC";
+  attribute x_interface_info of aD1RxValidEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDESC";
+  attribute x_interface_info of aD1Stopstate : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_STOPSTATE";
+  attribute x_interface_info of aD1UlpsActiveNot : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ULPSACTIVENOT";
+  attribute x_interface_info of aRst : signal is "xilinx.com:signal:reset:1.0 aRst RST";
+  attribute x_interface_parameter of aRst : signal is "XIL_INTERFACENAME aRst, POLARITY ACTIVE_HIGH";
+  attribute x_interface_info of aRxClkActiveHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXCLKACTIVEHS";
+  attribute x_interface_info of aRxUlpsClkNot : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI CL_RXULPSCLKNOT";
+  attribute x_interface_info of dphy_clk_hs_n : signal is "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_N";
+  attribute x_interface_info of dphy_clk_hs_p : signal is "xilinx.com:interface:diff_clock:1.0 dphy_hs_clock CLK_P";
+  attribute x_interface_parameter of dphy_clk_hs_p : signal is "XIL_INTERFACENAME dphy_hs_clock, CAN_DEBUG false, FREQ_HZ 336000000";
+  attribute x_interface_info of rbD0ErrSotHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTHS";
+  attribute x_interface_info of rbD0ErrSotSyncHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_ERRSOTSYNCHS";
+  attribute x_interface_info of rbD0RxActiveHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXACTIVEHS";
+  attribute x_interface_info of rbD0RxSyncHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXSYNCHS";
+  attribute x_interface_info of rbD0RxValidHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXVALIDHS";
+  attribute x_interface_info of rbD1ErrSotHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTHS";
+  attribute x_interface_info of rbD1ErrSotSyncHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_ERRSOTSYNCHS";
+  attribute x_interface_info of rbD1RxActiveHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXACTIVEHS";
+  attribute x_interface_info of rbD1RxSyncHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXSYNCHS";
+  attribute x_interface_info of rbD1RxValidHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXVALIDHS";
+  attribute x_interface_info of s_axi_lite_aclk : signal is "xilinx.com:signal:clock:1.0 s_axi_lite_aclk CLK";
+  attribute x_interface_parameter of s_axi_lite_aclk : signal is "XIL_INTERFACENAME s_axi_lite_aclk, ASSOCIATED_RESET s_axi_lite_aresetn, ASSOCIATED_BUSIF S_AXI_LITE, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1";
+  attribute x_interface_info of s_axi_lite_aresetn : signal is "xilinx.com:signal:reset:1.0 s_axi_lite_aresetn RST";
+  attribute x_interface_parameter of s_axi_lite_aresetn : signal is "XIL_INTERFACENAME s_axi_lite_aresetn, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of s_axi_lite_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARREADY";
+  attribute x_interface_info of s_axi_lite_arvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARVALID";
+  attribute x_interface_info of s_axi_lite_awready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWREADY";
+  attribute x_interface_info of s_axi_lite_awvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWVALID";
+  attribute x_interface_info of s_axi_lite_bready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE BREADY";
+  attribute x_interface_info of s_axi_lite_bvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE BVALID";
+  attribute x_interface_info of s_axi_lite_rready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE RREADY";
+  attribute x_interface_info of s_axi_lite_rvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE RVALID";
+  attribute x_interface_info of s_axi_lite_wready : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WREADY";
+  attribute x_interface_info of s_axi_lite_wvalid : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WVALID";
+  attribute x_interface_info of aD0RxDataEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAESC";
+  attribute x_interface_info of aD0RxTriggerEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXTRIGGERESC";
+  attribute x_interface_info of aD1RxDataEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAESC";
+  attribute x_interface_info of aD1RxTriggerEsc : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXTRIGGERESC";
+  attribute x_interface_info of rbD0RxDataHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL0_RXDATAHS";
+  attribute x_interface_info of rbD1RxDataHS : signal is "xilinx.com:interface:rx_mipi_ppi_if:1.0 D_PHY_PPI DL1_RXDATAHS";
+  attribute x_interface_info of s_axi_lite_araddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARADDR";
+  attribute x_interface_info of s_axi_lite_arprot : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE ARPROT";
+  attribute x_interface_info of s_axi_lite_awaddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWADDR";
+  attribute x_interface_parameter of s_axi_lite_awaddr : signal is "XIL_INTERFACENAME S_AXI_LITE, WIZ_DATA_WIDTH 32, WIZ_NUM_REG 4, SUPPORTS_NARROW_BURST 0, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 50000000, ID_WIDTH 0, ADDR_WIDTH 4, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute x_interface_info of s_axi_lite_awprot : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE AWPROT";
+  attribute x_interface_info of s_axi_lite_bresp : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE BRESP";
+  attribute x_interface_info of s_axi_lite_rdata : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE RDATA";
+  attribute x_interface_info of s_axi_lite_rresp : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE RRESP";
+  attribute x_interface_info of s_axi_lite_wdata : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WDATA";
+  attribute x_interface_info of s_axi_lite_wstrb : signal is "xilinx.com:interface:aximm:1.0 S_AXI_LITE WSTRB";
 begin
 U0: entity work.system_MIPI_D_PHY_RX_0_0_MIPI_DPHY_Receiver
      port map (

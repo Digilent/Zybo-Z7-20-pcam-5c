@@ -386,7 +386,7 @@ wire s_aclken_i;
 wire m_aclken_i;
 reg  areset;
 
-reg [2:0] state;
+reg [2:0] state = SM_NOT_READY;
 
 // r0 is the output register
 reg [C_PAYLOAD_WIDTH-1:0] r0;
@@ -408,8 +408,8 @@ always @(posedge ACLK) begin
 end
 
 // Valid/Ready outputs encoded into state machine.
-assign S_READY = state[0];
-assign M_VALID = state[1];
+assign S_READY = (state == SM_NOT_READY ) ? 1'b0 : state[0] ;
+assign M_VALID = (state == SM_NOT_READY ) ? 1'b0 : state[1];
 
 // State machine: Controls outputs and hold register state info
 always @(posedge ACLK) begin 

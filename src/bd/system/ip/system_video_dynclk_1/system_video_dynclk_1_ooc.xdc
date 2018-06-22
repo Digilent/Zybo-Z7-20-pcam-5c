@@ -54,7 +54,7 @@
 ############################################################
 # Clock Period Constraints                                 #
 ############################################################
-create_clock -period 10.0 [get_ports clk_in1]
+create_clock -period 10.000 [get_ports clk_in1]
 #set_property HD.CLK_SRC BUFGCTRL_X0Y0 [get_ports clk_in1]
 create_clock -period 10 [get_ports s_axi_aclk]
 
