@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
-// Date        : Tue Jun 19 19:06:41 2018
-// Host        : elodlt-ro running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim -rename_top system_AXI_GammaCorrection_0_0 -prefix
-//               system_AXI_GammaCorrection_0_0_ system_AXI_GammaCorrection_0_0_sim_netlist.v
+// Date        : Wed Sep 19 12:20:19 2018
+// Host        : catuna-ro running 64-bit major release  (build 9200)
+// Command     : write_verilog -force -mode funcsim
+//               D:/Ionut/Camy/PublicGit/src/bd/system/ip/system_AXI_GammaCorrection_0_0/system_AXI_GammaCorrection_0_0_sim_netlist.v
 // Design      : system_AXI_GammaCorrection_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,60 +12,222 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
-   (S_AXI_AWREADY,
-    S_AXI_WREADY,
-    S_AXI_ARREADY,
-    m_axis_video_tdata,
-    m_axis_video_tlast,
-    m_axis_video_tuser,
-    m_axis_video_tvalid,
-    S_AXI_BVALID,
-    S_AXI_RVALID,
+(* CHECK_LICENSE_TYPE = "system_AXI_GammaCorrection_0_0,AXI_GammaCorrection,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "AXI_GammaCorrection,Vivado 2017.4" *) 
+(* NotValidForBitStream *)
+module system_AXI_GammaCorrection_0_0
+   (StreamClk,
+    sStreamReset_n,
+    s_axis_video_tready,
     s_axis_video_tdata,
+    s_axis_video_tvalid,
+    s_axis_video_tuser,
+    s_axis_video_tlast,
+    m_axis_video_tready,
+    m_axis_video_tdata,
+    m_axis_video_tvalid,
+    m_axis_video_tuser,
+    m_axis_video_tlast,
+    AxiLiteClk,
+    aAxiLiteReset_n,
+    S_AXI_AWADDR,
+    S_AXI_AWPROT,
+    S_AXI_AWVALID,
+    S_AXI_AWREADY,
+    S_AXI_WDATA,
     S_AXI_WSTRB,
     S_AXI_WVALID,
-    S_AXI_AWVALID,
-    S_AXI_ARVALID,
-    AxiLiteClk,
-    S_AXI_WDATA,
-    StreamClk,
-    s_axis_video_tvalid,
-    m_axis_video_tready,
-    s_axis_video_tlast,
-    sStreamReset_n,
-    s_axis_video_tuser,
-    aAxiLiteReset_n,
+    S_AXI_WREADY,
+    S_AXI_BRESP,
+    S_AXI_BVALID,
     S_AXI_BREADY,
-    S_AXI_RREADY,
-    S_AXI_AWADDR);
-  output S_AXI_AWREADY;
-  output S_AXI_WREADY;
-  output S_AXI_ARREADY;
-  output [23:0]m_axis_video_tdata;
-  output m_axis_video_tlast;
-  output m_axis_video_tuser;
-  output m_axis_video_tvalid;
-  output S_AXI_BVALID;
-  output S_AXI_RVALID;
-  input [29:0]s_axis_video_tdata;
-  input [0:0]S_AXI_WSTRB;
-  input S_AXI_WVALID;
-  input S_AXI_AWVALID;
-  input S_AXI_ARVALID;
-  input AxiLiteClk;
-  input [2:0]S_AXI_WDATA;
-  input StreamClk;
-  input s_axis_video_tvalid;
-  input m_axis_video_tready;
-  input s_axis_video_tlast;
-  input sStreamReset_n;
-  input s_axis_video_tuser;
-  input aAxiLiteReset_n;
-  input S_AXI_BREADY;
-  input S_AXI_RREADY;
-  input [0:0]S_AXI_AWADDR;
+    S_AXI_ARADDR,
+    S_AXI_ARPROT,
+    S_AXI_ARVALID,
+    S_AXI_ARREADY,
+    S_AXI_RDATA,
+    S_AXI_RRESP,
+    S_AXI_RVALID,
+    S_AXI_RREADY);
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 AXI_Stream_Clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Clk, ASSOCIATED_BUSIF AXI_Stream_Master:AXI_Slave_Interface, ASSOCIATED_RESET sStreamReset_n, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input StreamClk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 AXI_Stream_Reset_n RST" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Reset_n, POLARITY ACTIVE_LOW" *) input sStreamReset_n;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TREADY" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Slave_Interface, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef" *) output s_axis_video_tready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA" *) input [31:0]s_axis_video_tdata;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TVALID" *) input s_axis_video_tvalid;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TUSER" *) input s_axis_video_tuser;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TLAST" *) input s_axis_video_tlast;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TREADY" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Master, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef" *) input m_axis_video_tready;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA" *) output [23:0]m_axis_video_tdata;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TVALID" *) output m_axis_video_tvalid;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TUSER" *) output m_axis_video_tuser;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TLAST" *) output m_axis_video_tlast;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 AxiLiteClk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME AxiLiteClk, ASSOCIATED_BUSIF AXI_Lite_Reg_Intf, ASSOCIATED_RESET aAxiLiteReset_n, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input AxiLiteClk;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 AxiLiteReset_n RST" *) (* x_interface_parameter = "XIL_INTERFACENAME AxiLiteReset_n, POLARITY ACTIVE_LOW" *) input aAxiLiteReset_n;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Lite_Reg_Intf, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 50000000, ID_WIDTH 0, ADDR_WIDTH 3, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input [2:0]S_AXI_AWADDR;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWPROT" *) input [2:0]S_AXI_AWPROT;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWVALID" *) input S_AXI_AWVALID;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWREADY" *) output S_AXI_AWREADY;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WDATA" *) input [31:0]S_AXI_WDATA;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WSTRB" *) input [3:0]S_AXI_WSTRB;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WVALID" *) input S_AXI_WVALID;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WREADY" *) output S_AXI_WREADY;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BRESP" *) output [1:0]S_AXI_BRESP;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BVALID" *) output S_AXI_BVALID;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BREADY" *) input S_AXI_BREADY;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARADDR" *) input [2:0]S_AXI_ARADDR;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARPROT" *) input [2:0]S_AXI_ARPROT;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARVALID" *) input S_AXI_ARVALID;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARREADY" *) output S_AXI_ARREADY;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RDATA" *) output [31:0]S_AXI_RDATA;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RRESP" *) output [1:0]S_AXI_RRESP;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RVALID" *) output S_AXI_RVALID;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RREADY" *) input S_AXI_RREADY;
 
+  wire AxiLiteClk;
+  wire [2:0]S_AXI_ARADDR;
+  wire [2:0]S_AXI_ARPROT;
+  wire S_AXI_ARREADY;
+  wire S_AXI_ARVALID;
+  wire [2:0]S_AXI_AWADDR;
+  wire [2:0]S_AXI_AWPROT;
+  wire S_AXI_AWREADY;
+  wire S_AXI_AWVALID;
+  wire S_AXI_BREADY;
+  wire [1:0]S_AXI_BRESP;
+  wire S_AXI_BVALID;
+  wire [31:0]S_AXI_RDATA;
+  wire S_AXI_RREADY;
+  wire [1:0]S_AXI_RRESP;
+  wire S_AXI_RVALID;
+  wire [31:0]S_AXI_WDATA;
+  wire S_AXI_WREADY;
+  wire [3:0]S_AXI_WSTRB;
+  wire S_AXI_WVALID;
+  wire StreamClk;
+  wire aAxiLiteReset_n;
+  wire [23:0]m_axis_video_tdata;
+  wire m_axis_video_tlast;
+  wire m_axis_video_tready;
+  wire m_axis_video_tuser;
+  wire m_axis_video_tvalid;
+  wire sStreamReset_n;
+  wire [31:0]s_axis_video_tdata;
+  wire s_axis_video_tlast;
+  wire s_axis_video_tready;
+  wire s_axis_video_tuser;
+  wire s_axis_video_tvalid;
+
+  (* C_S_AXI_ADDR_WIDTH = "3" *) 
+  (* C_S_AXI_DATA_WIDTH = "32" *) 
+  (* kAXI_InputDataWidth = "32" *) 
+  (* kAXI_OutputDataWidth = "24" *) 
+  (* kInputColorWidth = "10" *) 
+  system_AXI_GammaCorrection_0_0_AXI_GammaCorrection U0
+       (.AxiLiteClk(AxiLiteClk),
+        .S_AXI_ARADDR(S_AXI_ARADDR),
+        .S_AXI_ARPROT(S_AXI_ARPROT),
+        .S_AXI_ARREADY(S_AXI_ARREADY),
+        .S_AXI_ARVALID(S_AXI_ARVALID),
+        .S_AXI_AWADDR(S_AXI_AWADDR),
+        .S_AXI_AWPROT(S_AXI_AWPROT),
+        .S_AXI_AWREADY(S_AXI_AWREADY),
+        .S_AXI_AWVALID(S_AXI_AWVALID),
+        .S_AXI_BREADY(S_AXI_BREADY),
+        .S_AXI_BRESP(S_AXI_BRESP),
+        .S_AXI_BVALID(S_AXI_BVALID),
+        .S_AXI_RDATA(S_AXI_RDATA),
+        .S_AXI_RREADY(S_AXI_RREADY),
+        .S_AXI_RRESP(S_AXI_RRESP),
+        .S_AXI_RVALID(S_AXI_RVALID),
+        .S_AXI_WDATA(S_AXI_WDATA),
+        .S_AXI_WREADY(S_AXI_WREADY),
+        .S_AXI_WSTRB(S_AXI_WSTRB),
+        .S_AXI_WVALID(S_AXI_WVALID),
+        .StreamClk(StreamClk),
+        .aAxiLiteReset_n(aAxiLiteReset_n),
+        .m_axis_video_tdata(m_axis_video_tdata),
+        .m_axis_video_tlast(m_axis_video_tlast),
+        .m_axis_video_tready(m_axis_video_tready),
+        .m_axis_video_tuser(m_axis_video_tuser),
+        .m_axis_video_tvalid(m_axis_video_tvalid),
+        .sStreamReset_n(sStreamReset_n),
+        .s_axis_video_tdata(s_axis_video_tdata),
+        .s_axis_video_tlast(s_axis_video_tlast),
+        .s_axis_video_tready(s_axis_video_tready),
+        .s_axis_video_tuser(s_axis_video_tuser),
+        .s_axis_video_tvalid(s_axis_video_tvalid));
+endmodule
+
+(* C_S_AXI_ADDR_WIDTH = "3" *) (* C_S_AXI_DATA_WIDTH = "32" *) (* ORIG_REF_NAME = "AXI_GammaCorrection" *) 
+(* kAXI_InputDataWidth = "32" *) (* kAXI_OutputDataWidth = "24" *) (* kInputColorWidth = "10" *) 
+module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
+   (StreamClk,
+    sStreamReset_n,
+    s_axis_video_tready,
+    s_axis_video_tdata,
+    s_axis_video_tvalid,
+    s_axis_video_tuser,
+    s_axis_video_tlast,
+    m_axis_video_tready,
+    m_axis_video_tdata,
+    m_axis_video_tvalid,
+    m_axis_video_tuser,
+    m_axis_video_tlast,
+    AxiLiteClk,
+    aAxiLiteReset_n,
+    S_AXI_AWADDR,
+    S_AXI_AWPROT,
+    S_AXI_AWVALID,
+    S_AXI_AWREADY,
+    S_AXI_WDATA,
+    S_AXI_WSTRB,
+    S_AXI_WVALID,
+    S_AXI_WREADY,
+    S_AXI_BRESP,
+    S_AXI_BVALID,
+    S_AXI_BREADY,
+    S_AXI_ARADDR,
+    S_AXI_ARPROT,
+    S_AXI_ARVALID,
+    S_AXI_ARREADY,
+    S_AXI_RDATA,
+    S_AXI_RRESP,
+    S_AXI_RVALID,
+    S_AXI_RREADY);
+  input StreamClk;
+  input sStreamReset_n;
+  output s_axis_video_tready;
+  input [31:0]s_axis_video_tdata;
+  input s_axis_video_tvalid;
+  input s_axis_video_tuser;
+  input s_axis_video_tlast;
+  input m_axis_video_tready;
+  output [23:0]m_axis_video_tdata;
+  output m_axis_video_tvalid;
+  output m_axis_video_tuser;
+  output m_axis_video_tlast;
+  input AxiLiteClk;
+  input aAxiLiteReset_n;
+  input [2:0]S_AXI_AWADDR;
+  input [2:0]S_AXI_AWPROT;
+  input S_AXI_AWVALID;
+  output S_AXI_AWREADY;
+  input [31:0]S_AXI_WDATA;
+  input [3:0]S_AXI_WSTRB;
+  input S_AXI_WVALID;
+  output S_AXI_WREADY;
+  output [1:0]S_AXI_BRESP;
+  output S_AXI_BVALID;
+  input S_AXI_BREADY;
+  input [2:0]S_AXI_ARADDR;
+  input [2:0]S_AXI_ARPROT;
+  input S_AXI_ARVALID;
+  output S_AXI_ARREADY;
+  output [31:0]S_AXI_RDATA;
+  output [1:0]S_AXI_RRESP;
+  output S_AXI_RVALID;
+  input S_AXI_RREADY;
+
+  wire \<const0> ;
   wire AxiLiteClk;
   wire \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ;
   wire \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ;
@@ -73,23 +235,23 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
   wire \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ;
   wire S_AXI_ARREADY;
   wire S_AXI_ARVALID;
-  wire [0:0]S_AXI_AWADDR;
+  wire [2:0]S_AXI_AWADDR;
   wire S_AXI_AWREADY;
   wire S_AXI_AWVALID;
   wire S_AXI_BREADY;
   wire S_AXI_BVALID;
   wire S_AXI_RREADY;
   wire S_AXI_RVALID;
-  wire [2:0]S_AXI_WDATA;
+  wire [31:0]S_AXI_WDATA;
   wire S_AXI_WREADY;
-  wire [0:0]S_AXI_WSTRB;
+  wire [3:0]S_AXI_WSTRB;
   wire S_AXI_WVALID;
   wire StreamClk;
   wire aAxiLiteReset_n;
   wire axi_arready_i_1_n_0;
   wire [2:2]axi_awaddr;
   wire \axi_awaddr[2]_i_1_n_0 ;
-  wire axi_awready0__0;
+  wire axi_awready0;
   wire axi_awready_i_1_n_0;
   wire axi_bvalid_i_1_n_0;
   wire axi_rvalid_i_1_n_0;
@@ -108,37 +270,76 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
   wire \sGammaReg[2]_i_1_n_0 ;
   wire \sGammaReg[2]_i_2_n_0 ;
   wire sStreamReset_n;
-  wire [29:0]s_axis_video_tdata;
+  wire [31:0]s_axis_video_tdata;
   wire s_axis_video_tlast;
   wire s_axis_video_tuser;
   wire s_axis_video_tvalid;
 
+  assign S_AXI_BRESP[1] = \<const0> ;
+  assign S_AXI_BRESP[0] = \<const0> ;
+  assign S_AXI_RDATA[31] = \<const0> ;
+  assign S_AXI_RDATA[30] = \<const0> ;
+  assign S_AXI_RDATA[29] = \<const0> ;
+  assign S_AXI_RDATA[28] = \<const0> ;
+  assign S_AXI_RDATA[27] = \<const0> ;
+  assign S_AXI_RDATA[26] = \<const0> ;
+  assign S_AXI_RDATA[25] = \<const0> ;
+  assign S_AXI_RDATA[24] = \<const0> ;
+  assign S_AXI_RDATA[23] = \<const0> ;
+  assign S_AXI_RDATA[22] = \<const0> ;
+  assign S_AXI_RDATA[21] = \<const0> ;
+  assign S_AXI_RDATA[20] = \<const0> ;
+  assign S_AXI_RDATA[19] = \<const0> ;
+  assign S_AXI_RDATA[18] = \<const0> ;
+  assign S_AXI_RDATA[17] = \<const0> ;
+  assign S_AXI_RDATA[16] = \<const0> ;
+  assign S_AXI_RDATA[15] = \<const0> ;
+  assign S_AXI_RDATA[14] = \<const0> ;
+  assign S_AXI_RDATA[13] = \<const0> ;
+  assign S_AXI_RDATA[12] = \<const0> ;
+  assign S_AXI_RDATA[11] = \<const0> ;
+  assign S_AXI_RDATA[10] = \<const0> ;
+  assign S_AXI_RDATA[9] = \<const0> ;
+  assign S_AXI_RDATA[8] = \<const0> ;
+  assign S_AXI_RDATA[7] = \<const0> ;
+  assign S_AXI_RDATA[6] = \<const0> ;
+  assign S_AXI_RDATA[5] = \<const0> ;
+  assign S_AXI_RDATA[4] = \<const0> ;
+  assign S_AXI_RDATA[3] = \<const0> ;
+  assign S_AXI_RDATA[2] = \<const0> ;
+  assign S_AXI_RDATA[1] = \<const0> ;
+  assign S_AXI_RDATA[0] = \<const0> ;
+  assign S_AXI_RRESP[1] = \<const0> ;
+  assign S_AXI_RRESP[0] = \<const0> ;
+  assign s_axis_video_tready = m_axis_video_tready;
+  GND GND
+       (.G(\<const0> ));
   system_AXI_GammaCorrection_0_0_StoredGammaCoefs \GammaStorageCoefsGeneration[0].StoredGammaCoefsInst 
-       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
         .StreamClk(StreamClk),
         .m_axis_video_tdata(m_axis_video_tdata[7:0]),
         .sGammaReg(sGammaReg),
-        .\sGammaReg_reg[0] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
-        .\sGammaReg_reg[0]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
-        .\sGammaReg_reg[1] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
+        .\sGammaReg_reg[0] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+        .\sGammaReg_reg[0]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
+        .\sGammaReg_reg[1] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
         .s_axis_video_tdata(s_axis_video_tdata[9:0]));
   system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0 \GammaStorageCoefsGeneration[1].StoredGammaCoefsInst 
-       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
         .StreamClk(StreamClk),
         .m_axis_video_tdata(m_axis_video_tdata[15:8]),
         .sGammaReg(sGammaReg),
-        .\sGammaReg_reg[0] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
-        .\sGammaReg_reg[0]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
-        .\sGammaReg_reg[1] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
+        .\sGammaReg_reg[0] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+        .\sGammaReg_reg[0]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
+        .\sGammaReg_reg[1] (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
         .s_axis_video_tdata(s_axis_video_tdata[19:10]));
   system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1 \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst 
-       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+       (.E(\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
         .StreamClk(StreamClk),
         .m_axis_video_tdata(m_axis_video_tdata[23:16]),
         .m_axis_video_tready(m_axis_video_tready),
-        .\rStoredData_reg[4]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0 ),
-        .\rStoredData_reg[4]_1 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
-        .\rStoredData_reg[5]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
+        .\rStoredData_reg[4]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1 ),
+        .\rStoredData_reg[4]_1 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2 ),
+        .\rStoredData_reg[5]_0 (\GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3 ),
         .sGammaReg(sGammaReg),
         .s_axis_video_tdata(s_axis_video_tdata[29:20]),
         .s_axis_video_tvalid(s_axis_video_tvalid));
@@ -159,7 +360,7 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
   LUT5 #(
     .INIT(32'hEFFF2000)) 
     \axi_awaddr[2]_i_1 
-       (.I0(S_AXI_AWADDR),
+       (.I0(S_AXI_AWADDR[2]),
         .I1(S_AXI_AWREADY),
         .I2(S_AXI_AWVALID),
         .I3(S_AXI_WVALID),
@@ -171,23 +372,23 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
         .D(\axi_awaddr[2]_i_1_n_0 ),
         .Q(axi_awaddr),
         .R(axi_awready_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair80" *) 
-  LUT3 #(
-    .INIT(8'h40)) 
-    axi_awready0
-       (.I0(S_AXI_AWREADY),
-        .I1(S_AXI_AWVALID),
-        .I2(S_AXI_WVALID),
-        .O(axi_awready0__0));
   LUT1 #(
     .INIT(2'h1)) 
     axi_awready_i_1
        (.I0(aAxiLiteReset_n),
         .O(axi_awready_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair80" *) 
+  LUT3 #(
+    .INIT(8'h40)) 
+    axi_awready_i_2
+       (.I0(S_AXI_AWREADY),
+        .I1(S_AXI_AWVALID),
+        .I2(S_AXI_WVALID),
+        .O(axi_awready0));
   FDRE axi_awready_reg
        (.C(AxiLiteClk),
         .CE(1'b1),
-        .D(axi_awready0__0),
+        .D(axi_awready0),
         .Q(S_AXI_AWREADY),
         .R(axi_awready_i_1_n_0));
   LUT6 #(
@@ -305,7 +506,7 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
     .INIT(64'h4000000000000000)) 
     \sGammaReg[2]_i_2 
        (.I0(axi_awaddr),
-        .I1(S_AXI_WSTRB),
+        .I1(S_AXI_WSTRB[0]),
         .I2(S_AXI_AWREADY),
         .I3(S_AXI_WREADY),
         .I4(S_AXI_WVALID),
@@ -331,6 +532,7 @@ module system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
         .R(axi_awready_i_1_n_0));
 endmodule
 
+(* ORIG_REF_NAME = "StoredGammaCoefs" *) 
 module system_AXI_GammaCorrection_0_0_StoredGammaCoefs
    (m_axis_video_tdata,
     sGammaReg,
@@ -5601,16 +5803,16 @@ endmodule
 (* ORIG_REF_NAME = "StoredGammaCoefs" *) 
 module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
    (m_axis_video_tdata,
-    s_axis_video_tdata,
     sGammaReg,
+    s_axis_video_tdata,
     \sGammaReg_reg[1] ,
     \sGammaReg_reg[0] ,
     \sGammaReg_reg[0]_0 ,
     E,
     StreamClk);
   output [7:0]m_axis_video_tdata;
-  input [9:0]s_axis_video_tdata;
   input [2:0]sGammaReg;
+  input [9:0]s_axis_video_tdata;
   input \sGammaReg_reg[1] ;
   input \sGammaReg_reg[0] ;
   input \sGammaReg_reg[0]_0 ;
@@ -8292,7 +8494,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[5]),
         .I5(\rStoredData[4]_i_32__1_n_0 ),
         .O(\rStoredData[3]_i_21__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair28" *) 
+  (* SOFT_HLUTNM = "soft_lutpair34" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \rStoredData[3]_i_23 
@@ -8302,7 +8504,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I3(s_axis_video_tdata[3]),
         .I4(s_axis_video_tdata[5]),
         .O(\rStoredData[3]_i_23_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \rStoredData[3]_i_24 
@@ -8310,7 +8512,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[4]),
         .O(\rStoredData[3]_i_24_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT5 #(
     .INIT(32'hAA800000)) 
     \rStoredData[3]_i_25__1 
@@ -8390,7 +8592,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[2]),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[3]_i_33_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair47" *) 
+  (* SOFT_HLUTNM = "soft_lutpair49" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \rStoredData[3]_i_34__0 
@@ -8428,7 +8630,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[1]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[3]_i_42__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT4 #(
     .INIT(16'hFF80)) 
     \rStoredData[3]_i_45__0 
@@ -8467,7 +8669,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[2]),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[3]_i_48__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT5 #(
     .INIT(32'h3B9DBB9C)) 
     \rStoredData[3]_i_49__0 
@@ -8517,7 +8719,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[1]),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[3]_i_56__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT5 #(
     .INIT(32'h001000FF)) 
     \rStoredData[3]_i_57__0 
@@ -8537,7 +8739,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[9]),
         .I5(\rStoredData[3]_i_18__0_n_0 ),
         .O(\rStoredData[3]_i_5__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \rStoredData[3]_i_60__0 
@@ -8545,7 +8747,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[1]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[3]_i_60__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'hC8)) 
     \rStoredData[3]_i_61__0 
@@ -8553,7 +8755,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[1]),
         .O(\rStoredData[3]_i_61__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair44" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \rStoredData[3]_i_62__1 
@@ -9070,7 +9272,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[6]),
         .I5(\rStoredData[4]_i_57__0_n_0 ),
         .O(\rStoredData[4]_i_26__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rStoredData[4]_i_27__1 
@@ -9087,7 +9289,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_28__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair33" *) 
+  (* SOFT_HLUTNM = "soft_lutpair31" *) 
   LUT5 #(
     .INIT(32'h00007FFF)) 
     \rStoredData[4]_i_29__0 
@@ -9103,7 +9305,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
        (.I0(s_axis_video_tdata[3]),
         .I1(s_axis_video_tdata[2]),
         .O(\rStoredData[4]_i_30__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT5 #(
     .INIT(32'hFFFF8000)) 
     \rStoredData[4]_i_31__1 
@@ -9172,7 +9374,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[6]),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[4]_i_37_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT4 #(
     .INIT(16'hFFEA)) 
     \rStoredData[4]_i_38__0 
@@ -9200,7 +9402,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[4]),
         .O(\rStoredData[4]_i_40__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair32" *) 
+  (* SOFT_HLUTNM = "soft_lutpair29" *) 
   LUT5 #(
     .INIT(32'hFFFFAA80)) 
     \rStoredData[4]_i_41__1 
@@ -9220,7 +9422,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[4]),
         .I5(s_axis_video_tdata[6]),
         .O(\rStoredData[4]_i_42_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair34" *) 
+  (* SOFT_HLUTNM = "soft_lutpair32" *) 
   LUT5 #(
     .INIT(32'h0000557F)) 
     \rStoredData[4]_i_43 
@@ -9260,7 +9462,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_46__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT4 #(
     .INIT(16'hFFA8)) 
     \rStoredData[4]_i_47__0 
@@ -9277,7 +9479,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[4]_i_48__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair27" *) 
+  (* SOFT_HLUTNM = "soft_lutpair26" *) 
   LUT5 #(
     .INIT(32'h00001555)) 
     \rStoredData[4]_i_49__1 
@@ -9337,7 +9539,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_52__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair26" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT5 #(
     .INIT(32'h557FFFFF)) 
     \rStoredData[4]_i_53__0 
@@ -9357,7 +9559,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_54__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair30" *) 
+  (* SOFT_HLUTNM = "soft_lutpair28" *) 
   LUT5 #(
     .INIT(32'h80033333)) 
     \rStoredData[4]_i_55__0 
@@ -9507,7 +9709,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(\rStoredData[5]_i_5__0_n_0 ),
         .I5(\rStoredData[5]_i_6__0_n_0 ),
         .O(\rStoredData[5]_i_1__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT4 #(
     .INIT(16'hC800)) 
     \rStoredData[5]_i_20__1 
@@ -9536,7 +9738,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[4]),
         .I5(s_axis_video_tdata[9]),
         .O(\rStoredData[5]_i_22__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair40" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \rStoredData[5]_i_23__0 
@@ -9545,7 +9747,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[0]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_23__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'h07)) 
     \rStoredData[5]_i_24__0 
@@ -9553,7 +9755,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_24__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair48" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \rStoredData[5]_i_25__1 
@@ -9590,7 +9792,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[0]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[5]_i_28__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair41" *) 
   LUT4 #(
     .INIT(16'hEA00)) 
     \rStoredData[5]_i_29__1 
@@ -9599,7 +9801,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_29__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair47" *) 
   LUT3 #(
     .INIT(8'h1F)) 
     \rStoredData[5]_i_30__1 
@@ -9607,14 +9809,14 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[1]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_30__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair51" *) 
+  (* SOFT_HLUTNM = "soft_lutpair50" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \rStoredData[5]_i_31__1 
        (.I0(s_axis_video_tdata[3]),
         .I1(s_axis_video_tdata[4]),
         .O(\rStoredData[5]_i_31__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair31" *) 
+  (* SOFT_HLUTNM = "soft_lutpair30" *) 
   LUT5 #(
     .INIT(32'h000057FF)) 
     \rStoredData[5]_i_32 
@@ -9624,7 +9826,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I3(s_axis_video_tdata[3]),
         .I4(s_axis_video_tdata[6]),
         .O(\rStoredData[5]_i_32_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair49" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \rStoredData[5]_i_33__1 
@@ -9632,7 +9834,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_33__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair38" *) 
+  (* SOFT_HLUTNM = "soft_lutpair40" *) 
   LUT4 #(
     .INIT(16'h0001)) 
     \rStoredData[5]_i_34__1 
@@ -9641,7 +9843,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[2]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_34__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair44" *) 
+  (* SOFT_HLUTNM = "soft_lutpair45" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \rStoredData[5]_i_35__1 
@@ -9649,14 +9851,14 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_35__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \rStoredData[5]_i_36__0 
        (.I0(s_axis_video_tdata[2]),
         .I1(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_36__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair41" *) 
+  (* SOFT_HLUTNM = "soft_lutpair42" *) 
   LUT4 #(
     .INIT(16'hFF80)) 
     \rStoredData[5]_i_37 
@@ -9665,7 +9867,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_37_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair42" *) 
+  (* SOFT_HLUTNM = "soft_lutpair38" *) 
   LUT4 #(
     .INIT(16'hFFA8)) 
     \rStoredData[5]_i_38 
@@ -9694,7 +9896,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(\rStoredData[5]_i_11__0_n_0 ),
         .I5(\sGammaReg_reg[0]_0 ),
         .O(\rStoredData[5]_i_3__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair39" *) 
+  (* SOFT_HLUTNM = "soft_lutpair37" *) 
   LUT3 #(
     .INIT(8'h1F)) 
     \rStoredData[5]_i_40__0 
@@ -9818,7 +10020,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[5]),
         .I5(s_axis_video_tdata[8]),
         .O(\rStoredData[6]_i_14__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair37" *) 
+  (* SOFT_HLUTNM = "soft_lutpair39" *) 
   LUT4 #(
     .INIT(16'h7FFF)) 
     \rStoredData[6]_i_15__0 
@@ -9827,7 +10029,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[6]_i_15__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair27" *) 
   LUT5 #(
     .INIT(32'hFFFE0000)) 
     \rStoredData[6]_i_16__0 
@@ -9837,14 +10039,14 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I3(s_axis_video_tdata[0]),
         .I4(s_axis_video_tdata[4]),
         .O(\rStoredData[6]_i_16__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair50" *) 
+  (* SOFT_HLUTNM = "soft_lutpair51" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rStoredData[6]_i_17 
        (.I0(s_axis_video_tdata[1]),
         .I1(s_axis_video_tdata[2]),
         .O(\rStoredData[6]_i_17_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair43" *) 
+  (* SOFT_HLUTNM = "soft_lutpair46" *) 
   LUT3 #(
     .INIT(8'hFE)) 
     \rStoredData[6]_i_18 
@@ -9852,7 +10054,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I1(s_axis_video_tdata[0]),
         .I2(s_axis_video_tdata[2]),
         .O(\rStoredData[6]_i_18_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair46" *) 
+  (* SOFT_HLUTNM = "soft_lutpair48" *) 
   LUT3 #(
     .INIT(8'h07)) 
     \rStoredData[6]_i_19 
@@ -9930,7 +10132,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I3(s_axis_video_tdata[3]),
         .I4(s_axis_video_tdata[5]),
         .O(\rStoredData[6]_i_9_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair45" *) 
+  (* SOFT_HLUTNM = "soft_lutpair43" *) 
   LUT3 #(
     .INIT(8'hE0)) 
     \rStoredData[7]_i_10__0 
@@ -9987,7 +10189,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
         .I4(s_axis_video_tdata[5]),
         .I5(s_axis_video_tdata[8]),
         .O(\rStoredData[7]_i_6__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair29" *) 
+  (* SOFT_HLUTNM = "soft_lutpair33" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \rStoredData[7]_i_7 
@@ -10968,25 +11170,25 @@ endmodule
 
 (* ORIG_REF_NAME = "StoredGammaCoefs" *) 
 module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
-   (\rStoredData_reg[4]_0 ,
-    \rStoredData_reg[5]_0 ,
-    E,
+   (E,
+    \rStoredData_reg[4]_0 ,
     \rStoredData_reg[4]_1 ,
+    \rStoredData_reg[5]_0 ,
     m_axis_video_tdata,
-    s_axis_video_tdata,
-    sGammaReg,
     s_axis_video_tvalid,
     m_axis_video_tready,
+    sGammaReg,
+    s_axis_video_tdata,
     StreamClk);
-  output \rStoredData_reg[4]_0 ;
-  output \rStoredData_reg[5]_0 ;
   output [0:0]E;
+  output \rStoredData_reg[4]_0 ;
   output \rStoredData_reg[4]_1 ;
+  output \rStoredData_reg[5]_0 ;
   output [7:0]m_axis_video_tdata;
-  input [9:0]s_axis_video_tdata;
-  input [2:0]sGammaReg;
   input s_axis_video_tvalid;
   input m_axis_video_tready;
+  input [2:0]sGammaReg;
+  input [9:0]s_axis_video_tdata;
   input StreamClk;
 
   wire [0:0]E;
@@ -13666,7 +13868,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[5]),
         .I5(\rStoredData[4]_i_33__0_n_0 ),
         .O(\rStoredData[3]_i_21__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair55" *) 
+  (* SOFT_HLUTNM = "soft_lutpair60" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \rStoredData[3]_i_23__0 
@@ -13676,7 +13878,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I3(s_axis_video_tdata[3]),
         .I4(s_axis_video_tdata[5]),
         .O(\rStoredData[3]_i_23__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \rStoredData[3]_i_24__0 
@@ -13764,7 +13966,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[2]),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[3]_i_33__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair72" *) 
+  (* SOFT_HLUTNM = "soft_lutpair73" *) 
   LUT3 #(
     .INIT(8'h80)) 
     \rStoredData[3]_i_34 
@@ -13911,7 +14113,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[9]),
         .I5(\rStoredData[3]_i_18__1_n_0 ),
         .O(\rStoredData[3]_i_5__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \rStoredData[3]_i_60 
@@ -13919,7 +14121,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(s_axis_video_tdata[1]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[3]_i_60_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT3 #(
     .INIT(8'hC8)) 
     \rStoredData[3]_i_61 
@@ -14444,7 +14646,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[6]),
         .I5(\rStoredData[4]_i_58__0_n_0 ),
         .O(\rStoredData[4]_i_27__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rStoredData[4]_i_28__1 
@@ -14461,7 +14663,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_29__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair53" *) 
+  (* SOFT_HLUTNM = "soft_lutpair52" *) 
   LUT5 #(
     .INIT(32'h00007FFF)) 
     \rStoredData[4]_i_30__1 
@@ -14471,7 +14673,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I3(s_axis_video_tdata[1]),
         .I4(s_axis_video_tdata[4]),
         .O(\rStoredData[4]_i_30__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \rStoredData[4]_i_31__0 
@@ -14595,7 +14797,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[4]),
         .I5(s_axis_video_tdata[6]),
         .O(\rStoredData[4]_i_43__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair60" *) 
+  (* SOFT_HLUTNM = "soft_lutpair59" *) 
   LUT5 #(
     .INIT(32'h0000557F)) 
     \rStoredData[4]_i_44__1 
@@ -14644,7 +14846,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[4]_i_48_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
     .INIT(8'h7F)) 
     \rStoredData[4]_i_49__0 
@@ -14662,7 +14864,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(\rStoredData[4]_i_13__0_n_0 ),
         .I5(\rStoredData_reg[4]_1 ),
         .O(\rStoredData[4]_i_4__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair54" *) 
+  (* SOFT_HLUTNM = "soft_lutpair56" *) 
   LUT5 #(
     .INIT(32'h00001555)) 
     \rStoredData[4]_i_50__1 
@@ -14702,7 +14904,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_53__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair56" *) 
+  (* SOFT_HLUTNM = "soft_lutpair53" *) 
   LUT5 #(
     .INIT(32'h557FFFFF)) 
     \rStoredData[4]_i_54__1 
@@ -14722,7 +14924,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[4]_i_55__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair59" *) 
+  (* SOFT_HLUTNM = "soft_lutpair55" *) 
   LUT5 #(
     .INIT(32'h80033333)) 
     \rStoredData[4]_i_56__0 
@@ -14772,7 +14974,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[8]),
         .I5(\rStoredData[4]_i_17__1_n_0 ),
         .O(\rStoredData[4]_i_5__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \rStoredData[4]_i_6 
@@ -14809,7 +15011,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[4]),
         .I5(s_axis_video_tdata[9]),
         .O(\rStoredData[5]_i_11__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair77" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \rStoredData[5]_i_12__0 
@@ -14826,7 +15028,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(\rStoredData[5]_i_30__0_n_0 ),
         .I5(s_axis_video_tdata[6]),
         .O(\rStoredData[5]_i_14__1_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair79" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \rStoredData[5]_i_15__1 
@@ -14903,7 +15105,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(\rStoredData[5]_i_31__0_n_0 ),
         .I5(s_axis_video_tdata[4]),
         .O(\rStoredData[5]_i_21__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair63" *) 
+  (* SOFT_HLUTNM = "soft_lutpair66" *) 
   LUT4 #(
     .INIT(16'hC800)) 
     \rStoredData[5]_i_22__1 
@@ -14949,7 +15151,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_26__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair71" *) 
+  (* SOFT_HLUTNM = "soft_lutpair76" *) 
   LUT2 #(
     .INIT(4'h7)) 
     \rStoredData[5]_i_27__1 
@@ -14986,7 +15188,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[0]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[5]_i_30__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair66" *) 
+  (* SOFT_HLUTNM = "soft_lutpair63" *) 
   LUT4 #(
     .INIT(16'hEA00)) 
     \rStoredData[5]_i_31__0 
@@ -14995,7 +15197,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I2(s_axis_video_tdata[1]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_31__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair74" *) 
+  (* SOFT_HLUTNM = "soft_lutpair71" *) 
   LUT3 #(
     .INIT(8'h1F)) 
     \rStoredData[5]_i_32__0 
@@ -15003,7 +15205,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(s_axis_video_tdata[1]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_32__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair78" *) 
+  (* SOFT_HLUTNM = "soft_lutpair79" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \rStoredData[5]_i_33__0 
@@ -15037,7 +15239,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I2(s_axis_video_tdata[2]),
         .I3(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_36_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair75" *) 
+  (* SOFT_HLUTNM = "soft_lutpair70" *) 
   LUT3 #(
     .INIT(8'hF8)) 
     \rStoredData[5]_i_37__0 
@@ -15045,7 +15247,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(s_axis_video_tdata[2]),
         .I2(s_axis_video_tdata[3]),
         .O(\rStoredData[5]_i_37__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair77" *) 
+  (* SOFT_HLUTNM = "soft_lutpair78" *) 
   LUT2 #(
     .INIT(4'hE)) 
     \rStoredData[5]_i_38__0 
@@ -15117,7 +15319,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[3]),
         .I5(s_axis_video_tdata[5]),
         .O(\rStoredData[5]_i_44_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair76" *) 
+  (* SOFT_HLUTNM = "soft_lutpair74" *) 
   LUT3 #(
     .INIT(8'h02)) 
     \rStoredData[5]_i_4__1 
@@ -15248,7 +15450,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(s_axis_video_tdata[0]),
         .I2(s_axis_video_tdata[2]),
         .O(\rStoredData[6]_i_18__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair70" *) 
+  (* SOFT_HLUTNM = "soft_lutpair72" *) 
   LUT3 #(
     .INIT(8'h07)) 
     \rStoredData[6]_i_19__0 
@@ -15341,7 +15543,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I2(s_axis_video_tdata[2]),
         .I3(s_axis_video_tdata[4]),
         .O(\rStoredData[7]_i_10_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair73" *) 
+  (* SOFT_HLUTNM = "soft_lutpair75" *) 
   LUT3 #(
     .INIT(8'hE0)) 
     \rStoredData[7]_i_11 
@@ -15398,7 +15600,7 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I4(s_axis_video_tdata[5]),
         .I5(s_axis_video_tdata[8]),
         .O(\rStoredData[7]_i_7__0_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair52" *) 
+  (* SOFT_HLUTNM = "soft_lutpair54" *) 
   LUT5 #(
     .INIT(32'h80000000)) 
     \rStoredData[7]_i_8__0 
@@ -16366,172 +16568,6 @@ module system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
         .I1(\rStoredData[7]_i_4__1_n_0 ),
         .O(\rStoredData_reg[7]_i_2_n_0 ),
         .S(sGammaReg[2]));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "system_AXI_GammaCorrection_0_0,AXI_GammaCorrection,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "AXI_GammaCorrection,Vivado 2017.4" *) 
-(* NotValidForBitStream *)
-module system_AXI_GammaCorrection_0_0
-   (StreamClk,
-    sStreamReset_n,
-    s_axis_video_tready,
-    s_axis_video_tdata,
-    s_axis_video_tvalid,
-    s_axis_video_tuser,
-    s_axis_video_tlast,
-    m_axis_video_tready,
-    m_axis_video_tdata,
-    m_axis_video_tvalid,
-    m_axis_video_tuser,
-    m_axis_video_tlast,
-    AxiLiteClk,
-    aAxiLiteReset_n,
-    S_AXI_AWADDR,
-    S_AXI_AWPROT,
-    S_AXI_AWVALID,
-    S_AXI_AWREADY,
-    S_AXI_WDATA,
-    S_AXI_WSTRB,
-    S_AXI_WVALID,
-    S_AXI_WREADY,
-    S_AXI_BRESP,
-    S_AXI_BVALID,
-    S_AXI_BREADY,
-    S_AXI_ARADDR,
-    S_AXI_ARPROT,
-    S_AXI_ARVALID,
-    S_AXI_ARREADY,
-    S_AXI_RDATA,
-    S_AXI_RRESP,
-    S_AXI_RVALID,
-    S_AXI_RREADY);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 AXI_Stream_Clk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Clk, ASSOCIATED_BUSIF AXI_Stream_Master:AXI_Slave_Interface, ASSOCIATED_RESET sStreamReset_n, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input StreamClk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 AXI_Stream_Reset_n RST" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Reset_n, POLARITY ACTIVE_LOW" *) input sStreamReset_n;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TREADY" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Slave_Interface, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef" *) output s_axis_video_tready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA" *) input [31:0]s_axis_video_tdata;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TVALID" *) input s_axis_video_tvalid;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TUSER" *) input s_axis_video_tuser;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TLAST" *) input s_axis_video_tlast;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TREADY" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Stream_Master, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 150000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, LAYERED_METADATA undef" *) input m_axis_video_tready;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA" *) output [23:0]m_axis_video_tdata;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TVALID" *) output m_axis_video_tvalid;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TUSER" *) output m_axis_video_tuser;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 AXI_Stream_Master TLAST" *) output m_axis_video_tlast;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 AxiLiteClk CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME AxiLiteClk, ASSOCIATED_BUSIF AXI_Lite_Reg_Intf, ASSOCIATED_RESET aAxiLiteReset_n, FREQ_HZ 50000000, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1" *) input AxiLiteClk;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 AxiLiteReset_n RST" *) (* x_interface_parameter = "XIL_INTERFACENAME AxiLiteReset_n, POLARITY ACTIVE_LOW" *) input aAxiLiteReset_n;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME AXI_Lite_Reg_Intf, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 50000000, ID_WIDTH 0, ADDR_WIDTH 3, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN system_clk_wiz_0_0_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input [2:0]S_AXI_AWADDR;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWPROT" *) input [2:0]S_AXI_AWPROT;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWVALID" *) input S_AXI_AWVALID;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf AWREADY" *) output S_AXI_AWREADY;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WDATA" *) input [31:0]S_AXI_WDATA;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WSTRB" *) input [3:0]S_AXI_WSTRB;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WVALID" *) input S_AXI_WVALID;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf WREADY" *) output S_AXI_WREADY;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BRESP" *) output [1:0]S_AXI_BRESP;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BVALID" *) output S_AXI_BVALID;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf BREADY" *) input S_AXI_BREADY;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARADDR" *) input [2:0]S_AXI_ARADDR;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARPROT" *) input [2:0]S_AXI_ARPROT;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARVALID" *) input S_AXI_ARVALID;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf ARREADY" *) output S_AXI_ARREADY;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RDATA" *) output [31:0]S_AXI_RDATA;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RRESP" *) output [1:0]S_AXI_RRESP;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RVALID" *) output S_AXI_RVALID;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 AXI_Lite_Reg_Intf RREADY" *) input S_AXI_RREADY;
-
-  wire \<const0> ;
-  wire AxiLiteClk;
-  wire S_AXI_ARREADY;
-  wire S_AXI_ARVALID;
-  wire [2:0]S_AXI_AWADDR;
-  wire S_AXI_AWREADY;
-  wire S_AXI_AWVALID;
-  wire S_AXI_BREADY;
-  wire S_AXI_BVALID;
-  wire S_AXI_RREADY;
-  wire S_AXI_RVALID;
-  wire [31:0]S_AXI_WDATA;
-  wire S_AXI_WREADY;
-  wire [3:0]S_AXI_WSTRB;
-  wire S_AXI_WVALID;
-  wire StreamClk;
-  wire aAxiLiteReset_n;
-  wire [23:0]m_axis_video_tdata;
-  wire m_axis_video_tlast;
-  wire m_axis_video_tready;
-  wire m_axis_video_tuser;
-  wire m_axis_video_tvalid;
-  wire sStreamReset_n;
-  wire [31:0]s_axis_video_tdata;
-  wire s_axis_video_tlast;
-  wire s_axis_video_tuser;
-  wire s_axis_video_tvalid;
-
-  assign S_AXI_BRESP[1] = \<const0> ;
-  assign S_AXI_BRESP[0] = \<const0> ;
-  assign S_AXI_RDATA[31] = \<const0> ;
-  assign S_AXI_RDATA[30] = \<const0> ;
-  assign S_AXI_RDATA[29] = \<const0> ;
-  assign S_AXI_RDATA[28] = \<const0> ;
-  assign S_AXI_RDATA[27] = \<const0> ;
-  assign S_AXI_RDATA[26] = \<const0> ;
-  assign S_AXI_RDATA[25] = \<const0> ;
-  assign S_AXI_RDATA[24] = \<const0> ;
-  assign S_AXI_RDATA[23] = \<const0> ;
-  assign S_AXI_RDATA[22] = \<const0> ;
-  assign S_AXI_RDATA[21] = \<const0> ;
-  assign S_AXI_RDATA[20] = \<const0> ;
-  assign S_AXI_RDATA[19] = \<const0> ;
-  assign S_AXI_RDATA[18] = \<const0> ;
-  assign S_AXI_RDATA[17] = \<const0> ;
-  assign S_AXI_RDATA[16] = \<const0> ;
-  assign S_AXI_RDATA[15] = \<const0> ;
-  assign S_AXI_RDATA[14] = \<const0> ;
-  assign S_AXI_RDATA[13] = \<const0> ;
-  assign S_AXI_RDATA[12] = \<const0> ;
-  assign S_AXI_RDATA[11] = \<const0> ;
-  assign S_AXI_RDATA[10] = \<const0> ;
-  assign S_AXI_RDATA[9] = \<const0> ;
-  assign S_AXI_RDATA[8] = \<const0> ;
-  assign S_AXI_RDATA[7] = \<const0> ;
-  assign S_AXI_RDATA[6] = \<const0> ;
-  assign S_AXI_RDATA[5] = \<const0> ;
-  assign S_AXI_RDATA[4] = \<const0> ;
-  assign S_AXI_RDATA[3] = \<const0> ;
-  assign S_AXI_RDATA[2] = \<const0> ;
-  assign S_AXI_RDATA[1] = \<const0> ;
-  assign S_AXI_RDATA[0] = \<const0> ;
-  assign S_AXI_RRESP[1] = \<const0> ;
-  assign S_AXI_RRESP[0] = \<const0> ;
-  assign s_axis_video_tready = m_axis_video_tready;
-  GND GND
-       (.G(\<const0> ));
-  system_AXI_GammaCorrection_0_0_AXI_GammaCorrection U0
-       (.AxiLiteClk(AxiLiteClk),
-        .S_AXI_ARREADY(S_AXI_ARREADY),
-        .S_AXI_ARVALID(S_AXI_ARVALID),
-        .S_AXI_AWADDR(S_AXI_AWADDR[2]),
-        .S_AXI_AWREADY(S_AXI_AWREADY),
-        .S_AXI_AWVALID(S_AXI_AWVALID),
-        .S_AXI_BREADY(S_AXI_BREADY),
-        .S_AXI_BVALID(S_AXI_BVALID),
-        .S_AXI_RREADY(S_AXI_RREADY),
-        .S_AXI_RVALID(S_AXI_RVALID),
-        .S_AXI_WDATA(S_AXI_WDATA[2:0]),
-        .S_AXI_WREADY(S_AXI_WREADY),
-        .S_AXI_WSTRB(S_AXI_WSTRB[0]),
-        .S_AXI_WVALID(S_AXI_WVALID),
-        .StreamClk(StreamClk),
-        .aAxiLiteReset_n(aAxiLiteReset_n),
-        .m_axis_video_tdata(m_axis_video_tdata),
-        .m_axis_video_tlast(m_axis_video_tlast),
-        .m_axis_video_tready(m_axis_video_tready),
-        .m_axis_video_tuser(m_axis_video_tuser),
-        .m_axis_video_tvalid(m_axis_video_tvalid),
-        .sStreamReset_n(sStreamReset_n),
-        .s_axis_video_tdata(s_axis_video_tdata[29:0]),
-        .s_axis_video_tlast(s_axis_video_tlast),
-        .s_axis_video_tuser(s_axis_video_tuser),
-        .s_axis_video_tvalid(s_axis_video_tvalid));
 endmodule
 `ifndef GLBL
 `define GLBL

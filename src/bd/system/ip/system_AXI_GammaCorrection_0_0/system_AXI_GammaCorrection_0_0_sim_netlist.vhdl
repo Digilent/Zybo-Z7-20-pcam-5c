@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2017.4 (win64) Build 2086221 Fri Dec 15 20:55:39 MST 2017
--- Date        : Tue Jun 19 19:06:41 2018
--- Host        : elodlt-ro running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim -rename_top system_AXI_GammaCorrection_0_0 -prefix
---               system_AXI_GammaCorrection_0_0_ system_AXI_GammaCorrection_0_0_sim_netlist.vhdl
+-- Date        : Wed Sep 19 12:20:19 2018
+-- Host        : catuna-ro running 64-bit major release  (build 9200)
+-- Command     : write_vhdl -force -mode funcsim
+--               D:/Ionut/Camy/PublicGit/src/bd/system/ip/system_AXI_GammaCorrection_0_0/system_AXI_GammaCorrection_0_0_sim_netlist.vhdl
 -- Design      : system_AXI_GammaCorrection_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,6 +25,8 @@ entity system_AXI_GammaCorrection_0_0_StoredGammaCoefs is
     E : in STD_LOGIC_VECTOR ( 0 to 0 );
     StreamClk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_AXI_GammaCorrection_0_0_StoredGammaCoefs : entity is "StoredGammaCoefs";
 end system_AXI_GammaCorrection_0_0_StoredGammaCoefs;
 
 architecture STRUCTURE of system_AXI_GammaCorrection_0_0_StoredGammaCoefs is
@@ -6798,8 +6800,8 @@ use UNISIM.VCOMPONENTS.ALL;
 entity system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0 is
   port (
     m_axis_video_tdata : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 9 downto 0 );
     sGammaReg : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 9 downto 0 );
     \sGammaReg_reg[1]\ : in STD_LOGIC;
     \sGammaReg_reg[0]\ : in STD_LOGIC;
     \sGammaReg_reg[0]_0\ : in STD_LOGIC;
@@ -7378,57 +7380,57 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0 is
   signal \rStoredData_reg[6]_i_6__0_n_0\ : STD_LOGIC;
   signal \rStoredData_reg[7]_i_1__0_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_23\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_24\ : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_25__1\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_34__0\ : label is "soft_lutpair47";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_45__0\ : label is "soft_lutpair39";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_49__0\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_57__0\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_60__0\ : label is "soft_lutpair46";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_61__0\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_62__1\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_23\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_24\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_25__1\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_34__0\ : label is "soft_lutpair49";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_45__0\ : label is "soft_lutpair37";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_49__0\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_57__0\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_60__0\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_61__0\ : label is "soft_lutpair44";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_62__1\ : label is "soft_lutpair44";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_63__1\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_27__1\ : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_29__0\ : label is "soft_lutpair33";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_31__1\ : label is "soft_lutpair32";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_27__1\ : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_29__0\ : label is "soft_lutpair31";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_31__1\ : label is "soft_lutpair29";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_32__1\ : label is "soft_lutpair27";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_33\ : label is "soft_lutpair35";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_36__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_38__0\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_38__0\ : label is "soft_lutpair38";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_40__0\ : label is "soft_lutpair36";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_41__1\ : label is "soft_lutpair32";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_43\ : label is "soft_lutpair34";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_41__1\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_43\ : label is "soft_lutpair32";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_45__0\ : label is "soft_lutpair34";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_47__0\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_47__0\ : label is "soft_lutpair42";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_48__1\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_49__1\ : label is "soft_lutpair27";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_53__0\ : label is "soft_lutpair26";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_55__0\ : label is "soft_lutpair30";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_20__1\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_23__0\ : label is "soft_lutpair40";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_24__0\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_25__1\ : label is "soft_lutpair48";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_29__1\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_30__1\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_31__1\ : label is "soft_lutpair51";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_32\ : label is "soft_lutpair31";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_33__1\ : label is "soft_lutpair49";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_34__1\ : label is "soft_lutpair38";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_35__1\ : label is "soft_lutpair44";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_36__0\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_37\ : label is "soft_lutpair41";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_38\ : label is "soft_lutpair42";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_40__0\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_49__1\ : label is "soft_lutpair26";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_53__0\ : label is "soft_lutpair33";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_55__0\ : label is "soft_lutpair28";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_20__1\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_23__0\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_24__0\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_25__1\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_29__1\ : label is "soft_lutpair41";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_30__1\ : label is "soft_lutpair47";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_31__1\ : label is "soft_lutpair50";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_32\ : label is "soft_lutpair30";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_33__1\ : label is "soft_lutpair48";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_34__1\ : label is "soft_lutpair40";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_35__1\ : label is "soft_lutpair45";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_36__0\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_37\ : label is "soft_lutpair42";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_38\ : label is "soft_lutpair38";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_40__0\ : label is "soft_lutpair37";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_41\ : label is "soft_lutpair35";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_15__0\ : label is "soft_lutpair37";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_16__0\ : label is "soft_lutpair29";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_17\ : label is "soft_lutpair50";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_18\ : label is "soft_lutpair43";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_19\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_15__0\ : label is "soft_lutpair39";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_16__0\ : label is "soft_lutpair27";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_17\ : label is "soft_lutpair51";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_18\ : label is "soft_lutpair46";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_19\ : label is "soft_lutpair48";
   attribute SOFT_HLUTNM of \rStoredData[6]_i_9\ : label is "soft_lutpair28";
-  attribute SOFT_HLUTNM of \rStoredData[7]_i_10__0\ : label is "soft_lutpair45";
-  attribute SOFT_HLUTNM of \rStoredData[7]_i_7\ : label is "soft_lutpair29";
+  attribute SOFT_HLUTNM of \rStoredData[7]_i_10__0\ : label is "soft_lutpair43";
+  attribute SOFT_HLUTNM of \rStoredData[7]_i_7\ : label is "soft_lutpair33";
   attribute SOFT_HLUTNM of \rStoredData[7]_i_9__0\ : label is "soft_lutpair36";
 begin
 \rStoredData[0]_i_100__0\: unisim.vcomponents.LUT6
@@ -13707,15 +13709,15 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1 is
   port (
-    \rStoredData_reg[4]_0\ : out STD_LOGIC;
-    \rStoredData_reg[5]_0\ : out STD_LOGIC;
     E : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \rStoredData_reg[4]_0\ : out STD_LOGIC;
     \rStoredData_reg[4]_1\ : out STD_LOGIC;
+    \rStoredData_reg[5]_0\ : out STD_LOGIC;
     m_axis_video_tdata : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    sGammaReg : in STD_LOGIC_VECTOR ( 2 downto 0 );
     s_axis_video_tvalid : in STD_LOGIC;
     m_axis_video_tready : in STD_LOGIC;
+    sGammaReg : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 9 downto 0 );
     StreamClk : in STD_LOGIC
   );
   attribute ORIG_REF_NAME : string;
@@ -14294,20 +14296,20 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1 is
   signal \rStoredData_reg[6]_i_6__1_n_0\ : STD_LOGIC;
   signal \rStoredData_reg[7]_i_2_n_0\ : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_23__0\ : label is "soft_lutpair55";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_24__0\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_23__0\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_24__0\ : label is "soft_lutpair73";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_25__0\ : label is "soft_lutpair57";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_34\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_34\ : label is "soft_lutpair73";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_45__1\ : label is "soft_lutpair65";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_49__1\ : label is "soft_lutpair59";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_57__1\ : label is "soft_lutpair58";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_60\ : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of \rStoredData[3]_i_61\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_60\ : label is "soft_lutpair72";
+  attribute SOFT_HLUTNM of \rStoredData[3]_i_61\ : label is "soft_lutpair76";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_62__0\ : label is "soft_lutpair69";
   attribute SOFT_HLUTNM of \rStoredData[3]_i_63__0\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_28__1\ : label is "soft_lutpair78";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_30__1\ : label is "soft_lutpair53";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_31__0\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_28__1\ : label is "soft_lutpair79";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_30__1\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_31__0\ : label is "soft_lutpair78";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_32__0\ : label is "soft_lutpair57";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_33__0\ : label is "soft_lutpair53";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_34__0\ : label is "soft_lutpair61";
@@ -14315,41 +14317,41 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1 is
   attribute SOFT_HLUTNM of \rStoredData[4]_i_39__0\ : label is "soft_lutpair67";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_41__0\ : label is "soft_lutpair62";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_42__0\ : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_44__1\ : label is "soft_lutpair60";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_44__1\ : label is "soft_lutpair59";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_46__1\ : label is "soft_lutpair60";
   attribute SOFT_HLUTNM of \rStoredData[4]_i_48\ : label is "soft_lutpair68";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_49__0\ : label is "soft_lutpair73";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_50__1\ : label is "soft_lutpair54";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_54__1\ : label is "soft_lutpair56";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_56__0\ : label is "soft_lutpair59";
-  attribute SOFT_HLUTNM of \rStoredData[4]_i_6\ : label is "soft_lutpair76";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_12__0\ : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_15__1\ : label is "soft_lutpair79";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_22__1\ : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_49__0\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_50__1\ : label is "soft_lutpair56";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_54__1\ : label is "soft_lutpair53";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_56__0\ : label is "soft_lutpair55";
+  attribute SOFT_HLUTNM of \rStoredData[4]_i_6\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_12__0\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_15__1\ : label is "soft_lutpair74";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_22__1\ : label is "soft_lutpair66";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_25\ : label is "soft_lutpair66";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_26__0\ : label is "soft_lutpair70";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_27__1\ : label is "soft_lutpair71";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_31__0\ : label is "soft_lutpair66";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_32__0\ : label is "soft_lutpair74";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_33__0\ : label is "soft_lutpair78";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_27__1\ : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_31__0\ : label is "soft_lutpair63";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_32__0\ : label is "soft_lutpair71";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_33__0\ : label is "soft_lutpair79";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_34__0\ : label is "soft_lutpair58";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_35__0\ : label is "soft_lutpair75";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_36\ : label is "soft_lutpair64";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_37__0\ : label is "soft_lutpair75";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_38__0\ : label is "soft_lutpair77";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_37__0\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_38__0\ : label is "soft_lutpair78";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_39__0\ : label is "soft_lutpair68";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_40\ : label is "soft_lutpair67";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_42__0\ : label is "soft_lutpair65";
   attribute SOFT_HLUTNM of \rStoredData[5]_i_43\ : label is "soft_lutpair61";
-  attribute SOFT_HLUTNM of \rStoredData[5]_i_4__1\ : label is "soft_lutpair76";
+  attribute SOFT_HLUTNM of \rStoredData[5]_i_4__1\ : label is "soft_lutpair74";
   attribute SOFT_HLUTNM of \rStoredData[6]_i_15__1\ : label is "soft_lutpair63";
   attribute SOFT_HLUTNM of \rStoredData[6]_i_16\ : label is "soft_lutpair54";
   attribute SOFT_HLUTNM of \rStoredData[6]_i_18__0\ : label is "soft_lutpair69";
-  attribute SOFT_HLUTNM of \rStoredData[6]_i_19__0\ : label is "soft_lutpair70";
+  attribute SOFT_HLUTNM of \rStoredData[6]_i_19__0\ : label is "soft_lutpair72";
   attribute SOFT_HLUTNM of \rStoredData[6]_i_9__0\ : label is "soft_lutpair55";
   attribute SOFT_HLUTNM of \rStoredData[7]_i_10\ : label is "soft_lutpair62";
-  attribute SOFT_HLUTNM of \rStoredData[7]_i_11\ : label is "soft_lutpair73";
-  attribute SOFT_HLUTNM of \rStoredData[7]_i_8__0\ : label is "soft_lutpair52";
+  attribute SOFT_HLUTNM of \rStoredData[7]_i_11\ : label is "soft_lutpair75";
+  attribute SOFT_HLUTNM of \rStoredData[7]_i_8__0\ : label is "soft_lutpair54";
 begin
   E(0) <= \^e\(0);
   \rStoredData_reg[4]_0\ <= \^rstoreddata_reg[4]_0\;
@@ -20667,36 +20669,56 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity system_AXI_GammaCorrection_0_0_AXI_GammaCorrection is
   port (
-    S_AXI_AWREADY : out STD_LOGIC;
-    S_AXI_WREADY : out STD_LOGIC;
-    S_AXI_ARREADY : out STD_LOGIC;
-    m_axis_video_tdata : out STD_LOGIC_VECTOR ( 23 downto 0 );
-    m_axis_video_tlast : out STD_LOGIC;
-    m_axis_video_tuser : out STD_LOGIC;
-    m_axis_video_tvalid : out STD_LOGIC;
-    S_AXI_BVALID : out STD_LOGIC;
-    S_AXI_RVALID : out STD_LOGIC;
-    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 29 downto 0 );
-    S_AXI_WSTRB : in STD_LOGIC_VECTOR ( 0 to 0 );
-    S_AXI_WVALID : in STD_LOGIC;
-    S_AXI_AWVALID : in STD_LOGIC;
-    S_AXI_ARVALID : in STD_LOGIC;
-    AxiLiteClk : in STD_LOGIC;
-    S_AXI_WDATA : in STD_LOGIC_VECTOR ( 2 downto 0 );
     StreamClk : in STD_LOGIC;
-    s_axis_video_tvalid : in STD_LOGIC;
-    m_axis_video_tready : in STD_LOGIC;
-    s_axis_video_tlast : in STD_LOGIC;
     sStreamReset_n : in STD_LOGIC;
+    s_axis_video_tready : out STD_LOGIC;
+    s_axis_video_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axis_video_tvalid : in STD_LOGIC;
     s_axis_video_tuser : in STD_LOGIC;
+    s_axis_video_tlast : in STD_LOGIC;
+    m_axis_video_tready : in STD_LOGIC;
+    m_axis_video_tdata : out STD_LOGIC_VECTOR ( 23 downto 0 );
+    m_axis_video_tvalid : out STD_LOGIC;
+    m_axis_video_tuser : out STD_LOGIC;
+    m_axis_video_tlast : out STD_LOGIC;
+    AxiLiteClk : in STD_LOGIC;
     aAxiLiteReset_n : in STD_LOGIC;
+    S_AXI_AWADDR : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_AWPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_AWVALID : in STD_LOGIC;
+    S_AXI_AWREADY : out STD_LOGIC;
+    S_AXI_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    S_AXI_WVALID : in STD_LOGIC;
+    S_AXI_WREADY : out STD_LOGIC;
+    S_AXI_BRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_BVALID : out STD_LOGIC;
     S_AXI_BREADY : in STD_LOGIC;
-    S_AXI_RREADY : in STD_LOGIC;
-    S_AXI_AWADDR : in STD_LOGIC_VECTOR ( 0 to 0 )
+    S_AXI_ARADDR : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_ARPROT : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    S_AXI_ARVALID : in STD_LOGIC;
+    S_AXI_ARREADY : out STD_LOGIC;
+    S_AXI_RDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    S_AXI_RRESP : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    S_AXI_RVALID : out STD_LOGIC;
+    S_AXI_RREADY : in STD_LOGIC
   );
+  attribute C_S_AXI_ADDR_WIDTH : integer;
+  attribute C_S_AXI_ADDR_WIDTH of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is 3;
+  attribute C_S_AXI_DATA_WIDTH : integer;
+  attribute C_S_AXI_DATA_WIDTH of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is 32;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is "AXI_GammaCorrection";
+  attribute kAXI_InputDataWidth : integer;
+  attribute kAXI_InputDataWidth of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is 32;
+  attribute kAXI_OutputDataWidth : integer;
+  attribute kAXI_OutputDataWidth of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is 24;
+  attribute kInputColorWidth : integer;
+  attribute kInputColorWidth of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection : entity is 10;
 end system_AXI_GammaCorrection_0_0_AXI_GammaCorrection;
 
 architecture STRUCTURE of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection is
+  signal \<const0>\ : STD_LOGIC;
   signal \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\ : STD_LOGIC;
   signal \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\ : STD_LOGIC;
   signal \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\ : STD_LOGIC;
@@ -20709,13 +20731,14 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection is
   signal axi_arready_i_1_n_0 : STD_LOGIC;
   signal axi_awaddr : STD_LOGIC_VECTOR ( 2 to 2 );
   signal \axi_awaddr[2]_i_1_n_0\ : STD_LOGIC;
-  signal \axi_awready0__0\ : STD_LOGIC;
+  signal axi_awready0 : STD_LOGIC;
   signal axi_awready_i_1_n_0 : STD_LOGIC;
   signal axi_bvalid_i_1_n_0 : STD_LOGIC;
   signal axi_rvalid_i_1_n_0 : STD_LOGIC;
   signal axi_wready_i_1_n_0 : STD_LOGIC;
   signal \^m_axis_video_tlast\ : STD_LOGIC;
   signal m_axis_video_tlast_i_1_n_0 : STD_LOGIC;
+  signal \^m_axis_video_tready\ : STD_LOGIC;
   signal \^m_axis_video_tuser\ : STD_LOGIC;
   signal m_axis_video_tuser_i_1_n_0 : STD_LOGIC;
   signal \^m_axis_video_tvalid\ : STD_LOGIC;
@@ -20728,50 +20751,92 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0_AXI_GammaCorrection is
   attribute SOFT_HLUTNM : string;
   attribute SOFT_HLUTNM of axi_arready_i_1 : label is "soft_lutpair81";
   attribute SOFT_HLUTNM of \axi_awaddr[2]_i_1\ : label is "soft_lutpair80";
-  attribute SOFT_HLUTNM of axi_awready0 : label is "soft_lutpair80";
+  attribute SOFT_HLUTNM of axi_awready_i_2 : label is "soft_lutpair80";
   attribute SOFT_HLUTNM of axi_rvalid_i_1 : label is "soft_lutpair81";
   attribute SOFT_HLUTNM of \sGammaReg[0]_i_1\ : label is "soft_lutpair82";
   attribute SOFT_HLUTNM of \sGammaReg[2]_i_1\ : label is "soft_lutpair82";
 begin
   S_AXI_ARREADY <= \^s_axi_arready\;
   S_AXI_AWREADY <= \^s_axi_awready\;
+  S_AXI_BRESP(1) <= \<const0>\;
+  S_AXI_BRESP(0) <= \<const0>\;
   S_AXI_BVALID <= \^s_axi_bvalid\;
+  S_AXI_RDATA(31) <= \<const0>\;
+  S_AXI_RDATA(30) <= \<const0>\;
+  S_AXI_RDATA(29) <= \<const0>\;
+  S_AXI_RDATA(28) <= \<const0>\;
+  S_AXI_RDATA(27) <= \<const0>\;
+  S_AXI_RDATA(26) <= \<const0>\;
+  S_AXI_RDATA(25) <= \<const0>\;
+  S_AXI_RDATA(24) <= \<const0>\;
+  S_AXI_RDATA(23) <= \<const0>\;
+  S_AXI_RDATA(22) <= \<const0>\;
+  S_AXI_RDATA(21) <= \<const0>\;
+  S_AXI_RDATA(20) <= \<const0>\;
+  S_AXI_RDATA(19) <= \<const0>\;
+  S_AXI_RDATA(18) <= \<const0>\;
+  S_AXI_RDATA(17) <= \<const0>\;
+  S_AXI_RDATA(16) <= \<const0>\;
+  S_AXI_RDATA(15) <= \<const0>\;
+  S_AXI_RDATA(14) <= \<const0>\;
+  S_AXI_RDATA(13) <= \<const0>\;
+  S_AXI_RDATA(12) <= \<const0>\;
+  S_AXI_RDATA(11) <= \<const0>\;
+  S_AXI_RDATA(10) <= \<const0>\;
+  S_AXI_RDATA(9) <= \<const0>\;
+  S_AXI_RDATA(8) <= \<const0>\;
+  S_AXI_RDATA(7) <= \<const0>\;
+  S_AXI_RDATA(6) <= \<const0>\;
+  S_AXI_RDATA(5) <= \<const0>\;
+  S_AXI_RDATA(4) <= \<const0>\;
+  S_AXI_RDATA(3) <= \<const0>\;
+  S_AXI_RDATA(2) <= \<const0>\;
+  S_AXI_RDATA(1) <= \<const0>\;
+  S_AXI_RDATA(0) <= \<const0>\;
+  S_AXI_RRESP(1) <= \<const0>\;
+  S_AXI_RRESP(0) <= \<const0>\;
   S_AXI_RVALID <= \^s_axi_rvalid\;
   S_AXI_WREADY <= \^s_axi_wready\;
+  \^m_axis_video_tready\ <= m_axis_video_tready;
   m_axis_video_tlast <= \^m_axis_video_tlast\;
   m_axis_video_tuser <= \^m_axis_video_tuser\;
   m_axis_video_tvalid <= \^m_axis_video_tvalid\;
+  s_axis_video_tready <= \^m_axis_video_tready\;
+GND: unisim.vcomponents.GND
+     port map (
+      G => \<const0>\
+    );
 \GammaStorageCoefsGeneration[0].StoredGammaCoefsInst\: entity work.system_AXI_GammaCorrection_0_0_StoredGammaCoefs
      port map (
-      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
       StreamClk => StreamClk,
       m_axis_video_tdata(7 downto 0) => m_axis_video_tdata(7 downto 0),
       sGammaReg(2 downto 0) => sGammaReg(2 downto 0),
-      \sGammaReg_reg[0]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
-      \sGammaReg_reg[0]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
-      \sGammaReg_reg[1]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
+      \sGammaReg_reg[0]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      \sGammaReg_reg[0]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
+      \sGammaReg_reg[1]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
       s_axis_video_tdata(9 downto 0) => s_axis_video_tdata(9 downto 0)
     );
 \GammaStorageCoefsGeneration[1].StoredGammaCoefsInst\: entity work.system_AXI_GammaCorrection_0_0_StoredGammaCoefs_0
      port map (
-      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
       StreamClk => StreamClk,
       m_axis_video_tdata(7 downto 0) => m_axis_video_tdata(15 downto 8),
       sGammaReg(2 downto 0) => sGammaReg(2 downto 0),
-      \sGammaReg_reg[0]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
-      \sGammaReg_reg[0]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
-      \sGammaReg_reg[1]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
+      \sGammaReg_reg[0]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      \sGammaReg_reg[0]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
+      \sGammaReg_reg[1]\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
       s_axis_video_tdata(9 downto 0) => s_axis_video_tdata(19 downto 10)
     );
 \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst\: entity work.system_AXI_GammaCorrection_0_0_StoredGammaCoefs_1
      port map (
-      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      E(0) => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
       StreamClk => StreamClk,
       m_axis_video_tdata(7 downto 0) => m_axis_video_tdata(23 downto 16),
-      m_axis_video_tready => m_axis_video_tready,
-      \rStoredData_reg[4]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_0\,
-      \rStoredData_reg[4]_1\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
-      \rStoredData_reg[5]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
+      m_axis_video_tready => \^m_axis_video_tready\,
+      \rStoredData_reg[4]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_1\,
+      \rStoredData_reg[4]_1\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_2\,
+      \rStoredData_reg[5]_0\ => \GammaStorageCoefsGeneration[2].StoredGammaCoefsInst_n_3\,
       sGammaReg(2 downto 0) => sGammaReg(2 downto 0),
       s_axis_video_tdata(9 downto 0) => s_axis_video_tdata(29 downto 20),
       s_axis_video_tvalid => s_axis_video_tvalid
@@ -20798,7 +20863,7 @@ axi_arready_reg: unisim.vcomponents.FDRE
       INIT => X"EFFF2000"
     )
         port map (
-      I0 => S_AXI_AWADDR(0),
+      I0 => S_AXI_AWADDR(2),
       I1 => \^s_axi_awready\,
       I2 => S_AXI_AWVALID,
       I3 => S_AXI_WVALID,
@@ -20813,16 +20878,6 @@ axi_arready_reg: unisim.vcomponents.FDRE
       Q => axi_awaddr(2),
       R => axi_awready_i_1_n_0
     );
-axi_awready0: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"40"
-    )
-        port map (
-      I0 => \^s_axi_awready\,
-      I1 => S_AXI_AWVALID,
-      I2 => S_AXI_WVALID,
-      O => \axi_awready0__0\
-    );
 axi_awready_i_1: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
@@ -20831,11 +20886,21 @@ axi_awready_i_1: unisim.vcomponents.LUT1
       I0 => aAxiLiteReset_n,
       O => axi_awready_i_1_n_0
     );
+axi_awready_i_2: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"40"
+    )
+        port map (
+      I0 => \^s_axi_awready\,
+      I1 => S_AXI_AWVALID,
+      I2 => S_AXI_WVALID,
+      O => axi_awready0
+    );
 axi_awready_reg: unisim.vcomponents.FDRE
      port map (
       C => AxiLiteClk,
       CE => '1',
-      D => \axi_awready0__0\,
+      D => axi_awready0,
       Q => \^s_axi_awready\,
       R => axi_awready_i_1_n_0
     );
@@ -20903,7 +20968,7 @@ m_axis_video_tlast_i_1: unisim.vcomponents.LUT5
     )
         port map (
       I0 => \^m_axis_video_tlast\,
-      I1 => m_axis_video_tready,
+      I1 => \^m_axis_video_tready\,
       I2 => s_axis_video_tvalid,
       I3 => s_axis_video_tlast,
       I4 => sStreamReset_n,
@@ -20923,7 +20988,7 @@ m_axis_video_tuser_i_1: unisim.vcomponents.LUT5
     )
         port map (
       I0 => \^m_axis_video_tuser\,
-      I1 => m_axis_video_tready,
+      I1 => \^m_axis_video_tready\,
       I2 => s_axis_video_tvalid,
       I3 => s_axis_video_tuser,
       I4 => sStreamReset_n,
@@ -20943,7 +21008,7 @@ sAXI_OutputValid_i_1: unisim.vcomponents.LUT4
     )
         port map (
       I0 => \^m_axis_video_tvalid\,
-      I1 => m_axis_video_tready,
+      I1 => \^m_axis_video_tready\,
       I2 => s_axis_video_tvalid,
       I3 => sStreamReset_n,
       O => sAXI_OutputValid_i_1_n_0
@@ -21075,8 +21140,16 @@ entity system_AXI_GammaCorrection_0_0 is
 end system_AXI_GammaCorrection_0_0;
 
 architecture STRUCTURE of system_AXI_GammaCorrection_0_0 is
-  signal \<const0>\ : STD_LOGIC;
-  signal \^m_axis_video_tready\ : STD_LOGIC;
+  attribute C_S_AXI_ADDR_WIDTH : integer;
+  attribute C_S_AXI_ADDR_WIDTH of U0 : label is 3;
+  attribute C_S_AXI_DATA_WIDTH : integer;
+  attribute C_S_AXI_DATA_WIDTH of U0 : label is 32;
+  attribute kAXI_InputDataWidth : integer;
+  attribute kAXI_InputDataWidth of U0 : label is 32;
+  attribute kAXI_OutputDataWidth : integer;
+  attribute kAXI_OutputDataWidth of U0 : label is 24;
+  attribute kInputColorWidth : integer;
+  attribute kInputColorWidth of U0 : label is 10;
   attribute x_interface_info : string;
   attribute x_interface_info of AxiLiteClk : signal is "xilinx.com:signal:clock:1.0 AxiLiteClk CLK";
   attribute x_interface_parameter : string;
@@ -21120,74 +21193,39 @@ architecture STRUCTURE of system_AXI_GammaCorrection_0_0 is
   attribute x_interface_info of m_axis_video_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_Stream_Master TDATA";
   attribute x_interface_info of s_axis_video_tdata : signal is "xilinx.com:interface:axis:1.0 AXI_Slave_Interface TDATA";
 begin
-  S_AXI_BRESP(1) <= \<const0>\;
-  S_AXI_BRESP(0) <= \<const0>\;
-  S_AXI_RDATA(31) <= \<const0>\;
-  S_AXI_RDATA(30) <= \<const0>\;
-  S_AXI_RDATA(29) <= \<const0>\;
-  S_AXI_RDATA(28) <= \<const0>\;
-  S_AXI_RDATA(27) <= \<const0>\;
-  S_AXI_RDATA(26) <= \<const0>\;
-  S_AXI_RDATA(25) <= \<const0>\;
-  S_AXI_RDATA(24) <= \<const0>\;
-  S_AXI_RDATA(23) <= \<const0>\;
-  S_AXI_RDATA(22) <= \<const0>\;
-  S_AXI_RDATA(21) <= \<const0>\;
-  S_AXI_RDATA(20) <= \<const0>\;
-  S_AXI_RDATA(19) <= \<const0>\;
-  S_AXI_RDATA(18) <= \<const0>\;
-  S_AXI_RDATA(17) <= \<const0>\;
-  S_AXI_RDATA(16) <= \<const0>\;
-  S_AXI_RDATA(15) <= \<const0>\;
-  S_AXI_RDATA(14) <= \<const0>\;
-  S_AXI_RDATA(13) <= \<const0>\;
-  S_AXI_RDATA(12) <= \<const0>\;
-  S_AXI_RDATA(11) <= \<const0>\;
-  S_AXI_RDATA(10) <= \<const0>\;
-  S_AXI_RDATA(9) <= \<const0>\;
-  S_AXI_RDATA(8) <= \<const0>\;
-  S_AXI_RDATA(7) <= \<const0>\;
-  S_AXI_RDATA(6) <= \<const0>\;
-  S_AXI_RDATA(5) <= \<const0>\;
-  S_AXI_RDATA(4) <= \<const0>\;
-  S_AXI_RDATA(3) <= \<const0>\;
-  S_AXI_RDATA(2) <= \<const0>\;
-  S_AXI_RDATA(1) <= \<const0>\;
-  S_AXI_RDATA(0) <= \<const0>\;
-  S_AXI_RRESP(1) <= \<const0>\;
-  S_AXI_RRESP(0) <= \<const0>\;
-  \^m_axis_video_tready\ <= m_axis_video_tready;
-  s_axis_video_tready <= \^m_axis_video_tready\;
-GND: unisim.vcomponents.GND
-     port map (
-      G => \<const0>\
-    );
 U0: entity work.system_AXI_GammaCorrection_0_0_AXI_GammaCorrection
      port map (
       AxiLiteClk => AxiLiteClk,
+      S_AXI_ARADDR(2 downto 0) => S_AXI_ARADDR(2 downto 0),
+      S_AXI_ARPROT(2 downto 0) => S_AXI_ARPROT(2 downto 0),
       S_AXI_ARREADY => S_AXI_ARREADY,
       S_AXI_ARVALID => S_AXI_ARVALID,
-      S_AXI_AWADDR(0) => S_AXI_AWADDR(2),
+      S_AXI_AWADDR(2 downto 0) => S_AXI_AWADDR(2 downto 0),
+      S_AXI_AWPROT(2 downto 0) => S_AXI_AWPROT(2 downto 0),
       S_AXI_AWREADY => S_AXI_AWREADY,
       S_AXI_AWVALID => S_AXI_AWVALID,
       S_AXI_BREADY => S_AXI_BREADY,
+      S_AXI_BRESP(1 downto 0) => S_AXI_BRESP(1 downto 0),
       S_AXI_BVALID => S_AXI_BVALID,
+      S_AXI_RDATA(31 downto 0) => S_AXI_RDATA(31 downto 0),
       S_AXI_RREADY => S_AXI_RREADY,
+      S_AXI_RRESP(1 downto 0) => S_AXI_RRESP(1 downto 0),
       S_AXI_RVALID => S_AXI_RVALID,
-      S_AXI_WDATA(2 downto 0) => S_AXI_WDATA(2 downto 0),
+      S_AXI_WDATA(31 downto 0) => S_AXI_WDATA(31 downto 0),
       S_AXI_WREADY => S_AXI_WREADY,
-      S_AXI_WSTRB(0) => S_AXI_WSTRB(0),
+      S_AXI_WSTRB(3 downto 0) => S_AXI_WSTRB(3 downto 0),
       S_AXI_WVALID => S_AXI_WVALID,
       StreamClk => StreamClk,
       aAxiLiteReset_n => aAxiLiteReset_n,
       m_axis_video_tdata(23 downto 0) => m_axis_video_tdata(23 downto 0),
       m_axis_video_tlast => m_axis_video_tlast,
-      m_axis_video_tready => \^m_axis_video_tready\,
+      m_axis_video_tready => m_axis_video_tready,
       m_axis_video_tuser => m_axis_video_tuser,
       m_axis_video_tvalid => m_axis_video_tvalid,
       sStreamReset_n => sStreamReset_n,
-      s_axis_video_tdata(29 downto 0) => s_axis_video_tdata(29 downto 0),
+      s_axis_video_tdata(31 downto 0) => s_axis_video_tdata(31 downto 0),
       s_axis_video_tlast => s_axis_video_tlast,
+      s_axis_video_tready => s_axis_video_tready,
       s_axis_video_tuser => s_axis_video_tuser,
       s_axis_video_tvalid => s_axis_video_tvalid
     );
