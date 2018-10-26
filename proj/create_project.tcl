@@ -131,6 +131,9 @@ if {[llength $bd_list] != 0} {
     set_property "synth_checkpoint_mode" "Hierarchical" $file_obj
   }
  
+  # Upgrade all IPs to their latest version
+  upgrade_ip [get_ips]
+ 
   # Generate the wrapper 
   set design_name [glob -nocomplain -tails -types d -dir $src_dir/bd/ *]
   add_files -norecurse [make_wrapper -files [get_files $design_name.bd] -top -force]
