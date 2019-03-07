@@ -3,9 +3,12 @@ Zybo Z7 -20 Pcam 5C Demo
 
 Description
 -----------
-
  The Zybo Z7 Pcam 5C project demonstrates the usage of the Pcam 5C as a video source by forwarding the streaming image data out to the HDMI TX port. Video data streams in through the Pcam port and out through the HDMI source (TX) port. A UART interface is available to configure the image sensor and additional post processing IP Cores.
 
+First and foremost
+------------------
+* The Vivado projects are version-specific. Source files are not backward compatible and not automatically forward compatible. Release tags specify the targetted Vivado version. There is only one version targetted per year, as chosen by Digilent. Non-tagged commits on the master branch are either at the last tagged version or the next targeted version. This is not ideal and might be changed in the future adopting a better flow.
+* Our projects use submodules to bring in libraries. Use --recursive when cloning or git submodule init, if cloned already non-recursively.
 
 Requirements
 ------------
