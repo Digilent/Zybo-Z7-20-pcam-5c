@@ -36,12 +36,12 @@ Demo Setup
 | OS Platform                             | standalone                                |
 | Target Hardware: Hardware Platform      | system_wrapper_hw_platform_0              |
 | Target Hardware: Processor              | (default)                                 |
-| Target Software: Language               | C                                         |
+| Target Software: Language               | C++                                       |
 | Target Software: Board Support Package  | Create New (pcam_vdma_hdmi_bsp)           |
 
 9. Click **Next**.
 10. From the list of template applications, select "Empty Application", then click **Finish**.
-11. In the Project Explorer pane to the left of the SDK window, expand the new application project (named "Npcam_vdma_hdmi").
+11. In the Project Explorer pane to the left of the SDK window, expand the new application project (named "pcam_vdma_hdmi").
 12. Right click on the "src" subdirectory of the application project and select **Import**.
 13. In the "Select an import wizard" pane of the window that pops up, expand **General** and select **File System**. Then click **Next**.
 14. Fill out the fields of the "File system" screen as in the table below. Most of the listed values will be the defaults, but are included in the table for completeness.
@@ -49,19 +49,17 @@ Demo Setup
 | Setting                                                | Value                                                     |
 | -                                                      | -                                                         |
 | From directory                                         | \<archive extracted location\>/sdk_appsrc/pcam_vdma_hdmi  |
-| Files to import pane: sdk_appsrc                       | Checked box                                               |
+| Files to import pane: pcam_vdmi_hdmi                   | Checked box                                               |
 | Into folder                                            | pcam_vdma_hdmi/src                                        |
 | Options: Overwrite existing resources without warning  | Checked box                                               |
 | Options: Create top-level folder                       | Unchecked box                                             |
 
 15. Click **Finish**.
-
-16. Repeat to create a new Application Project for the sdk_appsrc/fsbl source
-
 16. Open a serial terminal application (such as TeraTerm) and connect it to the Zybo Z7's serial port, using a baud rate of 115200.
 17. In the toolbar at the top of the SDK window, select **Xilinx -> Program FPGA**. Leave all fields as their defaults and click "Program".
 18. In the Project Explorer pane, right click on the "pcam_vdma_hdmi" application project and select "Run As -> Launch on Hardware (System Debugger)".
 19. The application will now be running on the Zybo Z7. It can be interacted with as described in the first section of this README.
+20. If needed, create a first-stage bootloader (FSBL) using **File -> New -> Application Project** and choosing template **Zynq FSBL**.
 
 Next Steps
 ----------
