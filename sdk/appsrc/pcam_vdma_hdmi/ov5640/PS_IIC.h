@@ -24,20 +24,22 @@
 
 namespace digilent {
 
-// Shim function to extract function object from CallbackRef and call it
-// This should call our member function handlers below
-template <typename Func>
-void MyCallback(void* CallbackRef, int i)
-{
-  auto pfn = static_cast<std::function<Func>*>(CallbackRef);
-  pfn->operator()(i);
-}
+
 
 using namespace std::placeholders;
 
 template <typename IrptCtl>
 class PS_IIC: public I2C_Client {
 public:
+
+	// Shim function to extract function object from CallbackRef and call it
+	// This should call our member function handlers below
+	template <typename Func>
+	static void MyCallback(void* CallbackRef, u32 StatusEvent)
+	{
+		auto pfn = static_cast<Func*>(CallbackRef);
+		pfn->operator()(StatusEvent);
+	}
 
 	PS_IIC(uint16_t dev_id, IrptCtl& irpt_ctl, uint32_t irpt_id, uint32_t sclk_rate_Hz) :
 		drv_inst_(),
@@ -76,7 +78,7 @@ public:
 		irpt_ctl_.enableInterrupt(irpt_id);
 		irpt_ctl_.enableInterrupts();
 
-		XIicPs_SetStatusHandler	(&drv_inst_, &stat_handler_, &MyCallback<void(int)>);
+		XIicPs_SetStatusHandler	(&drv_inst_, &stat_handler_, &MyCallback<decltype(stat_handler_)>);
 	}
 
 	virtual void read(uint8_t addr, uint8_t* buf, size_t count) override

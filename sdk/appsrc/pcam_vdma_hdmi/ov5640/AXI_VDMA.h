@@ -19,15 +19,6 @@
 
 namespace digilent {
 
-// Shim function to extract function object from CallbackRef and call it
-// This should call our member function handlers below
-template <typename Func>
-void MyCallback(void* CallbackRef, uint32_t mask_or_type)
-{
-	auto pfn = static_cast<std::function<Func>*>(CallbackRef);
-	pfn->operator()(mask_or_type);
-}
-
 /*!
  * \brief Driver class for Xilinx AXI VDMA IP. Needs to have stable clocks before
  * instantiation to be able to complete hardware reset.
@@ -56,6 +47,15 @@ class AXI_VDMA
 		unsigned int number_of_frame_count;
 	} vdma_context_t;
 public:
+	// Shim function to extract function object from CallbackRef and call it
+	// This should call our member function handlers below
+	template <typename Func>
+	static void MyCallback(void* CallbackRef, uint32_t mask_or_type)
+	{
+		auto pfn = static_cast<Func*>(CallbackRef);
+		pfn->operator()(mask_or_type);
+	}
+
 	AXI_VDMA(uint16_t dev_id, uint32_t frame_buf_base_addr, IrptCtl& irpt_ctl, uint16_t rd_irpt_id, uint16_t wr_irpt_id) :
 		rd_handler_(std::bind(&AXI_VDMA::readHandler, this, std::placeholders::_1)),
 		wr_handler_(std::bind(&AXI_VDMA::writeHandler, this, std::placeholders::_1)),
@@ -81,13 +81,13 @@ public:
 
 		//Set error interrupt error handlers, which for some reason need completion handler defined too
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_GENERAL,
-				(void*)(XAxiVdma_CallBack)&MyCallback<void(uint32_t)>, &rd_handler_, XAXIVDMA_READ);
+				reinterpret_cast<void*>(&MyCallback<decltype(rd_handler_)>), &rd_handler_, XAXIVDMA_READ);
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_GENERAL,
-				(void*)(XAxiVdma_CallBack)&MyCallback<void(uint32_t)>, &wr_handler_, XAXIVDMA_WRITE);
+				reinterpret_cast<void*>(&MyCallback<decltype(wr_handler_)>), &wr_handler_, XAXIVDMA_WRITE);
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_ERROR,
-				(void*)(XAxiVdma_ErrorCallBack)&MyCallback<void(uint32_t)>, &rd_err_handler_, XAXIVDMA_READ);
+				reinterpret_cast<void*>(&MyCallback<decltype(rd_err_handler_)>), &rd_err_handler_, XAXIVDMA_READ);
 		XAxiVdma_SetCallBack(&drv_inst_, XAXIVDMA_HANDLER_ERROR,
-				(void*)(XAxiVdma_ErrorCallBack)&MyCallback<void(uint32_t)>, &wr_err_handler_, XAXIVDMA_WRITE);
+				reinterpret_cast<void*>(&MyCallback<decltype(wr_err_handler_)>), &wr_err_handler_, XAXIVDMA_WRITE);
 
 		//Register the IIC handler with the interrupt controller
 		irpt_ctl_.registerHandler(rd_irpt_id, &XAxiVdma_ReadIntrHandler, &drv_inst_);
