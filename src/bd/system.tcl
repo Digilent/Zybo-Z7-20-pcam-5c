@@ -268,7 +268,7 @@ proc create_root_design { parentCell } {
   # Create instance: MIPI_CSI_2_RX_0, and set properties
   set MIPI_CSI_2_RX_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:MIPI_CSI_2_RX:1.1 MIPI_CSI_2_RX_0 ]
   set_property -dict [ list \
-   CONFIG.kDebug {true} \
+   CONFIG.kDebug {false} \
    CONFIG.kGenerateAXIL {true} \
  ] $MIPI_CSI_2_RX_0
 
