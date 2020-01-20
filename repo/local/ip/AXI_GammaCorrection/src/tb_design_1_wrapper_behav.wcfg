@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_design_1_wrapper_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi4stream_vip_pkg" />
+            <top_module name="glbl" />
+            <top_module name="tb_design_1_wrapper" />
+            <top_module name="xil_common_vip_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="379500001fs"></ZoomEndTime>
+      <Cursor1Time time="2030001000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="25" />
+   <wvobject fp_name="/tb_design_1_wrapper/error_cnt" type="array">
+      <obj_property name="ElementShortName">error_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">error_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/comparison_cnt" type="array">
+      <obj_property name="ElementShortName">comparison_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">comparison_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/max_comparison_cnt" type="array">
+      <obj_property name="ElementShortName">max_comparison_cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">max_comparison_cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/InputData" type="array">
+      <obj_property name="ElementShortName">InputData[0:3][7:0]</obj_property>
+      <obj_property name="ObjectShortName">InputData[0:3][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/OutputData" type="array">
+      <obj_property name="ElementShortName">OutputData[0:2][7:0]</obj_property>
+      <obj_property name="ObjectShortName">OutputData[0:2][7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/Color1" type="array">
+      <obj_property name="ElementShortName">Color1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Color1[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/Color2" type="array">
+      <obj_property name="ElementShortName">Color2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Color2[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/Color3" type="array">
+      <obj_property name="ElementShortName">Color3[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Color3[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/master_moniter_transaction_queue_size" type="array">
+      <obj_property name="ElementShortName">master_moniter_transaction_queue_size[31:0]</obj_property>
+      <obj_property name="ObjectShortName">master_moniter_transaction_queue_size[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/slave_moniter_transaction_queue_size" type="array">
+      <obj_property name="ElementShortName">slave_moniter_transaction_queue_size[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slave_moniter_transaction_queue_size[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/mst_agent_verbosity" type="array">
+      <obj_property name="ElementShortName">mst_agent_verbosity[31:0]</obj_property>
+      <obj_property name="ObjectShortName">mst_agent_verbosity[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/slv_agent_verbosity" type="array">
+      <obj_property name="ElementShortName">slv_agent_verbosity[31:0]</obj_property>
+      <obj_property name="ObjectShortName">slv_agent_verbosity[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tready" type="logic">
+      <obj_property name="ElementShortName">s_axis_video_tready</obj_property>
+      <obj_property name="ObjectShortName">s_axis_video_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_video_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_video_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tvalid" type="logic">
+      <obj_property name="ElementShortName">s_axis_video_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axis_video_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tuser" type="logic">
+      <obj_property name="ElementShortName">s_axis_video_tuser</obj_property>
+      <obj_property name="ObjectShortName">s_axis_video_tuser</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tlast" type="logic">
+      <obj_property name="ElementShortName">s_axis_video_tlast</obj_property>
+      <obj_property name="ObjectShortName">s_axis_video_tlast</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/m_axis_video_tready" type="logic">
+      <obj_property name="ElementShortName">m_axis_video_tready</obj_property>
+      <obj_property name="ObjectShortName">m_axis_video_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/m_axis_video_tdata" type="array">
+      <obj_property name="ElementShortName">m_axis_video_tdata[23:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_video_tdata[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/m_axis_video_tvalid" type="logic">
+      <obj_property name="ElementShortName">m_axis_video_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axis_video_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/m_axis_video_tuser" type="logic">
+      <obj_property name="ElementShortName">m_axis_video_tuser</obj_property>
+      <obj_property name="ObjectShortName">m_axis_video_tuser</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/m_axis_video_tlast" type="logic">
+      <obj_property name="ElementShortName">m_axis_video_tlast</obj_property>
+      <obj_property name="ObjectShortName">m_axis_video_tlast</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/U0/sGammaReg" type="array">
+      <obj_property name="ElementShortName">sGammaReg[31:0]</obj_property>
+      <obj_property name="ObjectShortName">sGammaReg[31:0]</obj_property>
+   </wvobject>
+</wave_config>

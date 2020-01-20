@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Jan 14 17:12:09 2020" VIVADOVERSION="2018.2.2">
+
+  <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT CLKFREQUENCY="100000000" DIR="I" NAME="aclk_0" SIGIS="clk" SIGNAME="External_Ports_aclk_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi4stream_vip_1" PORT="aclk"/>
+        <CONNECTION INSTANCE="axi4stream_vip_0" PORT="aclk"/>
+        <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="StreamClk"/>
+        <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="AxiLiteClk"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" NAME="aresetn_0" SIGIS="rst" SIGNAME="External_Ports_aresetn_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="axi4stream_vip_1" PORT="aresetn"/>
+        <CONNECTION INSTANCE="axi4stream_vip_0" PORT="aresetn"/>
+        <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="sStreamReset_n"/>
+        <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="aAxiLiteReset_n"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="I" LEFT="2" NAME="S_AXI_0_awaddr" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="2" NAME="S_AXI_0_awprot" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" NAME="S_AXI_0_awvalid" SIGIS="undef"/>
+    <PORT DIR="O" NAME="S_AXI_0_awready" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="31" NAME="S_AXI_0_wdata" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="3" NAME="S_AXI_0_wstrb" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" NAME="S_AXI_0_wvalid" SIGIS="undef"/>
+    <PORT DIR="O" NAME="S_AXI_0_wready" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="1" NAME="S_AXI_0_bresp" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" NAME="S_AXI_0_bvalid" SIGIS="undef"/>
+    <PORT DIR="I" NAME="S_AXI_0_bready" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="2" NAME="S_AXI_0_araddr" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" LEFT="2" NAME="S_AXI_0_arprot" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="I" NAME="S_AXI_0_arvalid" SIGIS="undef"/>
+    <PORT DIR="O" NAME="S_AXI_0_arready" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="31" NAME="S_AXI_0_rdata" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" LEFT="1" NAME="S_AXI_0_rresp" RIGHT="0" SIGIS="undef"/>
+    <PORT DIR="O" NAME="S_AXI_0_rvalid" SIGIS="undef"/>
+    <PORT DIR="I" NAME="S_AXI_0_rready" SIGIS="undef"/>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES>
+    <BUSINTERFACE BUSNAME="External_Interface_S_AXI_0" DATAWIDTH="32" NAME="S_AXI_0" TYPE="SLAVE">
+      <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+      <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+      <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+      <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="ADDR_WIDTH" VALUE="3"/>
+      <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+      <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+      <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+      <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+      <PARAMETER NAME="HAS_PROT" VALUE="1"/>
+      <PARAMETER NAME="HAS_CACHE" VALUE="0"/>
+      <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+      <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+      <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+      <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+      <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+      <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+      <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+      <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+      <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+      <PARAMETER NAME="PHASE" VALUE="0.000"/>
+      <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_aclk_0"/>
+      <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+      <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+      <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+      <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+      <PORTMAPS>
+        <PORTMAP LOGICAL="AWADDR" PHYSICAL="S_AXI_0_awaddr"/>
+        <PORTMAP LOGICAL="AWPROT" PHYSICAL="S_AXI_0_awprot"/>
+        <PORTMAP LOGICAL="AWVALID" PHYSICAL="S_AXI_0_awvalid"/>
+        <PORTMAP LOGICAL="AWREADY" PHYSICAL="S_AXI_0_awready"/>
+        <PORTMAP LOGICAL="WDATA" PHYSICAL="S_AXI_0_wdata"/>
+        <PORTMAP LOGICAL="WSTRB" PHYSICAL="S_AXI_0_wstrb"/>
+        <PORTMAP LOGICAL="WVALID" PHYSICAL="S_AXI_0_wvalid"/>
+        <PORTMAP LOGICAL="WREADY" PHYSICAL="S_AXI_0_wready"/>
+        <PORTMAP LOGICAL="BRESP" PHYSICAL="S_AXI_0_bresp"/>
+        <PORTMAP LOGICAL="BVALID" PHYSICAL="S_AXI_0_bvalid"/>
+        <PORTMAP LOGICAL="BREADY" PHYSICAL="S_AXI_0_bready"/>
+        <PORTMAP LOGICAL="ARADDR" PHYSICAL="S_AXI_0_araddr"/>
+        <PORTMAP LOGICAL="ARPROT" PHYSICAL="S_AXI_0_arprot"/>
+        <PORTMAP LOGICAL="ARVALID" PHYSICAL="S_AXI_0_arvalid"/>
+        <PORTMAP LOGICAL="ARREADY" PHYSICAL="S_AXI_0_arready"/>
+        <PORTMAP LOGICAL="RDATA" PHYSICAL="S_AXI_0_rdata"/>
+        <PORTMAP LOGICAL="RRESP" PHYSICAL="S_AXI_0_rresp"/>
+        <PORTMAP LOGICAL="RVALID" PHYSICAL="S_AXI_0_rvalid"/>
+        <PORTMAP LOGICAL="RREADY" PHYSICAL="S_AXI_0_rready"/>
+      </PORTMAPS>
+      <MEMORYMAP>
+        <MEMRANGE ADDRESSBLOCK="reg0" BASENAME="C_BASEADDR" BASEVALUE="0x00000000" HIGHNAME="C_HIGHADDR" HIGHVALUE="0x00000FFF" INSTANCE="AXI_GammaCorrection_0" IS_DATA="TRUE" IS_INSTRUCTION="TRUE" MASTERBUSINTERFACE="S_AXI_0" MEMTYPE="REGISTER" SLAVEBUSINTERFACE="S_AXI"/>
+      </MEMORYMAP>
+      <PERIPHERALS>
+        <PERIPHERAL INSTANCE="AXI_GammaCorrection_0"/>
+      </PERIPHERALS>
+    </BUSINTERFACE>
+  </EXTERNALINTERFACES>
+
+  <MODULES>
+    <MODULE FULLNAME="/AXI_GammaCorrection_0" HWVERSION="1.0" INSTANCE="AXI_GammaCorrection_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="AXI_GammaCorrection" VLNV="xilinx.com:module_ref:AXI_GammaCorrection:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="kAXI_InputDataWidth" VALUE="32"/>
+        <PARAMETER NAME="kInputColorWidth" VALUE="10"/>
+        <PARAMETER NAME="kAXI_OutputDataWidth" VALUE="24"/>
+        <PARAMETER NAME="C_S_AXI_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_S_AXI_ADDR_WIDTH" VALUE="3"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_AXI_GammaCorrection_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+        <PARAMETER NAME="C_BASEADDR" VALUE="0x00000000"/>
+        <PARAMETER NAME="C_HIGHADDR" VALUE="0x00000FFF"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="StreamClk" SIGIS="undef" SIGNAME="External_Ports_aclk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aclk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="sStreamReset_n" SIGIS="undef" SIGNAME="External_Ports_aresetn_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aresetn_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axis_video_tready" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_1" PORT="m_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axis_video_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_1" PORT="m_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_video_tvalid" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_1" PORT="m_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_video_tuser" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tuser">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_1" PORT="m_axis_tuser"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_video_tlast" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_1" PORT="m_axis_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="m_axis_video_tready" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_0" PORT="s_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="23" NAME="m_axis_video_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_0" PORT="s_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_video_tvalid" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_0" PORT="s_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_video_tuser" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tuser">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_0" PORT="s_axis_tuser"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_video_tlast" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi4stream_vip_0" PORT="s_axis_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="AxiLiteClk" SIGIS="undef" SIGNAME="External_Ports_aclk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aclk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="aAxiLiteReset_n" SIGIS="undef" SIGNAME="External_Ports_aresetn_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aresetn_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_AWADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_AWPROT" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S_AXI_AWVALID" SIGIS="undef"/>
+        <PORT DIR="O" NAME="S_AXI_AWREADY" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="31" NAME="S_AXI_WDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="3" NAME="S_AXI_WSTRB" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S_AXI_WVALID" SIGIS="undef"/>
+        <PORT DIR="O" NAME="S_AXI_WREADY" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="1" NAME="S_AXI_BRESP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="S_AXI_BVALID" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S_AXI_BREADY" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_ARADDR" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="2" NAME="S_AXI_ARPROT" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S_AXI_ARVALID" SIGIS="undef"/>
+        <PORT DIR="O" NAME="S_AXI_ARREADY" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="S_AXI_RDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="1" NAME="S_AXI_RRESP" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" NAME="S_AXI_RVALID" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S_AXI_RREADY" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="AXI_GammaCorrection_0_m_axis_video" NAME="m_axis_video" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="m_axis_video_tdata"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="m_axis_video_tlast"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="m_axis_video_tuser"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_video_tvalid"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="m_axis_video_tready"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="axi4stream_vip_1_M_AXIS" NAME="s_axis_video" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s_axis_video_tdata"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="s_axis_video_tlast"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="s_axis_video_tuser"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s_axis_video_tvalid"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="s_axis_video_tready"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="External_Interface_S_AXI_0" DATAWIDTH="32" NAME="S_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ADDR_WIDTH" VALUE="3"/>
+          <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="ARUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="WUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="RUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="BUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="READ_WRITE_MODE" VALUE="READ_WRITE"/>
+          <PARAMETER NAME="HAS_BURST" VALUE="0"/>
+          <PARAMETER NAME="HAS_LOCK" VALUE="0"/>
+          <PARAMETER NAME="HAS_PROT" VALUE="1"/>
+          <PARAMETER NAME="HAS_CACHE" VALUE="0"/>
+          <PARAMETER NAME="HAS_QOS" VALUE="0"/>
+          <PARAMETER NAME="HAS_REGION" VALUE="0"/>
+          <PARAMETER NAME="HAS_WSTRB" VALUE="1"/>
+          <PARAMETER NAME="HAS_BRESP" VALUE="1"/>
+          <PARAMETER NAME="HAS_RRESP" VALUE="1"/>
+          <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
+          <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="1"/>
+          <PARAMETER NAME="MAX_BURST_LENGTH" VALUE="1"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN"/>
+          <PARAMETER NAME="NUM_READ_THREADS" VALUE="1"/>
+          <PARAMETER NAME="NUM_WRITE_THREADS" VALUE="1"/>
+          <PARAMETER NAME="RUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PARAMETER NAME="WUSER_BITS_PER_BYTE" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="AWADDR" PHYSICAL="S_AXI_AWADDR"/>
+            <PORTMAP LOGICAL="AWPROT" PHYSICAL="S_AXI_AWPROT"/>
+            <PORTMAP LOGICAL="AWVALID" PHYSICAL="S_AXI_AWVALID"/>
+            <PORTMAP LOGICAL="AWREADY" PHYSICAL="S_AXI_AWREADY"/>
+            <PORTMAP LOGICAL="WDATA" PHYSICAL="S_AXI_WDATA"/>
+            <PORTMAP LOGICAL="WSTRB" PHYSICAL="S_AXI_WSTRB"/>
+            <PORTMAP LOGICAL="WVALID" PHYSICAL="S_AXI_WVALID"/>
+            <PORTMAP LOGICAL="WREADY" PHYSICAL="S_AXI_WREADY"/>
+            <PORTMAP LOGICAL="BRESP" PHYSICAL="S_AXI_BRESP"/>
+            <PORTMAP LOGICAL="BVALID" PHYSICAL="S_AXI_BVALID"/>
+            <PORTMAP LOGICAL="BREADY" PHYSICAL="S_AXI_BREADY"/>
+            <PORTMAP LOGICAL="ARADDR" PHYSICAL="S_AXI_ARADDR"/>
+            <PORTMAP LOGICAL="ARPROT" PHYSICAL="S_AXI_ARPROT"/>
+            <PORTMAP LOGICAL="ARVALID" PHYSICAL="S_AXI_ARVALID"/>
+            <PORTMAP LOGICAL="ARREADY" PHYSICAL="S_AXI_ARREADY"/>
+            <PORTMAP LOGICAL="RDATA" PHYSICAL="S_AXI_RDATA"/>
+            <PORTMAP LOGICAL="RRESP" PHYSICAL="S_AXI_RRESP"/>
+            <PORTMAP LOGICAL="RVALID" PHYSICAL="S_AXI_RVALID"/>
+            <PORTMAP LOGICAL="RREADY" PHYSICAL="S_AXI_RREADY"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/axi4stream_vip_0" HWVERSION="1.1" INSTANCE="axi4stream_vip_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi4stream_vip" VLNV="xilinx.com:ip:axi4stream_vip:1.1">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi4stream_vip;v=v1_1;d=pg277-axi4stream-vip.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_AXI4STREAM_SIGNAL_SET" VALUE="0b00000000000000000000000010010011"/>
+        <PARAMETER NAME="C_AXI4STREAM_INTERFACE_MODE" VALUE="2"/>
+        <PARAMETER NAME="C_AXI4STREAM_DATA_WIDTH" VALUE="24"/>
+        <PARAMETER NAME="C_AXI4STREAM_USER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_ID_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_DEST_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_USER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_AXI4STREAM_HAS_ARESETN" VALUE="1"/>
+        <PARAMETER NAME="INTERFACE_MODE" VALUE="SLAVE"/>
+        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+        <PARAMETER NAME="USER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="HAS_TUSER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+        <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+        <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+        <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+        <PARAMETER NAME="HAS_ACLKEN" VALUE="0"/>
+        <PARAMETER NAME="HAS_ARESETN" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_axi4stream_vip_0_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="External_Ports_aclk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aclk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="aresetn" SIGIS="rst" SIGNAME="External_Ports_aresetn_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aresetn_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="s_axis_tvalid" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="m_axis_video_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="s_axis_tready" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="m_axis_video_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="23" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="m_axis_video_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="s_axis_tlast" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="m_axis_video_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="s_axis_tuser" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_m_axis_video_tuser">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="m_axis_video_tuser"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="AXI_GammaCorrection_0_m_axis_video" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="3"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_aclk_0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s_axis_tdata"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="s_axis_tlast"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="s_axis_tready"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="s_axis_tuser"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE FULLNAME="/axi4stream_vip_1" HWVERSION="1.1" INSTANCE="axi4stream_vip_1" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axi4stream_vip" VLNV="xilinx.com:ip:axi4stream_vip:1.1">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="http://www.xilinx.com/cgi-bin/docs/ipdoc?c=axi4stream_vip;v=v1_1;d=pg277-axi4stream-vip.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_AXI4STREAM_SIGNAL_SET" VALUE="0b00000000000000000000000010010011"/>
+        <PARAMETER NAME="C_AXI4STREAM_INTERFACE_MODE" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_AXI4STREAM_USER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_ID_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_DEST_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="C_AXI4STREAM_USER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_AXI4STREAM_HAS_ARESETN" VALUE="1"/>
+        <PARAMETER NAME="INTERFACE_MODE" VALUE="MASTER"/>
+        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+        <PARAMETER NAME="USER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="HAS_TUSER_BITS_PER_BYTE" VALUE="0"/>
+        <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+        <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+        <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+        <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+        <PARAMETER NAME="HAS_ACLKEN" VALUE="0"/>
+        <PARAMETER NAME="HAS_ARESETN" VALUE="1"/>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_axi4stream_vip_1_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT CLKFREQUENCY="100000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="External_Ports_aclk_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aclk_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="aresetn" SIGIS="rst" SIGNAME="External_Ports_aresetn_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="aresetn_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="m_axis_tvalid" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="s_axis_video_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="m_axis_tready" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="s_axis_video_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="s_axis_video_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="m_axis_tlast" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="s_axis_video_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="m_axis_tuser" RIGHT="0" SIGIS="undef" SIGNAME="AXI_GammaCorrection_0_s_axis_video_tuser">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="AXI_GammaCorrection_0" PORT="s_axis_video_tuser"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="axi4stream_vip_1_M_AXIS" NAME="M_AXIS" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="1"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="design_1_aclk_0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="m_axis_tdata"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="m_axis_tlast"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="m_axis_tready"/>
+            <PORTMAP LOGICAL="TUSER" PHYSICAL="m_axis_tuser"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>
