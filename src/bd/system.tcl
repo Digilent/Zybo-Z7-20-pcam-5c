@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2018.2
+set scripts_vivado_version 2019.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -132,7 +132,7 @@ if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
 digilentinc.com:user:AXI_BayerToRGB:1.0\
 digilentinc.com:user:AXI_GammaCorrection:1.0\
-digilentinc.com:ip:MIPI_CSI_2_RX:1.1\
+digilentinc.com:ip:MIPI_CSI_2_RX:1.2\
 digilentinc.com:ip:MIPI_D_PHY_RX:1.3\
 xilinx.com:ip:axi_vdma:6.3\
 xilinx.com:ip:clk_wiz:6.0\
@@ -231,14 +231,20 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+
   set cam_gpio [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:gpio_rtl:1.0 cam_gpio ]
+
   set cam_iic [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:iic_rtl:1.0 cam_iic ]
+
   set dphy_hs_clock [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 dphy_hs_clock ]
   set_property -dict [ list \
    CONFIG.FREQ_HZ {336000000} \
    ] $dphy_hs_clock
+
   set hdmi_tx [ create_bd_intf_port -mode Master -vlnv digilentinc.com:interface:tmds_rtl:1.0 hdmi_tx ]
+
 
   # Create ports
   set dphy_clk_lp_n [ create_bd_port -dir I dphy_clk_lp_n ]
@@ -266,7 +272,7 @@ proc create_root_design { parentCell } {
    }
   
   # Create instance: MIPI_CSI_2_RX_0, and set properties
-  set MIPI_CSI_2_RX_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:MIPI_CSI_2_RX:1.1 MIPI_CSI_2_RX_0 ]
+  set MIPI_CSI_2_RX_0 [ create_bd_cell -type ip -vlnv digilentinc.com:ip:MIPI_CSI_2_RX:1.2 MIPI_CSI_2_RX_0 ]
   set_property -dict [ list \
    CONFIG.kDebug {false} \
    CONFIG.kGenerateAXIL {true} \
@@ -1374,6 +1380,7 @@ proc create_root_design { parentCell } {
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()
@@ -1385,6 +1392,4 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
-
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
