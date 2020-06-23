@@ -70,4 +70,6 @@ For technical support or questions, please post on the [Digilent Forum](forum.di
 
 Additional Notes
 ----------------
+Open the tcl file, found at \</src/other/sim_sources_workaround.tcl for updating all the library fields needed for running the simulation in "Edit IP packager".
 For more information on how this project is version controlled, refer to the [digilent-vivado-scripts repo](https://github.com/digilent/digilent-vivado-scripts).
+
