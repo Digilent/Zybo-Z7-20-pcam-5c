@@ -84,58 +84,58 @@ port (
   -- Write address (issued by master, acceped by Slave)
   S_AXI_AWADDR  : in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
   -- Write channel Protection type. This signal indicates the
-    -- privilege and security level of the transaction, and whether
-    -- the transaction is a data access or an instruction access.
+  -- privilege and security level of the transaction, and whether
+  -- the transaction is a data access or an instruction access.
   S_AXI_AWPROT  : in std_logic_vector(2 downto 0);
   -- Write address valid. This signal indicates that the master signaling
-    -- valid write address and control information.
+  -- valid write address and control information.
   S_AXI_AWVALID  : in std_logic;
   -- Write address ready. This signal indicates that the slave is ready
-    -- to accept an address and associated control signals.
+  -- to accept an address and associated control signals.
   S_AXI_AWREADY  : out std_logic;
   -- Write data (issued by master, acceped by Slave)
   S_AXI_WDATA  : in std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
   -- Write strobes. This signal indicates which byte lanes hold
-    -- valid data. There is one write strobe bit for each eight
-    -- bits of the write data bus.
+  -- valid data. There is one write strobe bit for each eight
+  -- bits of the write data bus.
   S_AXI_WSTRB  : in std_logic_vector((C_S_AXI_DATA_WIDTH/8)-1 downto 0);
   -- Write valid. This signal indicates that valid write
-    -- data and strobes are available.
+  -- data and strobes are available.
   S_AXI_WVALID  : in std_logic;
   -- Write ready. This signal indicates that the slave
-    -- can accept the write data.
+  -- can accept the write data.
   S_AXI_WREADY  : out std_logic;
   -- Write response. This signal indicates the status
-    -- of the write transaction.
+  -- of the write transaction.
   S_AXI_BRESP  : out std_logic_vector(1 downto 0);
   -- Write response valid. This signal indicates that the channel
-    -- is signaling a valid write response.
+  -- is signaling a valid write response.
   S_AXI_BVALID  : out std_logic;
   -- Response ready. This signal indicates that the master
-    -- can accept a write response.
+  -- can accept a write response.
   S_AXI_BREADY  : in std_logic;
   -- Read address (issued by master, acceped by Slave)
   S_AXI_ARADDR  : in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
   -- Protection type. This signal indicates the privilege
-    -- and security level of the transaction, and whether the
-    -- transaction is a data access or an instruction access.
+  -- and security level of the transaction, and whether the
+  -- transaction is a data access or an instruction access.
   S_AXI_ARPROT  : in std_logic_vector(2 downto 0);
   -- Read address valid. This signal indicates that the channel
-    -- is signaling valid read address and control information.
+  -- is signaling valid read address and control information.
   S_AXI_ARVALID  : in std_logic;
   -- Read address ready. This signal indicates that the slave is
-    -- ready to accept an address and associated control signals.
+  -- ready to accept an address and associated control signals.
   S_AXI_ARREADY  : out std_logic;
   -- Read data (issued by slave)
   S_AXI_RDATA  : out std_logic_vector(C_S_AXI_DATA_WIDTH-1 downto 0);
   -- Read response. This signal indicates the status of the
-    -- read transfer.
+  -- read transfer.
   S_AXI_RRESP  : out std_logic_vector(1 downto 0);
   -- Read valid. This signal indicates that the channel is
-    -- signaling the required read data.
+  -- signaling the required read data.
   S_AXI_RVALID  : out std_logic;
   -- Read ready. This signal indicates that the master can
-    -- accept the read data and response information.
+  -- accept the read data and response information.
   S_AXI_RREADY  : in std_logic
 );
 end AXI_GammaCorrection;
@@ -145,8 +145,10 @@ architecture rtl of AXI_GammaCorrection is
   type RGB_Component_t is array (2 downto 0) of
     STD_LOGIC_VECTOR(7 downto 0);
   signal sGammaComponent: RGB_Component_t;
-  signal sAXI_OutputValid : STD_LOGIC;
-  signal sDataIsAvailableAndRequested : STD_LOGIC;
+  signal mAXI_OutputValid : STD_LOGIC;
+  signal sDataIsAvailableAndNeeded : STD_LOGIC;
+  signal sDataKeptByStoredGamma : STD_LOGIC;
+  signal sPrevDataKeptByStoredGamma : STD_LOGIC;
 
   -- AXI4LITE signals
   signal axi_awaddr  : std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
@@ -178,55 +180,132 @@ architecture rtl of AXI_GammaCorrection is
 
 begin
 
-sDataIsAvailableAndRequested <= '1' when ((m_axis_video_tready = '1') and
-  (s_axis_video_tvalid = '1')) else '0';
-s_axis_video_tready <= m_axis_video_tready;
+  -- This process keeps track, in the sDataKeptByStoredGamma signal, of any Input Stream
+  -- data that entered but did not exit StoredGammaCoefs component.
+  KeepTrackOfStoredGammaReads: process(StreamClk)
+  begin
+    if rising_edge(StreamClk) then
+      if sStreamReset_n = '0' then
+      sDataKeptByStoredGamma <= '0';
+      -- If we are currently receiving a data word from the upstream device, and
+      -- there is no data word already stored in the StorerdGammaCoefs component
+      elsif ((s_axis_video_tvalid = '1') and (sDataKeptByStoredGamma = '0')) then
+        -- It means we will gave one data word stored in the StoredGammaCoefs output
+        -- register
+        sDataKeptByStoredGamma <= '1';
+      -- Otherwise, if we are currently sending a data word to the downstream device
+      elsif ((mAXI_OutputValid = '1') and (m_axis_video_tready = '1')) then
+        -- But we are not receiving a data word from the upstream device, or the
+        -- receiving word is actually the word we are currently sending to the downstream
+        -- device
+        if ((not ((s_axis_video_tvalid = '1') and (m_axis_video_tready = '1')) ) or
+          (sPrevDataKeptByStoredGamma = '0')) then
+          -- It means we will have no data word stored in the StoredFammaCoefs output
+          -- register
+          sDataKeptByStoredGamma <= '0';
+        end if;
+      end if;
+    end if;
+  end process KeepTrackOfStoredGammaReads;
 
--- This infers multiple ROM components (one for each color component), in
--- order to apply gamma correction to each color component.
-GammaStorageCoefsGeneration: for i in 0 to 2 generate
-begin
-  StoredGammaCoefsInst: entity work.StoredGammaCoefs
-  port map(
-    RomClk => StreamClk,
-    rReadEnable => sDataIsAvailableAndRequested,
-    rGammaFactor => sGammaReg(2 downto 0),
-    rReadAddr => s_axis_video_tdata((kInputColorWidth*(i+1)-1) downto (kInputColorWidth*i)),
-    rStoredData => sGammaComponent(i)
-  );
-end generate;
+  -- This process keeps track, in the sPrevDataKeptByStoredGamma signal, of any Input
+  -- Stream data that entered but did not exit StoredGammaCoefs component, which was also
+  -- handshaked using the Ready signal.
+  -- Basically, this helps us detect if current data on the Input Stream bus is the same
+  -- as the current data on the Output Stream or not.
+  KeepTrackOfPrevDataReads: process(StreamClk)
+  begin
+    if rising_edge(StreamClk) then
+      if sStreamReset_n = '0' then
+        sPrevDataKeptByStoredGamma <= '0';
+      -- If we just read a data word from the upstream device
+      elsif ((s_axis_video_tvalid = '1') and (m_axis_video_tready = '1')) then
+        -- But we are not sending a data word to the downstream device
+        if (not ((mAXI_OutputValid = '1') and (m_axis_video_tready = '1'))) then
+          -- It means we have one data word stored in the StoredGammaCoefs output register
+          sPrevDataKeptByStoredGamma <= '1';
+        end if;
+      -- Otherwise, if we are just sending a data word to the downstream device
+      elsif ((mAXI_OutputValid = '1') and (m_axis_video_tready = '1')) then
+        -- It means we have no data word stored in the StoredFammaCoefs output register
+        sPrevDataKeptByStoredGamma <= '0';
+      end if;
+    end if;
+  end process KeepTrackOfPrevDataReads;
 
--- This process assigns the Valid, User and Last signals on the AXI stream output
--- interface.
-ShiftStrobes: process(StreamClk)
-begin
-  if rising_edge(StreamClk) then
-    if sStreamReset_n = '0' then
-      sAXI_OutputValid <= '0';
-      m_axis_video_tuser <= '0';
-      m_axis_video_tlast <= '0';
-    elsif (m_axis_video_tready = '1') then
-      if (s_axis_video_tvalid = '1') then
+  -- We read data into the StoredGammaCoefs component in the following cases:
+  --   - Either when there is data available on the Input Stream interface, and no data
+  --     stored in the StoredGammaCoefs component;
+  --   - Either when we read new data from the Input Stream and write old data to the
+  --     Output Stream at the same time, meaning we need to provide the new data to the
+  --     Output Stream in the next clock cycle.
+  sDataIsAvailableAndNeeded <= '1' when (
+    ((s_axis_video_tvalid = '1') and (sDataKeptByStoredGamma = '0')) or
+    ((s_axis_video_tvalid = '1') and (m_axis_video_tready = '1') and
+      (mAXI_OutputValid = '1') and (sPrevDataKeptByStoredGamma = '1'))
+    ) else '0';
+  s_axis_video_tready <= m_axis_video_tready;
+
+  -- This infers multiple ROM components (one for each color component), in
+  -- order to apply gamma correction to each color component.
+  GammaStorageCoefsGeneration: for i in 0 to 2 generate
+  begin
+    StoredGammaCoefsInst: entity work.StoredGammaCoefs
+    port map(
+      RomClk => StreamClk,
+      rReadEnable => sDataIsAvailableAndNeeded,
+      rGammaFactor => sGammaReg(2 downto 0),
+      rReadAddr => s_axis_video_tdata((kInputColorWidth*(i+1)-1) downto
+        (kInputColorWidth*i)),
+      rStoredData => sGammaComponent(i)
+    );
+  end generate;
+
+  -- This process assigns the Valid, User and Last signals on the AXI stream output
+  -- interface.
+  ShiftStrobes: process(StreamClk)
+  begin
+    if rising_edge(StreamClk) then
+      if sStreamReset_n = '0' then
+        mAXI_OutputValid <= '0';
+        m_axis_video_tuser <= '0';
+        m_axis_video_tlast <= '0';
+      elsif (mAXI_OutputValid = '1') then
+        if (m_axis_video_tready = '1') then
+          -- If sDataIsAvailableAndNeeded is not asserted, it means the data currently
+          -- on the Input Stream interface is the data that we
+          -- are currently sending on the Output Stream interface (i.e. it has been
+          -- present on the Input Stream interface for more than 1 clock cycle, and no
+          -- previous data is stored inside the StoredGammaCoefs component).
+          -- Therefore, we don't have new data to send on the Output Stream interface
+          -- in the next clock cycle; as a result, we will set the Output strobes to
+          -- logic '0'.
+          if (sDataIsAvailableAndNeeded = '0') then
+            m_axis_video_tuser  <= '0';
+            m_axis_video_tlast  <= '0';
+            mAXI_OutputValid <= '0';
+          else
+            m_axis_video_tuser  <= s_axis_video_tuser;
+            m_axis_video_tlast  <= s_axis_video_tlast;
+            mAXI_OutputValid <= s_axis_video_tvalid;
+          end if;
+        end if;
+      else
         m_axis_video_tuser  <= s_axis_video_tuser;
         m_axis_video_tlast  <= s_axis_video_tlast;
-        sAXI_OutputValid <= '1';
-      else
-        sAXI_OutputValid <= '0';
+        mAXI_OutputValid <= s_axis_video_tvalid;
       end if;
-    elsif (sAXI_OutputValid = '0') then
-      sAXI_OutputValid <= '0';
     end if;
-  end if;
-end process ShiftStrobes;
+  end process ShiftStrobes;
 
--- Assign AXI stream output interface signals.
-m_axis_video_tvalid <= sAXI_OutputValid;
-m_axis_video_tdata  <= sGammaComponent(2) & sGammaComponent(1) & sGammaComponent(0);
+  -- Assign AXI stream output interface signals.
+  m_axis_video_tvalid <= mAXI_OutputValid;
+  m_axis_video_tdata  <= sGammaComponent(2) & sGammaComponent(1) & sGammaComponent(0);
 
 
--- AXI Lite Interface Implementation Starts Here
+  -- AXI Lite Interface Implementation Starts Here
 
--- I/O Connections assignments
+  -- I/O Connections assignments
   S_AXI_AWREADY  <= axi_awready;
   S_AXI_WREADY  <= axi_wready;
   S_AXI_BRESP  <= axi_bresp;
@@ -301,8 +380,8 @@ m_axis_video_tdata  <= sGammaComponent(2) & sGammaComponent(1) & sGammaComponent
 
   -- Implement memory mapped register select and write logic generation
   -- The write data is accepted and written to memory mapped registers when
-  -- axi_awready, S_AXI_WVALID, axi_wready and S_AXI_WVALID are asserted. Write strobes are used to
-  -- select byte enables of slave registers while writing.
+  -- axi_awready, S_AXI_WVALID, axi_wready and S_AXI_WVALID are asserted. Write strobes
+  -- are used to select byte enables of slave registers while writing.
   -- These register is cleared when reset (active low) is applied.
   -- Slave register write enable is asserted when valid address and data is available
   -- and the slave is ready to accept the write address and write data.
@@ -322,7 +401,8 @@ m_axis_video_tdata  <= sGammaComponent(2) & sGammaComponent(1) & sGammaComponent
               if ( S_AXI_WSTRB(byte_index) = '1' ) then
                 -- Respective byte enables are asserted as per write strobes
                 -- slave register 0
-                sGammaReg(byte_index*8+7 downto byte_index*8) <= S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
+                sGammaReg(byte_index*8+7 downto byte_index*8) <=
+                  S_AXI_WDATA(byte_index*8+7 downto byte_index*8);
               end if;
             end loop;
           end if;
@@ -343,11 +423,14 @@ m_axis_video_tdata  <= sGammaComponent(2) & sGammaComponent(1) & sGammaComponent
         axi_bvalid  <= '0';
         axi_bresp   <= "00"; --need to work more on the responses
       else
-        if (axi_awready = '1' and S_AXI_AWVALID = '1' and axi_wready = '1' and S_AXI_WVALID = '1' and axi_bvalid = '0'  ) then
+        if (axi_awready = '1' and S_AXI_AWVALID = '1' and axi_wready = '1' and
+          S_AXI_WVALID = '1' and axi_bvalid = '0'  ) then
           axi_bvalid <= '1';
           axi_bresp  <= "00";
-        elsif (S_AXI_BREADY = '1' and axi_bvalid = '1') then   --check if bready is asserted while bvalid is high)
-          axi_bvalid <= '0';                                 -- (there is a possibility that bready is always asserted high)
+        -- Check if bready is asserted while bvalid is high
+        -- (there is a possibility that bready is always asserted high)
+        elsif (S_AXI_BREADY = '1' and axi_bvalid = '1') then
+          axi_bvalid <= '0';
         end if;
       end if;
     end if;

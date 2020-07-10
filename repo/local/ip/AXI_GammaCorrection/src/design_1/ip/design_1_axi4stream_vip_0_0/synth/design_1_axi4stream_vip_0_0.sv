@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:axi4stream_vip:1.1
-// IP Revision: 3
+// IP Revision: 5
 
-(* X_CORE_INFO = "axi4stream_vip_v1_1_3_top,Vivado 2018.2.2" *)
-(* CHECK_LICENSE_TYPE = "design_1_axi4stream_vip_0_0,axi4stream_vip_v1_1_3_top,{}" *)
-(* CORE_GENERATION_INFO = "design_1_axi4stream_vip_0_0,axi4stream_vip_v1_1_3_top,{x_ipProduct=Vivado 2018.2.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi4stream_vip,x_ipVersion=1.1,x_ipCoreRevision=3,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_AXI4STREAM_SIGNAL_SET=0b00000000000000000000000010010011,C_AXI4STREAM_INTERFACE_MODE=2,C_AXI4STREAM_DATA_WIDTH=24,C_AXI4STREAM_USER_BITS_PER_BYTE=0,C_AXI4STREAM_ID_WIDTH=0,C_AXI4STREAM_DEST_WIDTH=0,C_AXI4STREAM_USER_WIDTH=1,C_AXI4STREAM_HAS_ARESETN=1}" *)
+(* X_CORE_INFO = "axi4stream_vip_v1_1_5_top,Vivado 2019.1" *)
+(* CHECK_LICENSE_TYPE = "design_1_axi4stream_vip_0_0,axi4stream_vip_v1_1_5_top,{}" *)
+(* CORE_GENERATION_INFO = "design_1_axi4stream_vip_0_0,axi4stream_vip_v1_1_5_top,{x_ipProduct=Vivado 2019.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi4stream_vip,x_ipVersion=1.1,x_ipCoreRevision=5,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_AXI4STREAM_SIGNAL_SET=0b00000000000000000000000010010011,C_AXI4STREAM_INTERFACE_MODE=2,C_AXI4STREAM_DATA_WIDTH=24,C_AXI4STREAM_USER_BITS_PER_BYTE=0,C_AXI4STREAM_ID_WIDTH=0,C_AXI4STREAM_DEST_WIDTH=0,C_AXI4STREAM_USER_WIDTH=1,C_AXI4STREAM_HAS_ARESETN=1}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module design_1_axi4stream_vip_0_0 (
   aclk,
@@ -64,10 +64,10 @@ module design_1_axi4stream_vip_0_0 (
   s_axis_tuser
 );
 
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLOCK, ASSOCIATED_BUSIF S_AXIS:M_AXIS, ASSOCIATED_RESET aresetn, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_aclk_0, ASSOCIATED_CLKEN aclken" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLOCK, ASSOCIATED_BUSIF S_AXIS:M_AXIS, ASSOCIATED_RESET ARESETN, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_aclk_0, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 CLOCK CLK" *)
 input wire aclk;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RESET, POLARITY ACTIVE_LOW, TYPE INTERCONNECT" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME RESET, POLARITY ACTIVE_LOW, INSERT_VIP 0, TYPE INTERCONNECT" *)
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 RESET RST" *)
 input wire aresetn;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TVALID" *)
@@ -78,11 +78,11 @@ output wire [0 : 0] s_axis_tready;
 input wire [23 : 0] s_axis_tdata;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TLAST" *)
 input wire [0 : 0] s_axis_tlast;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_aclk_0, LAYERED_METADATA undef" *)
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 3, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 1, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 100000000, PHASE 0.000, CLK_DOMAIN design_1_aclk_0, LAYERED_METADATA undef, INSERT_VIP 0" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TUSER" *)
 input wire [0 : 0] s_axis_tuser;
 
-  axi4stream_vip_v1_1_3_top #(
+  axi4stream_vip_v1_1_5_top #(
     .C_AXI4STREAM_SIGNAL_SET('B00000000000000000000000010010011),
     .C_AXI4STREAM_INTERFACE_MODE(2),
     .C_AXI4STREAM_DATA_WIDTH(24),

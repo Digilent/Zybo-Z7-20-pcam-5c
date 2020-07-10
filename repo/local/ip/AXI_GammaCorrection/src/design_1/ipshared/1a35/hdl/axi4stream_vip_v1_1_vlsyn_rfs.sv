@@ -48,7 +48,7 @@
 `timescale 1ps/1ps
 
 (* DowngradeIPIdentifiedWarnings="yes" *) 
-module axi4stream_vip_v1_1_3_top #
+module axi4stream_vip_v1_1_5_top #
   (
    parameter [31:0]  C_AXI4STREAM_SIGNAL_SET         = 32'h03,
    parameter integer C_AXI4STREAM_INTERFACE_MODE     = 1,  //master, slave and bypass
@@ -101,6 +101,6 @@ module axi4stream_vip_v1_1_3_top #
   assign m_axis_tdest  = (C_AXI4STREAM_INTERFACE_MODE ==1 )? s_axis_tdest : {(C_AXI4STREAM_DEST_WIDTH==0? 1: C_AXI4STREAM_DEST_WIDTH){1'b0}};
   assign m_axis_tuser  =  (C_AXI4STREAM_INTERFACE_MODE ==1 )? s_axis_tuser: {(C_AXI4STREAM_USER_WIDTH==0? 1: C_AXI4STREAM_USER_WIDTH){1'b0}}; 
 
-endmodule : axi4stream_vip_v1_1_3_top
+endmodule : axi4stream_vip_v1_1_5_top
 
 

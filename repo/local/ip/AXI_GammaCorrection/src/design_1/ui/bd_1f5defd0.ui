@@ -1,19 +1,20 @@
 {
-   ExpandedHierarchyInLayout: "",
-   guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 non-TLS
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace port aresetn_0 -pg 1 -y 120 -defaultsOSRD
-preplace port aclk_0 -pg 1 -y 100 -defaultsOSRD
-preplace port S_AXI_0 -pg 1 -y 50 -defaultsOSRD
-preplace inst AXI_GammaCorrection_0 -pg 1 -lvl 2 -y 130 -defaultsOSRD
-preplace inst axi4stream_vip_0 -pg 1 -lvl 3 -y 100 -defaultsOSRD
-preplace inst axi4stream_vip_1 -pg 1 -lvl 1 -y 100 -defaultsOSRD
-preplace netloc axi4stream_vip_1_M_AXIS 1 1 1 -230
-preplace netloc S_AXI_0_1 1 0 2 -450J 30 -240J
-preplace netloc aresetn_0_1 1 0 3 -440J 180 -240 300 170
-preplace netloc aclk_0_1 1 0 3 -450 170 -230 290 160
-preplace netloc AXI_GammaCorrection_0_m_axis_video 1 2 1 150
-levelinfo -pg 1 -470 -340 -40 270 370 -top -270 -bot 410
-",
+preplace port S_AXI_0 -pg 1 -lvl 0 -x -470 -y 50 -defaultsOSRD
+preplace port aclk_0 -pg 1 -lvl 0 -x -470 -y 90 -defaultsOSRD
+preplace port aresetn_0 -pg 1 -lvl 0 -x -470 -y 120 -defaultsOSRD
+preplace inst axi4stream_vip_0 -pg 1 -lvl 3 -x 270 -y 100 -defaultsOSRD
+preplace inst axi4stream_vip_1 -pg 1 -lvl 1 -x -340 -y 100 -defaultsOSRD
+preplace inst AXI_GammaCorrection_0 -pg 1 -lvl 2 -x -40 -y 130 -defaultsOSRD
+preplace netloc aclk_0_1 1 0 3 -450 170 -240 240 120
+preplace netloc aresetn_0_1 1 0 3 -440J 180 -230 250 130
+preplace netloc axi4stream_vip_1_M_AXIS 1 1 1 -240 80n
+preplace netloc AXI_GammaCorrection_0_m_axis_video 1 2 1 110 80n
+preplace netloc S_AXI_0_1 1 0 2 -450J 30 -230J
+levelinfo -pg 1 -470 -340 -40 270 380
+pagesize -pg 1 -db -bbox -sgen -580 -270 380 410
+"
 }
 0

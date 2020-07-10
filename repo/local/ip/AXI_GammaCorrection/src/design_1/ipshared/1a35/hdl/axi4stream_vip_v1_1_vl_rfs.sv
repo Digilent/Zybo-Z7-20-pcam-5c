@@ -48,7 +48,7 @@
 `timescale 1ps/1ps
 
 (* DowngradeIPIdentifiedWarnings="yes" *) 
-module axi4stream_vip_v1_1_3_top #
+module axi4stream_vip_v1_1_5_top #
   (
    parameter [31:0]  C_AXI4STREAM_SIGNAL_SET         = 32'h03,
    parameter integer C_AXI4STREAM_INTERFACE_MODE     = 1,  //master, slave and bypass
@@ -172,36 +172,6 @@ module axi4stream_vip_v1_1_3_top #
     .ACLKEN                              (aclken)
   );  
 
-  `ifdef XILINX_SIMULATOR
-  axis_protocol_checker_v1_2_3_top #(
-    .C_AXIS_TDATA_WIDTH                  (C_AXI4STREAM_DATA_WIDTH ==0 ? 1: C_AXI4STREAM_DATA_WIDTH),
-    .C_AXIS_TID_WIDTH                    (C_AXI4STREAM_ID_WIDTH ==0 ? 1: C_AXI4STREAM_ID_WIDTH ),
-    .C_AXIS_TDEST_WIDTH                  (C_AXI4STREAM_DEST_WIDTH ==0 ? 1 :C_AXI4STREAM_DEST_WIDTH),
-    .C_AXIS_TUSER_WIDTH                  (C_AXI4STREAM_USER_WIDTH ==0 ? 1: C_AXI4STREAM_USER_WIDTH),
-    .C_AXIS_SIGNAL_SET                   (C_AXI4STREAM_SIGNAL_SET),
-    .C_PC_MAXWAITS                       (0),
-    .C_PC_MESSAGE_LEVEL                  (2),
-    .C_PC_HAS_SYSTEM_RESET               (0),
-    .C_PC_STATUS_WIDTH                   (11)
-  ) PC (
-    .pc_asserted                         (),
-    .pc_status                           (),
-    .aclk                                (aclk),
-    .aresetn                             (aresetn),
-    .system_resetn                       (aresetn),
-    .aclken                              (aclken),
-    .pc_axis_tvalid                      (IF.TVALID          ),
-    .pc_axis_tready                      (IF.TREADY_internal ),
-    .pc_axis_tdata                       (IF.TDATA_internal  ),
-    .pc_axis_tstrb                       (IF.TSTRB_internal   ),
-    .pc_axis_tkeep                       (IF.TKEEP_internal   ),
-    .pc_axis_tlast                       (IF.TLAST_internal   ),
-    .pc_axis_tid                         (IF.TID_internal     ),
-    .pc_axis_tdest                       (IF.TDEST_internal   ),
-    .pc_axis_tuser                       (IF.TUSER_internal   )
-    
-    );
-  `endif
   //synthesis translate_off
   initial begin
     $display("Xilinx AXI4STREAM VIP Found at Path: %m");
@@ -265,7 +235,6 @@ module axi4stream_vip_v1_1_3_top #
       $fatal(0,"XilixAXISVIP: VIP was not initially configured as Pass-through. Cannot change mode.Delete non-Passthrough VIP's API call of set_passthrough_mode in the testbench. Refer PG277 section about Useful Coding Guidelines and Example for how to use master/slave/passthrough VIP");
     end
   endfunction : set_slave_mode
-`ifndef XILINX_SIMULATOR
   /*
    Function:  set_max_wait_cycles (not available in VIVADO Simulator)
    Sets max_wait_cycles of PC(ARM AXI4 Stream Protocol Checker) 
@@ -297,9 +266,8 @@ module axi4stream_vip_v1_1_3_top #
   function void clr_fatal_to_warnings();
     IF.PC.fatal_to_warnings = 0;
   endfunction : clr_fatal_to_warnings
-`endif
   //synthesis translate_on
 
-endmodule : axi4stream_vip_v1_1_3_top
+endmodule : axi4stream_vip_v1_1_5_top
 
 

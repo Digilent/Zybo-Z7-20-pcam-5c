@@ -14,25 +14,28 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="379500001fs"></ZoomEndTime>
-      <Cursor1Time time="2030001000fs"></Cursor1Time>
+      <ZoomEndTime time="300538450fs"></ZoomEndTime>
+      <Cursor1Time time="258346000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="146"></ValueColumnWidth>
+      <NameColumnWidth column_width="257"></NameColumnWidth>
+      <ValueColumnWidth column_width="111"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/tb_design_1_wrapper/error_cnt" type="array">
       <obj_property name="ElementShortName">error_cnt[31:0]</obj_property>
       <obj_property name="ObjectShortName">error_cnt[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_design_1_wrapper/comparison_cnt" type="array">
       <obj_property name="ElementShortName">comparison_cnt[31:0]</obj_property>
       <obj_property name="ObjectShortName">comparison_cnt[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_design_1_wrapper/max_comparison_cnt" type="array">
       <obj_property name="ElementShortName">max_comparison_cnt[31:0]</obj_property>
       <obj_property name="ObjectShortName">max_comparison_cnt[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_design_1_wrapper/InputData" type="array">
       <obj_property name="ElementShortName">InputData[0:3][7:0]</obj_property>
@@ -42,41 +45,25 @@
       <obj_property name="ElementShortName">OutputData[0:2][7:0]</obj_property>
       <obj_property name="ObjectShortName">OutputData[0:2][7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/Color1" type="array">
-      <obj_property name="ElementShortName">Color1[7:0]</obj_property>
-      <obj_property name="ObjectShortName">Color1[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/Color2" type="array">
-      <obj_property name="ElementShortName">Color2[7:0]</obj_property>
-      <obj_property name="ObjectShortName">Color2[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/Color3" type="array">
-      <obj_property name="ElementShortName">Color3[7:0]</obj_property>
-      <obj_property name="ObjectShortName">Color3[7:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/master_moniter_transaction_queue_size" type="array">
-      <obj_property name="ElementShortName">master_moniter_transaction_queue_size[31:0]</obj_property>
-      <obj_property name="ObjectShortName">master_moniter_transaction_queue_size[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/slave_moniter_transaction_queue_size" type="array">
-      <obj_property name="ElementShortName">slave_moniter_transaction_queue_size[31:0]</obj_property>
-      <obj_property name="ObjectShortName">slave_moniter_transaction_queue_size[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/mst_agent_verbosity" type="array">
-      <obj_property name="ElementShortName">mst_agent_verbosity[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mst_agent_verbosity[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/slv_agent_verbosity" type="array">
-      <obj_property name="ElementShortName">slv_agent_verbosity[31:0]</obj_property>
-      <obj_property name="ObjectShortName">slv_agent_verbosity[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/tb_design_1_wrapper/clock" type="logic">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_design_1_wrapper/reset" type="logic">
-      <obj_property name="ElementShortName">reset</obj_property>
-      <obj_property name="ObjectShortName">reset</obj_property>
+   <wvobject fp_name="/tb_design_1_wrapper/areset_n" type="logic">
+      <obj_property name="ElementShortName">areset_n</obj_property>
+      <obj_property name="ObjectShortName">areset_n</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/U0/sDataKeptByStoredGamma" type="logic">
+      <obj_property name="ElementShortName">sDataKeptByStoredGamma</obj_property>
+      <obj_property name="ObjectShortName">sDataKeptByStoredGamma</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/U0/sPrevDataKeptByStoredGamma" type="logic">
+      <obj_property name="ElementShortName">sPrevDataKeptByStoredGamma</obj_property>
+      <obj_property name="ObjectShortName">sPrevDataKeptByStoredGamma</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/U0/sDataIsAvailableAndNeeded" type="logic">
+      <obj_property name="ElementShortName">sDataIsAvailableAndNeeded</obj_property>
+      <obj_property name="ObjectShortName">sDataIsAvailableAndNeeded</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_design_1_wrapper/DUT/design_1_i/AXI_GammaCorrection_0/s_axis_video_tready" type="logic">
       <obj_property name="ElementShortName">s_axis_video_tready</obj_property>

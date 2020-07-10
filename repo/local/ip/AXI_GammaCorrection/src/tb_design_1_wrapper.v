@@ -36,7 +36,7 @@
 *    4. set vif_proxy dummy drive type 
 *    5. start_slave
 * As for ready generation, when TREADY is on, if user enviroment doesn't do anything, it will
-* randomly generate ready siganl if user wants to create his own ready signal,
+* randomly generate ready signal if user wants to create his own ready signal,
 * please refer task slv_gen_tready 
 ***************************************************************************************************/
 
@@ -58,15 +58,13 @@ module tb_design_1_wrapper(
   // Comparison count to check how many comparsion happened
   xil_axi4stream_uint                            comparison_cnt = 0;
   // Maximum number of comparisons to be done during the test
-  xil_axi4stream_uint                            max_comparison_cnt = 10;
+  xil_axi4stream_uint                            max_comparison_cnt = 100;
   // Event when comparison tests finished
   event                                          comparison_tests_finish_event;
 
   xil_axi4stream_data_byte InputData[4];
+  xil_axi4stream_data_byte InputColors[3];
   xil_axi4stream_data_byte OutputData[3];
-  xil_axi4stream_data_byte Color1;
-  xil_axi4stream_data_byte Color2;
-  xil_axi4stream_data_byte Color3;
 
   /***************************************************************************************************
   * The following monitor transactions are for simple scoreboards doing self-checking
@@ -115,7 +113,7 @@ module tb_design_1_wrapper(
   // Clock signal
   bit                                     clock;
   // Reset signal
-  bit                                     reset;
+  bit                                     areset_n;
 
   bit [2:0]S_AXI_0_araddr;
   bit [2:0]S_AXI_0_arprot;
@@ -158,7 +156,7 @@ module tb_design_1_wrapper(
     .S_AXI_0_wready(S_AXI_0_wready),
     .S_AXI_0_wstrb(S_AXI_0_wstrb),
     .S_AXI_0_wvalid(S_AXI_0_wvalid),
-    .aresetn_0(reset),
+    .aresetn_0(areset_n),
     .aclk_0(clock)
   );
 
@@ -212,9 +210,9 @@ module tb_design_1_wrapper(
     * Slave VIP create TREADY if it is on
     ***************************************************************************************************/
 
-    reset <= 1'b0;
+    areset_n <= 1'b0;
 	#20ns;
-    reset <= 1'b1;
+    areset_n <= 1'b1;
 
     fork
       begin
@@ -295,6 +293,18 @@ module tb_design_1_wrapper(
     mst_agent.driver.send(wr_transaction);
   endtask
 
+  /*************************************************************************************************************
+  * Input data to the DUT contains 3 10-bit color components (it does not matter which colors, only the order
+  * is important).
+  * Output data from the DUT contains 3 8-bit color components; from each color, we need to remove the two LSBs
+  * and to make sure we keep the color order when generating the output data.
+  *************************************************************************************************************/
+  task extract_colors_from_input_data(input xil_axi4stream_data_byte data[4], output xil_axi4stream_data_byte colors[3]);
+    colors[0] = ((data[1] & 8'h03) << 6) | (data[0] >> 2);
+	colors[1] = ((data[2] & 8'h0F) << 4) | (data[1] >> 4);
+	colors[2] = ((data[3] & 8'h3F) << 2) | (data[2] >> 6);
+  endtask
+
   /***************************************************************************************************
   * Get monitor transaction from master VIP monitor analysis port
   * Put the transaction into master monitor transaction queue 
@@ -344,19 +354,18 @@ module tb_design_1_wrapper(
 		  mst_scb_transaction.get_data(InputData);
 		  slv_scb_transaction.get_data(OutputData); 
 		  
-		  Color1 = ((InputData[1] & 8'h03) << 6) | (InputData[0] >> 2);
-		  Color2 = ((InputData[2] & 8'h0F) << 4) | (InputData[1] >> 4);
-		  Color3 = ((InputData[3] & 8'h3F) << 2) | (InputData[2] >> 6);
+		  extract_colors_from_input_data(InputData, InputColors);
 		  
 		  $display("Data sent by master: ",$sformatf("%x_", InputData[3]),$sformatf("%x_", InputData[2]),$sformatf("%x_", InputData[1]),$sformatf("%x_", InputData[0]));
-		  $display("Color1: ",$sformatf("%x", Color1));
-		  $display("Color2: ",$sformatf("%x", Color2));
-		  $display("Color3: ",$sformatf("%x", Color3));
+		  $display("Color1: ",$sformatf("%x", InputColors[0]));
+		  $display("Color2: ",$sformatf("%x", InputColors[1]));
+		  $display("Color3: ",$sformatf("%x", InputColors[2]));
 		  $display("Data received by slave: ",$sformatf("%x_", OutputData[2]),$sformatf("%x_", OutputData[1]),$sformatf("%x_", OutputData[0]));
 		  
-          if ((Color1 != OutputData[0]) || (Color2 != OutputData[1]) || (Color3 != OutputData[2])) begin
+          if ((InputColors[0] != OutputData[0]) || (InputColors[1] != OutputData[1]) || (InputColors[2] != OutputData[2])) begin
             $display("ERROR:  Master VIP against Slave VIP scoreboard Compare failed");
             error_cnt++;
+			$finish;
           end else begin
             $display("SUCCESS: Master VIP against Slave VIP scoreboard Compare passed");
           end
