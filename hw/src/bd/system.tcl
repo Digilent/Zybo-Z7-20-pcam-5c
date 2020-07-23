@@ -20,12 +20,12 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2019.1
+set scripts_vivado_version 2020.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
    puts ""
-   catch {common::send_msg_id "BD_TCL-109" "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+   catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
 
    return 1
 }
@@ -83,10 +83,10 @@ if { ${design_name} eq "" } {
    #    4): Current design opened AND is empty AND names diff; design_name exists in project.
 
    if { $cur_design ne $design_name } {
-      common::send_msg_id "BD_TCL-001" "INFO" "Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
+      common::send_gid_msg -ssname BD::TCL -id 2001 -severity "INFO" "Changing value of <design_name> from <$design_name> to <$cur_design> since current design is empty."
       set design_name [get_property NAME $cur_design]
    }
-   common::send_msg_id "BD_TCL-002" "INFO" "Constructing design in IPI design <$cur_design>..."
+   common::send_gid_msg -ssname BD::TCL -id 2002 -severity "INFO" "Constructing design in IPI design <$cur_design>..."
 
 } elseif { ${cur_design} ne "" && $list_cells ne "" && $cur_design eq $design_name } {
    # USE CASES:
@@ -107,19 +107,19 @@ if { ${design_name} eq "" } {
    #    8) No opened design, design_name not in project.
    #    9) Current opened design, has components, but diff names, design_name not in project.
 
-   common::send_msg_id "BD_TCL-003" "INFO" "Currently there is no design <$design_name> in project, so creating one..."
+   common::send_gid_msg -ssname BD::TCL -id 2003 -severity "INFO" "Currently there is no design <$design_name> in project, so creating one..."
 
    create_bd_design $design_name
 
-   common::send_msg_id "BD_TCL-004" "INFO" "Making design <$design_name> as current_bd_design."
+   common::send_gid_msg -ssname BD::TCL -id 2004 -severity "INFO" "Making design <$design_name> as current_bd_design."
    current_bd_design $design_name
 
 }
 
-common::send_msg_id "BD_TCL-005" "INFO" "Currently the variable <design_name> is equal to \"$design_name\"."
+common::send_gid_msg -ssname BD::TCL -id 2005 -severity "INFO" "Currently the variable <design_name> is equal to \"$design_name\"."
 
 if { $nRet != 0 } {
-   catch {common::send_msg_id "BD_TCL-114" "ERROR" $errMsg}
+   catch {common::send_gid_msg -ssname BD::TCL -id 2006 -severity "ERROR" $errMsg}
    return $nRet
 }
 
@@ -140,12 +140,12 @@ xilinx.com:ip:processing_system7:5.5\
 digilentinc.com:ip:rgb2dvi:1.4\
 xilinx.com:ip:proc_sys_reset:5.0\
 xilinx.com:ip:v_axi4s_vid_out:4.0\
-xilinx.com:ip:v_tc:6.1\
+xilinx.com:ip:v_tc:6.2\
 xilinx.com:ip:xlconcat:2.1\
 "
 
    set list_ips_missing ""
-   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following IPs exist in the project's IP catalog: $list_check_ips ."
+   common::send_gid_msg -ssname BD::TCL -id 2011 -severity "INFO" "Checking if the following IPs exist in the project's IP catalog: $list_check_ips ."
 
    foreach ip_vlnv $list_check_ips {
       set ip_obj [get_ipdefs -all $ip_vlnv]
@@ -155,7 +155,7 @@ xilinx.com:ip:xlconcat:2.1\
    }
 
    if { $list_ips_missing ne "" } {
-      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following IPs are not found in the IP Catalog:\n  $list_ips_missing\n\nResolution: Please add the repository containing the IP(s) to the project." }
+      catch {common::send_gid_msg -ssname BD::TCL -id 2012 -severity "ERROR" "The following IPs are not found in the IP Catalog:\n  $list_ips_missing\n\nResolution: Please add the repository containing the IP(s) to the project." }
       set bCheckIPsPassed 0
    }
 
@@ -171,7 +171,7 @@ DVIClocking\
 "
 
    set list_mods_missing ""
-   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+   common::send_gid_msg -ssname BD::TCL -id 2020 -severity "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
 
    foreach mod_vlnv $list_check_mods {
       if { [can_resolve_reference $mod_vlnv] == 0 } {
@@ -180,14 +180,14 @@ DVIClocking\
    }
 
    if { $list_mods_missing ne "" } {
-      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
-      common::send_msg_id "BD_TCL-008" "INFO" "Please add source files for the missing module(s) above."
+      catch {common::send_gid_msg -ssname BD::TCL -id 2021 -severity "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_gid_msg -ssname BD::TCL -id 2022 -severity "INFO" "Please add source files for the missing module(s) above."
       set bCheckIPsPassed 0
    }
 }
 
 if { $bCheckIPsPassed != 1 } {
-  common::send_msg_id "BD_TCL-1003" "WARNING" "Will not continue with creation of design due to the error(s) above."
+  common::send_gid_msg -ssname BD::TCL -id 2023 -severity "WARNING" "Will not continue with creation of design due to the error(s) above."
   return 3
 }
 
@@ -211,14 +211,14 @@ proc create_root_design { parentCell } {
   # Get object for parentCell
   set parentObj [get_bd_cells $parentCell]
   if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
      return
   }
 
   # Make sure parentObj is hier blk
   set parentType [get_property TYPE $parentObj]
   if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
      return
   }
 
@@ -264,10 +264,10 @@ proc create_root_design { parentCell } {
   set block_name DVIClocking
   set block_cell_name DVIClocking_0
   if { [catch {set DVIClocking_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $DVIClocking_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
@@ -1278,20 +1278,20 @@ proc create_root_design { parentCell } {
  ] $video_dynclk
 
   # Create instance: vtg, and set properties
-  set vtg [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.1 vtg ]
+  set vtg [ create_bd_cell -type ip -vlnv xilinx.com:ip:v_tc:6.2 vtg ]
   set_property -dict [ list \
-   CONFIG.GEN_F0_VBLANK_HEND {1280} \
-   CONFIG.GEN_F0_VBLANK_HSTART {1280} \
+   CONFIG.GEN_F0_VBLANK_HEND {640} \
+   CONFIG.GEN_F0_VBLANK_HSTART {640} \
    CONFIG.GEN_F0_VFRAME_SIZE {750} \
-   CONFIG.GEN_F0_VSYNC_HEND {1280} \
-   CONFIG.GEN_F0_VSYNC_HSTART {1280} \
+   CONFIG.GEN_F0_VSYNC_HEND {695} \
+   CONFIG.GEN_F0_VSYNC_HSTART {640} \
    CONFIG.GEN_F0_VSYNC_VEND {729} \
    CONFIG.GEN_F0_VSYNC_VSTART {724} \
-   CONFIG.GEN_F1_VBLANK_HEND {1280} \
-   CONFIG.GEN_F1_VBLANK_HSTART {1280} \
+   CONFIG.GEN_F1_VBLANK_HEND {640} \
+   CONFIG.GEN_F1_VBLANK_HSTART {640} \
    CONFIG.GEN_F1_VFRAME_SIZE {750} \
-   CONFIG.GEN_F1_VSYNC_HEND {1280} \
-   CONFIG.GEN_F1_VSYNC_HSTART {1280} \
+   CONFIG.GEN_F1_VSYNC_HEND {695} \
+   CONFIG.GEN_F1_VSYNC_HSTART {695} \
    CONFIG.GEN_F1_VSYNC_VEND {729} \
    CONFIG.GEN_F1_VSYNC_VSTART {724} \
    CONFIG.GEN_HACTIVE_SIZE {1280} \
@@ -1367,14 +1367,14 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconcat_0_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_0/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x40000000 -offset 0x00000000 [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x40000000 -offset 0x00000000 [get_bd_addr_spaces axi_vdma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP2/HP2_DDR_LOWOCM] SEG_processing_system7_0_HP2_DDR_LOWOCM
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C40000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs AXI_GammaCorrection_0/s_axil/reg0] SEG_AXI_GammaCorrection_0_reg0
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C30000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs MIPI_CSI_2_RX_0/S_AXI_LITE/S_AXI_LITE_reg] SEG_MIPI_CSI_2_RX_0_S_AXI_LITE_reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C20000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs MIPI_D_PHY_RX_0/S_AXI_LITE/S_AXI_LITE_reg] SEG_MIPI_D_PHY_RX_0_S_AXI_LITE_reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x43000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_vdma_0/S_AXI_LITE/Reg] SEG_axi_vdma_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C00000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs video_dynclk/s_axi_lite/Reg] SEG_video_dynclk_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x43C10000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs vtg/ctrl/Reg] SEG_vtg_Reg
+  assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_MM2S] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+  assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_vdma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP2/HP2_DDR_LOWOCM] -force
+  assign_bd_address -offset 0x43C40000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs AXI_GammaCorrection_0/s_axil/reg0] -force
+  assign_bd_address -offset 0x43C30000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs MIPI_CSI_2_RX_0/S_AXI_LITE/S_AXI_LITE_reg] -force
+  assign_bd_address -offset 0x43C20000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs MIPI_D_PHY_RX_0/S_AXI_LITE/S_AXI_LITE_reg] -force
+  assign_bd_address -offset 0x43000000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_vdma_0/S_AXI_LITE/Reg] -force
+  assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs video_dynclk/s_axi_lite/Reg] -force
+  assign_bd_address -offset 0x43C10000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs vtg/ctrl/Reg] -force
 
 
   # Restore current instance
