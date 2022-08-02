@@ -1,6 +1,8 @@
 Zybo Z7 -20 Pcam 5C Demo
 ====================
 
+**Note:** The demo contained in this repository has been moved and this repository is no longer being actively maintained. Check out the [Zybo Z7-20 Pcam 5C Demo](https://digilent.com/reference/programmable-logic/zybo-z7/demos/pcam-5c) page on Digilent Reference for more information.
+
 Description
 -----------
  The Zybo Z7 Pcam 5C project demonstrates the usage of the Pcam 5C as a video source by forwarding the streaming image data out to the HDMI TX port. Video data streams in through the Pcam port and out through the HDMI source (TX) port. A UART interface is available to configure the image sensor and additional post processing IP Cores.
